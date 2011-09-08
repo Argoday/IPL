@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="src\AIO_json.h" />
+    <ClInclude Include="src\JSON\Array.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\Boolean.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\Document.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\Null.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\Number.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\Object.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\String.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\Node.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JSON\JSON.h">
+      <Filter>JSON\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="JSON">
+      <UniqueIdentifier>{ebba24b4-b0ba-4a00-ad1a-5e59f3d230eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSON\Header Files">
+      <UniqueIdentifier>{3aa6d44d-7f4a-46ba-b53c-8eecb1f87949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JSON\Source Files">
+      <UniqueIdentifier>{43493116-53bd-46d8-b710-93030d878e33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\JSON\Node.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\Array.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\Boolean.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\Document.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\Null.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\Number.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\Object.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JSON\String.cpp">
+      <Filter>JSON\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

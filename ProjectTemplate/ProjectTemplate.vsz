@@ -1,0 +1,6 @@
+VSWIZARD 7.0
+Wizard=VsWizard.VsWizardEngine.10.0
+
+Param="WIZARD_NAME = New Argoday Library Project"
+Param="ABSOLUTE_PATH = I:\Qt\projects\ALIB\"
+Param="FALLBACK_LCID = 1033"
