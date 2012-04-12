@@ -1,5 +1,5 @@
 # Argoday Library
-[Argoday](http://www.argoday.com/wiki/ALIB "Argoday Wiki")
+[Argoday Wiki](http://www.argoday.com/wiki/ALIB "Argoday Wiki")
 
 ## Overview
 
