@@ -1,5 +1,5 @@
 # Argoday Library
-[Argoday](http://www.argoday.com/wiki/ALIB "Argoday")
+[Argoday](http://www.argoday.com/wiki/ALIB "Argoday Wiki")
 
 ## Overview
 
@@ -13,15 +13,15 @@ Argoday Library (ALIB) contains lots of functionality in seperate modules:
 
 ### Lib
 * ACore - Argoday Core Library
-** Basic helper functionality
+  * Basic helper functionality
 * AIL - Argoday Image Library
-** A template metaprogramming based image library
+  * A template metaprogramming based image library
 * AIL_<Name> - Argoday Image Library Extension
-** Adds support for AIL to interact with library <Name>
+  * Adds support for AIL to interact with library <Name>
 * AIO_<Name> - Argoday Input / Output Extension
-** Adds support for ALIB to input / output format <Name>
+  * Adds support for ALIB to input / output format <Name>
 * Crypt - Cryptrography Library
-** Library of various cryptrography ciphers
+  * Library of various cryptrography ciphers
 
 
 ## License
