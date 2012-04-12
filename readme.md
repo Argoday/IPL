@@ -5,7 +5,6 @@
 
 Argoday Library (ALIB) contains lots of functionality in seperate modules:
 
-
 ### Exe
 * ImageConvert - Calls AIL_IO to convert image files
 * FrameDump - Calls ffmpeg to dump frames from a video file
@@ -27,12 +26,12 @@ Argoday Library (ALIB) contains lots of functionality in seperate modules:
 
 ALIB compiles using MSVC 2011 Beta and relies on:
 
-Qt - qt-everywhere-opensource-src-4.7.3
-Boost - boost_1_40_0
-Curl - curl-7.21.7
-LibPNG - lpng1510
-FFMPEG - ffmpeg-git-41a097a-win64-dev
-  
+Qt - qt-everywhere-opensource-src-4.7.3  
+Boost - boost_1_40_0  
+Curl - curl-7.21.7  
+LibPNG - lpng1510  
+FFMPEG - ffmpeg-git-41a097a-win64-dev  
+
 ## License
 
 Copyright (c) 2012 argoday@argoday.com
