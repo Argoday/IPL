@@ -8,8 +8,6 @@
 
 namespace Crypt {
 
-class MixedAlphabet_d;
-
 class CRYPT_DLL_EXPORT MixedAlphabet {
 
 	public:
@@ -27,6 +25,7 @@ class CRYPT_DLL_EXPORT MixedAlphabet {
 
 	private:
 
+		class MixedAlphabet_d;
 		MixedAlphabet_d * _this;
 
 };

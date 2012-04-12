@@ -4,7 +4,7 @@
 
 namespace Crypt {
 
-class CryptString_d {
+class CryptString::CryptString_d {
 	public:
 		std::vector<CryptChar> value;
 };

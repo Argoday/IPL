@@ -11,7 +11,7 @@ namespace Data {
 
 class DataManagerHelper;
 
-class DataManager_d {
+class DataManager::DataManager_d {
 	public:
 		std::map<size_t,DataManagerHelper> dataMap;
 };

@@ -6,8 +6,6 @@
 
 namespace Data {
 
-class DataManager_d;
-
 class ACORE_DLL_EXPORT DataManager {
 
 	public:
@@ -32,6 +30,7 @@ class ACORE_DLL_EXPORT DataManager {
 
 	private:
 
+		class DataManager_d;
 		DataManager_d * _this;
 
 };

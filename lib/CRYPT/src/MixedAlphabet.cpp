@@ -4,7 +4,7 @@
 
 namespace Crypt {
 
-class MixedAlphabet_d {
+class MixedAlphabet::MixedAlphabet_d {
 	public:
 		std::vector<CryptChar> value;
 };

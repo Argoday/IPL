@@ -9,8 +9,6 @@
 
 namespace Crypt {
 
-class CryptString_d;
-
 class CRYPT_DLL_EXPORT CryptString {
 
 	public:
@@ -37,6 +35,7 @@ class CRYPT_DLL_EXPORT CryptString {
 
 	private:
 
+		class CryptString_d;
 		CryptString_d * _this;
 
 };
