@@ -9,7 +9,7 @@ Argoday Library (ALIB) contains lots of functionality in seperate modules:
 ### Exe
 * ImageConvert - Calls AIL_IO to convert image files
 * FrameDump - Calls ffmpeg to dump frames from a video file
-* QPaint - Qt based paint program
+* QPaint - Qt based paint program to test AIL functionality
 
 ### Lib
 * ACore - Argoday Core Library
@@ -23,7 +23,16 @@ Argoday Library (ALIB) contains lots of functionality in seperate modules:
 * Crypt - Cryptrography Library
   * Library of various cryptrography ciphers
 
+## Dependencies
 
+ALIB compiles using MSVC 2011 Beta and relies on:
+
+Qt - qt-everywhere-opensource-src-4.7.3
+Boost - boost_1_40_0
+Curl - curl-7.21.7
+LibPNG - lpng1510
+FFMPEG - ffmpeg-git-41a097a-win64-dev
+  
 ## License
 
 Copyright (c) 2012 argoday@argoday.com
