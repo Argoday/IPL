@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Video">
+      <UniqueIdentifier>{58eba47c-8956-40a1-8e6a-48f57945e2b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Video\Header Files">
+      <UniqueIdentifier>{38597928-a564-4ba6-8eb4-e59b5bfdd1ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Video\Source Files">
+      <UniqueIdentifier>{774fdaca-287e-42cf-b73f-46e09d43a2a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AIL_ffmpeg.h" />
+    <ClInclude Include="src\Video\FFMPEGplayer.h">
+      <Filter>Video\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Video\FFMPEGplayer.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

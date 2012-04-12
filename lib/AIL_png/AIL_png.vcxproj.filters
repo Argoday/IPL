@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Image">
+      <UniqueIdentifier>{C9AD1E93-75B2-4B44-A2EE-61DFF034CAFA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Image\Header Files">
+      <UniqueIdentifier>{A2763980-6832-4061-89B4-2E82237F8D3B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Image\Source Files">
+      <UniqueIdentifier>{C9237B63-5F52-4C3C-8EBF-A1045D99C1C9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AIL_png.h" />
+    <ClInclude Include="src\Image\Image_png.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Image\Image_png.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

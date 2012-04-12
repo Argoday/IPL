@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="src\ANET_curl.h" />
+    <ClInclude Include="src\ACURL.h">
+      <Filter>CURL\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CURL">
+      <UniqueIdentifier>{936bf12c-425b-407c-8891-bec9542f4a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURL\Header Files">
+      <UniqueIdentifier>{cd6dcb8b-c2ce-4f1b-b588-8f761ff7badc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CURL\Source Files">
+      <UniqueIdentifier>{110c7400-cc05-4e24-9723-68ab944ef36f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ACURL.cpp">
+      <Filter>CURL\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

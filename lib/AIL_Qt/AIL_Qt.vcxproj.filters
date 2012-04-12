@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Image">
+      <UniqueIdentifier>{8b7016ee-1edd-4d97-a10a-1e7d0327fb0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Image\Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Image\Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Pixel">
+      <UniqueIdentifier>{bd6eb3a5-a736-4822-9e72-8995e00412cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pixel\Pixel_Cast">
+      <UniqueIdentifier>{c26b7b29-279b-483a-8802-f7e70096cb73}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Image\Image_Qt.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\pixel_cast_Qt.h">
+      <Filter>Pixel\Pixel_Cast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIL_Qt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Image\Image_Qt.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
