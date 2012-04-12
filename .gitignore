@@ -1,5 +1,6 @@
-
-/export
+export
+GeneratedFiles
+*.bak
 *.sdf
 *.suo
 *.opensdf
