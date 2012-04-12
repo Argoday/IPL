@@ -3,7 +3,7 @@
 
 namespace Paint {
 
-//TODO use ImageSize
+//TODO: use ImageSize
 Image::Image<Pixel::PixelGRAYb> MakeCircle(const long &width,const long &height,const double &radius){
 	return MakeCircle(width,height,width/2,height/2,radius);
 }

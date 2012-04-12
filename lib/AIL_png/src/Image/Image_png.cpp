@@ -4,13 +4,16 @@
 #include <Pixel/pixel_cast.h>
 #include <png.h>
 
-#pragma warning( disable : 4244 ) //Note: Disable warning for possible conversion loss when going to RGBAi1 ... this should however be handeled directly by pixel_cast
+#pragma warning( disable : 4244 ) //Note: Disable warning for possible conversion loss when going to RGBAi1 ... this should however be handled directly by pixel_cast
 
 namespace Image {
 
 namespace IO {
 
 template<typename PixelType> AIL_PNG_DLL_EXPORT Image<PixelType> readPNG(Data::DataManager * const dataManager,const std::string & fileName) {
+	
+	//TODO:! change the error returns so that they free row_pointers and report an actual error
+
 	Image<PixelType> ailImage(0,0,dataManager);
 
 	int width, height;
@@ -127,7 +130,7 @@ template<typename PixelType> AIL_PNG_DLL_EXPORT Image<PixelType> readPNG(Data::D
 
 template<typename PixelType> AIL_PNG_DLL_EXPORT void writePNG(const Image<PixelType> & image,const std::string & fileName) {
 	
-	//TODO: change the error returns so that they free row_pointers and report an actual error
+	//TODO:! change the error returns so that they free row_pointers and report an actual error
 
 	// ----------------- start libPNG block ---------------------------------------
 	int width =image.getWidth();

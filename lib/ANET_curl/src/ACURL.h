@@ -7,6 +7,8 @@
 
 #pragma warning( disable : 4251 ) //TODO: Leverage light-weight Vector class from ACore to remove using std::string across DLL boundries
 
+//TODO: Create a proper curl wrapper - see FSWP for current usage (and how bad it is)
+
 namespace ACURL {
 
 struct ANET_CURL_DLL_EXPORT MemoryStruct {
