@@ -29,12 +29,15 @@ template<typename PixelType> AIL_IO_DLL_EXPORT void write(const Image<PixelType>
 	}
 }
 
+//TODO: Move writePPM to a seperate module ?
 template<typename PixelType> AIL_IO_DLL_EXPORT void writePPM(const Image<PixelType> & _image,const std::string & fileName){
 	Image<Pixel::PixelRGBi1u> image = image_cast<Pixel::PixelRGBi1u>(_image);
 
-	FILE *pFile=fopen(fileName.c_str(), "wb");
-	if(pFile==NULL){return;}
-
+    FILE * pFile = nullptr;
+	if(fopen_s(&pFile,fileName.c_str(), "wb") !=0){
+		return; //TODO: ERROR: File could not be opened for writing
+	}
+	
 	fprintf(pFile, "P6\n%d %d\n255\n", image.getWidth(), image.getHeight());
 	fwrite(image.getDataPtr(), 1, image.getSize().getNumPixels()*3, pFile);
   
