@@ -23,8 +23,6 @@ template<class DstPixelType,class SrcPixelType> AIL_DLL_EXPORT typename Meta::di
 
 }
 
-#include <Pixel/PixelTemplateMacros.h>
-
 //-------------------------------------------------------
 #define FUNCTION_TEMPLATE_ARGUMENT_1
 #define FUNCTION_TEMPLATE_RETURN
