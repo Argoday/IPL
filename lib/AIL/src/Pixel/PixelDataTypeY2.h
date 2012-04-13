@@ -15,11 +15,11 @@ template <
 		typedef PixelDataTypeY2<NumberType,Yposition> ThisType;
 
 		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType &_scalar):x(_scalar),y(_scalar),z(_scalar){}
+		__forceinline explicit ThisType(const NumberType &_scalar):x(_scalar),y(_scalar),z(_scalar){} //TODO: Is this correct? - I expect not
 		__forceinline ThisType(const ThisType &_pixel):x(_pixel.x),y(_pixel.y),z(_pixel.z){}
 	
 		__forceinline ThisType &operator =(const ThisType &_pixel )  {x=_pixel.x;y=_pixel.y;z=_pixel.z;return (*this);}
-		__forceinline ThisType &operator =(const NumberType &_scalar){x=_scalar ;y=_scalar ;z=_scalar ;return (*this);}
+		__forceinline ThisType &operator =(const NumberType &_scalar){x=_scalar ;y=_scalar ;z=_scalar ;return (*this);} //TODO: Is this correct? - I expect not
 
 		__forceinline bool operator ==(const ThisType   &_pixel ) const {if(x==_pixel.x){if(y==_pixel.y){if(z==_pixel.z){return true;}}}return false;}
 		__forceinline bool operator ==(const NumberType &_scalar) const {if(x==scalar  ){if(y==scalar  ){if(z==scalar  ){return true;}}}return false;}
@@ -79,9 +79,9 @@ template <
 };
 
 typedef PixelDataTypeY2<I1u,0> PixelDataTypeY2_0i1u;
-typedef PixelDataTypeY2<I4,0>  PixelDataTypeY2_0i4;
-typedef PixelDataTypeY2<F4,0>  PixelDataTypeY2_0f4;
-typedef PixelDataTypeY2<F8,0>  PixelDataTypeY2_0f8;
+typedef PixelDataTypeY2<I4 ,0> PixelDataTypeY2_0i4;
+typedef PixelDataTypeY2<F4 ,0> PixelDataTypeY2_0f4;
+typedef PixelDataTypeY2<F8 ,0> PixelDataTypeY2_0f8;
 
 }
 
