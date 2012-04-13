@@ -6,8 +6,6 @@
 #include "PixelRGB.h"
 #include "PixelYUV.h"
 
-#pragma warning( disable : 4244 ) //Note: Disable warning for possible conversion loss when going to i1u
-
 namespace Pixel {
 
 template <
@@ -53,17 +51,17 @@ template <> __forceinline PixelGRAYi1u pixel_cast<PixelGRAYi1u>(const PixelRGBi1
 	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
 	tempY+= static_cast<I8>(_color.getG())*587;
 	tempY+= static_cast<I8>(_color.getB())*114;
-	return PixelGRAYi1u(tempY/1000);//TODO: Redo the calculation so that this can be a shift (aka /1024)
+	return PixelGRAYi1u(static_cast<I1u>(tempY/1000));//TODO: Redo the calculation so that this can be a shift (aka /1024)
 }
 template <> __forceinline PixelGRAYi1u pixel_cast<PixelGRAYi1u>(const PixelRGBf8 &_color){
 	double tempY;
 	tempY = _color.getR()*0.299; // TODO: Check the asm generated for this line
 	tempY+= _color.getG()*0.587;
 	tempY+= _color.getB()*0.114;
-	return PixelGRAYi1u(tempY*255.0);
+	return PixelGRAYi1u(static_cast<I1u>(tempY*255.0));
 }
 template <> __forceinline PixelGRAYi1u pixel_cast<PixelGRAYi1u>(const PixelYUVf8 &_color){
-	return PixelGRAYi1u(_color.getY());
+	return PixelGRAYi1u(static_cast<I1u>(_color.getY()));
 }
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -75,9 +73,9 @@ template <> __forceinline PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelGRAYi1u
 }
 template <> __forceinline PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBf8 &_color){
 	return PixelRGBi1u(
-		(_color.getR()*255.0),
-		(_color.getG()*255.0),
-		(_color.getB()*255.0))
+		static_cast<I1u>((_color.getR()*255.0)),
+		static_cast<I1u>((_color.getG()*255.0)),
+		static_cast<I1u>((_color.getB()*255.0)))
 	;
 }
 /////////////////////////////////////////////////

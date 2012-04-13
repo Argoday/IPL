@@ -8,8 +8,6 @@
 #include <Data/DataManager.h>
 #include <memory.h> //For: memcpy()
 
-//#pragma warning( disable : 4213 ) //Note: disable non-standard extension warning for performing a const_cast on an l-value
-
 namespace Image {
 
 template <typename PixelType> void Image<PixelType>::resetImageData(){
@@ -96,7 +94,6 @@ template <typename PixelType> Image<PixelType>::Image(const ThisType &_image)
 	,dataManager(_image.dataManager)
 {
 	this->resetImageData();
-#pragma warning(suppress: 6387)
 	memcpy(dataPtr,_image.getDataPtr(),size.getNumPixels()*sizeof(PixelType)); //TODO: Is there something faster than memcpy()?
 }
 template <typename PixelType> Image<PixelType>::Image(ThisType &&_image)

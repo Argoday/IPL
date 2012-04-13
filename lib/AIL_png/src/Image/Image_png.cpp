@@ -4,8 +4,6 @@
 #include <Pixel/pixel_cast.h>
 #include <png.h>
 
-#pragma warning( disable : 4244 ) //Note: Disable warning for possible conversion loss when going to RGBAi1 ... this should however be handled directly by pixel_cast
-
 namespace Image {
 
 namespace IO {
@@ -167,9 +165,9 @@ template<typename PixelType> AIL_PNG_DLL_EXPORT void writePNG(const Image<PixelT
 		for (long x=0; x<image.getWidth(); ++x){
 			png_byte* ptr = &(row[x*4]);
 			Pixel::PixelRGBf8 pix = Pixel::pixel_cast<Pixel::PixelRGBf8>(*imageDataPtr); //TODO: fix this so that it uses PixelRGBAi1u directly overlayed with ptr
-			ptr[0]=pix.getR()*255.0;
-			ptr[1]=pix.getG()*255.0;
-			ptr[2]=pix.getB()*255.0;
+			ptr[0]=static_cast<I1u>(pix.getR()*255.0);
+			ptr[1]=static_cast<I1u>(pix.getG()*255.0);
+			ptr[2]=static_cast<I1u>(pix.getB()*255.0);
 			ptr[3]=255;
 			++imageDataPtr;
 		}

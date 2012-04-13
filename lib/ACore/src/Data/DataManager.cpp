@@ -5,8 +5,6 @@
 #include <map> //TODO: Remove usage of std::map , it adds too much to the binary for what it is worth
 #include <stdlib.h> //For: _aligned_malloc() , _aligned_free()
 
-#pragma warning( disable : 4267 ) //Note: Disable warning for possible conversion loss from size_t to long
-
 namespace Data {
 
 class DataManagerHelper;
