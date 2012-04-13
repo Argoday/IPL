@@ -20,10 +20,10 @@ class DataChunk {
 		friend class DataManagerHelper; //TODO: Check if this can be removed
 
 	//Contructors
-		DataChunk(const long &_numBytes, DataChunk * const &_nextPtr);
+		DataChunk(const size_t &_numBytes, DataChunk * const &_nextPtr);
 
 	//Accessors
-		__forceinline const long &getNumBytes() const {return numBytes;}
+		__forceinline const size_t &getNumBytes() const {return numBytes;}
 		__forceinline void * const &getDataPtr(){return dataPtr;}
 		__forceinline const bool &isLocked() const {return locked;}
 		__forceinline DataChunk * const &getNextPtr() const {return nextPtr;}
@@ -36,7 +36,7 @@ class DataChunk {
 
 	//Member Variables
 		void *dataPtr;
-		long numBytes;
+		size_t numBytes;
 
 		DataChunk *nextPtr;
 		bool locked;

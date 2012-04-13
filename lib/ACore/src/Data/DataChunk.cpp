@@ -4,7 +4,7 @@
 
 namespace Data {
 
-DataChunk::DataChunk(const long &_numBytes, DataChunk * const &_nextPtr)
+DataChunk::DataChunk(const size_t &_numBytes, DataChunk * const &_nextPtr)
 	:numBytes(_numBytes)
 	,nextPtr(_nextPtr)
 	,locked(false)
