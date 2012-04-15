@@ -138,12 +138,6 @@
     <ResourceCompile Include="QPaint.rc" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="qpaint.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="qpaint.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="src\ImageWindow.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
