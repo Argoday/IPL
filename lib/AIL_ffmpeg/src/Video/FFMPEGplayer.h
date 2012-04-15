@@ -20,11 +20,11 @@ class AIL_FFMPEG_DLL_EXPORT FFMPEGplayer {
 
 		bool hasNextFrame();
 
-		const int & getFrameIndex() const {return frameIndex;}
-		Image::Image<Pixel::PixelRGBi1u> getFrame();
+		const I8u & getFrameIndex() const {return frameIndex;}
+		Image::Image<Pixel::PixelRGBi1u> getFrame() const ;
 
 	private:
-		int frameIndex;
+		I8u frameIndex;
 		FFMPEGplayer_d * _this;
 		Data::DataManager * const dataManager;
 };

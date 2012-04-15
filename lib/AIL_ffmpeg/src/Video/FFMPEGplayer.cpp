@@ -62,8 +62,8 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::hasNextFrame(){
       
 			if(frameFinished) {
 				static struct SwsContext * img_convert_ctx;
-				int w = pCodecCtx->width;
-				int h = pCodecCtx->height;
+				auto w = pCodecCtx->width;
+				auto h = pCodecCtx->height;
 				img_convert_ctx = sws_getContext(w, h, pCodecCtx->pix_fmt, w, h, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
 				sws_scale(img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, pFrameRGB->data, pFrameRGB->linesize);
 
@@ -127,6 +127,7 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(std::string fileName){
 }
 
 AIL_FFMPEG_DLL_EXPORT void FFMPEGplayer::closeFile(){
+	frameIndex = 0;
 	if(_this->buffer   !=nullptr){av_free(_this->buffer);               _this->buffer    = nullptr;}
 	if(_this->frame    !=nullptr){av_free(_this->frame);                _this->frame     = nullptr;}
 	if(_this->frameRGB !=nullptr){av_free(_this->frameRGB);             _this->frameRGB  = nullptr;}
@@ -134,7 +135,7 @@ AIL_FFMPEG_DLL_EXPORT void FFMPEGplayer::closeFile(){
 	if(_this->formatCtx!=nullptr){av_close_input_file(_this->formatCtx);_this->formatCtx = nullptr;}
 }
 
-AIL_FFMPEG_DLL_EXPORT Image::Image<Pixel::PixelRGBi1u> FFMPEGplayer::getFrame(){
+AIL_FFMPEG_DLL_EXPORT Image::Image<Pixel::PixelRGBi1u> FFMPEGplayer::getFrame() const {
 	
 	auto & pFrame = _this->frameRGB;
 	auto & width  = _this->codecCtx->width;
@@ -144,10 +145,13 @@ AIL_FFMPEG_DLL_EXPORT Image::Image<Pixel::PixelRGBi1u> FFMPEGplayer::getFrame(){
 	if(pFrame->linesize[0]==width*3){
 		memcpy(image.getDataPtr(),pFrame->data[0],_this->numBytes);
 	}else{
-		auto dataPtr = image.getDataPtr();
+		auto dataPtr  = image.getDataPtr();
+		auto framePtr = pFrame->data[0];
+		auto linesize = pFrame->linesize[0];
 		for(int y=0; y<height; y++){
-			memcpy(dataPtr,pFrame->data[0],pFrame->linesize[0]);
+			memcpy(dataPtr,framePtr,linesize);
 			dataPtr+=width;
+			framePtr+=linesize;
 		}
 	}
 	return image;
