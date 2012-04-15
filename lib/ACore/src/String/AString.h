@@ -3,6 +3,7 @@
 #ifndef STRING__AString_H
 #define STRING__AString_H
 
+#include "Data/DataTypes.h"
 #include <sstream>
 
 namespace String {
@@ -10,12 +11,17 @@ namespace String {
 //TODO: Write a light-weight string class
 
 
-std::string getString(const int &number){ //TODO: rewrite to not use sstream
+std::string getString(const I4  & number){ //TODO: rewrite to not use sstream
 	std::stringstream stream;
 	stream<<number;
 	return stream.str();
 }
-std::string getString(const long long &number){ //TODO: rewrite to not use sstream
+std::string getString(const I8  & number){ //TODO: rewrite to not use sstream
+	std::stringstream stream;
+	stream<<number;
+	return stream.str();
+}
+std::string getString(const I8u & number){ //TODO: rewrite to not use sstream
 	std::stringstream stream;
 	stream<<number;
 	return stream.str();
