@@ -1,6 +1,6 @@
 
-#ifndef IMAGEVIEW_H
-#define IMAGEVIEW_H
+#ifndef ImageWindow_H
+#define ImageWindow_H
 
 #include <QMainWindow>
 #include <QPrinter>

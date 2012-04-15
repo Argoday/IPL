@@ -1,19 +1,20 @@
 
-#include <QtGui>
-
 #include "ImageWindow.h"
+#include "MorphologicalDialog.h"
+
+#include <QtGui>
+#include <QPainter>
+#include <time.h>
+#include <boost/lexical_cast.hpp>
+
 #include <Image/Image.h>
+#include <Image/Image_IO.h>
 #include <Image/Image_Qt.h>
 #include <Filter/DilateFilter.h>
 #include <Filter/LinearFilterWxH.h>
 #include <Algorithm/BaseAlgorithm1x1.h>
 #include <Algorithm/BaseAlgorithm3x3.h>
-#include "MorphologicalDialog.h"
-#include <QPainter>
-#include <time.h>
-#include <boost/lexical_cast.hpp>
-#include <Image/Image_IO.h>
-#include <Image/Image_Qt.h>
+
 
 //--- ImageWindow Constructor ---												//Constructor
 ImageWindow::ImageWindow(Data::DataManager * const _dataManager)
