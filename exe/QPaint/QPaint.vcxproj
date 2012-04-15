@@ -589,12 +589,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="QPaint.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="QPaint.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\lib\ACore\ACore.vcxproj">
       <Project>{4283e1f3-23a1-409f-96ce-9c8984740455}</Project>
     </ProjectReference>
@@ -610,6 +604,12 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ProjectReference Include="..\..\lib\AIL_Qt\AIL_Qt.vcxproj">
       <Project>{bb5e9e03-c097-451a-8918-b48f14010523}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="rc\QPaint.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="rc\QPaint.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
