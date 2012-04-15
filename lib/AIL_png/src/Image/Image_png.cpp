@@ -159,7 +159,7 @@ template<typename PixelType> AIL_PNG_DLL_EXPORT void writePNG(const Image<PixelT
 	}
 	// ----------------- end libPNG block ---------------------------------------
 
-	const PixelType * imageDataPtr = image.getDataPtr();
+	auto imageDataPtr = image.getDataPtr();
 	for (long y=0; y<image.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
 		png_byte* row = row_pointers[y];
 		for (long x=0; x<image.getWidth(); ++x){
