@@ -30,7 +30,7 @@ class AIL_FFMPEG_DLL_EXPORT FFMPEGplayer_d {
 		AVFrame         * frameRGB;
 		AVPacket        packet;
 		int             numBytes;
-		int             videoStreamID;
+		unsigned int    videoStreamID;
 		uint8_t         *buffer;
 
 };
@@ -90,7 +90,7 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(std::string fileName){
   
 	// Find the first video stream
 	videoStreamID=-1;
-	for(int i=0; i<pFormatCtx->nb_streams; i++){
+	for(unsigned int i=0; i<pFormatCtx->nb_streams; i++){
 		if(pFormatCtx->streams[i]->codec->codec_type==AVMEDIA_TYPE_VIDEO) {
 			videoStreamID=i;
 			break;
