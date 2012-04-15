@@ -58,6 +58,9 @@
     <Filter Include="System\Source Files">
       <UniqueIdentifier>{1437a870-a638-4d63-895c-26d7c12b70f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="String\Source Files">
+      <UniqueIdentifier>{d5322d99-04d7-403f-bc04-ea9749e22440}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Meta\Boolean.h">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="src\System\System.cpp">
       <Filter>System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\String\String.cpp">
+      <Filter>String\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

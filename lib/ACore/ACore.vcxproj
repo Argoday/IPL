@@ -236,6 +236,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
@@ -370,6 +371,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClCompile Include="src\Data\DataManager.cpp" />
     <ClCompile Include="src\Data\DataRange.cpp" />
     <ClCompile Include="src\Meta\Boolean.cpp" />
+    <ClCompile Include="src\String\String.cpp" />
     <ClCompile Include="src\System\System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

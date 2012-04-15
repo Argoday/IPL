@@ -3,37 +3,19 @@
 #ifndef STRING__AString_H
 #define STRING__AString_H
 
+#include "ACore.h"
 #include "Data/DataTypes.h"
-#include <sstream>
+#include <string>
 
 namespace String {
 
 //TODO: Write a light-weight string class
 
+ACORE_DLL_EXPORT std::string getString(const I4  & number);
+ACORE_DLL_EXPORT std::string getString(const I8  & number);
+ACORE_DLL_EXPORT std::string getString(const I8u & number);
 
-std::string getString(const I4  & number){ //TODO: rewrite to not use sstream
-	std::stringstream stream;
-	stream<<number;
-	return stream.str();
-}
-std::string getString(const I8  & number){ //TODO: rewrite to not use sstream
-	std::stringstream stream;
-	stream<<number;
-	return stream.str();
-}
-std::string getString(const I8u & number){ //TODO: rewrite to not use sstream
-	std::stringstream stream;
-	stream<<number;
-	return stream.str();
-}
-
-bool hasEnding(const std::string & fullString, const std::string & ending){
-    if(fullString.length() >= ending.length()) {
-        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
-    } else {
-        return false;
-    }
-}
+ACORE_DLL_EXPORT bool hasEnding(const std::string & fullString, const std::string & ending);
 
 }
 
