@@ -363,12 +363,14 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClInclude Include="src\Meta\Unroller2.h" />
     <ClInclude Include="src\Meta\Unroller2p.h" />
     <ClInclude Include="src\String\AString.h" />
+    <ClInclude Include="src\System\System.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\DataChunk.cpp" />
     <ClCompile Include="src\Data\DataManager.cpp" />
     <ClCompile Include="src\Data\DataRange.cpp" />
     <ClCompile Include="src\Meta\Boolean.cpp" />
+    <ClCompile Include="src\System\System.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
