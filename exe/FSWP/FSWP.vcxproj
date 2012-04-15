@@ -363,12 +363,6 @@ copy $(QTDIR)\lib\QtWebKit4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtWe
     <ProjectReference Include="..\..\lib\ANET_curl\ANET_curl.vcxproj">
       <Project>{9d1baebb-b166-5b3a-b703-f96ef3bcbbd8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\AIO_json\AIO_json.vcxproj">
-      <Project>{cca6317e-69ca-66b4-ae42-eb5d39084715}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ANET_curl\ANET_curl.vcxproj">
-      <Project>{271bbf4b-7f90-e7c5-49dc-bb2ac8f51894}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="src\MainObject.h">

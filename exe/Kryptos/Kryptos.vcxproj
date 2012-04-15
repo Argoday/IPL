@@ -330,9 +330,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ProjectReference Include="..\..\lib\CRYPT\Crypt.vcxproj">
       <Project>{4d6e68ef-d402-f2f6-dec7-e87e0943b6bf}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\CRYPT\Crypt.vcxproj">
-      <Project>{2df36a6f-6520-7890-2b1a-80c5f368b9e1}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
