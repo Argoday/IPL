@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QPrinter>
 #include <QImageWriter>
+
 #include <Image/Image.h>
 #include <Pixel/PixelRGB.h>
 #include <Data/DataManager.h>
@@ -21,10 +22,10 @@ class ImageWindow : public QMainWindow {
 	Q_OBJECT
 
 	public:
-		ImageWindow(Data::DataManager * const _dataManager);	// constructor
-		~ImageWindow();	// destructor
+		ImageWindow(Data::DataManager * const _dataManager);
+		~ImageWindow();
 
-	private slots:		// Commands
+	private slots:
 		void open();
 		void print();
 		void save();
@@ -47,34 +48,33 @@ class ImageWindow : public QMainWindow {
 		void scaleImage(double factor);
 		void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
-	//Misc Declarations
 		QPrinter printer;
 		QImageWriter imageWriter;
 		QLabel *imageLabel;
 		QScrollArea *scrollArea;
 		double scaleFactor;
 
-	//File Actions
+	//File
 		QAction *openAct;
 		QAction *saveAct;
 		QAction *printAct;
 		QAction *exitAct;
 		QAction *aboutAct;
 
-	//Edit Actions
+	//Edit
 		QAction *undoAct;
 		QAction *redoAct;
 		QAction *cutAct;
 		QAction *copyAct;
 		QAction *pasteAct;
 
-	//Zoom Actions
+	//Zoom
 		QAction *zoomInAct;
 		QAction *zoomOutAct;
 		QAction *normalSizeAct;
 		QAction *fitToWindowAct;
 
-	//Global Effect Image Actions
+	//Image Actions
 		QAction *negativeAct;
 		QAction *blurAct;
 		QAction *morphologicalDialogAct;
@@ -91,10 +91,6 @@ class ImageWindow : public QMainWindow {
 		typedef Pixel::PixelRGBf8 PixelType;
 		Image::Image<PixelType> * wImage;
 		Data::DataManager * dataManager;
-
-#ifdef PAINT_ENGINE__W_GUI_MANAGER_H
-		PaintEngine::WGuiManager *wGuiManager;
-#endif
 
 };
 
