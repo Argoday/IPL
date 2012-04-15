@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ImportGroup Label="PropertySheets" />
-  <Import Project="$(ALIB)\lib\AIL_ffmpeg\AIL_ffmpeg.props" />
-  <Import Project="$(ALIB)\lib\AIL_IO\AIL_IO.props" />
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
-  <ItemDefinitionGroup>
-    <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemGroup />
+	<ImportGroup Label="PropertySheets" />
+	<Import Project="$(ALIB)\lib\AIL_ffmpeg\AIL_ffmpeg.props" Condition=" '$(AIL_FFMPEG_PROPS)' == '' " />
+	<Import Project="$(ALIB)\lib\AIL_IO\AIL_IO.props" Condition=" '$(AIL_IO_PROPS)' == '' " />
+	<PropertyGroup Label="UserMacros">
+		<FRAME_DUMP_PROPS>true</FRAME_DUMP_PROPS>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup />
 </Project>
