@@ -5,7 +5,6 @@
 #include "Crypt.h"
 #include "SimpleCipher.h"
 #include "MixedAlphabet.h"
-#include <utility>
 #include <vector>
 
 namespace Crypt {
