@@ -1,10 +1,11 @@
 
-#ifndef DATA__DATA_TYPES
-#define DATA__DATA_TYPES
+#ifndef DATA__DataTypes_H
+#define DATA__DataTypes_H
 
+#include "ACore.h"
 #include <Meta/Boolean.h>
 
-typedef   Meta::Boolean  B1; //bool
+typedef   Meta::Boolean  B1 ; //bool
 
 typedef 		 __int8  I1 ; //char
 typedef unsigned __int8  I1u;
@@ -16,6 +17,8 @@ typedef 		 __int64 I8 ; //long long
 typedef unsigned __int64 I8u;
 
 typedef float            F4;
-typedef double           F8;
+typedef double           F8; //double or long double
+
+//TODO: Create structures for Ix types
 
 #endif 
