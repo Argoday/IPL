@@ -345,6 +345,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClInclude Include="src\Data\DataManager.h" />
     <ClInclude Include="src\Data\DataRange.h" />
     <ClInclude Include="src\Data\DataTypes.h" />
+    <ClInclude Include="src\Data\Float.h" />
     <ClInclude Include="src\Meta\Boolean.h" />
     <ClInclude Include="src\Meta\Boolean_cpp.h" />
     <ClInclude Include="src\Meta\Assign.h" />
@@ -370,6 +371,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClCompile Include="src\Data\DataChunk.cpp" />
     <ClCompile Include="src\Data\DataManager.cpp" />
     <ClCompile Include="src\Data\DataRange.cpp" />
+    <ClCompile Include="src\Data\Float.cpp" />
     <ClCompile Include="src\Meta\Boolean.cpp" />
     <ClCompile Include="src\String\String.cpp" />
     <ClCompile Include="src\System\System.cpp" />

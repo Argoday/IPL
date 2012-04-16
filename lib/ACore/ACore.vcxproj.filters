@@ -136,6 +136,9 @@
     <ClInclude Include="src\System\System.h">
       <Filter>System\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Data\Float.h">
+      <Filter>Data\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\DataChunk.cpp">
@@ -155,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="src\String\String.cpp">
       <Filter>String\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Data\Float.cpp">
+      <Filter>Data\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
