@@ -22,7 +22,7 @@ template <
 template <typename DstPixelType,typename SrcPixelType> __forceinline DstPixelType pixel_cast(const SrcPixelType & color);
 
 template <> __forceinline PixelYb pixel_cast<PixelYb>(const PixelYi1u &_color){
-	if(_color.getX()>128){return PixelYb(true);}return PixelYb(false);
+	if(_color.getY()>128){return PixelYb(true);}return PixelYb(false);
 }
 template <> __forceinline PixelYb pixel_cast<PixelYb>(const PixelRGBi1u &_color){
 	I8 tempY;
@@ -44,7 +44,7 @@ template <> __forceinline PixelYb pixel_cast<PixelYb>(const PixelYUVf8 &_color){
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 template <> __forceinline PixelYi1u pixel_cast<PixelYi1u>(const PixelYb &_color){
-	if(_color.getX()==true){return PixelYi1u::RangeType::maxPixel;}return PixelYi1u::RangeType::minPixel;
+	if(_color.getY()==true){return PixelYi1u::RangeType::maxPixel;}return PixelYi1u::RangeType::minPixel;
 }
 template <> __forceinline PixelYi1u pixel_cast<PixelYi1u>(const PixelRGBi1u &_color){
 	I8 tempY;
@@ -66,10 +66,10 @@ template <> __forceinline PixelYi1u pixel_cast<PixelYi1u>(const PixelYUVf8 &_col
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 template <> __forceinline PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelYb &_color){
-	if(_color.getX()==true){return PixelRGBi1u::RangeType::maxPixel;}return PixelRGBi1u::RangeType::minPixel;
+	if(_color.getY()==true){return PixelRGBi1u::RangeType::maxPixel;}return PixelRGBi1u::RangeType::minPixel;
 }
 template <> __forceinline PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelYi1u &_color){
-	return PixelRGBi1u(_color.getX());
+	return PixelRGBi1u(_color.getY());
 }
 template <> __forceinline PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBf8 &_color){
 	return PixelRGBi1u(
@@ -81,10 +81,10 @@ template <> __forceinline PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBf8 &
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 template <> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYb &_color){
-	if(_color.getX()==true){return PixelRGBf8::RangeType::maxPixel;}return PixelRGBf8::RangeType::minPixel;
+	if(_color.getY()==true){return PixelRGBf8::RangeType::maxPixel;}return PixelRGBf8::RangeType::minPixel;
 }
 template <> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYi1u &_color){
-	return PixelRGBf8(_color.getX());
+	return PixelRGBf8(_color.getY());
 }
 template <> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelRGBi1u &_color){
 	return PixelRGBf8(
@@ -103,10 +103,10 @@ template <> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYUVf8 &_c
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 template <> __forceinline PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYb &_color){
-	if(_color.getX()==true){return PixelYUVf8::RangeType::maxPixel;}return PixelYUVf8::RangeType::minPixel;
+	if(_color.getY()==true){return PixelYUVf8::RangeType::maxPixel;}return PixelYUVf8::RangeType::minPixel;
 }
 template <> __forceinline PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi1u &_color){
-	return PixelYUVf8(_color.getX());
+	return PixelYUVf8(_color.getY());
 }
 template <> __forceinline PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBf8 &_color){
 	return PixelYUVf8(

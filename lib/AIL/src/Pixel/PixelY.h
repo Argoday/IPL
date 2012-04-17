@@ -29,9 +29,9 @@ template <
 		__forceinline ThisType(const DataType &_pixel):ParentType(_pixel){}
 		__forceinline ThisType(const ThisType &_pixel):ParentType(_pixel){}
 		
-		__forceinline void setX(const NumberType & _x) {this->set<0>(_x);}
+		__forceinline void setY(const NumberType & _y) {this->set<0>(_y);}
 
-		__forceinline const NumberType &getX() const {return this->get<0>();}
+		__forceinline const NumberType &getY() const {return this->get<0>();}
 
 };
 
@@ -56,7 +56,7 @@ class AIL_DLL_EXPORT PixelYb : public PixelYbtd {
 class BooleanTestType {
 	public:
 		static __forceinline Meta::Boolean isIncluded(const Pixel::PixelYb &boolToTest){
-			return boolToTest.getX();
+			return boolToTest.getY();
 		}
 };
 

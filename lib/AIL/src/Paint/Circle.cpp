@@ -22,9 +22,9 @@ Image::Image<Pixel::PixelYb> MakeCircle(
 	for (long y=0; y<image.getHeight(); ++y)    { double yDistance = ((double)y)-yCenterD;//TODO: test for a better way to do this
 		for (long x=0; x<image.getWidth(); ++x) { double xDistance = ((double)x)-xCenterD;
 			if ((xDistance*xDistance + yDistance*yDistance) < radiusSq){
-				image(x,y).setX(true);
+				image(x,y).setY(true);
 			}else{
-				image(x,y).setX(false);
+				image(x,y).setY(false);
 			}
 		}
 	}

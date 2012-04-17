@@ -27,7 +27,7 @@ template<> __forceinline QRgb pixel_cast<QRgb>(const PixelRGBi1u &_color){
 }
 
 template<> __forceinline QRgb pixel_cast<QRgb>(const PixelYi1u &_color){
-	return qRgba(_color.getX(),_color.getX(),_color.getX(),255);
+	return qRgba(_color.getY(),_color.getY(),_color.getY(),255);
 }
 template<> __forceinline PixelYi1u pixel_cast<PixelYi1u>(const QRgb &_color){
 	double tempY;
@@ -49,7 +49,7 @@ template<> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const QRgb &_color){
 	return color;
 }
 template<> __forceinline QRgb pixel_cast<QRgb>(const PixelYb &_color){
-	if(_color.getX()==true){// TODO: check the asm generated for this function
+	if(_color.getY()==true){// TODO: check the asm generated for this function
 		return qRgba(255,255,255,255);
 	}
 	return qRgba(0,0,0,255);

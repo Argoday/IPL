@@ -16,9 +16,9 @@ Image::Image<Pixel::PixelYb> MakeCross(const long &width,const long &height,cons
 	for (long y=0; y<image.getHeight(); ++y)    {
 		for (long x=0; x<image.getWidth(); ++x) {
 			if((x==xCenter)||(y==yCenter)){
-				image(x,y).setX(true);
+				image(x,y).setY(true);
 			}else{
-				image(x,y).setX(false);
+				image(x,y).setY(false);
 			}
 		}
 	}
