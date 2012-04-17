@@ -5,8 +5,9 @@
 #include <QtGui>
 #include <QPainter>
 #include <time.h>
-#include <boost/lexical_cast.hpp>
 
+#include <String/AString.h>
+using String::getString;
 #include <Image/Image.h>
 #include <Image/Image_IO.h>
 #include <Image/Image_Qt.h>
@@ -95,8 +96,8 @@ void ImageWindow::blur(){
 	wImage=tempImage;
 	tempImage=nullptr;
 	//wImage=tempImage;//*/
-	std::string diffTime = boost::lexical_cast<std::string>(totalTimeDiff/totalRuns);
-	QMessageBox::about(this, tr(("Time (cycles), "+boost::lexical_cast<std::string>(totalRuns)+" runs").c_str()),
+	std::string diffTime = getString(totalTimeDiff/totalRuns);
+	QMessageBox::about(this, tr(("Time (cycles), "+getString(totalRuns)+" runs").c_str()),
 		tr(diffTime.c_str())
 	);
 	
@@ -170,7 +171,7 @@ void ImageWindow::negative(){
 	//wImage->clip();
 	//(*wImage)+= wImage->getMaxValueVol();
 	clock_t endTime = clock();
-	std::string diffTime = boost::lexical_cast<std::string>(endTime-startTime);
+	std::string diffTime = getString(endTime-startTime);
 
 	QMessageBox::about(this, tr("Time (cycles)"),
 		tr(diffTime.c_str())

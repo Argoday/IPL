@@ -3,7 +3,6 @@ setlocal & pushd
 
 set PKG=%CD%\..\..\pkg
 set QTDIR=%PKG%\qt-everywhere-opensource-src-4.7.3
-set BOOST_DIR=%PKG%\boost_1_40_0
 set CURL_DIR=%PKG%\curl-7.21.7
 set LIBPNG_DIR=%PKG%\lpng1510
 set LIBFFMPEG_DIR=%PKG%\ffmpeg-git-41a097a-win64-dev

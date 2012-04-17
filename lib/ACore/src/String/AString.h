@@ -15,6 +15,9 @@ ACORE_DLL_EXPORT std::string getString(const I4  & number);
 ACORE_DLL_EXPORT std::string getString(const I8  & number);
 ACORE_DLL_EXPORT std::string getString(const I8u & number);
 
+ACORE_DLL_EXPORT std::string getString(const F4  & number);
+ACORE_DLL_EXPORT std::string getString(const F8  & number);
+
 ACORE_DLL_EXPORT bool hasEnding(const std::string & fullString, const std::string & ending);
 
 }
