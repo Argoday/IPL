@@ -3,7 +3,7 @@
 #define IMAGE__ImageKernel_H
 
 #include "Image.h"
-#include <Pixel/PixelGRAY.h>
+#include <Pixel/PixelY.h>
 
 namespace Image {
 

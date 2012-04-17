@@ -4,12 +4,12 @@
 namespace Pixel {
 
 
-const PixelTypeID PixelTypeID::GRAYb   = PixelTypeID( 0,"GRAYb" );
+const PixelTypeID PixelTypeID::Yb      = PixelTypeID( 0,"Yb" );
 
-const PixelTypeID PixelTypeID::GRAYi1u = PixelTypeID( 1,"GRAYi1u");
-const PixelTypeID PixelTypeID::GRAYi4  = PixelTypeID( 2,"GRAYi4" );
-const PixelTypeID PixelTypeID::GRAYf4  = PixelTypeID( 3,"GRAYf4" );
-const PixelTypeID PixelTypeID::GRAYf8  = PixelTypeID( 4,"GRAYf8" );
+const PixelTypeID PixelTypeID::Yi1u    = PixelTypeID( 1,"Yi1u");
+const PixelTypeID PixelTypeID::Yi4     = PixelTypeID( 2,"Yi4" );
+const PixelTypeID PixelTypeID::Yf4     = PixelTypeID( 3,"Yf4" );
+const PixelTypeID PixelTypeID::Yf8     = PixelTypeID( 4,"Yf8" );
 
 const PixelTypeID PixelTypeID::RGBi1u  = PixelTypeID( 5,"RGBi1u");
 const PixelTypeID PixelTypeID::RGBi4   = PixelTypeID( 6,"RGBi4" );

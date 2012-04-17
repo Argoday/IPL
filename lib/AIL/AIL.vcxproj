@@ -482,7 +482,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClCompile Include="src\Paint\Circle.cpp" />
     <ClCompile Include="src\Paint\Cross.cpp" />
     <ClCompile Include="src\Paint\Gaussian.cpp" />
-    <ClCompile Include="src\Pixel\PixelGRAY.cpp" />
+    <ClCompile Include="src\Pixel\PixelY.cpp" />
     <ClCompile Include="src\Pixel\PixelRange.cpp" />
     <ClCompile Include="src\Pixel\PixelRGB.cpp" />
     <ClCompile Include="src\Pixel\PixelTypeID.cpp" />
@@ -567,7 +567,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClInclude Include="src\Pixel\PixelDataType3A.h" />
     <ClInclude Include="src\Pixel\PixelDataTypeY2.h" />
     <ClInclude Include="src\Pixel\PixelFunctionTemplateMacro.h" />
-    <ClInclude Include="src\Pixel\PixelGRAY.h" />
+    <ClInclude Include="src\Pixel\PixelY.h" />
     <ClInclude Include="src\Pixel\PixelRange.h" />
     <ClInclude Include="src\Pixel\PixelRGB.h" />
     <ClInclude Include="src\Pixel\PixelRGBA.h" />

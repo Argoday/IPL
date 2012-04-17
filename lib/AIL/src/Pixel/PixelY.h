@@ -1,6 +1,6 @@
 
-#ifndef PIXEL__PixelGRAY_H
-#define PIXEL__PixelGRAY_H
+#ifndef PIXEL__PixelY_H
+#define PIXEL__PixelY_H
 
 #include <AIL.h>
 #include <Meta/TypeVector.h>
@@ -13,7 +13,7 @@ namespace Pixel {
 template <
 	typename NumberType,
 	typename PixelRangeType
-> class PixelGRAYbaseType
+> class PixelYbaseType
 	: public PixelDataType1<NumberType>
 {
 	public:
@@ -22,7 +22,7 @@ template <
 		typedef typename PixelRangeType RangeType;
 		typedef PixelDataType1<NumberType> DataType;
 		typedef PixelDataType1<NumberType> ParentType;
-		typedef PixelGRAYbaseType<NumberType,PixelRangeType> ThisType;
+		typedef PixelYbaseType<NumberType,PixelRangeType> ThisType;
 
 		__forceinline explicit ThisType(){}
 		__forceinline explicit ThisType(const NumberType &_scalar):ParentType(_scalar){}
@@ -35,16 +35,16 @@ template <
 
 };
 
-typedef PixelGRAYbaseType<Meta::Boolean,PixelRange_1b1 > PixelGRAYbtd;
-typedef PixelGRAYbaseType<I1u          ,PixelRange_1i1u> PixelGRAYi1utd;
+typedef PixelYbaseType<Meta::Boolean,PixelRange_1b1 > PixelYbtd;
+typedef PixelYbaseType<I1u          ,PixelRange_1i1u> PixelYi1utd;
 
-class AIL_DLL_EXPORT PixelGRAYb : public PixelGRAYbtd {
+class AIL_DLL_EXPORT PixelYb : public PixelYbtd {
 	public:
 		typedef Meta::Boolean NumberType;
-		typedef PixelGRAYbtd::DataType DataType;
+		typedef PixelYbtd::DataType DataType;
 		typedef PixelRange_1b1 RangeType;
-		typedef PixelGRAYbtd ParentType;
-		typedef PixelGRAYb ThisType;
+		typedef PixelYbtd ParentType;
+		typedef PixelYb ThisType;
 
 		__forceinline explicit ThisType(){}
 		__forceinline explicit ThisType(const NumberType &_scalar):ParentType(_scalar){}
@@ -55,18 +55,18 @@ class AIL_DLL_EXPORT PixelGRAYb : public PixelGRAYbtd {
 //TODO: Move this to a seperate 'TestType' file ?
 class BooleanTestType {
 	public:
-		static __forceinline Meta::Boolean isIncluded(const Pixel::PixelGRAYb &boolToTest){
+		static __forceinline Meta::Boolean isIncluded(const Pixel::PixelYb &boolToTest){
 			return boolToTest.getX();
 		}
 };
 
-class AIL_DLL_EXPORT PixelGRAYi1u : public PixelGRAYi1utd {
+class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 	public:
 		typedef I1u NumberType;
-		typedef PixelGRAYi1utd::DataType DataType;
+		typedef PixelYi1utd::DataType DataType;
 		typedef PixelRange_1i1u RangeType;
-		typedef PixelGRAYi1utd ParentType;
-		typedef PixelGRAYi1u ThisType;
+		typedef PixelYi1utd ParentType;
+		typedef PixelYi1u ThisType;
 
 		__forceinline explicit ThisType(){}
 		__forceinline explicit ThisType(const NumberType &_scalar):ParentType(_scalar){}

@@ -4,12 +4,12 @@
 
 #include <AIL.h>
 #include <Image/Image.h>
-#include <Pixel/PixelGRAY.h>
+#include <Pixel/PixelY.h>
 
 namespace Paint {
 
-Image::Image<Pixel::PixelGRAYb> AIL_DLL_EXPORT MakeCross(const long &width,const long &height);
-Image::Image<Pixel::PixelGRAYb> AIL_DLL_EXPORT MakeCross(const long &width,const long &height,const long &xCenter,const long &yCenter);
+Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCross(const long &width,const long &height);
+Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCross(const long &width,const long &height,const long &xCenter,const long &yCenter);
 
 }
 

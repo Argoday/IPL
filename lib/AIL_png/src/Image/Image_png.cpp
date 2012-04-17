@@ -83,7 +83,7 @@ template<typename PixelType> AIL_PNG_DLL_EXPORT Image<PixelType> readPNG(Data::D
 		for (long y=0; y<ailImage.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
 			png_byte* row = row_pointers[y];
 			for (long x=0; x<ailImage.getWidth(); ++x){
-				(*imageDataPtr)=Pixel::pixel_cast<PixelType>(Pixel::PixelGRAYi1u(row[x]));
+				(*imageDataPtr)=Pixel::pixel_cast<PixelType>(Pixel::PixelYi1u(row[x]));
 				++imageDataPtr;
 			}
 		}

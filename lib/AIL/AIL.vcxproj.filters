@@ -252,9 +252,6 @@
     <ClCompile Include="src\Pixel\PixelRange.cpp">
       <Filter>Pixel\Base Types\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pixel\PixelGRAY.cpp">
-      <Filter>Pixel\Pixel Types\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Pixel\PixelRGB.cpp">
       <Filter>Pixel\Pixel Types\Source Files</Filter>
     </ClCompile>
@@ -266,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="src\Image\image_cast.cpp">
       <Filter>Image\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelY.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -500,9 +500,6 @@
     <ClInclude Include="src\Pixel\PixelTemplateMacros.h">
       <Filter>Pixel\Macros</Filter>
     </ClInclude>
-    <ClInclude Include="src\Pixel\PixelGRAY.h">
-      <Filter>Pixel\Pixel Types\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Pixel\PixelRGB.h">
       <Filter>Pixel\Pixel Types\Header Files</Filter>
     </ClInclude>
@@ -524,6 +521,9 @@
     </ClInclude>
     <ClInclude Include="src\Image\image_cast.h">
       <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelY.h">
+      <Filter>Pixel\Pixel Types\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

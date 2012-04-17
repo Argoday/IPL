@@ -103,4 +103,4 @@ template <
 }
 
 #include <Pixel/PixelTemplateMacros.h>
-template class Image::ImageKernel<Pixel::PixelGRAYb,Pixel::BooleanTestType>;
+template class Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType>;

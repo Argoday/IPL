@@ -13,7 +13,7 @@ template <
 {
 
 	public:
-		MaxFilter1xH(Image::Image<Pixel::PixelGRAYb> &&_filterData)
+		MaxFilter1xH(Image::Image<Pixel::PixelYb> &&_filterData)
 			:BaseMaxFilter<PixelType>(Meta::forward(_filterData))
 		{
 		};

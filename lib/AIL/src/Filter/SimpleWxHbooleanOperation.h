@@ -15,13 +15,14 @@ template <
 	: public ImageOperation<PixelType>
 {
 	protected:
-		mutable Image::ImageKernel<Pixel::PixelGRAYb,Pixel::BooleanTestType> filterData;
+		typedef Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> FilterDataType;
+		mutable FilterDataType filterData;
 		long xOffset;
 		long yOffset;
 
 	public:
 
-		__forceinline const Image::ImageKernel<Pixel::PixelGRAYb,Pixel::BooleanTestType> &getFilterData() const {return filterData;}
+		__forceinline const FilterDataType & getFilterData() const {return filterData;}
 
 		__forceinline const long &getXoffset() const {return xOffset;}
 		__forceinline const long &getYoffset() const {return yOffset;}
@@ -35,7 +36,7 @@ template <
 		virtual void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const = 0 ;
 
 	protected:
-		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelGRAYb> &&_filterData)
+		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelYb> &&_filterData)
 			:filterData(Meta::forward(_filterData))
 			,xOffset((filterData.getKernel().getWidth()-1)/2)
 			,yOffset((filterData.getKernel().getHeight()-1)/2)

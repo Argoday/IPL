@@ -4,7 +4,7 @@
 #define PIXEL__pixel_cast_Qt_H
 
 #include "AIL_QT.h"
-#include <Pixel/PixelGRAY.h>
+#include <Pixel/PixelY.h>
 #include <Pixel/PixelRGB.h>
 #include <Pixel/PixelYUV.h>
 #include <Pixel/pixel_cast.h>
@@ -26,15 +26,15 @@ template<> __forceinline QRgb pixel_cast<QRgb>(const PixelRGBi1u &_color){
 	return qRgba(_color.getR(),_color.getG(),_color.getB(),255); //NOTE: There is potentially a much faster way to do this
 }
 
-template<> __forceinline QRgb pixel_cast<QRgb>(const PixelGRAYi1u &_color){
+template<> __forceinline QRgb pixel_cast<QRgb>(const PixelYi1u &_color){
 	return qRgba(_color.getX(),_color.getX(),_color.getX(),255);
 }
-template<> __forceinline PixelGRAYi1u pixel_cast<PixelGRAYi1u>(const QRgb &_color){
+template<> __forceinline PixelYi1u pixel_cast<PixelYi1u>(const QRgb &_color){
 	double tempY;
 	tempY = qRed  (_color)*0.299; //NOTE: Fix this so that it is faster
 	tempY+= qGreen(_color)*0.587;
 	tempY+= qBlue (_color)*0.114;
-	return PixelGRAYi1u(tempY*255.0);
+	return PixelYi1u(tempY*255.0);
 }
 
 template<> __forceinline QRgb pixel_cast<QRgb>(const PixelRGBf8 &_color){
@@ -48,21 +48,21 @@ template<> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const QRgb &_color){
 	;
 	return color;
 }
-template<> __forceinline QRgb pixel_cast<QRgb>(const PixelGRAYb &_color){
+template<> __forceinline QRgb pixel_cast<QRgb>(const PixelYb &_color){
 	if(_color.getX()==true){// TODO: check the asm generated for this function
 		return qRgba(255,255,255,255);
 	}
 	return qRgba(0,0,0,255);
 }
-template<> __forceinline PixelGRAYb pixel_cast<PixelGRAYb>(const QRgb &_color){
+template<> __forceinline PixelYb pixel_cast<PixelYb>(const QRgb &_color){
 	double tempY;
 	tempY = qRed  (_color)*0.299; // TODO: check the asm generated for this line
 	tempY+= qGreen(_color)*0.587;
 	tempY+= qBlue (_color)*0.114;
 	if(tempY>0.5){
-		return PixelGRAYb(true);
+		return PixelYb(true);
 	}
-	return PixelGRAYb(false);
+	return PixelYb(false);
 }
 
 template<> __forceinline PixelYUVf8 pixel_cast<PixelYUVf8>(const QRgb &_color){

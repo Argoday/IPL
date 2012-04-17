@@ -14,7 +14,7 @@ template <
 {
 
 	public:
-		BaseMaxFilter(Image::Image<Pixel::PixelGRAYb> &&_filterData)
+		BaseMaxFilter(Image::Image<Pixel::PixelYb> &&_filterData)
 			:SimpleWxHbooleanOperation<PixelType>(Meta::forward(_filterData))
 		{
 		};

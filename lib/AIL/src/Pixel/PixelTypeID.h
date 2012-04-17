@@ -17,12 +17,12 @@ class PixelTypeID {
 
 		__forceinline const char * const &getTypeName() const {return name;}
 
-		static const PixelTypeID GRAYb;
+		static const PixelTypeID Yb;
 
-		static const PixelTypeID GRAYi1u;
-		static const PixelTypeID GRAYi4;
-		static const PixelTypeID GRAYf4;
-		static const PixelTypeID GRAYf8;
+		static const PixelTypeID Yi1u;
+		static const PixelTypeID Yi4;
+		static const PixelTypeID Yf4;
+		static const PixelTypeID Yf8;
 
 		static const PixelTypeID RGBi1u;
 		static const PixelTypeID RGBi4;

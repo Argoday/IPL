@@ -14,7 +14,7 @@ template <
 {
 
 	public:
-		MinFilter1xH(Image::Image<Pixel::PixelGRAYb> &&_filterData)
+		MinFilter1xH(Image::Image<Pixel::PixelYb> &&_filterData)
 			:BaseMinFilter<PixelType>(Meta::forward(_filterData))
 		{
 		};

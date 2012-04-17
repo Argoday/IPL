@@ -20,7 +20,7 @@ template <
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
-			const Pixel::PixelGRAYb::DataType * filterDataPtr = parameters.filterDataPtr;
+			const Pixel::PixelYb::DataType * filterDataPtr = parameters.filterDataPtr;
 			for (long xf=x-parameters.xOffset; xf<x-parameters.xOffset+parameters.filterWidth; ++xf){
 				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
 					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,y));

@@ -60,7 +60,7 @@ void ImageWindow::blur(){
 	maxFilter.resetTotalColor();
 	wImage = maxFilter.applyToCopy(*wImage);//*/
 
-	/*Image::Image<Image::WPixelGRAYd> *tempImage = new Image::Image<Image::WPixelGRAYd>(wImage->getImageSize());
+	/*Image::Image<Image::WPixelYd> *tempImage = new Image::Image<Image::WPixelYd>(wImage->getImageSize());
 	clock_t totalTimeDiff=0.0;
 	double totalRuns = 50.0;
 	for(int i=0;i<totalRuns;++i){
