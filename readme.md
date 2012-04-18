@@ -15,10 +15,10 @@ Argoday Library (ALIB) contains lots of functionality in seperate modules:
   * Basic helper functionality
 * AIL - Argoday Image Library
   * A template metaprogramming based image library
-* AIL_<Name> - Argoday Image Library Extension
-  * Adds support for AIL to interact with library <Name>
-* AIO_<Name> - Argoday Input / Output Extension
-  * Adds support for ALIB to input / output format <Name>
+* AIL_\<Name\> - Argoday Image Library Extension
+  * Adds support for AIL to interact with library \<Name\>
+* AIO_\<Name\> - Argoday Input / Output Extension
+  * Adds support for ALIB to input / output format \<Name\>
 * Crypt - Cryptrography Library
   * Library of various cryptrography ciphers
 
