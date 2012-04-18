@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="ACore" Category="lib" Bounds="168.408333333333,223.84,52.65,25.96" />
+    <Node Id="AIL" Category="lib" Bounds="388.733333333333,167.88,50,25.96" />
+    <Node Id="AIL_IO" Category="lib" Bounds="447.831666666667,55.96,53.8033333333333,25.96" />
+    <Node Id="AIL_Qt" Category="lib" Bounds="351.395,111.92,54.6766666666667,25.96" />
+    <Node Id="AIL_ffmpeg" Category="lib" Bounds="177.828333333333,111.92,79.8100000000001,25.96" />
+    <Node Id="AIL_png" Category="lib" Bounds="467.496666666667,111.92,62.4733333333334,25.96" />
+    <Node Id="AIO_json" Category="lib" Bounds="104.343333333333,167.88,66.78,25.96" />
+    <Node Id="ANET_curl" Category="lib" Bounds="0,167.88,73.4666666666667,25.96" />
+    <Node Id="Crypt" Category="lib" Bounds="558.733333333333,167.88,50,25.96" />
+    <Node Id="FFMPEG" Category="pkg" Bounds="201.973333333333,167.88,63.52,25.96" />
+    <Node Id="FSWP" Category="exe" Bounds="97.6516666666666,111.92,50.1633333333334,25.96" Label="FSWP" />
+    <Node Id="FrameDump" Category="exe" Bounds="130.05781888,55.96,85.3510289066667,25.96" />
+    <Node Id="ImageConvert" Category="exe" Bounds="427.486666666667,0,94.4933333333333,25.96" />
+    <Node Id="Kryptos" Category="exe" Bounds="560.635862026667,111.92,60.1949426133333,25.96" />
+    <Node Id="LibCURL" Category="pkg" Bounds="4.67833333333317,223.84,64.11,25.96" />
+    <Node Id="LibPNG" Category="pkg" Bounds="468.963333333333,167.88,59.54,25.96" />
+    <Node Id="MediaPlayer" Category="exe" Bounds="246.171666666667,55.9600000000002,85.1233333333334,25.96" />
+    <Node Id="QPaint" Category="exe" Bounds="361.915,55.9599999999999,55.6366666666667,25.96" />
+    <Node Id="Qt" Category="pkg" Bounds="295.733333333333,167.88,50,25.96" />
+    <Node Id="STL" Category="pkg" Bounds="112.733333333333,279.8,50,25.96" />
+  </Nodes>
+  <Links>
+    <Link Source="ACore" Target="STL" Bounds="157.376846313477,249.800003051758,24.13525390625,23.6949005126953" />
+    <Link Source="AIL" Target="ACore" Bounds="229.778167724609,187.248123168945,158.955169677734,40.6170501708984" />
+    <Link Source="AIL_IO" Target="AIL_Qt" Bounds="408.776092529297,81.9199981689453,43.6899108886719,25.4675827026367" />
+    <Link Source="AIL_IO" Target="AIL_png" Bounds="480.300170898438,81.9199981689453,9.31890869140625,21.7286148071289" />
+    <Link Source="AIL_Qt" Target="AIL" Bounds="386.851623535156,137.880004882813,13.990966796875,22.3695373535156" />
+    <Link Source="AIL_Qt" Target="Qt" Bounds="340.663360595703,137.880004882813,24.6167907714844,23.7509613037109" />
+    <Link Source="AIL_ffmpeg" Target="AIL" Bounds="257.329772949219,136.205184936523,122.749389648438,35.0462036132813" />
+    <Link Source="AIL_ffmpeg" Target="FFMPEG" Bounds="221.444549560547,137.880004882813,6.10343933105469,21.3467407226563" />
+    <Link Source="AIL_png" Target="AIL" Bounds="440.966369628906,137.880004882813,38.0510864257813,25.0510406494141" />
+    <Link Source="AIL_png" Target="LibPNG" Bounds="498.733337402344,137.880004882813,0,21" />
+    <Link Source="AIO_json" Target="ACore" Bounds="150.954559326172,193.839996337891,24.1352691650391,23.6949005126953" />
+    <Link Source="AIO_json" Target="STL" Bounds="137.733337402344,193.839996337891,0,76.9599914550781" />
+    <Link Source="ANET_curl" Target="LibCURL" Bounds="36.7333335876465,193.839996337891,0,21" />
+    <Link Source="Crypt" Target="ACore" Bounds="230.006805419922,190.103897094727,328.726531982422,42.925048828125" />
+    <Link Source="FSWP" Target="AIO_json" Index="1" Bounds="126.212600708008,137.880004882813,5.71128845214844,21.306884765625" />
+    <Link Source="FSWP" Target="ANET_curl" Bounds="64.224739074707,137.880004882813,38.5607757568359,25.0914001464844" />
+    <Link Source="FSWP" Target="Qt" Bounds="147.815002441406,131.988739013672,139.257598876953,39.3578491210938" />
+    <Link Source="FrameDump" Target="AIL_ffmpeg" Bounds="183.171142578125,81.9199981689453,18.4844055175781,22.9863891601563" />
+    <Link Source="ImageConvert" Target="AIL_IO" Bounds="474.733337402344,25.9599990844727,0,21" />
+    <Link Source="Kryptos" Target="Crypt" Bounds="586.47412109375,137.880004882813,2.63555908203125,21.0695953369141" />
+    <Link Source="MediaPlayer" Target="AIL_Qt" Bounds="309.608947753906,81.9199981689453,40.605712890625,25.2477340698242" />
+    <Link Source="MediaPlayer" Target="AIL_ffmpeg" Bounds="241.270309448242,81.9199981689453,30.9944610595703,24.4288864135742" />
+    <Link Source="MediaPlayer" Target="Qt" Bounds="288.733337402344,81.9199981689453,20.1098937988281,78.1471862792969" />
+    <Link Source="QPaint" Target="AIL" Bounds="400.635040283203,81.9199981689453,28.3768615722656,77.6356811523438" />
+    <Link Source="QPaint" Target="AIL_Qt" Bounds="383.020690917969,81.9199981689453,4.16116333007813,21.1689987182617" />
+    <Link Source="QPaint" Target="Qt" Bounds="320.733337402344,81.9199981689453,52.995361328125,76.9600067138672" />
+  </Links>
+  <Categories>
+    <Category Id="exe" Label="exe" IsTag="True" />
+    <Category Id="lib" Label="lib" IsTag="True" />
+    <Category Id="pkg" Label="pkg" IsTag="True" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsTag" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="lib" ValueLabel="True">
+      <Condition Expression="HasCategory('lib')" />
+      <Setter Property="Background" Value="#FFFDFFD2" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="exe" ValueLabel="True">
+      <Condition Expression="HasCategory('exe')" />
+      <Setter Property="Background" Value="#FFD1E0FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="pkg" ValueLabel="True">
+      <Condition Expression="HasCategory('pkg')" />
+      <Setter Property="Background" Value="#FFD7FFB9" />
+    </Style>
+  </Styles>
+</DirectedGraph>
