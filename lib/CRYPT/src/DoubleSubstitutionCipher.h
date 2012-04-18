@@ -34,7 +34,7 @@ class CRYPT_DLL_EXPORT DoubleSubstitutionCipherMethod {
 			temp.key.resize(parameter.second.size());
 			for(size_t index=0;index<=temp.key.size()-1;++index){
 				temp.key[index].generate(parameter.first);
-				temp.key[index].rotate(temp.key[index].positionOf(parameter.second[index]));
+				temp.key[index].rotate(static_cast<CryptChar::NumberType>(temp.key[index].positionOf(parameter.second[index])));
 			}
 		}
 		static void decryptPrep(const DecryptParameterType & parameter,DecryptTempType & temp){
@@ -43,7 +43,7 @@ class CRYPT_DLL_EXPORT DoubleSubstitutionCipherMethod {
 			temp.key.resize(parameter.second.size());
 			for(size_t index=0;index<=temp.key.size()-1;++index){
 				temp.key[index].generate(parameter.first);
-				temp.key[index].rotate(temp.key[index].positionOf(parameter.second[index]));
+				temp.key[index].rotate(static_cast<CryptChar::NumberType>(temp.key[index].positionOf(parameter.second[index])));
 			}
 		}
 

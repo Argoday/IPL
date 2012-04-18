@@ -35,7 +35,7 @@ class CRYPT_DLL_EXPORT SubstitutionCipherMethod {
 		}
 		static CryptChar decrypt(const CryptChar & cipherChar,const DecryptParameterType & parameter,DecryptTempType & temp){
 			if(cipherChar.isChar()==true){
-				return CryptChar(temp.positionOf(cipherChar));
+				return CryptChar(static_cast<CryptChar::NumberType>(temp.positionOf(cipherChar)));
 			}
 			return cipherChar;
 		}

@@ -3,6 +3,7 @@
 #define CRYPT__CryptChar_H
 
 #include "Crypt.h"
+#include "Data/DataTypes.h"
 
 namespace Crypt {
 
@@ -11,12 +12,11 @@ class CRYPT_DLL_EXPORT CryptChar {
 	public:
 
 		typedef CryptChar ThisType;
-		typedef int NumberType;
-		typedef char CharType;
+		typedef I4 NumberType;
+		typedef I1 CharType;
 
 		CryptChar():value(-1){}
 		CryptChar(const ThisType & other):value(other.value){}
-		CryptChar(const size_t & _value):value(_value){clip();}
 		CryptChar(const NumberType & _value):value(_value){clip();}
 		CryptChar(const CharType & _char){setValue(_char);}
 
