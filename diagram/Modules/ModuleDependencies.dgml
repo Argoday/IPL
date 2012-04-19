@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="ACore" Category="lib" Bounds="168.408333333333,223.84,52.65,25.96" />
+    <Node Id="ACore" Category="lib" Bounds="204.408333333333,223.84,52.65,25.96" />
     <Node Id="AIL" Category="lib" Bounds="388.733333333333,167.88,50,25.96" />
     <Node Id="AIL_IO" Category="lib" Bounds="447.831666666667,55.96,53.8033333333333,25.96" />
     <Node Id="AIL_Qt" Category="lib" Bounds="351.395,111.92,54.6766666666667,25.96" />
@@ -17,14 +17,16 @@
     <Node Id="Kryptos" Category="exe" Bounds="560.635862026667,111.92,60.1949426133333,25.96" />
     <Node Id="LibCURL" Category="pkg" Bounds="4.67833333333317,223.84,64.11,25.96" />
     <Node Id="LibPNG" Category="pkg" Bounds="468.963333333333,167.88,59.54,25.96" />
-    <Node Id="MediaPlayer" Category="exe" Bounds="246.171666666667,55.9600000000002,85.1233333333334,25.96" />
+    <Node Id="MediaPlayer" Category="exe" Bounds="246.171666666667,55.96,85.1233333333334,25.96" />
     <Node Id="QPaint" Category="exe" Bounds="361.915,55.9599999999999,55.6366666666667,25.96" />
     <Node Id="Qt" Category="pkg" Bounds="295.733333333333,167.88,50,25.96" />
-    <Node Id="STL" Category="pkg" Bounds="112.733333333333,279.8,50,25.96" />
+    <Node Id="STL" Category="sys" Bounds="112.733333333333,279.8,50,25.96" Label="STL" />
+    <Node Id="Win32API" Category="sys" Bounds="193.34,279.8,74.7866666666666,25.96" Label="Win32 API" />
   </Nodes>
   <Links>
-    <Link Source="ACore" Target="STL" Bounds="157.376846313477,249.800003051758,24.13525390625,23.6949005126953" />
-    <Link Source="AIL" Target="ACore" Bounds="229.778167724609,187.248123168945,158.955169677734,40.6170501708984" />
+    <Link Source="ACore" Target="STL" Bounds="167.016387939453,249.800003051758,42.1454620361328,25.3597869873047" />
+    <Link Source="ACore" Target="Win32API" Bounds="230.733337402344,249.800003051758,0,20.9999847412109" />
+    <Link Source="AIL" Target="ACore" Bounds="265.664916992188,188.504806518555,123.068420410156,37.6333770751953" />
     <Link Source="AIL_IO" Target="AIL_Qt" Bounds="408.776092529297,81.9199981689453,43.6899108886719,25.4675827026367" />
     <Link Source="AIL_IO" Target="AIL_png" Bounds="480.300170898438,81.9199981689453,9.31890869140625,21.7286148071289" />
     <Link Source="AIL_Qt" Target="AIL" Bounds="386.851623535156,137.880004882813,13.990966796875,22.3695373535156" />
@@ -33,10 +35,10 @@
     <Link Source="AIL_ffmpeg" Target="FFMPEG" Bounds="221.444549560547,137.880004882813,6.10343933105469,21.3467407226563" />
     <Link Source="AIL_png" Target="AIL" Bounds="440.966369628906,137.880004882813,38.0510864257813,25.0510406494141" />
     <Link Source="AIL_png" Target="LibPNG" Bounds="498.733337402344,137.880004882813,0,21" />
-    <Link Source="AIO_json" Target="ACore" Bounds="150.954559326172,193.839996337891,24.1352691650391,23.6949005126953" />
+    <Link Source="AIO_json" Target="ACore" Bounds="159.304809570313,193.839996337891,42.1454620361328,25.3597869873047" />
     <Link Source="AIO_json" Target="STL" Bounds="137.733337402344,193.839996337891,0,76.9599914550781" />
     <Link Source="ANET_curl" Target="LibCURL" Bounds="36.7333335876465,193.839996337891,0,21" />
-    <Link Source="Crypt" Target="ACore" Bounds="230.006805419922,190.103897094727,328.726531982422,42.925048828125" />
+    <Link Source="Crypt" Target="ACore" Bounds="265.990875244141,189.721740722656,292.742462158203,42.7566070556641" />
     <Link Source="FSWP" Target="AIO_json" Index="1" Bounds="126.212600708008,137.880004882813,5.71128845214844,21.306884765625" />
     <Link Source="FSWP" Target="ANET_curl" Bounds="64.224739074707,137.880004882813,38.5607757568359,25.0914001464844" />
     <Link Source="FSWP" Target="Qt" Bounds="147.815002441406,131.988739013672,139.257598876953,39.3578491210938" />
@@ -53,7 +55,8 @@
   <Categories>
     <Category Id="exe" Label="exe" IsTag="True" />
     <Category Id="lib" Label="lib" IsTag="True" />
-    <Category Id="pkg" Label="pkg" IsTag="True" />
+    <Category Id="pkg" Label="exe" IsTag="True" />
+    <Category Id="sys" Label="sys" IsTag="True" />
   </Categories>
   <Properties>
     <Property Id="Bounds" DataType="System.Windows.Rect" />
@@ -69,13 +72,17 @@
     <Property Id="ValueLabel" DataType="System.String" />
   </Properties>
   <Styles>
-    <Style TargetType="Node" GroupLabel="lib" ValueLabel="True">
-      <Condition Expression="HasCategory('lib')" />
-      <Setter Property="Background" Value="#FFFDFFD2" />
+    <Style TargetType="Node" GroupLabel="sys" ValueLabel="True">
+      <Condition Expression="HasCategory('sys')" />
+      <Setter Property="Background" Value="#FFC7C7C7" />
     </Style>
     <Style TargetType="Node" GroupLabel="exe" ValueLabel="True">
       <Condition Expression="HasCategory('exe')" />
       <Setter Property="Background" Value="#FFD1E0FF" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="lib" ValueLabel="True">
+      <Condition Expression="HasCategory('lib')" />
+      <Setter Property="Background" Value="#FFFDFFD2" />
     </Style>
     <Style TargetType="Node" GroupLabel="pkg" ValueLabel="True">
       <Condition Expression="HasCategory('pkg')" />
