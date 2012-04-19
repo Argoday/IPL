@@ -360,7 +360,7 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <OmitFramePointers>true</OmitFramePointers>
@@ -375,7 +375,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AssemblerOutput>All</AssemblerOutput>
       <CompileAs>CompileAsCpp</CompileAs>
       <ErrorReporting>Prompt</ErrorReporting>
-      <DisableSpecificWarnings>4100;4512;4127;4010;4800</DisableSpecificWarnings>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
@@ -407,9 +406,9 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <OmitFramePointers>true</OmitFramePointers>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <EnablePREfast>false</EnablePREfast>
@@ -422,7 +421,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AssemblerOutput>All</AssemblerOutput>
       <CompileAs>CompileAsCpp</CompileAs>
       <ErrorReporting>Prompt</ErrorReporting>
-      <DisableSpecificWarnings>4100;4512;4127;4010;4800</DisableSpecificWarnings>
       <PreprocessKeepComments>false</PreprocessKeepComments>
       <FloatingPointExceptions>false</FloatingPointExceptions>
       <CreateHotpatchableImage>false</CreateHotpatchableImage>
