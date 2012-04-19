@@ -2,75 +2,57 @@
 #ifndef PIXEL__PixelTypeID_H
 #define PIXEL__PixelTypeID_H
 
+#include <string>
+
 namespace Pixel {
 
-// Emulate a strong enum
-class PixelTypeID {
-	public:
-		PixelTypeID(const PixelTypeID &other)
-			:typeID(other.typeID)
-			,name(other.name)
-		{
-		}
+enum class PixelTypeID {
 
-		__forceinline bool operator ==(const PixelTypeID &other) const {return typeID==other.typeID;}
+		Yb,
 
-		__forceinline const char * const &getTypeName() const {return name;}
+		Yi1u,
+		Yi4,
+		Yf4,
+		Yf8,
 
-		static const PixelTypeID Yb;
+		RGBi1u,
+		RGBi4,
+		RGBf4,
+		RGBf8,
 
-		static const PixelTypeID Yi1u;
-		static const PixelTypeID Yi4;
-		static const PixelTypeID Yf4;
-		static const PixelTypeID Yf8;
+		BGRi1u,
+		BGRi4,
+		BGRf4,
+		BGRf8,
 
-		static const PixelTypeID RGBi1u;
-		static const PixelTypeID RGBi4;
-		static const PixelTypeID RGBf4;
-		static const PixelTypeID RGBf8;
+		YUVi1u,
+		YUVi4,
+		YUVf4,
+		YUVf8,
 
-		static const PixelTypeID BGRi1u;
-		static const PixelTypeID BGRi4;
-		static const PixelTypeID BGRf4;
-		static const PixelTypeID BGRf8;
+		YIQi1u,
+		YIQi4,
+		YIQf4,
+		YIQf8,
 
-		static const PixelTypeID YUVi1u;
-		static const PixelTypeID YUVi4;
-		static const PixelTypeID YUVf4;
-		static const PixelTypeID YUVf8;
+		LABi1u,
+		LABi4,
+		LABf4,
+		LABf8,
 
-		static const PixelTypeID YIQi1u;
-		static const PixelTypeID YIQi4;
-		static const PixelTypeID YIQf4;
-		static const PixelTypeID YIQf8;
+		HSVi1u,
+		HSVi4,
+		HSVf4,
+		HSVf8,
 
-		static const PixelTypeID LABi1u;
-		static const PixelTypeID LABi4;
-		static const PixelTypeID LABf4;
-		static const PixelTypeID LABf8;
-
-		static const PixelTypeID HSVi1u;
-		static const PixelTypeID HSVi4;
-		static const PixelTypeID HSVf4;
-		static const PixelTypeID HSVf8;
-
-		static const PixelTypeID RGBAi1u;
-		static const PixelTypeID RGBAi4;
-		static const PixelTypeID RGBAf4;
-		static const PixelTypeID RGBAf8;
-
-
-	private:
-		PixelTypeID(const int &_typeID,const char * const &_name)
-			:typeID(_typeID)
-			,name(_name)
-		{
-		}
-
-		const char * const name;
-		const int typeID;
+		RGBAi1u,
+		RGBAi4,
+		RGBAf4,
+		RGBAf8,
 
 };
+
+std::string getTypeName(const PixelTypeID & typeID);
 
 };
 

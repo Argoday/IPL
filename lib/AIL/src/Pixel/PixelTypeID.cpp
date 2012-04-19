@@ -3,47 +3,43 @@
 
 namespace Pixel {
 
-
-const PixelTypeID PixelTypeID::Yb      = PixelTypeID( 0,"Yb" );
-
-const PixelTypeID PixelTypeID::Yi1u    = PixelTypeID( 1,"Yi1u");
-const PixelTypeID PixelTypeID::Yi4     = PixelTypeID( 2,"Yi4" );
-const PixelTypeID PixelTypeID::Yf4     = PixelTypeID( 3,"Yf4" );
-const PixelTypeID PixelTypeID::Yf8     = PixelTypeID( 4,"Yf8" );
-
-const PixelTypeID PixelTypeID::RGBi1u  = PixelTypeID( 5,"RGBi1u");
-const PixelTypeID PixelTypeID::RGBi4   = PixelTypeID( 6,"RGBi4" );
-const PixelTypeID PixelTypeID::RGBf4   = PixelTypeID( 7,"RGBf4" );
-const PixelTypeID PixelTypeID::RGBf8   = PixelTypeID( 8,"RGBf8" );
-
-const PixelTypeID PixelTypeID::BGRi1u  = PixelTypeID( 9,"BGRi1u");
-const PixelTypeID PixelTypeID::BGRi4   = PixelTypeID(10,"BGRi4" );
-const PixelTypeID PixelTypeID::BGRf4   = PixelTypeID(11,"BGRf4" );
-const PixelTypeID PixelTypeID::BGRf8   = PixelTypeID(12,"BGRf8" );
-
-const PixelTypeID PixelTypeID::YUVi1u  = PixelTypeID(13,"YUVi1u");
-const PixelTypeID PixelTypeID::YUVi4   = PixelTypeID(14,"YUVi4" );
-const PixelTypeID PixelTypeID::YUVf4   = PixelTypeID(15,"YUVf4" );
-const PixelTypeID PixelTypeID::YUVf8   = PixelTypeID(16,"YUVf8" );
-
-const PixelTypeID PixelTypeID::YIQi1u  = PixelTypeID(17,"YIQi1u");
-const PixelTypeID PixelTypeID::YIQi4   = PixelTypeID(18,"YIQi4" );
-const PixelTypeID PixelTypeID::YIQf4   = PixelTypeID(19,"YIQf4" );
-const PixelTypeID PixelTypeID::YIQf8   = PixelTypeID(20,"YIQf8" );
-
-const PixelTypeID PixelTypeID::LABi1u  = PixelTypeID(21,"LABi1u");
-const PixelTypeID PixelTypeID::LABi4   = PixelTypeID(22,"LABi4" );
-const PixelTypeID PixelTypeID::LABf4   = PixelTypeID(23,"LABf4" );
-const PixelTypeID PixelTypeID::LABf8   = PixelTypeID(24,"LABf8" );
-
-const PixelTypeID PixelTypeID::HSVi1u  = PixelTypeID(25,"HSVi1u");
-const PixelTypeID PixelTypeID::HSVi4   = PixelTypeID(26,"HSVi4" );
-const PixelTypeID PixelTypeID::HSVf4   = PixelTypeID(27,"HSVf4" );
-const PixelTypeID PixelTypeID::HSVf8   = PixelTypeID(28,"HSVf8" );
-
-const PixelTypeID PixelTypeID::RGBAi1u = PixelTypeID(29,"RGBAi1u");
-const PixelTypeID PixelTypeID::RGBAi4  = PixelTypeID(30,"RGBAi4" );
-const PixelTypeID PixelTypeID::RGBAf4  = PixelTypeID(31,"RGBAf4" );
-const PixelTypeID PixelTypeID::RGBAf8  = PixelTypeID(32,"RGBAf8" );
+std::string getTypeName(const PixelTypeID & typeID){
+	switch(typeID){
+		case PixelTypeID::Yb     : return "Yb"     ; break;
+		case PixelTypeID::Yi1u   : return "Yi1u"   ; break;
+		case PixelTypeID::Yi4    : return "Yi4"    ; break;
+		case PixelTypeID::Yf4    : return "Yf4"    ; break;
+		case PixelTypeID::Yf8    : return "Yf8"    ; break;
+		case PixelTypeID::RGBi1u : return "RGBi1u" ; break;
+		case PixelTypeID::RGBi4  : return "RGBi4"  ; break;
+		case PixelTypeID::RGBf4  : return "RGBf4"  ; break;
+		case PixelTypeID::RGBf8  : return "RGBf8"  ; break;
+		case PixelTypeID::BGRi1u : return "BGRi1u" ; break;
+		case PixelTypeID::BGRi4  : return "BGRi4"  ; break;
+		case PixelTypeID::BGRf4  : return "BGRf4"  ; break;
+		case PixelTypeID::BGRf8  : return "BGRf8"  ; break;
+		case PixelTypeID::YUVi1u : return "YUVi1u" ; break;
+		case PixelTypeID::YUVi4  : return "YUVi4"  ; break;
+		case PixelTypeID::YUVf4  : return "YUVf4"  ; break;
+		case PixelTypeID::YUVf8  : return "YUVf8"  ; break;
+		case PixelTypeID::YIQi1u : return "YIQi1u" ; break;
+		case PixelTypeID::YIQi4  : return "YIQi4"  ; break;
+		case PixelTypeID::YIQf4  : return "YIQf4"  ; break;
+		case PixelTypeID::YIQf8  : return "YIQf8"  ; break;
+		case PixelTypeID::LABi1u : return "LABi1u" ; break;
+		case PixelTypeID::LABi4  : return "LABi4"  ; break;
+		case PixelTypeID::LABf4  : return "LABf4"  ; break;
+		case PixelTypeID::LABf8  : return "LABf8"  ; break;
+		case PixelTypeID::HSVi1u : return "HSVi1u" ; break;
+		case PixelTypeID::HSVi4  : return "HSVi4"  ; break;
+		case PixelTypeID::HSVf4  : return "HSVf4"  ; break;
+		case PixelTypeID::HSVf8  : return "HSVf8"  ; break;
+		case PixelTypeID::RGBAi1u: return "RGBAi1u"; break;
+		case PixelTypeID::RGBAi4 : return "RGBAi4" ; break;
+		case PixelTypeID::RGBAf4 : return "RGBAf4" ; break;
+		case PixelTypeID::RGBAf8 : return "RGBAf8" ; break;
+	}
+	return "Error";
+}
 
 }
