@@ -1,12 +1,16 @@
 
 #include "FFMPEGplayer.h"
 
+#pragma warning (disable : 4244) // Ignore conversion from 'int64_t' to 'int32_t' - determined safe
+#pragma warning (disable : 4005) // Ignore redefinition of macro UINT64_C
 extern "C" {
 #include <libavutil/avutil.h>
 #include <libswscale/swscale.h>
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
 }
+#pragma warning (default : 4244)
+#pragma warning (default : 4005)
 
 namespace Video {
 
