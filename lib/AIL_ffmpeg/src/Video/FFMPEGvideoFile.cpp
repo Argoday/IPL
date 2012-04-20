@@ -39,7 +39,7 @@ class AIL_FFMPEG_DLL_EXPORT FFMPEGplayer_d {
 
 };
 
-AIL_FFMPEG_DLL_EXPORT FFMPEGplayer::FFMPEGplayer(Data::DataManager * const dataManager)
+AIL_FFMPEG_DLL_EXPORT FFMPEGplayer::FFMPEGplayer(Data::DataManager * const & dataManager)
 	:dataManager(dataManager)
 	,frameIndex(0)
 {
@@ -71,6 +71,8 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::hasNextFrame(){
 				img_convert_ctx = sws_getContext(w, h, pCodecCtx->pix_fmt, w, h, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
 				sws_scale(img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, pFrameRGB->data, pFrameRGB->linesize);
 
+				av_free_packet(&packet);
+
 				++frameIndex;
 				return true;
 			}
@@ -82,7 +84,7 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::hasNextFrame(){
 }
 
 
-AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(std::string fileName){
+AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(const std::string & fileName){
 	auto & pFormatCtx    = _this->formatCtx;
 	auto & pCodecCtx     = _this->codecCtx;
 	auto & videoStreamID = _this->videoStreamID;
@@ -90,7 +92,7 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(std::string fileName){
 
 	if(avformat_open_input(&pFormatCtx, fileName.c_str(), NULL, 0)!=0){return false;}
   
-	if(av_find_stream_info(pFormatCtx)<0){return false;}
+	if(avformat_find_stream_info(pFormatCtx,NULL)<0){return false;}
   
 	// Find the first video stream
 	videoStreamID=-1;
@@ -113,9 +115,10 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(std::string fileName){
 		return false;
 	}
 
-	if(avcodec_open(pCodecCtx, _this->codec)<0){return false;}
+		if(avcodec_open2(pCodecCtx, _this->codec, NULL)<0){return false;}
   
 	_this->frame=avcodec_alloc_frame();
+		if(_this->frame==NULL){return false;}
   
 	_this->frameRGB=avcodec_alloc_frame();
 	if(_this->frameRGB==NULL){return false;}
@@ -123,8 +126,6 @@ AIL_FFMPEG_DLL_EXPORT bool FFMPEGplayer::openFile(std::string fileName){
 	_this->numBytes = avpicture_get_size(PIX_FMT_RGB24, pCodecCtx->width,pCodecCtx->height);
 	_this->buffer = (uint8_t *)av_malloc(_this->numBytes*sizeof(uint8_t));
   
-	// Assign appropriate parts of buffer to image planes in pFrameRGB
-	// Note that pFrameRGB is an AVFrame, but AVFrame is a superset of AVPicture
 	avpicture_fill((AVPicture *)_this->frameRGB, _this->buffer, PIX_FMT_RGB24,pCodecCtx->width, pCodecCtx->height);
 
 	return true;

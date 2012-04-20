@@ -12,10 +12,10 @@ namespace Video {
 class FFMPEGplayer_d;
 class AIL_FFMPEG_DLL_EXPORT FFMPEGplayer {
 	public:
-		FFMPEGplayer(Data::DataManager * const dataManager);
+		FFMPEGplayer(Data::DataManager * const & dataManager);
 		~FFMPEGplayer();
 
-		bool openFile(std::string fileName);
+		bool openFile(const std::string & fileName);
 		void closeFile();
 
 		bool hasNextFrame();

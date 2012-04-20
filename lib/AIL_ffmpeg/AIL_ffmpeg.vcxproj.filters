@@ -10,16 +10,32 @@
     <Filter Include="Video\Source Files">
       <UniqueIdentifier>{774fdaca-287e-42cf-b73f-46e09d43a2a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{b01508d4-0f0c-4b3b-93b4-092d9dfd9788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media">
+      <UniqueIdentifier>{2ada63fc-d8a2-4d4a-9baa-85178313d1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Header Files">
+      <UniqueIdentifier>{b670e89f-25f4-42a1-9382-7fc9d75e424a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Source Files">
+      <UniqueIdentifier>{040f4e8d-0696-4152-b585-30076ccbde33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media\Header Files">
+      <UniqueIdentifier>{5865da8f-9415-46d7-b598-912621b2f353}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media\Source Files">
+      <UniqueIdentifier>{f6ab97d5-4f4d-468b-a0d3-925404447280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AIL_ffmpeg.h" />
-    <ClInclude Include="src\Video\FFMPEGplayer.h">
+    <ClInclude Include="src\Audio\FFMPEGaudioFile.h">
+      <Filter>Audio\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Video\FFMPEGvideoFile.h">
       <Filter>Video\Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Video\FFMPEGplayer.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

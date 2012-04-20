@@ -36,7 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AIL_ffmpeg.h" />
-    <ClInclude Include="src\Video\FFMPEGplayer.h" />
+    <ClInclude Include="src\Audio\FFMPEGaudioFile.h" />
+    <ClInclude Include="src\Video\FFMPEGvideoFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ACore\ACore.vcxproj">
@@ -45,9 +46,6 @@
     <ProjectReference Include="..\AIL\AIL.vcxproj">
       <Project>{a09d1519-dc15-45cb-9972-958996280ccf}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Video\FFMPEGplayer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{98E5DFFD-DD87-4059-A6DC-67605A87D2D9}</ProjectGuid>
