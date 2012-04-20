@@ -15,7 +15,7 @@ template <
 {
 
 	public:
-		BaseLinearFilter(Image::Image<PixelType> &&_filterData)
+		BaseLinearFilter(Image::Image<PixelType> && _filterData)
 			:SimpleWxHdataOperation<PixelType>(Meta::forward(_filterData))
 		{
 			resetTotalColor();
@@ -23,11 +23,11 @@ template <
 
 		virtual ~BaseLinearFilter(){}
 
-		virtual void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const = 0 ;
+		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 
 		void resetTotalColor();
 
-		__forceinline const PixelType &getTotalColor() const {return totalColor;}
+		__forceinline const PixelType & getTotalColor() const {return totalColor;}
 
 	protected:
 		PixelType totalColor; //TODO: pick a better name

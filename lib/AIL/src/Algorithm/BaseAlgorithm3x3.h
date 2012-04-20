@@ -8,8 +8,8 @@ template <
 	typename AlgorithmType,
 	typename PixelType
 > void BaseAlgorithm3x3 (
-	const Image::ImageView<PixelType> &srcImage,
-	Image::ImageView<PixelType> &dstImage
+	const Image::ImageView<PixelType> & srcImage,
+	Image::ImageView<PixelType> & dstImage
 );
 
 }

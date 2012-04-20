@@ -8,9 +8,9 @@ class Basic1xHbaseAlgorithmParametersType {
 	public:
 
 		Basic1xHbaseAlgorithmParametersType(
-			const long &_yOffset,
-			const long &_filterHeight,
-			const long &_srcImageWidth
+			const I4 & _yOffset,
+			const I4 & _filterHeight,
+			const I4 & _srcImageWidth
 		)
 			:yOffset(_yOffset)
 			,filterHeight(_filterHeight)
@@ -22,7 +22,7 @@ class Basic1xHbaseAlgorithmParametersType {
 		}
 
 		Basic1xHbaseAlgorithmParametersType(
-			const Basic1xHbaseAlgorithmParametersType &_other
+			const Basic1xHbaseAlgorithmParametersType & _other
 		)
 			:yOffset(_other.yOffset)
 			,filterHeight(_other.filterHeight)
@@ -33,14 +33,14 @@ class Basic1xHbaseAlgorithmParametersType {
 		{
 		}
 
-		const long yOffset;
-		const long filterHeight;
+		const I4 yOffset;
+		const I4 filterHeight;
 
-		const long borderYBottom;
-		const long borderYTop;
+		const I4 borderYBottom;
+		const I4 borderYTop;
 
-		const long srcImageWidth;
-		const long srcImageWidth_x_filterHeight;
+		const I4 srcImageWidth;
+		const I4 srcImageWidth_x_filterHeight;
 
 };
 

@@ -14,12 +14,12 @@ template <
 {
 
 	public:
-		BaseMinFilter(Image::Image<Pixel::PixelYb> &&_filterData)
+		BaseMinFilter(Image::Image<Pixel::PixelYb> && _filterData)
 			:SimpleWxHbooleanOperation<PixelType>(Meta::forward(_filterData))
 		{
 		};
 
-		virtual void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const = 0 ;
+		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 
 };
 

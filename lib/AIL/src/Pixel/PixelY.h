@@ -25,13 +25,13 @@ template <
 		typedef PixelYbaseType<NumberType,PixelRangeType> ThisType;
 
 		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType &_scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType &_pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType &_pixel):ParentType(_pixel){}
+		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
+		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
 		
 		__forceinline void setY(const NumberType & _y) {this->set<0>(_y);}
 
-		__forceinline const NumberType &getY() const {return this->get<0>();}
+		__forceinline const NumberType & getY() const {return this->get<0>();}
 
 };
 
@@ -47,9 +47,9 @@ class AIL_DLL_EXPORT PixelYb : public PixelYbtd {
 		typedef PixelYb ThisType;
 
 		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType &_scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType &_pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType &_pixel):ParentType(_pixel){}
+		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
+		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
 };
 
 //TODO: Move this to a seperate 'TestType' file ?
@@ -69,9 +69,9 @@ class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 		typedef PixelYi1u ThisType;
 
 		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType &_scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType &_pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType &_pixel):ParentType(_pixel){}
+		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
+		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
 };
 
 }

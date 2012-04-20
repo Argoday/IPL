@@ -12,7 +12,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void DilateFilter<PixelType>::applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void DilateFilter<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	if(type==MorphKernelType::getCross()){
 		this->applyToCross(srcImage,dstImage);
 	}else if(type==MorphKernelType::getSquare()){
@@ -26,14 +26,14 @@ template <
 
 template <
 	typename PixelType
-> void DilateFilter<PixelType>::applyToCross(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void DilateFilter<PixelType>::applyToCross(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	MaxFilterWxH<PixelType> maxFilter(Paint::MakeCross(iterations,iterations));
 	maxFilter.applyTo(srcImage,dstImage);
 }
 
 template <
 	typename PixelType
-> void DilateFilter<PixelType>::applyToSquare(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void DilateFilter<PixelType>::applyToSquare(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	Image::Image<PixelType> tempImage(dstImage.getSize(),dstImage.getDataManager());
 
 	MaxFilterWx1basic<PixelType> maxFilter1(iterations);
@@ -45,14 +45,14 @@ template <
 
 template <
 	typename PixelType
-> void DilateFilter<PixelType>::applyToCircle(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void DilateFilter<PixelType>::applyToCircle(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	MaxFilterWxH<PixelType> maxFilter(Paint::MakeCircle(iterations,iterations,iterations/2));
 	maxFilter.applyTo(srcImage,dstImage);
 }
 
 template <
 	typename PixelType
-> void DilateFilter<PixelType>::applyToDiamond(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void DilateFilter<PixelType>::applyToDiamond(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
 	typedef typename PixelType::DataType PixelDataType;
 
@@ -69,7 +69,7 @@ template <
 		dstImage.swap(tempImage);
 		return;
 	}
-	long x=2;
+	I4 x=2;
 
 	if(iterations%2!=1){
 		Algorithm::BaseAlgorithm3x3<DilateAlgorithm3x3Cross<PixelDataType>,PixelDataType>(tempImage.getDataView(),dstImage.getDataView());

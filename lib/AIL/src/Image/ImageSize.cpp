@@ -3,7 +3,7 @@
 
 namespace Image {
 
-ImageSize::ImageSize(const long &_width,const long &_height)
+ImageSize::ImageSize(const I4 & _width,const I4 & _height)
 	:width(_width)
 	,width_1(_width-1)
 	,height(_height)

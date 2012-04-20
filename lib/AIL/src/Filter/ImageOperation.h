@@ -10,7 +10,7 @@ template <
 	typename PixelType = Image::ImageBase::DefaultPixelType
 > class ImageOperation {
 	public:
-		virtual void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const = 0 ;
+		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 };
 
 }

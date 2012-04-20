@@ -14,24 +14,24 @@ template <
 > class BaseLinearFilterAlgorithm {
 	public:
 		static __forceinline void initial(
-			TempType &tempData,
-			const ParametersType &parameters)
+			TempType & tempData,
+			const ParametersType & parameters)
 		{
 			tempData.tempPixel = parameters.minPixel;
 		}
 
 		static __forceinline void inner(
-			TempType &tempData,
-			const ParametersType &parameters,
-			const PixelType &srcImageData,
-			const PixelType &filterData)
+			TempType & tempData,
+			const ParametersType & parameters,
+			const PixelType & srcImageData,
+			const PixelType & filterData)
 		{
 			tempData.tempPixel+=srcImageData*filterData;
 		}
 
 		static __forceinline void final(
-			TempType &tempData,
-			const ParametersType &parameters)
+			TempType & tempData,
+			const ParametersType & parameters)
 		{
 			tempData.tempPixel/=parameters.totalColor;
 		}

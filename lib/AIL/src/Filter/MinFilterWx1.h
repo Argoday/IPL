@@ -14,12 +14,12 @@ template <
 {
 
 	public:
-		MinFilterWx1(Image::Image<Pixel::PixelYb> &&_filterData)
+		MinFilterWx1(Image::Image<Pixel::PixelYb> && _filterData)
 			:BaseMinFilter<PixelType>(Meta::forward(_filterData))
 		{
 		};
 
-		void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const ;
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 
 };
 

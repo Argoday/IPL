@@ -8,7 +8,7 @@ namespace Image {
 template <
 	typename PixelType,
 	typename InclusionTestType
-> ImageKernel<PixelType,InclusionTestType>::ImageKernel(Image<PixelType> &&_kernel)
+> ImageKernel<PixelType,InclusionTestType>::ImageKernel(Image<PixelType> && _kernel)
 	:kernel(Meta::forward(_kernel))
 	,kernelSkipDataPtr(nullptr)
 	,kernelSkipDataPtrEnd(nullptr)
@@ -20,7 +20,7 @@ template <
 template <
 	typename PixelType,
 	typename InclusionTestType
-> ImageKernel<PixelType,InclusionTestType>::ImageKernel(Image<PixelType> &&_kernel,const long &_parentImageWidth)
+> ImageKernel<PixelType,InclusionTestType>::ImageKernel(Image<PixelType> && _kernel,const I4 & _parentImageWidth)
 	:kernel(Meta::forward(_kernel))
 	,kernelSkipDataPtr(nullptr)
 	,kernelSkipDataPtrEnd(nullptr)
@@ -48,7 +48,7 @@ template <
 template <
 	typename PixelType,
 	typename InclusionTestType
-> void ImageKernel<PixelType,InclusionTestType>::calculateKernelSkipData(const long & _parentImageWidth){
+> void ImageKernel<PixelType,InclusionTestType>::calculateKernelSkipData(const I4 & _parentImageWidth){
 	
 	if(parentImageWidth==_parentImageWidth){return;}
 
@@ -62,22 +62,24 @@ template <
 	}
 	kernelSkipDataPtrEnd=nullptr;
 
-	kernelSkipDataPtr = static_cast<long*>(Data::DataManager::getMemory(sizeof(long) * (kernelSize+2)));
+	kernelSkipDataPtr = static_cast<I4*>(Data::DataManager::getMemory(sizeof(I4) * (kernelSize+2)));
 	kernelSkipDataPtrEnd=kernelSkipDataPtr+kernelSize+1;
 
-	auto kernelSkipDataPtrTemp = const_cast<long *>(kernelSkipDataPtr);
+	auto kernelSkipDataPtrTemp = const_cast<I4 *>(kernelSkipDataPtr);
 
-	long kernelDataSkipNum = 0;
-	long kernelDataCount   = 0;
-	for(long y=0; y<kernel.getHeight(); ++y){ //TODO: make this faster
-		for(long x=0; x<kernel.getWidth(); ++x){
-			if(InclusionTestType::isIncluded(kernel(x,y))==true){
+	I4 kernelDataSkipNum = 0;
+	I4 kernelDataCount   = 0;
+	auto dataPtr = kernel.getDataPtr();
+	for(I4 y=0; y<kernel.getHeight(); ++y){ //TODO: make this faster
+		for(I4 x=0; x<kernel.getWidth(); ++x){
+			if(InclusionTestType::isIncluded(*dataPtr)==true){
 				kernelSkipDataPtrTemp[kernelDataCount] = kernelDataSkipNum;
 				++kernelDataCount;
 				kernelDataSkipNum=1;
 			}else{
 				++kernelDataSkipNum;
 			}
+			++dataPtr;
 		}
 		kernelDataSkipNum+=parentImageWidth-kernel.getWidth();
 	}
@@ -88,8 +90,8 @@ template <
 template <
 	typename PixelType,
 	typename InclusionTestType
-> long ImageKernel<PixelType,InclusionTestType>::calculateKernelSize(const Image<PixelType> &image){
-	long _kernelSize = 0;
+> I4 ImageKernel<PixelType,InclusionTestType>::calculateKernelSize(const Image<PixelType> & image){
+	I4 _kernelSize = 0;
 	auto imageDataPtr = image.getDataPtr();
 	for(;imageDataPtr!=image.getDataPtrEnd();){ //TODO: find a good way to put this into Algorithm1x1
 		if(InclusionTestType::isIncluded(*imageDataPtr)==true){

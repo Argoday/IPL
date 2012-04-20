@@ -1,6 +1,8 @@
 
-#ifndef IMAGE__BASE_ALGORITHM_1xH_PARAMETERS_TYPE_H
-#define IMAGE__BASE_ALGORITHM_1xH_PARAMETERS_TYPE_H
+#ifndef IMAGE__BaseAlgorithm1xHparametersType_H
+#define IMAGE__BaseAlgorithm1xHparametersType_H
+
+#include "AIL.h"
 
 namespace Image {
 
@@ -8,20 +10,20 @@ class BaseAlgorithm1xHparametersType{
 	public:
 
 		BaseAlgorithm1xHparametersType(
-			const long &_borderYBottom,
-			const long &_borderYTop)
+			const I4 & _borderYBottom,
+			const I4 & _borderYTop)
 			:borderYBottom(_borderYBottom)
 			,borderYTop(_borderYTop)
 		{
 		}
-		BaseAlgorithm1xHparametersType(const BaseAlgorithm1xHparametersType &_other)
+		BaseAlgorithm1xHparametersType(const BaseAlgorithm1xHparametersType & _other)
 			:borderYBottom(_other.borderYBottom)
 			,borderYTop(_other.borderYTop)
 		{
 		}
 
-		const long borderYBottom;
-		const long borderYTop;
+		const I4 borderYBottom;
+		const I4 borderYTop;
 };
 
 }

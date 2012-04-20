@@ -41,7 +41,7 @@ template <typename PixelType> void Image<PixelType>::releaseImageData(){
 }
 
 // --- Constructors ---
-template <typename PixelType> Image<PixelType>::Image(const ImageSize &_imageSize)
+template <typename PixelType> Image<PixelType>::Image(const ImageSize & _imageSize)
 	:size(_imageSize)
 	,dataPtr(nullptr)
 	,dataPtrEnd(nullptr)
@@ -52,7 +52,7 @@ template <typename PixelType> Image<PixelType>::Image(const ImageSize &_imageSiz
 {
 	this->resetImageData();
 }
-template <typename PixelType> Image<PixelType>::Image(const long &_width,const long &_height)
+template <typename PixelType> Image<PixelType>::Image(const I4 & _width,const I4 & _height)
 	:size(_width,_height)
 	,dataPtr(nullptr)
 	,dataPtrEnd(nullptr)
@@ -62,7 +62,7 @@ template <typename PixelType> Image<PixelType>::Image(const long &_width,const l
 	,dataManager(nullptr)
 {
 	this->resetImageData();
-}template <typename PixelType> Image<PixelType>::Image(const ImageSize &_imageSize,Data::DataManager * const _dataManager)
+}template <typename PixelType> Image<PixelType>::Image(const ImageSize & _imageSize,Data::DataManager * const _dataManager)
 	:size(_imageSize)
 	,dataPtr(nullptr)
 	,dataPtrEnd(nullptr)
@@ -73,7 +73,7 @@ template <typename PixelType> Image<PixelType>::Image(const long &_width,const l
 {
 	this->resetImageData();
 }
-template <typename PixelType> Image<PixelType>::Image(const long &_width,const long &_height,Data::DataManager * const _dataManager)
+template <typename PixelType> Image<PixelType>::Image(const I4 & _width,const I4 & _height,Data::DataManager * const _dataManager)
 	:size(_width,_height)
 	,dataPtr(nullptr)
 	,dataPtrEnd(nullptr)
@@ -84,7 +84,7 @@ template <typename PixelType> Image<PixelType>::Image(const long &_width,const l
 {
 	this->resetImageData();
 }
-template <typename PixelType> Image<PixelType>::Image(const ThisType &_image)
+template <typename PixelType> Image<PixelType>::Image(const ThisType & _image)
 	:size(_image.size)
 	,dataPtr(nullptr)
 	,dataPtrEnd(nullptr)
@@ -96,7 +96,7 @@ template <typename PixelType> Image<PixelType>::Image(const ThisType &_image)
 	this->resetImageData();
 	memcpy(dataPtr,_image.getDataPtr(),size.getNumPixels()*sizeof(PixelType)); //TODO: Is there something faster than memcpy()?
 }
-template <typename PixelType> Image<PixelType>::Image(ThisType &&_image)
+template <typename PixelType> Image<PixelType>::Image(ThisType && _image)
 	:size(_image.size)
 	,dataPtr(_image.dataPtr)
 	,dataPtrEnd(_image.dataPtrEnd)
@@ -112,7 +112,7 @@ template <typename PixelType> Image<PixelType>::Image(ThisType &&_image)
 	_image.dataView  = ImageView<typename PixelType::DataType>(nullptr,nullptr,ImageSize(0,0));
 	_image.pixelView = ImageView<PixelType                   >(nullptr,nullptr,ImageSize(0,0));
 }
-template <typename PixelType> const Image<PixelType> &Image<PixelType>::operator=(ThisType &&_image){
+template <typename PixelType> const Image<PixelType> &Image<PixelType>::operator=(ThisType && _image){
 	releaseImageData();
 
 	size=_image.size;
@@ -134,20 +134,20 @@ template <typename PixelType> const Image<PixelType> &Image<PixelType>::operator
 }
 
 // --- Copy Image ---
-template <typename PixelType> const Image<PixelType> &Image<PixelType>::operator=(const ThisType &_image){
+template <typename PixelType> const Image<PixelType> &Image<PixelType>::operator=(const ThisType & _image){
 	size=_image.getSize();
 	this->resetImageData();
 	memcpy(this->getDataPtr(),_image.getDataPtr(),size.getNumPixels()*sizeof(PixelType));
 	return (*this);
 }
 //Set this as otherImage at imageSize
-template <typename PixelType> void Image<PixelType>::setAs(const ThisType &otherImage,const ImageSize &_imageSize){
+template <typename PixelType> void Image<PixelType>::setAs(const ThisType & otherImage,const ImageSize & _imageSize){
 	size=_imageSize;
 	this->resetImageData();
 	auto otherImageDataPtr = otherImage.getDataPtr();
 	auto imageDataPtr = dataPtr;
 	auto regionRowSize = size.getWidth()*sizeof(PixelType);
-	for (long y=0; y<size.getHeight(); ++y){
+	for (I4 y=0; y<size.getHeight(); ++y){
 		memcpy(imageDataPtr,otherImageDataPtr,regionRowSize);
 		otherImageDataPtr+=otherImage.getWidth();		
 	}

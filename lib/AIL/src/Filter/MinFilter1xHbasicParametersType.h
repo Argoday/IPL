@@ -14,9 +14,9 @@ template <
 	public:
 
 		MinFilter1xHbasicParametersType(
-			const long &_yOffset,
-			const long &_height,
-			const long &_srcImageWidth,
+			const I4 & _yOffset,
+			const I4 & _height,
+			const I4 & _srcImageWidth,
 			const PixelType & _maxPixel
 		)
 			:Basic1xHbaseAlgorithmParametersType(

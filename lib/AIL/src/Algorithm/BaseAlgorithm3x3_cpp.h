@@ -10,23 +10,23 @@ template <
 	typename AlgorithmType,
 	typename PixelDataType
 > void BaseAlgorithm3x3 (
-	const Image::ImageView<PixelDataType> &srcImage,
-	Image::ImageView<PixelDataType> &dstImage)
+	const Image::ImageView<PixelDataType> & srcImage,
+	Image::ImageView<PixelDataType> & dstImage)
 {
 	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	long srcImageHeightm1 = srcImage.getHeight()-1;
+	auto srcImageHeightm1 = srcImage.getHeight()-1;
 
-	long srcImageWidth    = srcImage.getWidth();
-	long srcImageWidthm1  = srcImage.getWidth()-1;
-	long srcImageWidthp1  = srcImage.getWidth()+1;
+	auto srcImageWidth    = srcImage.getWidth();
+	auto srcImageWidthm1  = srcImage.getWidth()-1;
+	auto srcImageWidthp1  = srcImage.getWidth()+1;
 
-	const PixelDataType * srcImageDataPtr = srcImage.getDataPtr();
-	PixelDataType * dstImageDataPtr = dstImage.getDataPtr();
+	auto srcImageDataPtr = srcImage.getDataPtr();
+	auto dstImageDataPtr = dstImage.getDataPtr();
 	
-	long y = 0; // TODO: Write these loops to get rid of x and y ... and make sure that the complier still unrolls the loops
-	long x = 0;
+	I4 y = 0; // TODO: Write these loops to get rid of x and y ... and make sure that the complier still unrolls the loops
+	I4 x = 0;
 
 	//First Pixel
 	AlgorithmType::process(dstImageDataPtr,srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              ,

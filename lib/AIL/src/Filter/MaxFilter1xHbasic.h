@@ -12,29 +12,29 @@ template <
 
 	public:
 		MaxFilter1xHbasic(
-			const long &_filterHeight
+			const I4 & _filterHeight
 		)
 			:filterHeight(_filterHeight)	
 			,yOffset( (_filterHeight - 1) / 2 )
 		{
 		};
 		MaxFilter1xHbasic(
-			const long &_filterHeight,
-			const long &_yOffset
+			const I4 & _filterHeight,
+			const I4 & _yOffset
 		)
 			:filterHeight(_filterHeight)
 			,yOffset(_yOffset)
 		{
 		};
 
-		__forceinline const long & getHeight() const {return filterHeight;}
-		__forceinline const long & getYoffset() const {return yOffset;}
+		__forceinline const I4 & getHeight()  const {return filterHeight;}
+		__forceinline const I4 & getYoffset() const {return yOffset;}
 
-		void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const ;
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 
 	private:
-		const long filterHeight;
-		const long yOffset;
+		const I4 filterHeight;
+		const I4 yOffset;
 
 };
 

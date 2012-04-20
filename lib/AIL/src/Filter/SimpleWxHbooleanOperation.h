@@ -17,33 +17,33 @@ template <
 	protected:
 		typedef Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> FilterDataType;
 		mutable FilterDataType filterData;
-		long xOffset;
-		long yOffset;
+		I4 xOffset;
+		I4 yOffset;
 
 	public:
 
 		__forceinline const FilterDataType & getFilterData() const {return filterData;}
 
-		__forceinline const long &getXoffset() const {return xOffset;}
-		__forceinline const long &getYoffset() const {return yOffset;}
+		__forceinline const I4 & getXoffset() const {return xOffset;}
+		__forceinline const I4 & getYoffset() const {return yOffset;}
 
-		__forceinline void setXoffset(const long &_xOffset){xOffset=_xOffset;}
-		__forceinline void setYoffset(const long &_yOffset){yOffset=_yOffset;}
+		__forceinline void setXoffset(const I4 & _xOffset){xOffset=_xOffset;}
+		__forceinline void setYoffset(const I4 & _yOffset){yOffset=_yOffset;}
 
-		__forceinline bool &operator()(const long &x,const long &y){return filterData(x,y);};
-		__forceinline const bool &operator()(const long &x,const long &y) const {return filterData(x,y);};
+		__forceinline       bool & operator()(const I4 &x,const I4 &y)       {return filterData(x,y);};
+		__forceinline const bool & operator()(const I4 &x,const I4 &y) const {return filterData(x,y);};
 
-		virtual void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const = 0 ;
+		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 
 	protected:
-		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelYb> &&_filterData)
+		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelYb> && _filterData)
 			:filterData(Meta::forward(_filterData))
 			,xOffset((filterData.getKernel().getWidth()-1)/2)
 			,yOffset((filterData.getKernel().getHeight()-1)/2)
 		{
 		};
 
-		void createFilterSkipData(const long &imageWidth);
+		void createFilterSkipData(const I4 & imageWidth);
 
 };
 

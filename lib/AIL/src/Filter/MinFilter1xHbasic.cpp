@@ -9,7 +9,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void MinFilter1xHbasic<PixelType>::applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void MinFilter1xHbasic<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
 	typedef typename PixelType::DataType PixelDataType;
 

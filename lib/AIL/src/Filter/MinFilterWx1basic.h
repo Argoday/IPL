@@ -12,29 +12,29 @@ template <
 
 	public:
 		MinFilterWx1basic(
-			const long &_filterWidth
+			const I4 & _filterWidth
 		)
 			:filterWidth(_filterWidth)	
 			,xOffset( (_filterWidth - 1) / 2 )
 		{
 		};
 		MinFilterWx1basic(
-			const long &_filterWidth,
-			const long &_xOffset
+			const I4 & _filterWidth,
+			const I4 & _xOffset
 		)
 			:filterWidth(_filterWidth)
 			,xOffset(_xOffset)
 		{
 		};
 
-		__forceinline const long & getWidth() const {return filterWidth;}
-		__forceinline const long & getXoffset() const {return xOffset;}
+		__forceinline const I4 & getWidth()   const {return filterWidth;}
+		__forceinline const I4 & getXoffset() const {return xOffset;}
 
-		void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const ;
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 
 	private:
-		const long filterWidth;
-		const long xOffset;
+		const I4 filterWidth;
+		const I4 xOffset;
 
 };
 

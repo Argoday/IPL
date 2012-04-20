@@ -16,13 +16,13 @@ template <
 
 	public:
 		OpenFilter():iterations(3),type(MorphKernelType::getSquare()){};
-		OpenFilter(const long &_iterations):iterations(_iterations),type(MorphKernelType::getSquare()){};
-		OpenFilter(const long &_iterations,const MorphKernelType &_type):iterations(_iterations),type(_type){};
+		OpenFilter(const I4 & _iterations):iterations(_iterations),type(MorphKernelType::getSquare()){};
+		OpenFilter(const I4 & _iterations,const MorphKernelType & _type):iterations(_iterations),type(_type){};
 
-		void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const ;
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 
 	private:
-		long iterations;
+		I4 iterations;
 		MorphKernelType type;
 
 };

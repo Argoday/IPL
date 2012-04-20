@@ -8,7 +8,7 @@ template <
 	typename AlgorithmType,
 	typename PixelDataType
 > void BaseAlgorithm1x1(
-	Image::ImageView<PixelDataType> &image
+	Image::ImageView<PixelDataType> & image
 );
 
 template <
@@ -16,8 +16,8 @@ template <
 	typename SrcPixelDataType,
 	typename DstPixelDataType
 > void BaseAlgorithm1x1(
-	const Image::ImageView<SrcPixelDataType> &srcImage,
-	Image::ImageView<DstPixelDataType> &dstImage
+	const Image::ImageView<SrcPixelDataType> & srcImage,
+	Image::ImageView<DstPixelDataType> & dstImage
 );
 
 template <
@@ -25,8 +25,8 @@ template <
 	typename PixelDataType,
 	typename ParameterType
 > void BaseAlgorithm1x1p(
-	Image::ImageView<PixelDataType> &image,
-	const ParameterType &parameter
+	Image::ImageView<PixelDataType> & image,
+	const ParameterType & parameter
 );
 
 template <
@@ -35,9 +35,9 @@ template <
 	typename DstPixelDataType,
 	typename ParameterType
 > void BaseAlgorithm1x1p(
-	const Image::ImageView<SrcPixelDataType> &srcImage,
-	Image::ImageView<DstPixelDataType> &dstImage,
-	const ParameterType &parameter
+	const Image::ImageView<SrcPixelDataType> & srcImage,
+	Image::ImageView<DstPixelDataType> & dstImage,
+	const ParameterType & parameter
 );
 
 template <
@@ -45,8 +45,8 @@ template <
 	typename PixelDataType
 >
 	void BaseAlgorithm1x1p(
-		Image::ImageView<PixelDataType> &srcImage,
-		const Image::ImageView<PixelDataType> &parameterImage
+		Image::ImageView<PixelDataType> & srcImage,
+		const Image::ImageView<PixelDataType> & parameterImage
 );
 
 }

@@ -2,14 +2,16 @@
 #ifndef IMAGE__BasicWx1baseAlgorithmParametersType_H
 #define IMAGE__BasicWx1baseAlgorithmParametersType_H
 
+#include "AIL.h"
+
 namespace Algorithm {
 
 class BasicWx1baseAlgorithmParametersType {
 	public:
 
 		BasicWx1baseAlgorithmParametersType(
-			const long &_xOffset,
-			const long &_filterWidth
+			const I4 & _xOffset,
+			const I4 & _filterWidth
 		)
 			:xOffset(_xOffset)
 			,filterWidth(_filterWidth)
@@ -19,7 +21,7 @@ class BasicWx1baseAlgorithmParametersType {
 		}
 
 		BasicWx1baseAlgorithmParametersType(
-			const BasicWx1baseAlgorithmParametersType &_other
+			const BasicWx1baseAlgorithmParametersType & _other
 		)
 			:xOffset(_other.xOffset)
 			,filterWidth(_other.filterWidth)
@@ -28,11 +30,11 @@ class BasicWx1baseAlgorithmParametersType {
 		{
 		}
 
-		const long xOffset;
-		const long filterWidth;
+		const I4 xOffset;
+		const I4 filterWidth;
 
-		const long borderXLeft;
-		const long borderXRight;
+		const I4 borderXLeft;
+		const I4 borderXRight;
 
 };
 

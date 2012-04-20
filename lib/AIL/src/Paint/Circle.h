@@ -8,8 +8,8 @@
 
 namespace Paint {
 
-Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCircle(const long &width,const long &height,const double &radius);
-Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCircle(const long &width,const long &height,const long &xCenter,const long &yCenter,const double &radius);
+Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCircle(const I4 & width,const I4 & height,const F8 & radius);
+Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCircle(const I4 & width,const I4 & height,const I4 & xCenter,const I4 & yCenter,const F8 & radius);
 
 }
 

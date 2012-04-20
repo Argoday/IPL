@@ -9,9 +9,9 @@ template <
 	typename PixelDataType,
 	typename ParameterType
 > void BaseAlgorithm1xH(
-	const Image::ImageView<PixelDataType> &srcImage,
-	Image::ImageView<PixelDataType> &dstImage,
-	const ParameterType &parameter
+	const Image::ImageView<PixelDataType> & srcImage,
+	Image::ImageView<PixelDataType> & dstImage,
+	const ParameterType & parameter
 );
 
 }

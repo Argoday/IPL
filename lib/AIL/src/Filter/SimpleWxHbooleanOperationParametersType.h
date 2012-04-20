@@ -14,10 +14,10 @@ class SimpleWxHbooleanOperationParametersType
 	public:
 
 		SimpleWxHbooleanOperationParametersType(
-			const Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> &_kernel,
-			const long &_xOffset,
-			const long &_yOffset,
-			const long &_srcImageWidth)
+			const Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> & _kernel,
+			const I4 & _xOffset,
+			const I4 & _yOffset,
+			const I4 & _srcImageWidth)
 			:BaseAlgorithmWxHparametersType(
 				_xOffset,
 				_kernel.getKernel().getWidth()  - _xOffset - 1,
@@ -41,20 +41,20 @@ class SimpleWxHbooleanOperationParametersType
 
 		}
 
-		const long srcImageWidth;
+		const I4 srcImageWidth;
 
 		const Pixel::PixelYb::DataType * const filterDataPtr;
 
-		const long * const filterSkipDataPtr;
-		const long * const filterSkipDataPtrEnd;
+		const I4 * const filterSkipDataPtr;
+		const I4 * const filterSkipDataPtrEnd;
 
-		const long srcImageWidth_filterWidth;
+		const I4 srcImageWidth_filterWidth;
 
-		const long xOffset;
-		const long yOffset;
+		const I4 xOffset;
+		const I4 yOffset;
 
-		const long filterHeight;
-		const long filterWidth;
+		const I4 filterHeight;
+		const I4 filterWidth;
 };
 
 }

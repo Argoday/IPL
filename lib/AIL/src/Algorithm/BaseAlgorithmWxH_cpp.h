@@ -13,28 +13,28 @@ template <
 	typename PixelDataType,
 	typename ParameterType
 > void BaseAlgorithmWxH (
-	const Image::ImageView<PixelDataType> &srcImage,
-	Image::ImageView<PixelDataType> &dstImage,
-	const ParameterType &parameter)
+	const Image::ImageView<PixelDataType> & srcImage,
+	Image::ImageView<PixelDataType> & dstImage,
+	const ParameterType & parameter)
 {
 	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	long srcImageHeight = srcImage.getHeight();
-	long srcImageWidth  = srcImage.getWidth();
+	auto srcImageHeight = srcImage.getHeight();
+	auto srcImageWidth  = srcImage.getWidth();
 
-	long borderXLeft   = parameter.borderXLeft;
-	long borderXRight  = parameter.borderXRight;
-	long borderYBottom = parameter.borderYBottom;
-	long borderYTop    = parameter.borderYTop;
+	auto borderXLeft   = parameter.borderXLeft;
+	auto borderXRight  = parameter.borderXRight;
+	auto borderYBottom = parameter.borderYBottom;
+	auto borderYTop    = parameter.borderYTop;
 
-	long borderXRightAndLeft=borderXRight+borderXLeft;
+	auto borderXRightAndLeft = borderXRight + borderXLeft;
 
-	const PixelDataType *srcImageDataPtr = srcImage.getDataPtr();
-	PixelDataType *dstImageDataPtr = dstImage.getDataPtr();
+	auto srcImageDataPtr = srcImage.getDataPtr();
+	auto dstImageDataPtr = dstImage.getDataPtr();
 
-	long y = 0; // TODO: Write these loops to reduce use of x and y
-	long x = 0;
+	I4 y = 0; // TODO: Write these loops to reduce use of x and y
+	I4 x = 0;
 
 	//First Rows
 	for(;y<borderYBottom;++y){

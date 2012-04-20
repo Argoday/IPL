@@ -2,6 +2,8 @@
 #ifndef FILTER__Simple1xHbooleanOperationBaseAlgorithm_H
 #define FILTER__Simple1xHbooleanOperationBaseAlgorithm_H
 
+#include "AIL.h"
+
 namespace Filter {
 
 template <
@@ -12,16 +14,16 @@ template <
 > class Simple1xHbooleanOperationBaseAlgorithm {
 	public:
 		static __forceinline void process(
-			PixelDataType * const &dstImageDataPtr,
-			const Image::ImageView<PixelDataType> &srcImage,
-			const ParametersType &parameters,
-			const long &x,
-			const long &y)
+			PixelDataType * const & dstImageDataPtr,
+			const Image::ImageView<PixelDataType> & srcImage,
+			const ParametersType & parameters,
+			const I4 & x,
+			const I4 & y)
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			const Pixel::PixelYb::DataType * filterDataPtr = parameters.filterDataPtr;
-			for (long yf=y-parameters.yOffset; yf<y-parameters.yOffset+parameters.filterHeight; ++yf){
+			for (I4 yf=y-parameters.yOffset; yf<y-parameters.yOffset+parameters.filterHeight; ++yf){
 				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
 					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf));
 				}
@@ -31,14 +33,14 @@ template <
 			(*dstImageDataPtr)=tempData.tempPixel;
 		}
 		static __forceinline void process(
-			PixelDataType * const &dstImageDataPtr,
-			const PixelDataType * const &srcImageDataPtrIn,
-			const ParametersType &parameters)
+			PixelDataType * const & dstImageDataPtr,
+			const PixelDataType * const & srcImageDataPtrIn,
+			const ParametersType & parameters)
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
-			const PixelDataType * srcImageDataPtr=srcImageDataPtrIn;
-			const long * filterSkipDataPtr = parameters.filterSkipDataPtr;
+			auto srcImageDataPtr   = srcImageDataPtrIn;
+			auto filterSkipDataPtr = parameters.filterSkipDataPtr;
 
 			srcImageDataPtr+=(*filterSkipDataPtr);
 			++filterSkipDataPtr;

@@ -14,8 +14,8 @@ template <
 	public:
 
 		MinFilterWx1basicParametersType(
-			const long &_xOffset,
-			const long &_filterWidth,
+			const I4 & _xOffset,
+			const I4 & _filterWidth,
 			const PixelType & _maxPixel
 		)
 			:BasicWx1baseAlgorithmParametersType(

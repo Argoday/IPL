@@ -7,9 +7,9 @@
 
 namespace Paint {
 
-template <typename PixelType> Image::Image<PixelType> AIL_DLL_EXPORT MakeGaussian(const long &width, const long &height,const double &sigma);
-template <typename PixelType> Image::Image<PixelType> AIL_DLL_EXPORT MakeGaussian(const long &width, const long &height,const double &radius,const double &sigma);
-template <typename PixelType> Image::Image<PixelType> AIL_DLL_EXPORT MakeGaussian(const long &width, const long &height,const long &xCenter,const long &yCenter,const double &radius,const double &sigma);
+template <typename PixelType> Image::Image<PixelType> AIL_DLL_EXPORT MakeGaussian(const I4 & width, const I4 & height,const F8 & sigma);
+template <typename PixelType> Image::Image<PixelType> AIL_DLL_EXPORT MakeGaussian(const I4 & width, const I4 & height,const F8 & radius,const F8 & sigma);
+template <typename PixelType> Image::Image<PixelType> AIL_DLL_EXPORT MakeGaussian(const I4 & width, const I4 & height,const I4 & xCenter,const I4 & yCenter,const F8 & radius,const F8 & sigma);
 
 }
 

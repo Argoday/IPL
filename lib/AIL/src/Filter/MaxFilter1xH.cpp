@@ -9,7 +9,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void MaxFilter1xH<PixelType>::applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void MaxFilter1xH<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
 	typedef typename PixelType::DataType PixelDataType;
 

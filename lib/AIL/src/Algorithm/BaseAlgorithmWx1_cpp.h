@@ -13,27 +13,27 @@ template <
 	typename PixelDataType,
 	typename ParameterType
 > void BaseAlgorithmWx1 (
-	const Image::ImageView<PixelDataType> &srcImage,
-	Image::ImageView<PixelDataType> &dstImage,
-	const ParameterType &parameter)
+	const Image::ImageView<PixelDataType> & srcImage,
+	Image::ImageView<PixelDataType> & dstImage,
+	const ParameterType & parameter)
 {
 	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	long srcImageHeight = srcImage.getHeight();
-	long srcImageWidth  = srcImage.getWidth();
+	auto srcImageHeight = srcImage.getHeight();
+	auto srcImageWidth  = srcImage.getWidth();
 
-	long borderXLeft   = parameter.borderXLeft;
-	long borderXRight  = parameter.borderXRight;
+	auto borderXLeft   = parameter.borderXLeft;
+	auto borderXRight  = parameter.borderXRight;
 
-	long borderXRightAndLeft=borderXRight+borderXLeft;
+	auto borderXRightAndLeft=borderXRight+borderXLeft;
 
-	const PixelDataType *srcImageDataPtr = srcImage.getDataPtr();
-	PixelDataType *dstImageDataPtr = dstImage.getDataPtr();
-	const PixelDataType *dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth-borderXLeft;
+	auto srcImageDataPtr = srcImage.getDataPtr();
+	auto dstImageDataPtr = dstImage.getDataPtr();
+	auto dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth-borderXLeft;
 
-	long y = 0;
-	long x = 0;
+	I4 y = 0;
+	I4 x = 0;
 
 	for (;y<srcImageHeight;++y){
 		//First Pixels of Row

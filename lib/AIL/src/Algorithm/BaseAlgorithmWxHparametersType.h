@@ -1,6 +1,8 @@
 
-#ifndef IMAGE__BASE_ALGORITHM_WxH_PARAMETERS_TYPE_H
-#define IMAGE__BASE_ALGORITHM_WxH_PARAMETERS_TYPE_H
+#ifndef IMAGE__BaseAlgorithmWxHparametersType_H
+#define IMAGE__BaseAlgorithmWxHparametersType_H
+
+#include "AIL.h"
 
 namespace Image {
 
@@ -8,17 +10,17 @@ class BaseAlgorithmWxHparametersType{
 	public:
 
 		BaseAlgorithmWxHparametersType(
-			const long &_borderXLeft,
-			const long &_borderXRight,
-			const long &_borderYBottom,
-			const long &_borderYTop)
+			const I4 & _borderXLeft,
+			const I4 & _borderXRight,
+			const I4 & _borderYBottom,
+			const I4 & _borderYTop)
 			:borderXLeft(_borderXLeft)
 			,borderXRight(_borderXRight)
 			,borderYBottom(_borderYBottom)
 			,borderYTop(_borderYTop)
 		{
 		}
-		BaseAlgorithmWxHparametersType(const BaseAlgorithmWxHparametersType &_other)
+		BaseAlgorithmWxHparametersType(const BaseAlgorithmWxHparametersType & _other)
 			:borderXLeft(_other.borderXLeft)
 			,borderXRight(_other.borderXRight)
 			,borderYBottom(_other.borderYBottom)
@@ -26,10 +28,10 @@ class BaseAlgorithmWxHparametersType{
 		{
 		}
 
-		const long borderXLeft;
-		const long borderXRight;
-		const long borderYBottom;
-		const long borderYTop;
+		const I4 borderXLeft;
+		const I4 borderXRight;
+		const I4 borderYBottom;
+		const I4 borderYTop;
 
 };
 

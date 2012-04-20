@@ -22,9 +22,9 @@ class AIL_DLL_EXPORT MorphKernelType {
 
 	private:
 
-		MorphKernelType(const int &_type){type=_type;}
+		MorphKernelType(const I4 & _type){type=_type;}
 
-		int type;
+		I4 type;
 };
 
 };

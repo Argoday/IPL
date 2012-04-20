@@ -14,12 +14,12 @@ template <
 {
 
 	public:
-		LinearFilter1xH(Image::Image<PixelType> &&_filterData)
+		LinearFilter1xH(Image::Image<PixelType> && _filterData)
 			:BaseLinearFilter<PixelType>(Meta::forward(_filterData))
 		{
 		};
 
-		void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const ;
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 
 };
 

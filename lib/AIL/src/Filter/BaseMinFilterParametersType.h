@@ -15,11 +15,11 @@ template <
 	public:
 
 		BaseMinFilterParametersType(
-			const Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> &_kernel,
-			const long &_xOffset,
-			const long &_yOffset,
-			const long &_srcImageWidth,
-			const PixelType &_maxPixel)
+			const Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> & _kernel,
+			const I4 & _xOffset,
+			const I4 & _yOffset,
+			const I4 & _srcImageWidth,
+			const PixelType & _maxPixel)
 			:SimpleWxHbooleanOperationParametersType(
 				_kernel,
 				_xOffset,

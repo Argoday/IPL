@@ -14,12 +14,12 @@ template <
 {
 
 	public:
-		MaxFilterWx1(Image::Image<Pixel::PixelYb> &&_filterData)
+		MaxFilterWx1(Image::Image<Pixel::PixelYb> && _filterData)
 			:BaseMaxFilter<PixelType>(Meta::forward(_filterData))
 		{
 		};
 
-		void applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const ;
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 
 };
 

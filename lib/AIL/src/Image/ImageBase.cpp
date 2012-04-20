@@ -3,6 +3,6 @@
 
 namespace Image {
 
-long ImageBase::nextImageId = 0;
+I4 ImageBase::nextImageId = 0;
 
 }

@@ -14,23 +14,23 @@ template <
 > class BaseMinFilterAlgorithm {
 	public:
 		static __forceinline void initial(
-			TempType &tempData,
-			const ParametersType &parameters)
+			TempType & tempData,
+			const ParametersType & parameters)
 		{
 			tempData.tempPixel = parameters.maxPixel;
 		}
 
 		static __forceinline void inner(
-			TempType &tempData,
-			const ParametersType &parameters,
-			const PixelType &srcImageData)
+			TempType & tempData,
+			const ParametersType & parameters,
+			const PixelType & srcImageData)
 		{
 			tempData.tempPixel.setAsMin(srcImageData);
 		}
 
 		static __forceinline void final(
-			TempType &tempData,
-			const ParametersType &parameters)
+			TempType & tempData,
+			const ParametersType & parameters)
 		{
 		}
 

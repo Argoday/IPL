@@ -7,7 +7,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void CloseFilter<PixelType>::applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void CloseFilter<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	DilateFilter<PixelType> dilateFilter(iterations,type);
 	ErodeFilter <PixelType> erodeFilter (iterations,type);
 

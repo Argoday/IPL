@@ -4,28 +4,30 @@
 namespace Paint {
 
 //TODO: use ImageSize
-Image::Image<Pixel::PixelYb> MakeCircle(const long &width,const long &height,const double &radius){
+Image::Image<Pixel::PixelYb> MakeCircle(const I4 & width,const I4 & height,const F8 & radius){
 	return MakeCircle(width,height,width/2,height/2,radius);
 }
 
 Image::Image<Pixel::PixelYb> MakeCircle(
-	const long &width,
-	const long &height,
-	const long &xCenter,
-	const long &yCenter,
-	const double &radius)
+	const I4 & width,
+	const I4 & height,
+	const I4 & xCenter,
+	const I4 & yCenter,
+	const F8 & radius)
 {
 	Image::Image<Pixel::PixelYb> image(width,height);
-	double xCenterD = xCenter;
-	double yCenterD = yCenter;
-	double radiusSq = radius*radius;
-	for (long y=0; y<image.getHeight(); ++y)    { double yDistance = ((double)y)-yCenterD;//TODO: test for a better way to do this
-		for (long x=0; x<image.getWidth(); ++x) { double xDistance = ((double)x)-xCenterD;
+	F8 xCenterD = xCenter;
+	F8 yCenterD = yCenter;
+	F8 radiusSq = radius*radius;
+	auto dataPtr = image.getDataPtr();
+	for (I4 y=0; y<image.getHeight(); ++y)    { F8 yDistance = ((F8)y)-yCenterD;//TODO: test for a better way to do this
+		for (I4 x=0; x<image.getWidth(); ++x) { F8 xDistance = ((F8)x)-xCenterD;
 			if ((xDistance*xDistance + yDistance*yDistance) < radiusSq){
-				image(x,y).setY(true);
+				dataPtr->setY(true);
 			}else{
-				image(x,y).setY(false);
+				dataPtr->setY(false);
 			}
+			++dataPtr;
 		}
 	}
 	return image;

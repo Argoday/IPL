@@ -9,14 +9,14 @@ namespace Image {
 
 class AIL_DLL_EXPORT ImageBase {
 	public:
-		typedef Pixel::PixelRGBf8 DefaultPixelType;
+		typedef Pixel::PixelRGBi1u DefaultPixelType;
 
-		const long &getImageId() const {return imageId;}
+		const I4 & getImageId() const {return imageId;}
 
 	protected:
-		long imageId;
+		I4 imageId;
 
-		static long nextImageId;
+		static I4 nextImageId;
 
 		__forceinline ImageBase()
 			:imageId(nextImageId)

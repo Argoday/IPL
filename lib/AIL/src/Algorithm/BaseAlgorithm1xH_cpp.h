@@ -13,26 +13,26 @@ template <
 	typename PixelDataType,
 	typename ParameterType
 > void BaseAlgorithm1xH (
-	const Image::ImageView<PixelDataType> &srcImage,
-	Image::ImageView<PixelDataType> &dstImage,
-	const ParameterType &parameter)
+	const Image::ImageView<PixelDataType> & srcImage,
+	Image::ImageView<PixelDataType> & dstImage,
+	const ParameterType & parameter)
 {
 	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	long srcImageHeight = srcImage.getHeight();
-	long srcImageWidth  = srcImage.getWidth();
+	auto srcImageHeight = srcImage.getHeight();
+	auto srcImageWidth  = srcImage.getWidth();
 
-	long borderYBottom = parameter.borderYBottom;
-	long borderYTop    = parameter.borderYTop;
+	auto borderYBottom = parameter.borderYBottom;
+	auto borderYTop    = parameter.borderYTop;
 
-	const PixelDataType *srcImageDataPtr = srcImage.getDataPtr();
+	auto srcImageDataPtr = srcImage.getDataPtr();
 
-	PixelDataType *dstImageDataPtr = dstImage.getDataPtr();
-	const PixelDataType * const dstImageDataPtrRowsEnd = dstImage.getDataPtr() + (srcImageHeight-borderYTop)*srcImageWidth;
+	auto dstImageDataPtr = dstImage.getDataPtr();
+	auto dstImageDataPtrRowsEnd = dstImage.getDataPtr() + (srcImageHeight-borderYTop)*srcImageWidth;
 
-	long y = 0;
-	long x = 0;
+	I4 y = 0;
+	I4 x = 0;
 
 	//First Rows
 	for(;y<borderYBottom;++y){

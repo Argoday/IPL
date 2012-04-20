@@ -15,10 +15,10 @@ template <
 	public:
 
 		SimpleWxHdataOperationParametersType(
-			const Image::ImageView<PixelType> &_filter,
-			const long &_xOffset,
-			const long &_yOffset,
-			const long &_srcImageWidth
+			const Image::ImageView<PixelType> & _filter,
+			const I4 & _xOffset,
+			const I4 & _yOffset,
+			const I4 & _srcImageWidth
 		)
 			:BaseAlgorithmWxHparametersType(
 				_xOffset,
@@ -42,18 +42,18 @@ template <
 
 		}
 
-		const long srcImageWidth;
+		const I4 srcImageWidth;
 
 		const PixelType * const filterDataPtr;
 		const PixelType * const filterDataPtrEnd;
 
-		const long srcImageWidth_filterWidth;
+		const I4 srcImageWidth_filterWidth;
 
-		const long xOffset;
-		const long yOffset;
+		const I4 xOffset;
+		const I4 yOffset;
 
-		const long filterHeight;
-		const long filterWidth;
+		const I4 filterHeight;
+		const I4 filterWidth;
 
 };
 

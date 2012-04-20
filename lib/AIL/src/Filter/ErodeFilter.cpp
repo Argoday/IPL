@@ -12,7 +12,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void ErodeFilter<PixelType>::applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void ErodeFilter<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	if(type==MorphKernelType::getCross()){
 		this->applyToCross(srcImage,dstImage);
 	}else if(type==MorphKernelType::getSquare()){
@@ -26,14 +26,14 @@ template <
 
 template <
 	typename PixelType
-> void ErodeFilter<PixelType>::applyToCross(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void ErodeFilter<PixelType>::applyToCross(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	MinFilterWxH<PixelType> minFilter(Paint::MakeCross(iterations,iterations));
 	minFilter.applyTo(srcImage,dstImage);
 }
 
 template <
 	typename PixelType
-> void ErodeFilter<PixelType>::applyToSquare(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void ErodeFilter<PixelType>::applyToSquare(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	Image::Image<PixelType> tempImage(dstImage.getSize(),dstImage.getDataManager());
 
 	MinFilterWx1basic<PixelType> minFilter1(iterations);
@@ -45,14 +45,14 @@ template <
 
 template <
 	typename PixelType
-> void ErodeFilter<PixelType>::applyToCircle(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void ErodeFilter<PixelType>::applyToCircle(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	MinFilterWxH<PixelType> minFilter(Paint::MakeCircle(iterations,iterations,iterations/2));
 	minFilter.applyTo(srcImage,dstImage);
 }
 
 template <
 	typename PixelType
-> void ErodeFilter<PixelType>::applyToDiamond(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void ErodeFilter<PixelType>::applyToDiamond(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	//TODO: Make this smarter
 	typedef typename PixelType::DataType PixelDataType;
 
@@ -69,7 +69,7 @@ template <
 		dstImage.swap(tempImage);
 		return;
 	}
-	long x=2;
+	I4 x=2;
 
 	if(iterations%2!=1){
 		Algorithm::BaseAlgorithm3x3<ErodeAlgorithm3x3Cross<PixelDataType>,PixelDataType>(tempImage.getDataView(),dstImage.getDataView());

@@ -6,7 +6,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void BlackTopHatFilter<PixelType>::applyTo(const Image::Image<PixelType> &srcImage,Image::Image<PixelType> &dstImage) const {
+> void BlackTopHatFilter<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 	CloseFilter<PixelType> closeFilter(iterations,type);
 
 	closeFilter.applyTo(srcImage,dstImage);
