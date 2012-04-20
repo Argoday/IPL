@@ -34,7 +34,7 @@ template<> __forceinline PixelYi1u pixel_cast<PixelYi1u>(const QRgb &_color){
 	tempY = qRed  (_color)*0.299; //NOTE: Fix this so that it is faster
 	tempY+= qGreen(_color)*0.587;
 	tempY+= qBlue (_color)*0.114;
-	return PixelYi1u(tempY*255.0);
+	return PixelYi1u(tempY);
 }
 
 template<> __forceinline QRgb pixel_cast<QRgb>(const PixelRGBf8 &_color){
