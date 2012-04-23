@@ -27,10 +27,10 @@ void Semaphore::release(){
 	}
 	if(count <= 0){
 		Concurrency::Context * waiting = nullptr;
-		if (!waitingContexts.try_pop(waiting)){
-			Concurrency::Context::Yield();
+		if(waitingContexts.try_pop(waiting)==true){
+			waiting->Unblock();
 		}
-		waiting->Unblock();
+		Concurrency::Context::Yield();
 	}
 }
 
