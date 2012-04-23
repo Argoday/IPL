@@ -12,6 +12,8 @@ namespace Queue {
 enum class AVL_DLL_EXPORT ControlMessageType {
 	none,
 	flush, // I8u flushID
+	pause,
+	play,
 	quit
 };
 

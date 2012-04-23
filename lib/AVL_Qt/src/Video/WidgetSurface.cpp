@@ -60,7 +60,7 @@ void AVL_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
 bool AVL_QT_DLL_EXPORT WidgetSurface::present(const QVideoFrame & frame){
 	return false;
 }
-void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame){
+void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame,const int & frameIndex){
 	if (surfaceFormat().pixelFormat() != frame.pixelFormat() || surfaceFormat().frameSize() != frame.size()) {
 		setError(IncorrectFormatError);
 		stop();
@@ -68,6 +68,7 @@ void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame){
 		currentFrame = frame;
 		widget->repaint(targetRect);
 	}
+	emit frameChanged(frameIndex);
 }
 
 void AVL_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){

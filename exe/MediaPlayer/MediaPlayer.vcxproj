@@ -364,6 +364,9 @@ copy $(QTDIR)\lib\QtCore4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCore
     <ProjectReference Include="..\..\lib\AML_ffmpeg\AML_ffmpeg.vcxproj">
       <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\lib\AVL\AVL.vcxproj">
+      <Project>{830c7521-7800-4877-ac29-686d38dea25a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\lib\AVL_Qt\AVL_Qt.vcxproj">
       <Project>{a50c0db6-8146-44cf-a1b2-0250eb7d5b2c}</Project>
     </ProjectReference>

@@ -73,6 +73,32 @@ AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::~FFMPEGmediaPlayerAgent(){
 	sws_freeContext(_this->img_convert_ctx);
 	delete _this;
 }
+AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendFlush(){
+	++flushID;
+	auto dataFlushMessageParameter = new Video::Queue::DataMessageFlushParameter(flushID);
+	auto videoDataPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::flush,dataFlushMessageParameter);
+	videoPipe.aboutToSendData();
+	Concurrency::asend(videoDataQueue,videoDataPacket);
+
+	auto controlMessageParameter = new Video::Queue::ControlMessageFlushParameter(flushID);
+	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::flush,controlMessageParameter);
+	Concurrency::asend(videoControlQueue,videoControlPacket);
+}
+AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendPause(){
+	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::pause);
+	Concurrency::asend(videoControlQueue,videoControlPacket);
+}
+AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendPlay(){
+	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::play);
+	Concurrency::asend(videoControlQueue,videoControlPacket);
+}
+AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendQuit(){
+	auto videoDataPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::quit);
+	Concurrency::asend(videoDataQueue,videoDataPacket);
+
+	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::quit);
+	Concurrency::asend(videoControlQueue,videoControlPacket);
+}
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 	auto & pCodecCtx  = _this->codecCtx;
 	auto & pFrame     = _this->frame;
@@ -93,24 +119,27 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 		if(gotControlPacket==true){
 			const Media::Player::CommandOpenParameter      * openParameter             = nullptr;
 			const Media::Player::CommandPlayPauseParameter * playPauseParameter        = nullptr;
-			Video::Queue::DataMessageFlushParameter        * dataFlushMessageParameter = nullptr;
-			Video::Queue::ControlMessageFlushParameter     * controlMessageParameter   = nullptr;
+			
 			Video::Queue::DataPacket videoDataPacket;
 			Video::Queue::ControlPacket videoControlPacket;
 			switch(controlPacket.getCommand()){
 				case Media::Player::Command::play :
 					if((state==State::stopped) || (state==State::paused)){
 						state = State::playing;
+						sendPlay();
 					}
 				break;
 				case Media::Player::Command::pause :
 					if(state==State::playing){
 						state = State::paused;
+						sendPause();
 					}
 				break;
 				case Media::Player::Command::stop :
 					if((state==State::playing)||(state==State::paused)){
 						state = State::stopped;
+						sendFlush();
+						//TODO: Seek to beginning
 					}
 				break;
 				case Media::Player::Command::playPause :
@@ -118,54 +147,51 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						playPauseParameter = reinterpret_cast<const Media::Player::CommandPlayPauseParameter * const>(controlPacket.getParameter());
 						if(playPauseParameter->getState()==true){
 							state = State::playing;
+							sendPlay();
 						}else if(playPauseParameter->getState()==false){
 							state = State::paused;
+							sendPause();
 						}
 						delete playPauseParameter;
 					}else{
 						if(state==State::playing){
 							state = State::paused;
+							sendPause();
 						}else if(state==State::paused){
 							state = State::playing;
+							sendPlay();
 						}
 					}
 				break;
 				case Media::Player::Command::seek :
-					++flushID;
-					dataFlushMessageParameter = new Video::Queue::DataMessageFlushParameter(flushID);
-					videoDataPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::flush,dataFlushMessageParameter);
-					Concurrency::asend(videoDataQueue,videoDataPacket);
-
-					controlMessageParameter = new Video::Queue::ControlMessageFlushParameter(flushID);
-					videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::flush,controlMessageParameter);
-					Concurrency::asend(videoControlQueue,videoControlPacket);
+					sendFlush();
 
 					//TODO: seek?
+					sendPlay();
 				break;
 				case Media::Player::Command::open :
 					if(state!=State::closed){
 						closeFile();
 					}
+					sendFlush();
 					openParameter = reinterpret_cast<const Media::Player::CommandOpenParameter * const>(controlPacket.getParameter());
 					if(openFile(openParameter->getFileName())==true){
 						if(openParameter->getAutoPlay()==true){
 							state = State::playing;
+							sendPlay();
 						}else{
 							state = State::stopped;
+							sendPause();
 						}
 					}
 					delete openParameter;
 				break;
 				case Media::Player::Command::close :
+					sendFlush();
 					closeFile();
 				break;
 				case Media::Player::Command::quit :
-					videoDataPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::quit);
-					Concurrency::asend(videoDataQueue,videoDataPacket);
-
-					videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::quit);
-					Concurrency::asend(videoControlQueue,videoControlPacket);
-
+					sendQuit();
 					done();
 					return;
 				break;
@@ -211,10 +237,10 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 								framePtr+=linesize;
 							}
 						}
-
-						auto messageParameter = new Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u>(imagePtr,timeStamp);
+						++frameIndex;
+						auto messageParameter = new Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u>(imagePtr,timeStamp,frameIndex);
 						auto videoPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::image,messageParameter);
-
+						
 						videoPipe.aboutToSendData();
 						Concurrency::asend(videoDataQueue,videoPacket);
 
@@ -244,7 +270,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 	auto & hasAudioStream = _this->hasAudioStream;
 	auto & aCodecCtx      = _this->aCodecCtx;
 	auto & aCodec         = _this->aCodec;
-
+	frameIndex=0;
 	_this->formatCtx = avformat_alloc_context();
 
 	if(avformat_open_input(&pFormatCtx, fileName.c_str(), NULL, 0)!=0){return false;}
@@ -319,6 +345,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::closeFile(){
 	if(_this->codecCtx !=nullptr){avcodec_close(_this->codecCtx);       _this->codecCtx  = nullptr;}
 	if(_this->formatCtx!=nullptr){avformat_close_input(&_this->formatCtx);_this->formatCtx  = nullptr;}
 	state = State::closed;
+	frameIndex=0;
 }
 
 }

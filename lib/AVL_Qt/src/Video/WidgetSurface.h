@@ -27,10 +27,14 @@ class AVL_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
 
 		void paint(QPainter * painter);
 
+	signals:
+
+		void frameChanged(int frame);
+
 	public slots:
 
 		bool present(const QVideoFrame & frame);
-		void renderFrame(const QVideoFrame & frame);
+		void renderFrame(const QVideoFrame & frame,const int & frameIndex);
 
 	private:
 		QWidget * widget;

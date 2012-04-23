@@ -16,6 +16,7 @@ class QMenu;
 class QLabel;
 class QScrollArea;
 class QAbstractVideoSurface;
+class QPushButton;
 QT_END_NAMESPACE
 
 class MediaPlayer : public QMainWindow {
@@ -28,6 +29,9 @@ class MediaPlayer : public QMainWindow {
 	private slots:
 		void open();
 		void exit();
+		void playPause();
+
+		void setPosition(int frame);
 
 	private:
 		void createActions();
@@ -36,6 +40,8 @@ class MediaPlayer : public QMainWindow {
 	//File
 		QAction * openAct;
 		QAction * exitAct;
+
+		QPushButton * playPauseButton;
 
 	//Menus
 		QMenu *fileMenu;

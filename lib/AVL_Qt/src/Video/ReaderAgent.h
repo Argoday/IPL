@@ -19,7 +19,13 @@ class AVL_QT_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 
 		typedef ReaderAgent ThisType;
 
-		ThisType(Video::Queue::Pipe & _videoPipe):dataQueue(_videoPipe.getDataQueue()),videoPipe(_videoPipe),surface(nullptr){};
+		ThisType(Video::Queue::Pipe & _videoPipe)
+			:dataQueue(_videoPipe.getDataQueue())
+			,controlQueue(_videoPipe.getControlQueue())
+			,videoPipe(_videoPipe)
+			,surface(nullptr)
+		{
+		};
 
 		void registerVideoSurface(QAbstractVideoSurface * const & _surface);
 
@@ -32,7 +38,8 @@ class AVL_QT_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 		QAbstractVideoSurface * surface;
 
 		Video::Queue::Pipe & videoPipe;
-		Concurrency::ISource<Video::Queue::DataPacket> & dataQueue;
+		Concurrency::ISource<Video::Queue::DataPacket>    & dataQueue;
+		Concurrency::ISource<Video::Queue::ControlPacket> & controlQueue;
 };
 
 }

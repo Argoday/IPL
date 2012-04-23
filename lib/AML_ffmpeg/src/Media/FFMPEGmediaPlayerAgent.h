@@ -38,10 +38,16 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent : public Concurrency::agent {
 		void closeFile();
 		Image::Image<Pixel::PixelRGBi1u> getFrame() const ;
 
+		void sendFlush();
+		void sendPause();
+		void sendPlay();
+		void sendQuit();
+
 		class FFMPEGmediaPlayerAgent_d;
 		FFMPEGmediaPlayerAgent_d * _this;
 
 		State state;
+		I4 frameIndex;
 		Data::DataManager * const dataManager;
 
 		Concurrency::ISource<Media::Player::ControlPacket> & controlQueue;

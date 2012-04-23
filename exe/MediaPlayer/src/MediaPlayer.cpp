@@ -18,22 +18,51 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::C
 
 	readerAgent->registerVideoSurface(surface);
 
+	playPauseButton = new QPushButton;
+	playPauseButton->setEnabled(false);
+	playPauseButton->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
+	playPauseButton->setText("PlayPause");
+
+	connect(playPauseButton, SIGNAL(clicked()),this, SLOT(playPause()));
+
+	QSlider * positionSlider = new QSlider(Qt::Horizontal);
+	positionSlider->setRange(0, 600);
+	connect(positionSlider, SIGNAL(sliderMoved(int)),this, SLOT(setPosition(int)));
+
+	connect(surface, SIGNAL(frameChanged(int)),positionSlider, SLOT(setValue(int)));
+
+	QBoxLayout * controlLayout = new QHBoxLayout;
+	controlLayout->addWidget(playPauseButton);
+	controlLayout->addWidget(positionSlider);
+
+	QBoxLayout * layout = new QVBoxLayout;
+	layout->addWidget(videoWidget);
+	layout->addLayout(controlLayout);
+
 	createActions();
 	createMenus();
 
-	setCentralWidget(videoWidget);
+	QWidget * window = new QWidget;
+	window->setLayout(layout);
+	setCentralWidget(window);
 
 	setWindowTitle(tr("Media Player"));
 	resize(600, 600);
+	
 }
 
 MediaPlayer::~MediaPlayer(){
 }
-
+void MediaPlayer::setPosition(int frame){
+}
+void MediaPlayer::playPause(){
+	mediaControl->playPause();
+}
 void MediaPlayer::open(){
 	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath());
 	if(fileName.isEmpty()==true){return;}
 	mediaControl->open(fileName.toStdString(),true);
+	playPauseButton->setEnabled(true);
 }
 
 void MediaPlayer::exit(){

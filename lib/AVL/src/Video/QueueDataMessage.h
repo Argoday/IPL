@@ -11,7 +11,7 @@ namespace Queue {
 
 enum class AVL_DLL_EXPORT DataMessageType {
 	none,
-	image, // Image::Image<PixelType> image, I8u timeStamp
+	image, // Image::Image<PixelType> image, I8u timeStamp, I4 frameIndex
 	flush, // I8u flushID
 	quit
 };
@@ -53,15 +53,17 @@ template<typename PixelType> class AVL_DLL_EXPORT DataMessageImageParameter : pu
 			image=(other.image);
 			timeStamp=other.timeStamp;
 		}
-		ThisType(Image::Image<PixelType> * const & _image,const I8u & _timeStamp):image(_image),timeStamp(_timeStamp){}
+		ThisType(Image::Image<PixelType> * const & _image,const I8u & _timeStamp,const I4 & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
 
 		const Image::Image<PixelType> * const & getImage() const {return image;}
-		const I8u & getTimeStamp() const {return timeStamp;}
+		const I8u & getTimeStamp()  const {return timeStamp;}
+		const I4  & getFrameIndex() const {return frameIndex;}
 
 		void releaseParameter() {delete image;image=nullptr;}
 	private:
 		Image::Image<PixelType> * image;
 		I8u timeStamp;
+		I4  frameIndex;
 };
 
 }

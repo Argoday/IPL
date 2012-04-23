@@ -28,8 +28,6 @@ int main(int argc, char *argv[]){
 	QApplication a(argc, argv);
 	MediaPlayer w(&dataManager,&mediaControl,&videoReaderAgent);
 
-	qRegisterMetaType<QVideoFrame>("QVideoFrame");
-
 	w.show();
 
 	I4 ret = a.exec();
