@@ -26,6 +26,7 @@ template <
 
 	public:
 		
+		ThisType();
 		ThisType(const ImageSize & _imageSize);
 		ThisType(const I4 & _width,const I4 & _height);
 		ThisType(const ThisType & _image);

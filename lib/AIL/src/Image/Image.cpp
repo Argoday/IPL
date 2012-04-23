@@ -41,6 +41,16 @@ template <typename PixelType> void Image<PixelType>::releaseImageData(){
 }
 
 // --- Constructors ---
+template <typename PixelType> Image<PixelType>::Image()
+	:size(ImageSize(0,0))
+	,dataPtr(nullptr)
+	,dataPtrEnd(nullptr)
+	,dataNumBytes(0)
+	,dataView(nullptr,nullptr,ImageSize(0,0))
+	,pixelView(nullptr,nullptr,ImageSize(0,0))
+	,dataManager(nullptr)
+{
+}
 template <typename PixelType> Image<PixelType>::Image(const ImageSize & _imageSize)
 	:size(_imageSize)
 	,dataPtr(nullptr)
