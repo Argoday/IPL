@@ -347,12 +347,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ProjectReference Include="..\..\lib\AIL_IO\AIL_IO.vcxproj">
       <Project>{ea3dc27f-35f7-4bd7-905d-76f0febc872a}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\AIL_png\AIL_png.vcxproj">
-      <Project>{73a4d3b0-2ca4-4b6c-86c7-0b2109ef93e1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\lib\AIL_Qt\AIL_Qt.vcxproj">
-      <Project>{bb5e9e03-c097-451a-8918-b48f14010523}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="src\MainObject.h">
