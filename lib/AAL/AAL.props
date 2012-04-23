@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ImportGroup Label="PropertySheets" />
 	<Import Project="$(ALIB)\lib\ACore\ACore.props" Condition=" '$(ACORE_PROPS)' == '' " />
-	<Import Project="$(ALIB)\lib\AML\AML.props" Condition=" '$(AML_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">
 		<AAL_PROPS>true</AAL_PROPS>
 	</PropertyGroup>

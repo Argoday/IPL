@@ -62,7 +62,7 @@
     <ClInclude Include="src\Video\ReaderAgent.h">
       <Filter>Video\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\AML_Qt.h" />
+    <ClInclude Include="src\AVL_Qt.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Video\ReaderAgent.cpp">

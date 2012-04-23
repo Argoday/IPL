@@ -2,7 +2,7 @@
 #ifndef VIDEO__QUEUE_ControlPacket_H
 #define VIDEO__QUEUE_ControlPacket_H
 
-#include "AML.h"
+#include "AVL.h"
 
 #include "QueueControlMessage.h"
 
@@ -10,7 +10,7 @@ namespace Video {
 
 namespace Queue {
 
-class AML_DLL_EXPORT ControlPacket {
+class AVL_DLL_EXPORT ControlPacket {
 	public:
 		typedef ControlPacket ThisType;
 

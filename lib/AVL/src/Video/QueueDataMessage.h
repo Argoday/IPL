@@ -2,27 +2,27 @@
 #ifndef VIDEO__QUEUE_DataMessage_H
 #define VIDEO__QUEUE_DataMessage_H
 
-#include "AML.h"
+#include "AVL.h"
 #include <Image/Image.h>
 
 namespace Video {
 
 namespace Queue {
 
-enum class AML_DLL_EXPORT DataMessageType {
+enum class AVL_DLL_EXPORT DataMessageType {
 	none,
 	image, // Image::Image<PixelType> image, I8u timeStamp
 	flush, // I8u flushID
 	quit
 };
 
-class AML_DLL_EXPORT DataMessageParameter {
+class AVL_DLL_EXPORT DataMessageParameter {
 	public:
 		typedef DataMessageParameter ThisType;
 		virtual void releaseParameter() = 0 ;
 };
 
-class AML_DLL_EXPORT MessageDefaultParameter : public DataMessageParameter {
+class AVL_DLL_EXPORT MessageDefaultParameter : public DataMessageParameter {
 	public:
 		typedef MessageDefaultParameter ThisType;
 		ThisType(const ThisType & other){}
@@ -30,7 +30,7 @@ class AML_DLL_EXPORT MessageDefaultParameter : public DataMessageParameter {
 		ThisType(){}
 		void releaseParameter() {}
 };
-class AML_DLL_EXPORT DataMessageFlushParameter : public DataMessageParameter {
+class AVL_DLL_EXPORT DataMessageFlushParameter : public DataMessageParameter {
 	public:
 		typedef DataMessageFlushParameter ThisType;
 		ThisType(const ThisType & other):flushID(other.flushID){}
@@ -45,7 +45,7 @@ class AML_DLL_EXPORT DataMessageFlushParameter : public DataMessageParameter {
 	private:
 		I8u flushID;
 };
-template<typename PixelType> class AML_DLL_EXPORT DataMessageImageParameter : public DataMessageParameter {
+template<typename PixelType> class AVL_DLL_EXPORT DataMessageImageParameter : public DataMessageParameter {
 	public:
 		typedef DataMessageImageParameter ThisType;
 		ThisType(const ThisType & other):image(other.image),timeStamp(other.timeStamp){}

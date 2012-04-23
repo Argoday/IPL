@@ -2,15 +2,14 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ImportGroup Label="PropertySheets" />
 	<Import Project="$(ALIB)\lib\AIL\AIL.props" Condition=" '$(AIL_PROPS)' == '' " />
-	<Import Project="$(ALIB)\lib\AAL\AAL.props" Condition=" '$(AAL_PROPS)' == '' " />
-	<Import Project="$(ALIB)\lib\AML\AML.props" Condition=" '$(AML_PROPS)' == '' " />
+	<Import Project="$(ALIB)\lib\AIL_Qt\AIL_Qt.props" Condition=" '$(AIL_QT_PROPS)' == '' " />
 	<Import Project="$(ALIB)\lib\AVL\AVL.props" Condition=" '$(AVL_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">
-		<AML_FFMPEG_PROPS>true</AML_FFMPEG_PROPS>
+		<AVL_QT_PROPS>true</AVL_QT_PROPS>
 	</PropertyGroup>
 	<ItemDefinitionGroup>
 		<ClCompile>
-			<AdditionalIncludeDirectories>$(ALIB)/lib/AML_ffmpeg/src;$(LIBFFMPEG_DIR)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>$(ALIB)/lib/AVL_Qt/src;$(QTDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ClCompile>
 	</ItemDefinitionGroup>
 	<ItemGroup />

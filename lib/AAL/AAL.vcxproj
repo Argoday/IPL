@@ -46,9 +46,6 @@
     <ProjectReference Include="..\ACore\ACore.vcxproj">
       <Project>{4283e1f3-23a1-409f-96ce-9c8984740455}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\AML\AML.vcxproj">
-      <Project>{8f538276-06ad-498e-b1f3-d789ba7e9300}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Audio\QueueControlMessage.cpp" />

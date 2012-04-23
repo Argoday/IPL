@@ -2,7 +2,7 @@
 #ifndef VIDEO__WidgetSurface_H
 #define VIDEO__WidgetSurface_H
 
-#include "AML_Qt.h"
+#include "AVL_Qt.h"
 
 #include <QtCore/QRect>
 #include <QtGui/QImage>
@@ -11,7 +11,7 @@
 
 namespace Video {
 
-class AML_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
+class AVL_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
 	Q_OBJECT
 	public:
 		WidgetSurface(QWidget * widget, QObject * parent = 0);

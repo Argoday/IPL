@@ -49,17 +49,29 @@
     <Filter Include="String\Header Files">
       <UniqueIdentifier>{3d320eef-78db-442d-916f-eaea532ed4a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System">
-      <UniqueIdentifier>{6ff13a6e-b5ee-4bb6-a7e8-25159b82cbc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="System\Header Files">
-      <UniqueIdentifier>{1f8066bc-a49c-4d0e-90ef-1448644b5f68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="System\Source Files">
-      <UniqueIdentifier>{1437a870-a638-4d63-895c-26d7c12b70f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="String\Source Files">
       <UniqueIdentifier>{d5322d99-04d7-403f-bc04-ea9749e22440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows">
+      <UniqueIdentifier>{efc9a89d-6c63-4236-9b15-438cb8fc0afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows\Thread">
+      <UniqueIdentifier>{fa277e66-7605-4048-967b-407fcda12e6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows\System">
+      <UniqueIdentifier>{9f8a835b-5317-409f-b6b8-bfc2f1cd8f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows\System\Header Files">
+      <UniqueIdentifier>{aa0546cd-990e-4269-862b-7b75673c1c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows\Thread\Header Files">
+      <UniqueIdentifier>{aee38e5a-1347-4666-b37c-3e94d1d7ed9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows\System\Source Files">
+      <UniqueIdentifier>{dde744c4-296c-4368-9ed0-8ebc780d6aea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-windows\Thread\Source Files">
+      <UniqueIdentifier>{6f184820-6f84-483d-a193-2557982d1355}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,11 +145,14 @@
     <ClInclude Include="src\Meta\disable_if.h">
       <Filter>Meta\Function Objects\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\System\System.h">
-      <Filter>System\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Data\Float.h">
       <Filter>Data\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\windows\src\System\System.h">
+      <Filter>platform-windows\System\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\windows\src\Thread\Semaphore.h">
+      <Filter>platform-windows\Thread\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -153,14 +168,17 @@
     <ClCompile Include="src\Data\DataRange.cpp">
       <Filter>Data\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\System\System.cpp">
-      <Filter>System\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\String\String.cpp">
       <Filter>String\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Data\Float.cpp">
       <Filter>Data\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\windows\src\System\System.cpp">
+      <Filter>platform-windows\System\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\windows\src\Thread\Semaphore.cpp">
+      <Filter>platform-windows\Thread\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

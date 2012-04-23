@@ -5,13 +5,13 @@
 
 namespace Video {
 
-AML_QT_DLL_EXPORT WidgetSurface::WidgetSurface(QWidget *widget, QObject *parent)
+AVL_QT_DLL_EXPORT WidgetSurface::WidgetSurface(QWidget *widget, QObject *parent)
 	:QAbstractVideoSurface(parent)
 	,widget(widget)
 	,imageFormat(QImage::Format_Invalid)
 {
 }
-QList<QVideoFrame::PixelFormat> AML_QT_DLL_EXPORT WidgetSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType handleType) const {
+QList<QVideoFrame::PixelFormat> AVL_QT_DLL_EXPORT WidgetSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType handleType) const {
 	if (handleType == QAbstractVideoBuffer::NoHandle) {
 		return QList<QVideoFrame::PixelFormat>() << QVideoFrame::Format_RGB32;
 	} else {
@@ -19,7 +19,7 @@ QList<QVideoFrame::PixelFormat> AML_QT_DLL_EXPORT WidgetSurface::supportedPixelF
 	}
 }
 
-bool AML_QT_DLL_EXPORT WidgetSurface::isFormatSupported(const QVideoSurfaceFormat & format, QVideoSurfaceFormat * similar) const {
+bool AVL_QT_DLL_EXPORT WidgetSurface::isFormatSupported(const QVideoSurfaceFormat & format, QVideoSurfaceFormat * similar) const {
 	Q_UNUSED(similar);
 
 	const QImage::Format imageFormat = QVideoFrame::imageFormatFromPixelFormat(format.pixelFormat());
@@ -30,7 +30,7 @@ bool AML_QT_DLL_EXPORT WidgetSurface::isFormatSupported(const QVideoSurfaceForma
 		&& format.handleType() == QAbstractVideoBuffer::NoHandle;
 }
 
-bool AML_QT_DLL_EXPORT WidgetSurface::start(const QVideoSurfaceFormat & format){
+bool AVL_QT_DLL_EXPORT WidgetSurface::start(const QVideoSurfaceFormat & format){
 	const QImage::Format imageFormat = QVideoFrame::imageFormatFromPixelFormat(format.pixelFormat());
 	const QSize size = format.frameSize();
 
@@ -49,7 +49,7 @@ bool AML_QT_DLL_EXPORT WidgetSurface::start(const QVideoSurfaceFormat & format){
 		return false;
 	}
 }
-void AML_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
+void AVL_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
 	QSize size = surfaceFormat().sizeHint();
 	size.scale(widget->size().boundedTo(size), Qt::KeepAspectRatio);
 
@@ -57,10 +57,10 @@ void AML_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
 	targetRect.moveCenter(widget->rect().center());
 }
 
-bool AML_QT_DLL_EXPORT WidgetSurface::present(const QVideoFrame & frame){
+bool AVL_QT_DLL_EXPORT WidgetSurface::present(const QVideoFrame & frame){
 	return false;
 }
-void AML_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame){
+void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame){
 	if (surfaceFormat().pixelFormat() != frame.pixelFormat() || surfaceFormat().frameSize() != frame.size()) {
 		setError(IncorrectFormatError);
 		stop();
@@ -70,7 +70,7 @@ void AML_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame){
 	}
 }
 
-void AML_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){
+void AVL_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){
 	if (currentFrame.map(QAbstractVideoBuffer::ReadOnly)) {
 		const QTransform oldTransform = painter->transform();
 
@@ -94,7 +94,7 @@ void AML_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){
 	}
 }
 
-void AML_QT_DLL_EXPORT WidgetSurface::stop(){
+void AVL_QT_DLL_EXPORT WidgetSurface::stop(){
 	currentFrame = QVideoFrame();
 	targetRect = QRect();
 

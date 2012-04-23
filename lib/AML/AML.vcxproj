@@ -39,12 +39,6 @@
     <ClInclude Include="src\Media\PlayerCommand.h" />
     <ClInclude Include="src\Media\PlayerControl.h" />
     <ClInclude Include="src\Media\PlayerControlPacket.h" />
-    <ClInclude Include="src\Thread\Semaphore.h" />
-    <ClInclude Include="src\Video\QueueControlMessage.h" />
-    <ClInclude Include="src\Video\QueueControlPacket.h" />
-    <ClInclude Include="src\Video\QueueDataMessage.h" />
-    <ClInclude Include="src\Video\QueueDataPacket.h" />
-    <ClInclude Include="src\Video\QueuePipe.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ACore\ACore.vcxproj">
@@ -58,12 +52,6 @@
     <ClCompile Include="src\Media\PlayerCommand.cpp" />
     <ClCompile Include="src\Media\PlayerControl.cpp" />
     <ClCompile Include="src\Media\PlayerControlPacket.cpp" />
-    <ClCompile Include="src\Thread\Semaphore.cpp" />
-    <ClCompile Include="src\Video\QueueControlMessage.cpp" />
-    <ClCompile Include="src\Video\QueueControlPacket.cpp" />
-    <ClCompile Include="src\Video\QueueDataMessage.cpp" />
-    <ClCompile Include="src\Video\QueueDataPacket.cpp" />
-    <ClCompile Include="src\Video\QueuePipe.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8F538276-06AD-498E-B1F3-D789BA7E9300}</ProjectGuid>

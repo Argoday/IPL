@@ -2,7 +2,7 @@
 #ifndef VIDEO__QUEUE__ReaderAgent_H
 #define VIDEO__QUEUE__ReaderAgent_H
 
-#include "AML_Qt.h"
+#include "AVL_Qt.h"
 #include <Video/QueuePipe.h>
 
 #include <QtMultimedia/QAbstractVideoSurface>
@@ -13,7 +13,7 @@ namespace Video {
 
 namespace Queue {
 
-class AML_QT_DLL_EXPORT ReaderAgent : public Concurrency::agent {
+class AVL_QT_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 
 	public:
 

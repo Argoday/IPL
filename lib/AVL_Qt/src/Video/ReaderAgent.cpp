@@ -9,11 +9,11 @@ namespace Video {
 namespace Queue {
 
 
-void AML_QT_DLL_EXPORT ReaderAgent::registerVideoSurface(QAbstractVideoSurface * const & _surface){
+void AVL_QT_DLL_EXPORT ReaderAgent::registerVideoSurface(QAbstractVideoSurface * const & _surface){
 	surface=_surface;
 }
 
-void AML_QT_DLL_EXPORT ReaderAgent::run(){
+void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 	for(;;){
 		Video::Queue::DataPacket videoPacket;
 		videoPacket = Concurrency::receive(dataQueue);

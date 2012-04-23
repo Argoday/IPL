@@ -11,29 +11,8 @@
     <ClInclude Include="src\Media\PlayerControlPacket.h">
       <Filter>Media\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Video\QueueControlMessage.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueueControlPacket.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueueDataMessage.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueueDataPacket.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueuePipe.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Thread\Semaphore.h">
-      <Filter>Thread\Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Video">
-      <UniqueIdentifier>{d3aad6d3-70aa-4268-8787-87a6b07c8a08}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Media">
       <UniqueIdentifier>{84c56ee8-e5ad-4afb-8641-90746aac165a}</UniqueIdentifier>
     </Filter>
@@ -42,21 +21,6 @@
     </Filter>
     <Filter Include="Media\Source Files">
       <UniqueIdentifier>{129e966c-b279-4358-85d8-8a26e7a2f6f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Video\Header Files">
-      <UniqueIdentifier>{91c8584e-c91c-413d-b022-6bcd381f53b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Video\Source Files">
-      <UniqueIdentifier>{c3c5a338-3a11-4911-a424-28d9aa729add}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Thread">
-      <UniqueIdentifier>{71e668dd-0e09-41bb-8401-0a6bb4234f04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Thread\Header Files">
-      <UniqueIdentifier>{3efd390c-da59-465a-9992-9332b7580407}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Thread\Source Files">
-      <UniqueIdentifier>{22d30e5e-ff3b-43d6-8ae0-059339e25e34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -68,24 +32,6 @@
     </ClCompile>
     <ClCompile Include="src\Media\PlayerControlPacket.cpp">
       <Filter>Media\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueControlMessage.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueControlPacket.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueDataMessage.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueDataPacket.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueuePipe.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Thread\Semaphore.cpp">
-      <Filter>Thread\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

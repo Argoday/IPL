@@ -2,7 +2,7 @@
 #ifndef VIDEO__QUEUE__Pipe_H
 #define VIDEO__QUEUE__Pipe_H
 
-#include "AML.h"
+#include "AVL.h"
 #include "QueueControlPacket.h"
 #include "QueueDataPacket.h"
 #include <Data/DataTypes.h>
@@ -14,7 +14,7 @@ namespace Video {
 
 namespace Queue {
 
-class AML_DLL_EXPORT Pipe {
+class AVL_DLL_EXPORT Pipe {
 	public:
 		Pipe(I8 _capacity):dataCapacity(_capacity){};
 

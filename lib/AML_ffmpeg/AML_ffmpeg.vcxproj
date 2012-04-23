@@ -53,6 +53,9 @@
     <ProjectReference Include="..\AML\AML.vcxproj">
       <Project>{8f538276-06ad-498e-b1f3-d789ba7e9300}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\AVL\AVL.vcxproj">
+      <Project>{830c7521-7800-4877-ac29-686d38dea25a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Audio\FFMPEGaudioFile.cpp" />
