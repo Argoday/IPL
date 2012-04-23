@@ -5,6 +5,9 @@
 #include <map> //TODO: Remove usage of std::map , it adds too much to the binary for what it is worth
 #include <stdlib.h> //For: _aligned_malloc() , _aligned_free()
 
+#include <concrt.h> // Concurrency - used to make DataManager thread-safe
+
+
 namespace Data {
 
 class DataManagerHelper;
@@ -12,6 +15,7 @@ class DataManagerHelper;
 class DataManager::DataManager_d {
 	public:
 		std::map<I8u,DataManagerHelper> dataMap;
+		Concurrency::critical_section criticalSection;
 };
 
 void * const DataManager::getMemory(const I4  & numBytes){
@@ -35,6 +39,8 @@ class DataManagerHelper {
 			:head(nullptr)
 			,numBytes(0)
 		{
+		}
+		~DataManagerHelper(){
 		}
 	private:
 		DataManagerHelper(const I8u &_numBytes)
@@ -101,7 +107,14 @@ DataManager::~DataManager(){
 	delete _this;
 }
 
+void * const DataManager::getMemoryFromPool(const I4  &_numBytes){
+	return getMemoryFromPool(static_cast<I8u>(_numBytes));
+}
+void * const DataManager::getMemoryFromPool(const I4u &_numBytes){
+	return getMemoryFromPool(static_cast<I8u>(_numBytes));
+}
 void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
+	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	auto dataMapIter = _this->dataMap.find(_numBytes);
 	if(dataMapIter!=_this->dataMap.end()){
 		return dataMapIter->second.getMemory();
@@ -109,14 +122,9 @@ void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
 	_this->dataMap.insert(std::pair<size_t,DataManagerHelper>(_numBytes,DataManagerHelper(_numBytes)));
 	return _this->dataMap[_numBytes].getMemory();
 }
-void * const DataManager::getMemoryFromPool(const I4  &_numBytes){
-	return getMemoryFromPool(static_cast<size_t>(_numBytes));
-}
-void * const DataManager::getMemoryFromPool(const I4u &_numBytes){
-	return getMemoryFromPool(static_cast<size_t>(_numBytes));
-}
 
 bool DataManager::releaseFromPool(const void * const dataPtr){
+	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	auto dataMapIter = _this->dataMap.begin();
 	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
 		if(dataMapIter->second.release(dataPtr)==true){
@@ -127,12 +135,15 @@ bool DataManager::releaseFromPool(const void * const dataPtr){
 	return false;
 }
 bool DataManager::releaseFromPool(const void * const dataPtr,const I4  & numBytes){
+	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 bool DataManager::releaseFromPool(const void * const dataPtr,const I4u & numBytes){
+	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 bool DataManager::releaseFromPool(const void * const dataPtr,const I8u & numBytes){
+	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 
