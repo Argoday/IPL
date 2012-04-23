@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{00915260-933A-4144-9978-7AB6C7F97D34}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug-DLL_Win32">
+      <UniqueIdentifier>{3C1A01F0-1280-4800-A231-9914CB01FD22}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug-DLL_x64">
+      <UniqueIdentifier>{08B9F9C0-65DE-4806-B01B-058A913C2817}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug_Win32">
+      <UniqueIdentifier>{7101757D-06F2-41F3-A552-3C194ED9DAB3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug_x64">
+      <UniqueIdentifier>{D6CE071C-81B0-46CD-802D-5691FC27B75D}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL_Win32">
+      <UniqueIdentifier>{5B54355D-913B-4B06-9D23-6BB24376B649}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL_x64">
+      <UniqueIdentifier>{A9BF7724-F630-4524-9352-848DDA783834}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release_Win32">
+      <UniqueIdentifier>{FBB1EAA1-FFEA-40AA-9697-FEA8B782A9D3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release_x64">
+      <UniqueIdentifier>{6E47942C-506D-4D08-8CFD-AF1B34EB97A7}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Video">
+      <UniqueIdentifier>{F32970C2-0237-43E0-A512-E04D402EEEEB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Video\Source Files">
+      <UniqueIdentifier>{AE9D5981-5594-4A63-B6DF-F78F9352F3E4}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Video\Header Files">
+      <UniqueIdentifier>{B984090F-0A2B-4C37-BBA3-C3862BD37778}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Video\ReaderAgent.h">
+      <Filter>Video\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AML_Qt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Video\ReaderAgent.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug-DLL\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Debug-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug-DLL\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Debug-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Debug_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release-DLL\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Release-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release-DLL\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Release-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Release_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release\moc_WidgetSurface.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug-DLL\moc_Widget.cpp">
+      <Filter>Generated Files\Debug-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug-DLL\moc_Widget.cpp">
+      <Filter>Generated Files\Debug-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug\moc_Widget.cpp">
+      <Filter>Generated Files\Debug_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug\moc_Widget.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release-DLL\moc_Widget.cpp">
+      <Filter>Generated Files\Release-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release-DLL\moc_Widget.cpp">
+      <Filter>Generated Files\Release-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release\moc_Widget.cpp">
+      <Filter>Generated Files\Release_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release\moc_Widget.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Video\Widget.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Video\WidgetSurface.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\Video\Widget.h">
+      <Filter>Video\Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\Video\WidgetSurface.h">
+      <Filter>Video\Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
