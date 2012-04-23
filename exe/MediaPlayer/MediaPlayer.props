@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ImportGroup Label="PropertySheets" />
 	<Import Project="$(ALIB)\lib\ACore\ACore.props" Condition=" '$(ACORE_PROPS)' == '' " />
-	<Import Project="$(ALIB)\lib\AIL_ffmpeg\AIL_ffmpeg.props" Condition=" '$(AIL_FFMPEG_PROPS)' == '' " />
+	<Import Project="$(ALIB)\lib\AML_ffmpeg\AML_ffmpeg.props" Condition=" '$(AML_FFMPEG_PROPS)' == '' " />
 	<Import Project="$(ALIB)\lib\AIL_Qt\AIL_Qt.props" Condition=" '$(AIL_QT_PROPS)' == '' " />
 	<Import Project="$(ALIB)\lib\AIL\AIL.props" Condition=" '$(AIL_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">

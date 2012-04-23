@@ -234,7 +234,7 @@ copy $(QTDIR)\lib\QtCored4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCor
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_CORE_LIB;BUILD_DLL;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;WIN32;_DEBUG;QT_LARGEFILE_SUPPORT;QT_CORE_LIB;BUILD_DLL;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -244,7 +244,7 @@ copy $(QTDIR)\lib\QtCored4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCor
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtGuid4.lib;QtMultimediad4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(CURL_DIR)/lib/Debug;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -336,7 +336,7 @@ copy $(QTDIR)\lib\QtCore4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCore
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGui4.lib;QtMultimedia4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(CURL_DIR)/lib/Release;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -346,17 +346,26 @@ copy $(QTDIR)\lib\QtCore4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCore
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\lib\AAL\AAL.vcxproj">
+      <Project>{ac6c45bb-2d1d-4b13-9592-e27bb53bcad7}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\lib\ACore\ACore.vcxproj">
       <Project>{4283e1f3-23a1-409f-96ce-9c8984740455}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\lib\AIL\AIL.vcxproj">
       <Project>{a09d1519-dc15-45cb-9972-958996280ccf}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\AIL_ffmpeg\AIL_ffmpeg.vcxproj">
-      <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\lib\AIL_Qt\AIL_Qt.vcxproj">
       <Project>{bb5e9e03-c097-451a-8918-b48f14010523}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML\AML.vcxproj">
+      <Project>{8f538276-06ad-498e-b1f3-d789ba7e9300}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML_ffmpeg\AML_ffmpeg.vcxproj">
+      <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML_Qt\AML_Qt.vcxproj">
+      <Project>{a50c0db6-8146-44cf-a1b2-0250eb7d5b2c}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -5,43 +5,39 @@
 
 #include <Image/Image.h>
 #include <Image/Image_Qt.h>
-#include <Video/FFMPEGplayer.h>
+#include <Video/Widget.h>
+#include <Video/WidgetSurface.h>
 
 
-MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
+MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::Control * const _mediaControl,Video::Queue::ReaderAgent * const readerAgent)
 	:dataManager(_dataManager)
+	,mediaControl(_mediaControl)
 {
-	imageLabel = new QLabel;
-	imageLabel->setBackgroundRole(QPalette::Base);
-	imageLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-	imageLabel->setScaledContents(false);
+	Video::Widget * videoWidget = new Video::Widget();
+	surface = videoWidget->videoSurface();
 
-	setCentralWidget(imageLabel);
+	readerAgent->registerVideoSurface(surface);
 
 	createActions();
 	createMenus();
 
+	setCentralWidget(videoWidget);
+
 	setWindowTitle(tr("Media Player"));
-	resize(603, 625);
+	resize(600, 600);
 }
 
 MediaPlayer::~MediaPlayer(){
-	imageLabel = nullptr;
 }
 
 void MediaPlayer::open(){
-
 	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath());
 	if(fileName.isEmpty()==true){return;}
-
-	//wImage = new Image::Image<PixelType>(Image::IO::read<PixelType>(dataManager,fileName.toStdString()));
-
-	//imageLabel->setPixmap(QPixmap::fromImage(Image::Convert::toQt(*wImage)));
-
-	//resize(wImage->getWidth()+3, wImage->getHeight()+25);
+	mediaControl->open(fileName.toStdString(),true);
 }
 
 void MediaPlayer::exit(){
+	mediaControl->quit();
 	emit close();
 }
 
