@@ -3,6 +3,7 @@
 	<ImportGroup Label="PropertySheets" />
 	<Import Project="$(ALIB)\lib\ACore\ACore.props" Condition=" '$(ACORE_PROPS)' == '' " />
 	<Import Project="$(ALIB)\lib\AML_ffmpeg\AML_ffmpeg.props" Condition=" '$(AML_FFMPEG_PROPS)' == '' " />
+	<Import Project="$(ALIB)\lib\AML_Qt\AML_Qt.props" Condition=" '$(AML_QT_PROPS)' == '' " />
 	<Import Project="$(ALIB)\lib\AIL_Qt\AIL_Qt.props" Condition=" '$(AIL_QT_PROPS)' == '' " />
 	<Import Project="$(ALIB)\lib\AIL\AIL.props" Condition=" '$(AIL_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">
