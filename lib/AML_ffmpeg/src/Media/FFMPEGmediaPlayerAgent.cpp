@@ -243,17 +243,15 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						
 						videoPipe.aboutToSendData();
 						Concurrency::asend(videoDataQueue,videoPacket);
-
 					}
 				}else if(packet.stream_index==_this->audioStreamID) {
 					//Concurrency::asend(audioQueue,audioPacket);
 				}
-    
-				av_free_packet(&packet);
 			}else{
 				//av_read_frame failed?
 				closeFile();
 			}
+			av_free_packet(&packet);
 		}
 	}
 	done();
