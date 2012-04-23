@@ -39,6 +39,7 @@
     <ClInclude Include="src\Media\PlayerCommand.h" />
     <ClInclude Include="src\Media\PlayerControl.h" />
     <ClInclude Include="src\Media\PlayerControlPacket.h" />
+    <ClInclude Include="src\Thread\Semaphore.h" />
     <ClInclude Include="src\Video\QueueControlMessage.h" />
     <ClInclude Include="src\Video\QueueControlPacket.h" />
     <ClInclude Include="src\Video\QueueDataMessage.h" />
@@ -57,6 +58,7 @@
     <ClCompile Include="src\Media\PlayerCommand.cpp" />
     <ClCompile Include="src\Media\PlayerControl.cpp" />
     <ClCompile Include="src\Media\PlayerControlPacket.cpp" />
+    <ClCompile Include="src\Thread\Semaphore.cpp" />
     <ClCompile Include="src\Video\QueueControlMessage.cpp" />
     <ClCompile Include="src\Video\QueueControlPacket.cpp" />
     <ClCompile Include="src\Video\QueueDataMessage.cpp" />

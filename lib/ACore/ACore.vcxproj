@@ -368,7 +368,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClInclude Include="src\Meta\Unroller2p.h" />
     <ClInclude Include="src\String\AString.h" />
     <ClInclude Include="src\System\System.h" />
-    <ClInclude Include="src\Thread\Semaphore.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\DataChunk.cpp" />
@@ -378,7 +377,6 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ClCompile Include="src\Meta\Boolean.cpp" />
     <ClCompile Include="src\String\String.cpp" />
     <ClCompile Include="src\System\System.cpp" />
-    <ClCompile Include="src\Thread\Semaphore.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

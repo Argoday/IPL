@@ -1,8 +1,6 @@
 
 #include "Semaphore.h"
 
-#include <atomic>
-
 namespace Thread {
 
 Semaphore::Semaphore(I8 capacity)

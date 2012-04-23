@@ -2,14 +2,14 @@
 #ifndef THREAD_Semaphore_H
 #define THREAD_Semaphore_H
 
-#include "ACore.h"
+#include "AML.h"
 #include <Data/DataTypes.h>
 
 #include <concurrent_queue.h>
 
 namespace Thread {
 
-class ACORE_DLL_EXPORT Semaphore {
+class AML_DLL_EXPORT Semaphore {
 	public:
 	   explicit Semaphore(I8 capacity);
 

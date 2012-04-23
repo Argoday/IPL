@@ -61,15 +61,6 @@
     <Filter Include="String\Source Files">
       <UniqueIdentifier>{d5322d99-04d7-403f-bc04-ea9749e22440}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Thread">
-      <UniqueIdentifier>{a79c81bc-4f81-490e-8ea3-33bc8a2468b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Thread\Header Files">
-      <UniqueIdentifier>{cd58aae1-ff42-4a63-91c5-81c6a6a11c2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Thread\Source Files">
-      <UniqueIdentifier>{fe636b45-edc7-4639-8cfd-38c72b3937ea}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Meta\Boolean.h">
@@ -148,9 +139,6 @@
     <ClInclude Include="src\Data\Float.h">
       <Filter>Data\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Thread\Semaphore.h">
-      <Filter>Thread\Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\DataChunk.cpp">
@@ -173,9 +161,6 @@
     </ClCompile>
     <ClCompile Include="src\Data\Float.cpp">
       <Filter>Data\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Thread\Semaphore.cpp">
-      <Filter>Thread\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
