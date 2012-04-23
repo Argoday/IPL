@@ -1,30 +1,28 @@
 
 #include <iostream>
-#include <Video/FFMPEGplayer.h>
-#include <stdio.h>
+
+#include <Video/FFMPEGvideoFile.h>
 #include <String/AString.h>
 #include <Image/Image_IO.h>
 #include <Data/DataManager.h>
 
 int main(int argc, char *argv[]) {
-
 	if(argc < 3) {
-		printf("Please provide a movie file and file type - example:\n>FrameDump.exe movie.mpg png\n");
+		std::cout<<"Please provide a movie file and file type - example:\n>FrameDump.exe movie.mpg png"<<std::endl;
 		return -1;
 	}
 	std::string fileName = argv[1];
 	std::string fileType = argv[2];
 
 	Data::DataManager dataManager;
-	Video::FFMPEGplayer ffmpegPlayer(&dataManager);
+	Video::FFMPEGvideoFile ffmpegFile(&dataManager);
   
-	if(ffmpegPlayer.openFile(fileName)==false){
+	if(ffmpegFile.openFile(fileName)==false){
+		std::cout<<"Error opening movie file"<<std::endl;
 		return -1;
 	}
-	
-	while(ffmpegPlayer.hasNextFrame()==true) {
-		Image::IO::write(ffmpegPlayer.getFrame(),"frame"+String::getString(ffmpegPlayer.getFrameIndex())+"." + fileType);
+	while(ffmpegFile.hasNextFrame()==true) {
+		Image::IO::write(ffmpegFile.getFrame(),"frame"+String::getString(ffmpegFile.getFrameIndex())+"." + fileType);
 	}
-
 	return 0;
 }

@@ -214,10 +214,13 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win64;$(LIBPNG_DIR)\projects\vstudio\x64\Debug;$(LIBFFMPEG_DIR)\bin;$(QTDIR)\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
@@ -231,12 +234,12 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);BUILD_DLL;</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\Win64</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
@@ -342,11 +345,14 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
     <ProjectReference Include="..\..\lib\AIL\AIL.vcxproj">
       <Project>{a09d1519-dc15-45cb-9972-958996280ccf}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\AIL_ffmpeg\AIL_ffmpeg.vcxproj">
-      <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\lib\AIL_IO\AIL_IO.vcxproj">
       <Project>{ea3dc27f-35f7-4bd7-905d-76f0febc872a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML\AML.vcxproj">
+      <Project>{8f538276-06ad-498e-b1f3-d789ba7e9300}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML_ffmpeg\AML_ffmpeg.vcxproj">
+      <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
