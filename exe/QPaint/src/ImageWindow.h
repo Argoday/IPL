@@ -25,6 +25,8 @@ class ImageWindow : public QMainWindow {
 		ImageWindow(Data::DataManager * const _dataManager);
 		~ImageWindow();
 
+		typedef Pixel::PixelRGBf8 PixelType;
+
 	private slots:
 		void open();
 		void print();
@@ -88,7 +90,6 @@ class ImageWindow : public QMainWindow {
 		QMenu *modeMenu;
 		QMenu *helpMenu;
 	
-		typedef Pixel::PixelRGBf8 PixelType;
 		Image::Image<PixelType> * wImage;
 		Data::DataManager * dataManager;
 

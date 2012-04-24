@@ -106,7 +106,7 @@ void ImageWindow::blur(){
 
 class NegateObj {
 	public:
-		typedef Image::ImageBase::DefaultPixelType::DataType PixelDataType;
+		typedef ImageWindow::PixelType::DataType PixelDataType;
 
 		static __forceinline void process(PixelDataType * const & srcImageDataPtr){
 			(*srcImageDataPtr) = 1.0 - (*srcImageDataPtr);
@@ -164,7 +164,7 @@ void ImageWindow::negative(){
 	//Image::BaseAlgorithm1x1<Image::ImageBase::DefaultPixelType::DataType,NegateObj>(wImage->getView());
 
 	Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(wImage->getSize(),dataManager);
-	Algorithm::BaseAlgorithm3x3<NegateObj,Image::ImageBase::DefaultPixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
+	Algorithm::BaseAlgorithm3x3<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
 	//Algorithm::BaseAlgorithm1x1<NegateObj,Image::ImageBase::DefaultPixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
 	//Algorithm::BaseAlgorithm1x1<NegateObj,Image::ImageBase::DefaultPixelType::DataType>(wImage->getDataView());
 	wImage->swap(tempImage1);
