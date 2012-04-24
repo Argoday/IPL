@@ -45,6 +45,8 @@ template <
 		__forceinline const I4 & getWidth()  const {return size.getWidth();}
 		__forceinline const I4 & getHeight() const {return size.getHeight();}
 
+		__forceinline const size_t & getNumBytes() const {return dataNumBytes;}
+
 		__forceinline       ImageView<typename PixelType::DataType> & getDataView()       {return dataView;}
 		__forceinline const ImageView<typename PixelType::DataType> & getDataView() const {return dataView;}
 

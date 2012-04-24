@@ -11,11 +11,11 @@
 namespace Image {
 
 template <typename PixelType> void Image<PixelType>::resetImageData(){
-	if(dataNumBytes==(size.getNumPixels()+1)*sizeof(PixelType)){
+	if(dataNumBytes==(size.getNumPixels())*sizeof(PixelType)){
 		return;
 	}
 	releaseImageData();
-	Meta::assign(static_cast<size_t>(dataNumBytes),(size.getNumPixels()+1)*sizeof(PixelType));
+	Meta::assign(static_cast<size_t>(dataNumBytes),(size.getNumPixels())*sizeof(PixelType));
 	if(dataManager==nullptr){
 		dataPtr = static_cast<PixelType * const>(Data::DataManager::getMemory(dataNumBytes));
 	}else{
@@ -33,11 +33,12 @@ template <typename PixelType> void Image<PixelType>::releaseImageData(){
 		if(dataManager==nullptr){
 			Data::DataManager::release(static_cast<void*>(dataPtr));
 		}else{
-			dataManager->releaseFromPool(static_cast<void*>(dataPtr));
+			dataManager->releaseFromPool(static_cast<void*>(dataPtr),dataNumBytes);
 		}
 		dataPtr = nullptr;
 	}
 	dataPtrEnd = nullptr;
+	Meta::assign(static_cast<size_t>(dataNumBytes),0);
 }
 
 // --- Constructors ---
