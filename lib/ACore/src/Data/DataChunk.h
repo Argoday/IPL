@@ -23,10 +23,10 @@ class DataChunk {
 		DataChunk(const size_t &_numBytes, DataChunk * const &_nextPtr);
 
 	//Accessors
-		__forceinline const size_t &getNumBytes() const {return numBytes;}
-		__forceinline void * const &getDataPtr(){return dataPtr;}
-		__forceinline const bool &isLocked() const {return locked;}
-		__forceinline DataChunk * const &getNextPtr() const {return nextPtr;}
+		__forceinline const size_t & getNumBytes() const {return numBytes;}
+		__forceinline void * const & getDataPtr(){return dataPtr;}
+		__forceinline const bool & isLocked() const {return locked;}
+		__forceinline DataChunk * const & getNextPtr() const {return nextPtr;}
 
 	//Mutators
 		void Lock  (){locked=true ;} //TODO: make this an Atomic function call
