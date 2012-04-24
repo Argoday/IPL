@@ -7,12 +7,12 @@
 namespace Paint {
 
 //TODO use ImageSize
-Image::Image<Pixel::PixelYb> MakeCross(const I4 & width,const I4 & height){
+Image::Image<Pixel::PixelYb1> MakeCross(const I4 & width,const I4 & height){
 	return MakeCross(width,height,width/2,height/2);
 }
 
-Image::Image<Pixel::PixelYb> MakeCross(const I4 & width,const I4 & height,const I4 & xCenter,const I4 & yCenter){
-	Image::Image<Pixel::PixelYb> image(width,height);
+Image::Image<Pixel::PixelYb1> MakeCross(const I4 & width,const I4 & height,const I4 & xCenter,const I4 & yCenter){
+	Image::Image<Pixel::PixelYb1> image(width,height);
 	auto dataPtr = image.getDataPtr();
 	for (I4 y=0; y<image.getHeight(); ++y)    {
 		for (I4 x=0; x<image.getWidth(); ++x) {

@@ -15,7 +15,7 @@ template <
 	: public ImageOperation<PixelType>
 {
 	protected:
-		typedef Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> FilterDataType;
+		typedef Image::ImageKernel<Pixel::PixelYb1,Pixel::BooleanTestType> FilterDataType;
 		mutable FilterDataType filterData;
 		I4 xOffset;
 		I4 yOffset;
@@ -36,7 +36,7 @@ template <
 		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 
 	protected:
-		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelYb> && _filterData)
+		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelYb1> && _filterData)
 			:filterData(Meta::forward(_filterData))
 			,xOffset((filterData.getKernel().getWidth()-1)/2)
 			,yOffset((filterData.getKernel().getHeight()-1)/2)

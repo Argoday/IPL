@@ -8,8 +8,8 @@
 
 namespace Paint {
 
-Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCross(const I4 & width,const I4 & height);
-Image::Image<Pixel::PixelYb> AIL_DLL_EXPORT MakeCross(const I4 & width,const I4 & height,const I4 & xCenter,const I4 & yCenter);
+Image::Image<Pixel::PixelYb1> AIL_DLL_EXPORT MakeCross(const I4 & width,const I4 & height);
+Image::Image<Pixel::PixelYb1> AIL_DLL_EXPORT MakeCross(const I4 & width,const I4 & height,const I4 & xCenter,const I4 & yCenter);
 
 }
 

@@ -15,7 +15,7 @@ template <
 	public:
 
 		BaseMinFilterParametersType(
-			const Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> & _kernel,
+			const Image::ImageKernel<Pixel::PixelYb1,Pixel::BooleanTestType> & _kernel,
 			const I4 & _xOffset,
 			const I4 & _yOffset,
 			const I4 & _srcImageWidth,

@@ -14,7 +14,7 @@ template <
 {
 
 	public:
-		BaseMinFilter(Image::Image<Pixel::PixelYb> && _filterData)
+		BaseMinFilter(Image::Image<Pixel::PixelYb1> && _filterData)
 			:SimpleWxHbooleanOperation<PixelType>(Meta::forward(_filterData))
 		{
 		};

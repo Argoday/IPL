@@ -14,7 +14,7 @@ class SimpleWxHbooleanOperationParametersType
 	public:
 
 		SimpleWxHbooleanOperationParametersType(
-			const Image::ImageKernel<Pixel::PixelYb,Pixel::BooleanTestType> & _kernel,
+			const Image::ImageKernel<Pixel::PixelYb1,Pixel::BooleanTestType> & _kernel,
 			const I4 & _xOffset,
 			const I4 & _yOffset,
 			const I4 & _srcImageWidth)
@@ -43,7 +43,7 @@ class SimpleWxHbooleanOperationParametersType
 
 		const I4 srcImageWidth;
 
-		const Pixel::PixelYb::DataType * const filterDataPtr;
+		const Pixel::PixelYb1::DataType * const filterDataPtr;
 
 		const I4 * const filterSkipDataPtr;
 		const I4 * const filterSkipDataPtrEnd;

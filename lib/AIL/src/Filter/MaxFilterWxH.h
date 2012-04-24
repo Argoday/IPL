@@ -14,7 +14,7 @@ template <
 {
 
 	public:
-		MaxFilterWxH(Image::Image<Pixel::PixelYb> && _filterData)
+		MaxFilterWxH(Image::Image<Pixel::PixelYb1> && _filterData)
 			:BaseMaxFilter<PixelType>(Meta::forward(_filterData))
 		{
 		};

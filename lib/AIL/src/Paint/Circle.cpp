@@ -4,18 +4,18 @@
 namespace Paint {
 
 //TODO: use ImageSize
-Image::Image<Pixel::PixelYb> MakeCircle(const I4 & width,const I4 & height,const F8 & radius){
+Image::Image<Pixel::PixelYb1> MakeCircle(const I4 & width,const I4 & height,const F8 & radius){
 	return MakeCircle(width,height,width/2,height/2,radius);
 }
 
-Image::Image<Pixel::PixelYb> MakeCircle(
+Image::Image<Pixel::PixelYb1> MakeCircle(
 	const I4 & width,
 	const I4 & height,
 	const I4 & xCenter,
 	const I4 & yCenter,
 	const F8 & radius)
 {
-	Image::Image<Pixel::PixelYb> image(width,height);
+	Image::Image<Pixel::PixelYb1> image(width,height);
 	F8 xCenterD = xCenter;
 	F8 yCenterD = yCenter;
 	F8 radiusSq = radius*radius;

@@ -35,16 +35,16 @@ template <
 
 };
 
-typedef PixelYbaseType<Meta::Boolean,PixelRange_1b1 > PixelYbtd;
+typedef PixelYbaseType<Meta::Boolean,PixelRange_1b1 > PixelYb1td;
 typedef PixelYbaseType<I1u          ,PixelRange_1i1u> PixelYi1utd;
 
-class AIL_DLL_EXPORT PixelYb : public PixelYbtd {
+class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
 	public:
 		typedef Meta::Boolean NumberType;
-		typedef PixelYbtd::DataType DataType;
+		typedef PixelYb1td::DataType DataType;
 		typedef PixelRange_1b1 RangeType;
-		typedef PixelYbtd ParentType;
-		typedef PixelYb ThisType;
+		typedef PixelYb1td ParentType;
+		typedef PixelYb1 ThisType;
 
 		__forceinline explicit ThisType(){}
 		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
@@ -55,7 +55,7 @@ class AIL_DLL_EXPORT PixelYb : public PixelYbtd {
 //TODO: Move this to a seperate 'TestType' file ?
 class BooleanTestType {
 	public:
-		static __forceinline Meta::Boolean isIncluded(const Pixel::PixelYb &boolToTest){
+		static __forceinline Meta::Boolean isIncluded(const Pixel::PixelYb1 &boolToTest){
 			return boolToTest.getY();
 		}
 };

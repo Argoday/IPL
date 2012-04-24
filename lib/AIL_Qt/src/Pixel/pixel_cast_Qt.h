@@ -48,21 +48,21 @@ template<> __forceinline PixelRGBf8 pixel_cast<PixelRGBf8>(const QRgb &_color){
 	;
 	return color;
 }
-template<> __forceinline QRgb pixel_cast<QRgb>(const PixelYb &_color){
+template<> __forceinline QRgb pixel_cast<QRgb>(const PixelYb1 &_color){
 	if(_color.getY()==true){// TODO: check the asm generated for this function
 		return qRgba(255,255,255,255);
 	}
 	return qRgba(0,0,0,255);
 }
-template<> __forceinline PixelYb pixel_cast<PixelYb>(const QRgb &_color){
+template<> __forceinline PixelYb1 pixel_cast<PixelYb1>(const QRgb &_color){
 	double tempY;
 	tempY = qRed  (_color)*0.299; // TODO: check the asm generated for this line
 	tempY+= qGreen(_color)*0.587;
 	tempY+= qBlue (_color)*0.114;
 	if(tempY>0.5){
-		return PixelYb(true);
+		return PixelYb1(true);
 	}
-	return PixelYb(false);
+	return PixelYb1(false);
 }
 
 template<> __forceinline PixelYUVf8 pixel_cast<PixelYUVf8>(const QRgb &_color){

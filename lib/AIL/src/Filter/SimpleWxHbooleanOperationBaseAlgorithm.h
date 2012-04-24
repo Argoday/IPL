@@ -22,7 +22,7 @@ template <
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
-			const Pixel::PixelYb::DataType * filterDataPtr = parameters.filterDataPtr;
+			auto filterDataPtr = parameters.filterDataPtr;
 			for (I4 yf=y-parameters.yOffset; yf<y-parameters.yOffset+parameters.filterHeight; ++yf){
 				for (I4 xf=x-parameters.xOffset; xf<x-parameters.xOffset+parameters.filterWidth; ++xf){
 					if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
