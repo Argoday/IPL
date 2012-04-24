@@ -21,7 +21,7 @@ class AVL_DLL_EXPORT ControlPacket {
 
 		ThisType(const ThisType & _other):messageType(_other.messageType),parameter(_other.parameter){}
 
-		void releasePacket(){parameter->releaseParameter();delete parameter;parameter=nullptr;}
+		void releasePacket(){if(parameter!=nullptr){parameter->releaseParameter();delete parameter;parameter=nullptr;}}
 
 		ControlMessageType        & getMessageType() {return messageType;}
 		ControlMessageParameter * & getParameter()   {return parameter  ;}

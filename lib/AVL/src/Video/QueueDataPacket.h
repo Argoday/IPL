@@ -21,7 +21,7 @@ class AVL_DLL_EXPORT DataPacket {
 
 		ThisType(const ThisType & _other):messageType(_other.messageType),parameter(_other.parameter){}
 
-		void releasePacket(){parameter->releaseParameter();delete parameter;parameter=nullptr;}
+		void releasePacket(){if(parameter!=nullptr){parameter->releaseParameter();delete parameter;parameter=nullptr;}}
 
 		DataMessageType        & getMessageType() {return messageType;}
 		DataMessageParameter * & getParameter()   {return parameter  ;}
