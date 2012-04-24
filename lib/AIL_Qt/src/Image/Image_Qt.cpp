@@ -15,14 +15,40 @@ namespace Convert {
 // TODO: ? make these functional TypeCast operators ?
 template<typename PixelType> AIL_QT_DLL_EXPORT QImage toQt(const Image<PixelType> &image) {
 	if((image.getDataPtr()==nullptr)||(image.getWidth()<=0)||(image.getHeight()<=0)){
-		return 	QImage(10,10,QImage::Format_ARGB32);
+		//TODO: ERROR
+		return 	QImage(10,10,QImage::Format_RGB32);
 	}
-	QImage qImage(image.getSize().getWidth(),image.getSize().getHeight(),QImage::Format_ARGB32);
+	QImage qImage(image.getSize().getWidth(),image.getSize().getHeight(),QImage::Format_RGB32);
 	auto imageDataPtr = image.getDataPtr();
-	for (long y=0; y<image.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
+	auto qData = qImage.bits();
+	for (long y=0; y<image.getHeight(); ++y){ // TODO: Move this to Algorithm
 		for (long x=0; x<image.getWidth(); ++x){
-			qImage.setPixel(x,y,Pixel::pixel_cast<QRgb>(*imageDataPtr));
+			(*qData) = Pixel::pixel_cast<QRgb>(*imageDataPtr);
 			++imageDataPtr;
+			qData+=4;
+		}
+	}
+	return qImage;
+}
+
+template<> AIL_QT_DLL_EXPORT QImage toQt<Pixel::PixelRGBi1u>(const Image<Pixel::PixelRGBi1u> &image) {
+	auto & width  = image.getSize().getWidth();
+	auto & height = image.getSize().getHeight();
+	if((image.getDataPtr()==nullptr)||(width<=0)||(height<=0)){
+		//TODO: ERROR
+		return 	QImage(10,10,QImage::Format_RGB888);
+	}
+	QImage qImage(width,height,QImage::Format_RGB888);
+	auto imageDataPtr = image.getDataPtr();
+	auto qData = qImage.bits();
+	if(qImage.bytesPerLine()==width*3){
+		memcpy(qData,imageDataPtr,image.getNumBytes());
+	}else{
+		auto linesize = qImage.bytesPerLine();
+		for(int y=0; y<height; y++){
+			memcpy(qData,imageDataPtr,linesize);
+			imageDataPtr+=width;
+			qData+=linesize;
 		}
 	}
 	return qImage;
@@ -74,6 +100,8 @@ AIL_QT_DLL_EXPORT void writeQt(const QImage & image,const std::string & fileName
 #define FUNCTION_NAME Image::Convert::toQt
 #define FUNCTION_SIGNATURE_1 (const Image
 #define FUNCTION_SIGNATURE_2 &image)
+
+#define FUNCTION_IGNORE_RGBi1u
 
 #include <Pixel/PixelFunctionTemplateMacro.h>
 //-------------------------------------------------------
