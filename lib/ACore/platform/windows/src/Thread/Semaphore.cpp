@@ -10,27 +10,34 @@ Semaphore::Semaphore(I8 capacity)
 
 
 void Semaphore::acquire(){
+	I8 tempCount;
 	{
 		Concurrency::critical_section::scoped_lock lock(criticalSection);
 		--count;
+		tempCount = count;
 	}
-	if(count < 0){
+	if(tempCount < 0){
 		waitingContexts.push(Concurrency::Context::CurrentContext());
 		Concurrency::Context::Block();
 	}
 }
 
 void Semaphore::release(){
+	I8 tempCount;
 	{
 		Concurrency::critical_section::scoped_lock lock(criticalSection);
 		++count;
+		tempCount = count;
 	}
-	if(count <= 0){
+	if(tempCount <= 0){
 		Concurrency::Context * waiting = nullptr;
-		if(waitingContexts.try_pop(waiting)==true){
-			waiting->Unblock();
+		for(;;){
+			if(waitingContexts.try_pop(waiting)==true){
+				waiting->Unblock();
+				break;
+			}
+			Concurrency::Context::Yield();
 		}
-		Concurrency::Context::Yield();
 	}
 }
 

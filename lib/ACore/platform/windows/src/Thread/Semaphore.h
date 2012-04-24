@@ -18,7 +18,7 @@ class ACORE_DLL_EXPORT Semaphore {
 
 	private:
 
-	   I8 count;
+	   volatile I8 count;
 	   
 	   Concurrency::concurrent_queue<Concurrency::Context*> waitingContexts;
 	   Concurrency::critical_section criticalSection;
