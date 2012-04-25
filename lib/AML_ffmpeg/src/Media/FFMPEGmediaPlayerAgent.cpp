@@ -24,7 +24,6 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent_d {
 			,codecCtx(nullptr)
 			,codec(nullptr)
 			,frame(nullptr)
-			,frameRGB(nullptr)
 			,numBytes(0)
 			,videoStreamID(0)
 			,hasVideoStream(false)
@@ -41,7 +40,6 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent_d {
 		AVCodec         * codec;
 		AVStream        * vStream;
 		AVFrame         * frame; 
-		AVFrame         * frameRGB;
 		AVPacket          packet;
 		int               numBytes;
 		unsigned int      videoStreamID;
@@ -105,7 +103,6 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendQuit(){
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 	auto & pCodecCtx  = _this->codecCtx;
 	auto & pFrame     = _this->frame;
-	auto & pFrameRGB  = _this->frameRGB;
 	auto & packet     = _this->packet;
 
 	int frameFinished = 0;
@@ -213,33 +210,17 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						ratQ.den = AV_TIME_BASE;
 						I8u timeStamp = av_rescale_q(packet.pts,_this->vStream->time_base, ratQ);
 						
-						AVFrame * frame;
-						if(pCodecCtx->pix_fmt!=PIX_FMT_RGB24){
-							auto w = pCodecCtx->width;
-							auto h = pCodecCtx->height;
-							_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,w, h, pCodecCtx->pix_fmt, w, h, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
-							sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, pFrameRGB->data, pFrameRGB->linesize);
-							frame=pFrameRGB;
-						}else{
-							frame=pFrame;
-						}
-
-						auto & width  = _this->codecCtx->width;
-						auto & height = _this->codecCtx->height;
+						auto width  = pCodecCtx->width;
+						auto height = pCodecCtx->height;
+						int linesize = width*3;
+						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
 
 						auto imagePtr = new Image::Image<Pixel::PixelRGBi1u>(width,height,dataManager);
-						if(frame->linesize[0]==width*3){
-							memcpy(imagePtr->getDataPtr(),frame->data[0],_this->numBytes);
-						}else{
-							auto dataPtr  = imagePtr->getDataPtr();
-							auto framePtr = frame->data[0];
-							auto linesize = frame->linesize[0];
-							for(int y=0; y<height; y++){
-								memcpy(dataPtr,framePtr,linesize);
-								dataPtr+=width;
-								framePtr+=linesize;
-							}
-						}
+
+						uint8_t * data[AV_NUM_DATA_POINTERS];
+						data[0] = static_cast<uint8_t*const>(static_cast<void*const>(imagePtr->getDataPtr()));
+						sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, data, &linesize);
+
 						++frameIndex;
 						auto messageParameter = new Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u>(imagePtr,timeStamp,frameIndex);
 						auto videoPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::image,messageParameter);
@@ -315,13 +296,9 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 		_this->frame=avcodec_alloc_frame();
 		if(_this->frame==NULL){return false;}
   
-		_this->frameRGB=avcodec_alloc_frame();
-		if(_this->frameRGB==NULL){return false;}
-  
 		_this->numBytes = avpicture_get_size(PIX_FMT_RGB24, pCodecCtx->width,pCodecCtx->height);
 		_this->buffer = (uint8_t *)av_malloc(_this->numBytes*sizeof(uint8_t));
   
-		avpicture_fill((AVPicture *)_this->frameRGB, _this->buffer, PIX_FMT_RGB24,pCodecCtx->width, pCodecCtx->height);
 	}
 	if(hasAudioStream==true){
 		aCodecCtx=pFormatCtx->streams[audioStreamID]->codec;
@@ -341,7 +318,6 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::closeFile(){
 	if(_this->buffer   !=nullptr){av_free(_this->buffer);               _this->buffer    = nullptr;}
 	if(_this->frame    !=nullptr){av_free(_this->frame);                _this->frame     = nullptr;}
-	if(_this->frameRGB !=nullptr){av_free(_this->frameRGB);             _this->frameRGB  = nullptr;}
 	if(_this->codecCtx !=nullptr){avcodec_close(_this->codecCtx);       _this->codecCtx  = nullptr;}
 	if(_this->formatCtx!=nullptr){avformat_close_input(&_this->formatCtx);_this->formatCtx  = nullptr;}
 	state = State::closed;
