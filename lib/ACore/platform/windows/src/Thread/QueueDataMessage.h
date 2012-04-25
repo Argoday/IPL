@@ -22,14 +22,6 @@ class AVL_DLL_EXPORT DataMessageParameter {
 		virtual void releaseParameter() = 0 ;
 };
 
-class AVL_DLL_EXPORT MessageDefaultParameter : public DataMessageParameter {
-	public:
-		typedef MessageDefaultParameter ThisType;
-		ThisType(const ThisType & other){}
-		ThisType(ThisType && other){}
-		ThisType(){}
-		void releaseParameter() {}
-};
 class AVL_DLL_EXPORT DataMessageFlushParameter : public DataMessageParameter {
 	public:
 		typedef DataMessageFlushParameter ThisType;
