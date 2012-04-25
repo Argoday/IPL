@@ -10,9 +10,18 @@ namespace Image {
 class AIL_DLL_EXPORT ImageSize {
 
 	public:
+		ImageSize();
 		ImageSize(const I4 & _width,const I4 & _height);
 
 		typedef ImageSize ThisType;
+
+		__forceinline void set(const I4 & _width,const I4 & _height) {
+			width     = _width;
+			width_1   = _width - 1;
+			height    = _height;
+			height_1  = _height - 1;
+			numPixels = _width * _height;
+		}
 
 		__forceinline const I4 & getWidth()    const {return width   ;}
 		__forceinline const I4 & getWidth_1()  const {return width_1 ;}
