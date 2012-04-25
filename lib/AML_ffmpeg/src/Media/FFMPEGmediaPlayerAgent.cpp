@@ -1,6 +1,8 @@
 
 #include "FFMPEGmediaPlayerAgent.h"
 
+#include <Data/DataManager.h>
+
 #pragma warning (disable : 4244) // Ignore conversion from 'int64_t' to 'int32_t' - determined safe
 #pragma warning (disable : 4005) // Ignore redefinition of macro UINT64_C
 extern "C" {
@@ -11,6 +13,7 @@ extern "C" {
 }
 #pragma warning (default : 4244)
 #pragma warning (default : 4005)
+
 
 namespace Media {
 
@@ -107,7 +110,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 
 	int frameFinished = 0;
 	for(;;){
-		
+		Concurrency::Context::Yield();
 		Media::Player::ControlPacket controlPacket;
 		B1 gotControlPacket = false;
 		if(state!=State::playing){
@@ -248,8 +251,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 					//Concurrency::asend(audioQueue,audioPacket);
 				}
 			}else{
-				//av_read_frame failed?
-				closeFile();
+				closeFile(); //av_read_frame failed
 			}
 			av_free_packet(&packet);
 		}
@@ -344,6 +346,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::closeFile(){
 	if(_this->formatCtx!=nullptr){avformat_close_input(&_this->formatCtx);_this->formatCtx  = nullptr;}
 	state = State::closed;
 	frameIndex=0;
+	dataManager->releaseFreeFromPool();
 }
 
 }

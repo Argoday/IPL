@@ -8,16 +8,19 @@ namespace Video {
 
 namespace Queue {
 
-
 void AVL_QT_DLL_EXPORT ReaderAgent::registerVideoSurface(QAbstractVideoSurface * const & _surface){
-	surface=_surface;
+	if(surface==nullptr){
+		surface=_surface;
+		surfaceSetEvent.set();
+	}
 }
 
 void AVL_QT_DLL_EXPORT ReaderAgent::run(){
-	//TODO: BUG: Add a wait event for surface!=nullptr
+	surfaceSetEvent.wait();
 	
-	qRegisterMetaType<QVideoFrame>("QVideoFrame");
-
+	qRegisterMetaType<I8u>("I8u");
+	qRegisterMetaType<Image::Image<Pixel::PixelRGBi1u> *>("Image::Image<Pixel::PixelRGBi1u> *");
+	
 	B1 playing = false;
 	B1  dataFlushActive = false;
 	I8u dataFlushID = 0;
@@ -26,6 +29,7 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 	Video::Queue::DataPacket videoPacket;
 
 	for(;;){
+		Concurrency::Context::Yield();
 		Video::Queue::ControlMessageFlushParameter * controlFlushParameter = nullptr;
 		Video::Queue::DataMessageFlushParameter    * dataFlushParameter    = nullptr;
 		B1 gotControlPacket = false;
@@ -59,6 +63,7 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 								done();
 								return;
 							}
+							videoPacket.releasePacket();
 						}
 					}else{
 						if(controlFlushParameter->getFlushID()==dataFlushID){
@@ -82,46 +87,23 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 					return;
 				break;
 			}
+			controlPacket.releasePacket();
 		}
 		if((playing==true)&&(dataFlushActive==false)){
 			if(Concurrency::try_receive(dataQueue,videoPacket)==true){
-				videoPipe.releaseData();
-		
 				Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u> * imageParameter = nullptr;
 				Video::Queue::DataMessageFlushParameter * flushParameter = nullptr;
-				QImage qimage;
-				QVideoFrame frame;
-				QVideoSurfaceFormat currentFormat;
-				QVideoSurfaceFormat format;
+				Image::Image<Pixel::PixelRGBi1u> * image = nullptr;
 				int frameIndex=0;
 
 				switch(videoPacket.getMessageType()){
 					case Video::Queue::DataMessageType::image :
 				
-						imageParameter = reinterpret_cast<Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u> *>(videoPacket.getParameter());
-						qimage = Image::Convert::toQt<Pixel::PixelRGBi1u>(*imageParameter->getImage());
+						imageParameter = reinterpret_cast<Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u> * >(videoPacket.getParameter());
+						image = imageParameter->takeImage();
 						frameIndex = imageParameter->getFrameIndex();
-						videoPacket.releasePacket();
 
-						frame = qimage;
-						if (!frame.isValid()){
-							//TODO: ERROR
-							done();
-							return;
-						}
-
-						currentFormat = surface->surfaceFormat();
-
-						if (frame.pixelFormat() != currentFormat.pixelFormat() || frame.size() != currentFormat.frameSize()) {
-							format = QVideoSurfaceFormat(frame.size(), frame.pixelFormat());
-							if (!surface->start(format)){
-								//TODO: ERROR
-								done();
-								return;
-							}
-						}
-
-						if(QMetaObject::invokeMethod(surface, "renderFrame", Qt::AutoConnection, Q_ARG(QVideoFrame, frame), Q_ARG(int, frameIndex))==false){
+						if(QMetaObject::invokeMethod(surface, "renderFrame", Qt::BlockingQueuedConnection, Q_ARG(Image::Image<Pixel::PixelRGBi1u> *, image), Q_ARG(I8u, frameIndex))==false){
 							//TODO: ERROR
 							done();
 							return;
@@ -132,12 +114,17 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 						dataFlushActive = true;
 						playing = false;
 						dataFlushID = dataFlushParameter->getFlushID();
-						videoPacket.releasePacket();
+					break;
 					case Video::Queue::DataMessageType::quit :
+						videoPacket.releasePacket();
 						done();
 						return;
 					break;
 				}
+				videoPacket.releasePacket();
+				videoPipe.releaseData();
+			}else{
+				Concurrency::Context::Yield();
 			}
 		}
 	}
@@ -147,3 +134,4 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 }
 
 }
+

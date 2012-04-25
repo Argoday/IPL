@@ -8,6 +8,7 @@
 #include <QtMultimedia/QAbstractVideoSurface>
 
 #include <agents.h>
+#include <concrt.h>
 
 namespace Video {
 
@@ -34,6 +35,8 @@ class AVL_QT_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 		void run();
 
 	private:
+
+		Concurrency::event surfaceSetEvent;
 
 		QAbstractVideoSurface * surface;
 

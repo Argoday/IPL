@@ -4,6 +4,9 @@
 
 #include "AVL_Qt.h"
 
+#include <Data/DataTypes.h>
+#include <Image/Image.h>
+
 #include <QtCore/QRect>
 #include <QtGui/QImage>
 #include <QtMultimedia/QAbstractVideoSurface>
@@ -15,6 +18,8 @@ class AVL_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
 	Q_OBJECT
 	public:
 		WidgetSurface(QWidget * widget, QObject * parent = 0);
+
+		~WidgetSurface();
 
 		QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType handleType = QAbstractVideoBuffer::NoHandle) const;
 		bool isFormatSupported(const QVideoSurfaceFormat & format, QVideoSurfaceFormat * similar) const;
@@ -29,20 +34,20 @@ class AVL_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
 
 	signals:
 
-		void frameChanged(int frame);
+		void frameChanged(I8u frame);
 
 	public slots:
 
 		bool present(const QVideoFrame & frame);
-		void renderFrame(const QVideoFrame & frame,const int & frameIndex);
+		void renderFrame(Image::Image<Pixel::PixelRGBi1u> * frame,const I8u & frameIndex);
 
 	private:
 		QWidget * widget;
-		QImage::Format imageFormat;
 		QRect targetRect;
-		QSize imageSize;
+		Image::ImageSize imageSize;
 		QRect sourceRect;
-		QVideoFrame currentFrame;
+		Image::Image<Pixel::PixelRGBi1u> * currentFrame;
+		QImage currentQFrame;
  };
 
  }

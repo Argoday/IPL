@@ -53,17 +53,23 @@ template<typename PixelType> class AVL_DLL_EXPORT DataMessageImageParameter : pu
 			image=(other.image);
 			timeStamp=other.timeStamp;
 		}
-		ThisType(Image::Image<PixelType> * const & _image,const I8u & _timeStamp,const I4 & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
+		ThisType(Image::Image<PixelType> * const & _image,const I8u & _timeStamp,const I8u & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
+
+		Image::Image<PixelType> * takeImage() {
+			Image::Image<PixelType> * tempImage = image;
+			image = nullptr;
+			return tempImage;
+		}
 
 		const Image::Image<PixelType> * const & getImage() const {return image;}
-		const I8u & getTimeStamp()  const {return timeStamp;}
-		const I4  & getFrameIndex() const {return frameIndex;}
+		const I8u & getTimeStamp()  const {return timeStamp ;}
+		const I8u & getFrameIndex() const {return frameIndex;}
 
-		void releaseParameter() {delete image;image=nullptr;}
+		void releaseParameter() {if(image!=nullptr){delete image;image=nullptr;}}
 	private:
 		Image::Image<PixelType> * image;
 		I8u timeStamp;
-		I4  frameIndex;
+		I8u frameIndex;
 };
 
 }

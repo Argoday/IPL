@@ -31,7 +31,12 @@ class MediaPlayer : public QMainWindow {
 		void exit();
 		void playPause();
 
-		void setPosition(int frame);
+		void sliderChanged(int sliderIndex);
+		void frameChanged(I8u frameIndex);
+
+	signals:
+
+		void setSlider(int sliderIndex);
 
 	private:
 		void createActions();

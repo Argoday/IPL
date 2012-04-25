@@ -26,11 +26,13 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::C
 	connect(playPauseButton, SIGNAL(clicked()),this, SLOT(playPause()));
 
 	QSlider * positionSlider = new QSlider(Qt::Horizontal);
-	positionSlider->setRange(0, 600);
-	connect(positionSlider, SIGNAL(sliderMoved(int)),this, SLOT(setPosition(int)));
+	positionSlider->setRange(0, 10000);
+	connect(positionSlider, SIGNAL(sliderMoved(int)),this, SLOT(sliderChanged(int)));
 
-	connect(surface, SIGNAL(frameChanged(int)),positionSlider, SLOT(setValue(int)));
+	connect(surface, SIGNAL(frameChanged(I8u)),this, SLOT(frameChanged(I8u)));
 
+	connect(this, SIGNAL(setSlider(int)),positionSlider, SLOT(setValue(int)));
+	
 	QBoxLayout * controlLayout = new QHBoxLayout;
 	controlLayout->addWidget(playPauseButton);
 	controlLayout->addWidget(positionSlider);
@@ -53,7 +55,11 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::C
 
 MediaPlayer::~MediaPlayer(){
 }
-void MediaPlayer::setPosition(int frame){
+void MediaPlayer::sliderChanged(int sliderIndex){
+	//seek
+}
+void MediaPlayer::frameChanged(I8u frameIndex){
+	emit setSlider(frameIndex);
 }
 void MediaPlayer::playPause(){
 	mediaControl->playPause();

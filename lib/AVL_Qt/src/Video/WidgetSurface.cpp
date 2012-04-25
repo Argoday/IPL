@@ -8,15 +8,14 @@ namespace Video {
 AVL_QT_DLL_EXPORT WidgetSurface::WidgetSurface(QWidget *widget, QObject *parent)
 	:QAbstractVideoSurface(parent)
 	,widget(widget)
-	,imageFormat(QImage::Format_Invalid)
+	,currentFrame(nullptr)
 {
 }
+AVL_QT_DLL_EXPORT WidgetSurface::~WidgetSurface(){
+	if(currentFrame!=nullptr){delete currentFrame;currentFrame = nullptr;}
+}
 QList<QVideoFrame::PixelFormat> AVL_QT_DLL_EXPORT WidgetSurface::supportedPixelFormats(QAbstractVideoBuffer::HandleType handleType) const {
-	if (handleType == QAbstractVideoBuffer::NoHandle) {
-		return QList<QVideoFrame::PixelFormat>() << QVideoFrame::Format_RGB32;
-	} else {
-		return QList<QVideoFrame::PixelFormat>();
-	}
+	return QList<QVideoFrame::PixelFormat>();
 }
 
 bool AVL_QT_DLL_EXPORT WidgetSurface::isFormatSupported(const QVideoSurfaceFormat & format, QVideoSurfaceFormat * similar) const {
@@ -31,12 +30,10 @@ bool AVL_QT_DLL_EXPORT WidgetSurface::isFormatSupported(const QVideoSurfaceForma
 }
 
 bool AVL_QT_DLL_EXPORT WidgetSurface::start(const QVideoSurfaceFormat & format){
-	const QImage::Format imageFormat = QVideoFrame::imageFormatFromPixelFormat(format.pixelFormat());
 	const QSize size = format.frameSize();
 
-	if (imageFormat != QImage::Format_Invalid && !size.isEmpty()) {
-		this->imageFormat = imageFormat;
-		imageSize = size;
+	if (size.isEmpty()==false) {
+		imageSize.set(size.width(),size.height());
 		sourceRect = format.viewport();
 
 		QAbstractVideoSurface::start(format);
@@ -45,7 +42,7 @@ bool AVL_QT_DLL_EXPORT WidgetSurface::start(const QVideoSurfaceFormat & format){
 		updateVideoRect();
 
 		return true;
-	} else {
+	}else{
 		return false;
 	}
 }
@@ -60,44 +57,31 @@ void AVL_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
 bool AVL_QT_DLL_EXPORT WidgetSurface::present(const QVideoFrame & frame){
 	return false;
 }
-void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(const QVideoFrame & frame,const int & frameIndex){
-	if (surfaceFormat().pixelFormat() != frame.pixelFormat() || surfaceFormat().frameSize() != frame.size()) {
-		setError(IncorrectFormatError);
-		stop();
-	} else {
-		currentFrame = frame;
+void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(Image::Image<Pixel::PixelRGBi1u> * frame,const I8u & frameIndex){
+	if(currentFrame!=nullptr){delete currentFrame;}
+	currentFrame = frame;
+	currentQFrame = QImage(static_cast<uchar*>(static_cast<void*>(currentFrame->getDataPtr())),currentFrame->getWidth(),currentFrame->getHeight(),currentFrame->getWidth()*3,QImage::Format_RGB888);
+	if (imageSize != frame->getSize()) {
+		if(start(QVideoSurfaceFormat(QSize(frame->getWidth(),frame->getHeight()), QVideoFrame::pixelFormatFromImageFormat(QImage::Format_RGB888)))==false){
+			//TODO: ERROR
+			return;
+		}
+		widget->repaint();
+	}else{
 		widget->repaint(targetRect);
 	}
 	emit frameChanged(frameIndex);
 }
 
 void AVL_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){
-	if (currentFrame.map(QAbstractVideoBuffer::ReadOnly)) {
-		const QTransform oldTransform = painter->transform();
-
-		if (surfaceFormat().scanLineDirection() == QVideoSurfaceFormat::BottomToTop) {
-			painter->scale(1, -1);
-			painter->translate(0, -widget->height());
-		}
-
-		QImage image(
-				currentFrame.bits(),
-				currentFrame.width(),
-				currentFrame.height(),
-				currentFrame.bytesPerLine(),
-				imageFormat);
-
-		painter->drawImage(targetRect, image, sourceRect);
-
-		painter->setTransform(oldTransform);
-
-		currentFrame.unmap();
-	}
+	painter->drawImage(targetRect, currentQFrame, sourceRect);
 }
 
 void AVL_QT_DLL_EXPORT WidgetSurface::stop(){
-	currentFrame = QVideoFrame();
+	if(currentFrame!=nullptr){delete currentFrame;currentFrame = nullptr;}
+	currentQFrame = QImage(0,0,QImage::Format_RGB888);
 	targetRect = QRect();
+	imageSize = Image::ImageSize(0,0);
 
 	QAbstractVideoSurface::stop();
 
