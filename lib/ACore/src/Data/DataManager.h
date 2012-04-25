@@ -26,12 +26,12 @@ class ACORE_DLL_EXPORT DataManager {
 		void * const getMemoryFromPool(const I4  &numBytes);
 		void * const getMemoryFromPool(const I4u &numBytes);
 		void * const getMemoryFromPool(const I8u &numBytes);
-		bool releaseFromPool(const void * const dataPtr);
-		bool releaseFromPool(const void * const dataPtr,const I4  &numBytes);
-		bool releaseFromPool(const void * const dataPtr,const I4u &numBytes);
-		bool releaseFromPool(const void * const dataPtr,const I8u &numBytes);
+		B1 releaseFromPool(const void * const dataPtr);
+		B1 releaseFromPool(const void * const dataPtr,const I4  &numBytes);
+		B1 releaseFromPool(const void * const dataPtr,const I4u &numBytes);
+		B1 releaseFromPool(const void * const dataPtr,const I8u &numBytes);
 		
-		//TODO: Add a method to reduce Pool size
+		I8u releaseFreeFromPool();
 
 	private:
 

@@ -41,6 +41,10 @@ class DataManagerHelper {
 		{
 		}
 		~DataManagerHelper(){
+			auto dataListIter = dataList.begin();
+			for(;dataListIter!=dataList.end();++dataListIter){
+				dataListIter->release();
+			}
 		}
 	private:
 		DataManagerHelper(const I8u &_numBytes)
@@ -53,22 +57,29 @@ class DataManagerHelper {
 		DataChunk * head;
 		std::vector<DataChunk> dataList;
 
+		I8u cleanupFree(){
+			I8u amountFreed=0;
+			std::vector<DataChunk> newDataList;
+			auto dataListIter = dataList.begin();
+			for(;dataListIter!=dataList.end();++dataListIter){
+				if(dataListIter->isLocked()==true){
+					newDataList.push_back(*dataListIter);
+				}else{
+					dataListIter->release();
+					amountFreed+=numBytes;
+				}
+			}
+			head=nullptr;
+			dataList = newDataList;
+			return amountFreed;
+		}
+
 		void * const getMemory(){
 			if(head!=nullptr){
 				void * const headDataPtr = head->getDataPtr();
 				head->Lock();
 				head = head->getNextPtr();
 				return headDataPtr;
-			}
-
-			// TODO: Remove this redundant check
-			std::vector<DataChunk>::iterator dataListIter = dataList.begin();
-			for(;dataListIter!=dataList.end();++dataListIter){
-				if(dataListIter->isLocked()==false){
-					// TODO: Report an Error !
-					dataListIter->Lock();
-					return (*dataListIter).getDataPtr();
-				}
 			}
 
 			if(numBytes==0){ // TODO: Check to see if this check can be removed
@@ -83,7 +94,7 @@ class DataManagerHelper {
 			return dataList.back().getDataPtr();
 		}
 
-		bool release(const void * const dataPtr){
+		B1 release(const void * const dataPtr){
 			auto dataListIter = dataList.begin();
 			for(;dataListIter!=dataList.end();++dataListIter){
 				if(dataListIter->getDataPtr()==dataPtr){
@@ -123,7 +134,7 @@ void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
 	return _this->dataMap[_numBytes].getMemory();
 }
 
-bool DataManager::releaseFromPool(const void * const dataPtr){
+B1 DataManager::releaseFromPool(const void * const dataPtr){
 	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	auto dataMapIter = _this->dataMap.begin();
 	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
@@ -134,17 +145,27 @@ bool DataManager::releaseFromPool(const void * const dataPtr){
 	// TODO: Error!
 	return false;
 }
-bool DataManager::releaseFromPool(const void * const dataPtr,const I4  & numBytes){
+B1 DataManager::releaseFromPool(const void * const dataPtr,const I4  & numBytes){
 	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
-bool DataManager::releaseFromPool(const void * const dataPtr,const I4u & numBytes){
+B1 DataManager::releaseFromPool(const void * const dataPtr,const I4u & numBytes){
 	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
-bool DataManager::releaseFromPool(const void * const dataPtr,const I8u & numBytes){
+B1 DataManager::releaseFromPool(const void * const dataPtr,const I8u & numBytes){
 	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
+}
+
+I8u DataManager::releaseFreeFromPool(){
+	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	I8u amountFreed = 0;
+	auto dataMapIter = _this->dataMap.begin();
+	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
+		amountFreed+=dataMapIter->second.cleanupFree();
+	}
+	return amountFreed;
 }
 
 }
