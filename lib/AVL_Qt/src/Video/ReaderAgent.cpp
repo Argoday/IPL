@@ -106,6 +106,7 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 						//TODO: Self throttle to prevent filling the Qt Event queue with images
 						if(QMetaObject::invokeMethod(surface, "renderFrame", Qt::QueuedConnection, Q_ARG(Image::Image<Pixel::PixelRGBi1u> *, image), Q_ARG(I8u, frameIndex))==false){
 							//TODO: ERROR
+							videoPacket.releasePacket();
 							done();
 							return;
 						}
