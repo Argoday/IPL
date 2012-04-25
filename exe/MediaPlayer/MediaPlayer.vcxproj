@@ -313,8 +313,8 @@ copy $(QTDIR)\lib\QtCore4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCore
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(CURL_DIR)/lib/Release;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGui4.lib;QtMultimedia4.lib;QtOpenGL4.lib;avcodec-54.lib;avformat-54.lib;swscale-2.lib;avutil-51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(CURL_DIR)/lib/Release;$(QTDIR)\lib;$(LIBFFMPEG_DIR)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
