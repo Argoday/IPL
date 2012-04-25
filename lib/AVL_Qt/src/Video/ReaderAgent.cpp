@@ -103,7 +103,8 @@ void AVL_QT_DLL_EXPORT ReaderAgent::run(){
 						image = imageParameter->takeImage();
 						frameIndex = imageParameter->getFrameIndex();
 
-						if(QMetaObject::invokeMethod(surface, "renderFrame", Qt::BlockingQueuedConnection, Q_ARG(Image::Image<Pixel::PixelRGBi1u> *, image), Q_ARG(I8u, frameIndex))==false){
+						//TODO: Self throttle to prevent filling the Qt Event queue with images
+						if(QMetaObject::invokeMethod(surface, "renderFrame", Qt::QueuedConnection, Q_ARG(Image::Image<Pixel::PixelRGBi1u> *, image), Q_ARG(I8u, frameIndex))==false){
 							//TODO: ERROR
 							done();
 							return;
