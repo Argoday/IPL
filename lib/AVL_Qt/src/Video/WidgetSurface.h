@@ -48,8 +48,8 @@ class AVL_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
 		QRect sourceRect;
 		Image::Image<Pixel::PixelRGBi1u> * currentFrame;
 		QImage currentQFrame;
- };
+};
 
- }
+}
 
 #endif 

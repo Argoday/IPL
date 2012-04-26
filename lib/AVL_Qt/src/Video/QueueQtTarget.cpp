@@ -17,14 +17,15 @@ void AVL_QT_DLL_EXPORT QtTarget::init(){
 
 void AVL_QT_DLL_EXPORT QtTarget::release(Video::Frame<Pixel::PixelRGBi1u> * data){
 	data->release();
+	delete data;
 }
 void AVL_QT_DLL_EXPORT QtTarget::release(void * data){
 	if(data!=nullptr){
-		release(reinterpret_cast<Video::Frame<Pixel::PixelRGBi1u> * >(data));
+		release(static_cast<Video::Frame<Pixel::PixelRGBi1u> * >(data));
 	}
 }
 void AVL_QT_DLL_EXPORT QtTarget::send(void * data){
-	auto frame = reinterpret_cast<Video::Frame<Pixel::PixelRGBi1u> * >(data);
+	auto frame = static_cast<Video::Frame<Pixel::PixelRGBi1u> * >(data);
 	auto image = frame->takeImage();
 	auto frameIndex = frame->getFrameIndex();
 

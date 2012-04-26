@@ -349,6 +349,9 @@ copy $(QTDIR)\lib\QtCore4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore4
     <ProjectReference Include="..\..\lib\AAL\AAL.vcxproj">
       <Project>{ac6c45bb-2d1d-4b13-9592-e27bb53bcad7}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\lib\AAL_Qt\AAL_Qt.vcxproj">
+      <Project>{38fed874-134a-4723-b98a-15b3580ccf3a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\lib\ACore\ACore.vcxproj">
       <Project>{4283e1f3-23a1-409f-96ce-9c8984740455}</Project>
     </ProjectReference>
@@ -363,6 +366,9 @@ copy $(QTDIR)\lib\QtCore4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore4
     </ProjectReference>
     <ProjectReference Include="..\..\lib\AML_ffmpeg\AML_ffmpeg.vcxproj">
       <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML_Qt\AML_Qt.vcxproj">
+      <Project>{5ee9a45c-b94c-4883-9a3e-f18ecd0499a2}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\lib\AVL\AVL.vcxproj">
       <Project>{830c7521-7800-4877-ac29-686d38dea25a}</Project>

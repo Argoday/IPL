@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{98EAFEBA-A791-4BB8-BE03-267B4CA1BAED}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug-DLL_Win32">
+      <UniqueIdentifier>{0547CC9B-7588-4795-8867-8D16F951D205}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug-DLL_x64">
+      <UniqueIdentifier>{072C5FE7-4AAD-4055-BB75-8052F4221A34}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug_Win32">
+      <UniqueIdentifier>{0A061F96-BEA6-4250-A95D-1D4B46DAF95E}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug_x64">
+      <UniqueIdentifier>{936810F9-C652-430A-9FB8-A4DD49F204B9}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL_Win32">
+      <UniqueIdentifier>{F176A529-F583-4448-9AF0-39792337E63D}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL_x64">
+      <UniqueIdentifier>{2E74148A-03EA-4970-A211-2316AF13BBEC}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release_Win32">
+      <UniqueIdentifier>{78D93507-54E4-412B-9EEE-42DD33C4F424}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release_x64">
+      <UniqueIdentifier>{1B2946DB-20A5-4ACF-AD90-683980E2375A}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{33632da5-af6c-4fcd-b94d-cce55abccab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Source Files">
+      <UniqueIdentifier>{305a36ee-aa27-4ba6-ac48-7e155c4b9d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Header Files">
+      <UniqueIdentifier>{f60f415e-1797-482c-847a-fbb030306ca2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AAL_Qt.h" />
+    <ClInclude Include="src\Audio\QueueQtTarget.h">
+      <Filter>Audio\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Audio\AudioQtDevice.h">
+      <Filter>Audio\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\Win32-Debug-DLL\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Debug-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug-DLL\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Debug-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Debug_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release-DLL\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release-DLL\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\QueueQtTarget.cpp">
+      <Filter>Audio\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioQtDevice.cpp">
+      <Filter>Audio\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

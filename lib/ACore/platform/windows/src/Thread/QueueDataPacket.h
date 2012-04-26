@@ -13,8 +13,9 @@ class ACORE_DLL_EXPORT DataPacket {
 	public:
 		enum class MessageType {
 			none,
-			data,  // void * data
-			flush, // I8u flushID
+			data,   // void * data
+			config, // void * data
+			flush,  // I8u flushID
 			quit
 		};
 		typedef DataPacket ThisType;
@@ -24,6 +25,8 @@ class ACORE_DLL_EXPORT DataPacket {
 		ThisType(const MessageType & _messageType):messageType(_messageType),flushID(0),data(nullptr){}
 		ThisType(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID),data(nullptr){}
 		ThisType(const MessageType & _messageType, void * _data):messageType(_messageType),data(_data){}
+		ThisType(void * _data):messageType(MessageType::data),data(_data){}
+		ThisType(void * _data,const int & _configFlagDummy):messageType(MessageType::config),data(_data){}
 
 		ThisType(const ThisType & _other):messageType(_other.messageType),flushID(_other.flushID),data(_other.data){}
 

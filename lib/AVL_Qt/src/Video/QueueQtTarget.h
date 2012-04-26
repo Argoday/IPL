@@ -19,6 +19,10 @@ class AVL_QT_DLL_EXPORT QtTarget : public Thread::Queue::ReaderAgentTarget {
 		void init();
 		void release(void * data);
 		void send(void * data);
+		void config(void * data){};
+
+		void start(){};
+		void stop() {};
 	private:
 		void release(Video::Frame<Pixel::PixelRGBi1u> * data);
 		QAbstractVideoSurface * surface;

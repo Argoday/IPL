@@ -27,7 +27,6 @@ class ACORE_DLL_EXPORT Pipe {
 		void asendControl(ControlPacket & controlPacket);
 		void  sendControl(ControlPacket & controlPacket);
 
-
 		// Target methods
 		DataPacket readData();
 		B1 areadData(DataPacket & dataPacket);

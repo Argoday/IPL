@@ -5,57 +5,10 @@
 
 #include <Video/Widget.h>
 #include <Video/WidgetSurface.h>
-#include <Video/QueueQtTarget.h>
 
 #include <Media/FFMPEGmediaPlayerAgent.h>
 #include <Thread/QueuePipe.h>
 #include <Thread/QueueReaderAgent.h>
-
-
-class FFMPEGqtPlayer {
-	public:
-		FFMPEGqtPlayer(Data::DataManager * const _dataManager,QAbstractVideoSurface * surface)
-			:dataManager(_dataManager)
-		{
-			videoPipe = new Thread::Queue::Pipe(60);
-			audioPipe = new Thread::Queue::Pipe(6000);
-
-			mediaControl = new Media::Player::Control(controlQueue);
-
-			videoReaderAgent = new Thread::Queue::ReaderAgent(*videoPipe);
-			qtTarget = new Video::Queue::QtTarget(surface);
-			videoReaderAgent->registerTarget(qtTarget);
-
-			mediaPlayerAgent = new Media::FFMPEGmediaPlayerAgent(dataManager,controlQueue,*videoPipe,*audioPipe);
-
-			mediaPlayerAgent->start();
-			videoReaderAgent->start();
-		}
-		Media::Player::Control * getMediaControl(){return mediaControl;}
-		~FFMPEGqtPlayer(){
-			mediaControl->quit();
-			Concurrency::agent::wait(mediaPlayerAgent);
-			Concurrency::agent::wait(videoReaderAgent);
-
-			delete videoPipe;
-			delete audioPipe;
-			delete qtTarget;
-			delete mediaControl;
-			delete videoReaderAgent;
-			delete mediaPlayerAgent;
-		}
-	private:
-		Data::DataManager * const dataManager;
-
-		Concurrency::unbounded_buffer<Media::Player::ControlPacket> controlQueue;
-		Thread::Queue::Pipe * videoPipe;
-		Thread::Queue::Pipe * audioPipe;
-		Video::Queue::QtTarget * qtTarget;
-		Media::Player::Control * mediaControl;
-		Thread::Queue::ReaderAgent * videoReaderAgent;
-		Media::FFMPEGmediaPlayerAgent * mediaPlayerAgent;
-
-};
 
 MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 	:dataManager(_dataManager)
@@ -63,7 +16,7 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 	auto videoWidget = new Video::Widget();
 	auto surface = videoWidget->videoSurface();
 
-	player = new FFMPEGqtPlayer(dataManager,surface);
+	player = new Media::FFMPEGqtPlayer(dataManager,surface);
 	mediaControl = player->getMediaControl();
 
 	playPauseButton = new QPushButton;

@@ -47,7 +47,8 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent : public Concurrency::agent {
 		FFMPEGmediaPlayerAgent_d * _this;
 
 		State state;
-		I8u frameIndex;
+		I8u videoFrameIndex;
+		I8u audioFrameIndex;
 		Data::DataManager * const dataManager;
 
 		Concurrency::ISource<Media::Player::ControlPacket> & controlQueue;

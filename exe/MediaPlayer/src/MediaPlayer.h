@@ -8,6 +8,7 @@
 #include <Pixel/PixelRGB.h>
 #include <Data/DataManager.h>
 #include <Media/PlayerControl.h>
+#include <Media/FFMPEGqtPlayer.h>
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -17,8 +18,6 @@ class QScrollArea;
 class QAbstractVideoSurface;
 class QPushButton;
 QT_END_NAMESPACE
-
-class FFMPEGqtPlayer;
 
 class MediaPlayer : public QMainWindow {
 	Q_OBJECT
@@ -56,7 +55,7 @@ class MediaPlayer : public QMainWindow {
 		Data::DataManager * const dataManager;
 		
 		Media::Player::Control * mediaControl;
-		FFMPEGqtPlayer * player;
+		Media::FFMPEGqtPlayer * player;
 
 };
 

@@ -2,19 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="src\AAL.h" />
-    <ClInclude Include="src\Audio\QueueDataMessage.h">
+    <ClInclude Include="src\Audio\Frame.h">
       <Filter>Audio\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Audio\QueueDataPacket.h">
+    <ClInclude Include="src\Audio\Config.h">
       <Filter>Audio\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Audio\QueueControlMessage.h">
-      <Filter>Audio\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Audio\QueueControlPacket.h">
-      <Filter>Audio\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Audio\QueuePipe.h">
+    <ClInclude Include="src\Audio\AudioData.h">
       <Filter>Audio\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -30,19 +24,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Audio\QueueDataMessage.cpp">
+    <ClCompile Include="src\Audio\Frame.cpp">
       <Filter>Audio\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Audio\QueueDataPacket.cpp">
+    <ClCompile Include="src\Audio\Config.cpp">
       <Filter>Audio\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Audio\QueueControlMessage.cpp">
-      <Filter>Audio\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Audio\QueueControlPacket.cpp">
-      <Filter>Audio\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Audio\QueuePipe.cpp">
+    <ClCompile Include="src\Audio\AudioData.cpp">
       <Filter>Audio\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

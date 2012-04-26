@@ -13,6 +13,10 @@ class ReaderAgentTarget {
 		virtual void init() = 0 ;
 		virtual void release(void * data) = 0 ;
 		virtual void send(void * data) = 0 ;
+		virtual void config(void * data) = 0 ;
+
+		virtual void start() = 0 ;
+		virtual void stop()  = 0 ;
 };
 
 }

@@ -69,7 +69,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(){
 			if(frameFinished) {
 				auto w = pCodecCtx->width;
 				auto h = pCodecCtx->height;
-				_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,w, h, pCodecCtx->pix_fmt, w, h, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
+				_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,w, h, pCodecCtx->pix_fmt, w, h, PIX_FMT_RGB24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
 				sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, pFrameRGB->data, pFrameRGB->linesize);
 
 				av_free_packet(&packet);

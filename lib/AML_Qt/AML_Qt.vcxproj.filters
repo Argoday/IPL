@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="src\AML_Qt.h" />
+    <ClInclude Include="src\Media\FFMPEGqtPlayer.h">
+      <Filter>Media\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Media">
+      <UniqueIdentifier>{59415f7c-88f6-49e3-bbcc-dcea5930f652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media\Header Files">
+      <UniqueIdentifier>{284e1b1f-0a03-4c67-b556-fc91b85ef6a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media\Source Files">
+      <UniqueIdentifier>{a068c75d-aacf-4397-b2d9-6da46173b18d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Media\FFMPEGqtPlayer.cpp">
+      <Filter>Media\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
