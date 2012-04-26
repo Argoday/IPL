@@ -105,7 +105,7 @@ template <typename PixelType> Image<PixelType>::Image(const ThisType & _image)
 	,dataManager(_image.dataManager)
 {
 	this->resetImageData();
-	memcpy(dataPtr,_image.getDataPtr(),size.getNumPixels()*sizeof(PixelType)); //TODO: Is there something faster than memcpy()?
+	memcpy(dataPtr,_image.getDataPtr(),size.getNumPixels()*sizeof(PixelType));
 }
 template <typename PixelType> Image<PixelType>::Image(ThisType && _image)
 	:size(_image.size)
