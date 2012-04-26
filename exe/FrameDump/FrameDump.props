@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ImportGroup Label="PropertySheets" />
-	<Import Project="$(ALIB)\lib\AML_ffmpeg\AML_ffmpeg.props" Condition=" '$(AML_FFMPEG_PROPS)' == '' " />
-	<Import Project="$(ALIB)\lib\AIL_IO\AIL_IO.props" Condition=" '$(AIL_IO_PROPS)' == '' " />
+	<Import Project="$(IPL)\lib\AML_ffmpeg\AML_ffmpeg.props" Condition=" '$(AML_FFMPEG_PROPS)' == '' " />
+	<Import Project="$(IPL)\lib\AIL_IO\AIL_IO.props" Condition=" '$(AIL_IO_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">
 		<FRAME_DUMP_PROPS>true</FRAME_DUMP_PROPS>
 	</PropertyGroup>
