@@ -3,8 +3,6 @@
 
 #include <QtGui>
 
-#include <Image/Image.h>
-#include <Image/Image_Qt.h>
 #include <Video/Widget.h>
 #include <Video/WidgetSurface.h>
 #include <Video/QueueQtTarget.h>
