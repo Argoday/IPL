@@ -1,61 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="AAL" Category="lib" Bounds="459.696666666667,289.8,50,25.96" />
-    <Node Id="AAL_Qt" Category="lib" Bounds="450.085,203.36,59.2233333333334,25.96" />
-    <Node Id="ACore" Category="lib" Bounds="457.371666666667,345.76,52.65,25.96" />
-    <Node Id="AIL" Category="lib" Bounds="254.696666666667,289.8,50,25.96" />
-    <Node Id="AIL_IO" Category="lib" Bounds="146.795,86.4400000000001,53.8033333333333,25.96" />
-    <Node Id="AIL_Qt" Category="lib" Bounds="252.358333333333,203.36,54.6766666666667,25.96" />
-    <Node Id="AIL_ffmpeg" Category="lib" Bounds="0,55.96,107.393333333333,86.92" Group="Expanded" Label="AML_ffmpeg" />
-    <Node Id="AIL_png" Category="lib" Bounds="121.926666666667,172.88,99.54,86.9200000000001" Group="Expanded" />
-    <Node Id="AML" Category="lib" Bounds="41.6966666666667,203.36,50,25.96" />
-    <Node Id="AVL" Category="lib" Bounds="337.696666666667,203.36,50,25.96" />
-    <Node Id="AVL_Qt" Category="lib" Bounds="390.228333333333,86.4400000000001,58.9366666666666,25.96" />
-    <Node Id="FFMPEG" Category="pkg" Bounds="21.9366666666667,96.92,63.52,25.96" Label="FFMPEG" />
-    <Node Id="FrameDump" Category="exe" Bounds="11.0211522133334,1.13686837721616E-13,85.3510289066667,25.96" />
-    <Node Id="ImageConvert" Category="exe" Bounds="126.45,0,94.4933333333333,25.96" />
-    <Node Id="LibPNG" Category="pkg" Bounds="141.926666666667,213.84,59.54,25.96" Label="LibPNG" />
-    <Node Id="MAAL" Category="sys" Bounds="40.7433333333333,457.68,51.9066666666668,25.96" />
-    <Node Id="MediaPlayer" Category="exe" Bounds="437.135,0,85.1233333333334,25.96" />
-    <Node Id="Platform-windows" Category="config" Bounds="482.465,401.72,116.463333333333,25.96" Label="platform-windows" />
-    <Node Id="QPaint" Category="exe" Bounds="251.878333333333,0,55.6366666666668,25.96" />
-    <Node Id="Qt" Category="pkg" Bounds="378.696666666667,289.8,50,25.96" />
-    <Node Id="STL" Category="sys" Bounds="401.696666666667,401.72,50,25.96" Label="STL" />
-    <Node Id="Win32API" Category="sys" Bounds="503.303333333334,457.68,74.7866666666664,25.96" Label="Win32 API" />
+    <Node Id="AAL" Category="lib" Bounds="0,345.76,50,25.96" />
+    <Node Id="AAL_Qt" Category="lib" Bounds="15.3883333333333,259.32,59.2233333333334,25.96" />
+    <Node Id="ACore" Category="lib" Bounds="212.675,401.72,52.6499999999999,25.96" />
+    <Node Id="AIL" Category="lib" Bounds="220,345.76,50,25.96" />
+    <Node Id="AIL_IO" Category="lib" Bounds="337.098333333333,142.4,53.8033333333333,25.96" />
+    <Node Id="AIL_Qt" Category="lib" Bounds="217.661666666667,259.32,54.6766666666667,25.96" />
+    <Node Id="AIL_ffmpeg" Category="lib" Bounds="190.303333333333,111.92,107.393333333333,86.92" Group="Expanded" Label="AML_ffmpeg" />
+    <Node Id="AIL_png" Category="lib" Bounds="383.23,228.84,99.54,86.92" Group="Expanded" />
+    <Node Id="AML" Category="lib" Bounds="303,259.32,50,25.96" />
+    <Node Id="AML_Qt" Category="lib" Bounds="108.87,55.96,62.26,25.96" />
+    <Node Id="AVL" Category="lib" Bounds="137,259.32,50,25.96" />
+    <Node Id="AVL_Qt" Category="lib" Bounds="76.5316666666666,142.4,58.9366666666666,25.96" />
+    <Node Id="FFMPEG" Category="pkg" Bounds="212.24,152.88,63.52,25.96" Label="FFMPEG" />
+    <Node Id="FrameDump" Category="exe" Bounds="201.324485546667,55.96,85.3510289066667,25.96" />
+    <Node Id="ImageConvert" Category="exe" Bounds="316.753333333333,55.96,94.4933333333332,25.96" />
+    <Node Id="LibPNG" Category="pkg" Bounds="403.23,269.8,59.54,25.96" Label="LibPNG" />
+    <Node Id="MAAL" Category="sys" Bounds="302.046666666667,513.64,51.9066666666668,25.96" />
+    <Node Id="MediaPlayer" Category="exe" Bounds="35.4383333333332,0,85.1233333333334,25.96" />
+    <Node Id="Platform-windows" Category="config" Bounds="180.768333333334,457.68,116.463333333333,25.96" Label="platform-windows" />
+    <Node Id="QPaint" Category="exe" Bounds="442.181666666667,55.96,55.6366666666668,25.96" />
+    <Node Id="Qt" Category="pkg" Bounds="81,345.76,50,25.96" />
+    <Node Id="STL" Category="sys" Bounds="100,457.68,50,25.96" Label="STL" />
+    <Node Id="Win32API" Category="sys" Bounds="196.606666666667,513.64,74.7866666666664,25.96" Label="Win32 API" />
   </Nodes>
   <Links>
-    <Link Source="AAL" Target="ACore" Bounds="484.089416503906,315.760009765625,0.37530517578125,21.0014343261719" />
-    <Link Source="AAL_Qt" Target="AAL" Bounds="480.447479248047,229.320007324219,2.97866821289063,51.4950256347656" />
-    <Link Source="AAL_Qt" Target="Qt" Bounds="421.051666259766,229.320007324219,47.2326965332031,53.7209777832031" />
-    <Link Source="ACore" Target="Platform-windows" Bounds="496.917907714844,371.720001220703,24.13525390625,23.6948852539063" />
-    <Link Source="ACore" Target="STL" Bounds="446.340179443359,371.720001220703,24.13525390625,23.6948852539063" />
-    <Link Source="AIL" Target="ACore" Bounds="304.696655273438,309.637847900391,143.995635986328,39.4999694824219" />
-    <Link Source="AIL_IO" Target="AIL_Qt" Bounds="185.464370727539,112.400001525879,76.4196319580078,84.2922897338867" />
-    <Link Source="AIL_IO" Target="AIL_png" Bounds="172.594009399414,112.400001525879,0.880630493164063,51.481315612793" />
-    <Link Source="AIL_Qt" Target="AIL" Bounds="279.696655273438,229.320007324219,0,51.47998046875" />
-    <Link Source="AIL_Qt" Target="Qt" Bounds="298.316741943359,229.320007324219,79.376708984375,55.3332214355469" />
-    <Link Source="AIL_ffmpeg" Target="AML" Bounds="58.5288581848145,142.880004882813,5.73004531860352,51.5351104736328" />
+    <Link Source="AAL" Target="ACore" Bounds="50,365.277374267578,153.9677734375,40.2618713378906" />
+    <Link Source="AAL_Qt" Target="AAL" Bounds="30.0320129394531,285.279998779297,11.9647483825684,51.7116394042969" />
+    <Link Source="AAL_Qt" Target="Qt" Bounds="54.1598815917969,285.279998779297,37.4910278320313,53.1266174316406" />
+    <Link Source="ACore" Target="Platform-windows" Bounds="239,427.679992675781,0,21" />
+    <Link Source="ACore" Target="STL" Bounds="157.365875244141,427.051574707031,56.4718475341797,27.7207641601563" />
+    <Link Source="AIL" Target="ACore" Bounds="241.351181030273,371.720001220703,2.25711059570313,21.0513000488281" />
+    <Link Source="AIL_IO" Target="AIL_Qt" Bounds="264.630737304688,168.360000610352,86.1583557128906,84.6523895263672" />
+    <Link Source="AIL_IO" Target="AIL_png" Bounds="371.660095214844,168.360000610352,31.117919921875,52.7290802001953" />
+    <Link Source="AIL_Qt" Target="AIL" Bounds="245,285.279998779297,0,51.4800109863281" />
+    <Link Source="AIL_Qt" Target="Qt" Bounds="134.515228271484,285.279998779297,89.6122589111328,55.7272338867188" />
+    <Link Source="AIL_ffmpeg" Target="AML" Bounds="275.223388671875,198.839996337891,38.2000427246094,53.1707916259766" />
     <Link Source="AIL_ffmpeg" Target="FFMPEG" Category="Contains" Bounds="465.511624598726,99.9902500915528,4.52260831839067,21.1980959896378" />
-    <Link Source="AIL_ffmpeg" Target="MAAL" Bounds="10.6966667175293,142.880004882813,36.6444892883301,308.438293457031" />
-    <Link Source="AIL_png" Target="AIL" Bounds="221.308456420898,256.047821044922,35.1441802978516,28.1283264160156" />
+    <Link Source="AIL_png" Target="AIL" Bounds="277.84912109375,295.183624267578,105.380889892578,48.4527587890625" />
     <Link Source="AIL_png" Target="LibPNG" Category="Contains" Bounds="408.231660728788,137.8799,2.90125080937287E-06,21.0001000000001" />
-    <Link Source="AML" Target="AIL" Bounds="79.6297302246094,229.320007324219,166.26594543457,66.2313537597656" />
-    <Link Source="AML" Target="MAAL" Bounds="66.696662902832,229.320007324219,0,219.359985351563" />
-    <Link Source="AVL" Target="AIL" Bounds="298.393585205078,229.320007324219,51.8396301269531,53.9881591796875" />
-    <Link Source="AVL_Qt" Target="AVL" Bounds="372.968475341797,112.400001525879,40.4002685546875,82.8701553344727" />
-    <Link Source="AVL_Qt" Target="Platform-windows" Bounds="433.129608154297,112.400001525879,107.567047119141,280.319999694824" />
-    <Link Source="AVL_Qt" Target="Qt" Bounds="407.487884521484,112.400001525879,12.0977783203125,168.532524108887" />
-    <Link Source="FrameDump" Target="AIL_IO" Bounds="71.7161026000977,25.9599990844727,76.6584701538086,55.2196578979492" />
-    <Link Source="FrameDump" Target="AIL_ffmpeg" Bounds="53.6966667175293,25.9599990844727,0,21" />
-    <Link Source="ImageConvert" Target="AIL_IO" Bounds="173.696670532227,25.9599990844727,0,51.4800033569336" />
-    <Link Source="MediaPlayer" Target="AAL_Qt" Bounds="479.696655273438,25.9599990844727,0,168.400001525879" />
-    <Link Source="MediaPlayer" Target="AIL_ffmpeg" Bounds="116.213584899902,21.6162223815918,320.921424865723,65.1184196472168" />
-    <Link Source="MediaPlayer" Target="AVL_Qt" Bounds="433.838348388672,25.9599990844727,36.8486022949219,53.086555480957" />
-    <Link Source="Platform-windows" Target="MAAL" Bounds="101.605506896973,425.861267089844,381.101829528809,41.314697265625" />
-    <Link Source="Platform-windows" Target="Win32API" Bounds="540.696655273438,427.679992675781,0,21" />
-    <Link Source="QPaint" Target="AIL_IO" Bounds="196.58869934082,25.9599990844727,67.1908111572266,54.7921905517578" />
-    <Link Source="QPaint" Target="AIL_Qt" Bounds="279.696655273438,25.9599990844727,0,168.400001525879" />
+    <Link Source="AML" Target="AIL" Bounds="263.696929931641,285.279998779297,51.8396301269531,53.9881896972656" />
+    <Link Source="AML" Target="MAAL" Bounds="328,285.279998779297,0,219.360015869141" />
+    <Link Source="AML_Qt" Target="AIL_ffmpeg" Bounds="155.616836547852,81.9199981689453,30.0993194580078,25.0171585083008" />
+    <Link Source="AML_Qt" Target="AVL_Qt" Bounds="114.399856567383,81.9199981689453,20.4946441650391,52.1045989990234" />
+    <Link Source="AVL" Target="AIL" Bounds="174.463439941406,285.279998779297,51.8396453857422,53.9881896972656" />
+    <Link Source="AVL_Qt" Target="AVL" Bounds="112.216903686523,168.360000610352,39.6784820556641,82.8430023193359" />
+    <Link Source="AVL_Qt" Target="Qt" Bounds="106,168.360000610352,0,168.400009155273" />
+    <Link Source="FrameDump" Target="AIL_IO" Bounds="262.019439697266,81.9199981689453,76.6584777832031,55.2196502685547" />
+    <Link Source="FrameDump" Target="AIL_ffmpeg" Bounds="244,81.9199981689453,0,21" />
+    <Link Source="ImageConvert" Target="AIL_IO" Bounds="364,81.9199981689453,0,51.4799957275391" />
+    <Link Source="MediaPlayer" Target="AAL_Qt" Bounds="45.108081817627,25.9599990844727,25.4694709777832,224.36011505127" />
+    <Link Source="MediaPlayer" Target="AML_Qt" Bounds="92.380989074707,25.9599990844727,26.5569534301758,23.969799041748" />
+    <Link Source="MediaPlayer" Target="AVL_Qt" Bounds="78,25.9599990844727,21.0220260620117,107.877983093262" />
+    <Link Source="Platform-windows" Target="MAAL" Bounds="259.643676757813,483.640014648438,40.0935668945313,25.2093811035156" />
+    <Link Source="Platform-windows" Target="Win32API" Bounds="235.960708618164,483.640014648438,1.87953186035156,21.0357055664063" />
+    <Link Source="QPaint" Target="AIL_IO" Bounds="386.892028808594,81.9199981689453,67.1907958984375,54.7921905517578" />
   </Links>
   <Categories>
     <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
