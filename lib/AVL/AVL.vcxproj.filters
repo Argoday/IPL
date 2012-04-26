@@ -2,47 +2,23 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="src\AVL.h" />
-    <ClInclude Include="src\Video\QueueDataMessage.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueueDataPacket.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueueControlMessage.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueueControlPacket.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Video\QueuePipe.h">
+    <ClInclude Include="src\Video\Frame.h">
       <Filter>Video\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Video">
-      <UniqueIdentifier>{3A678135-5447-46F5-BBB5-D0F547FFAEC9}</UniqueIdentifier>
+      <UniqueIdentifier>{ead77426-95d8-4652-98e6-8f01aa55a5c8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Video\Header Files">
-      <UniqueIdentifier>{2171DB8F-24A8-4557-9EBA-BF8791F2708A}</UniqueIdentifier>
+      <UniqueIdentifier>{c1c6bce3-435f-4c2e-888f-bdcbb32602c1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Video\Source Files">
-      <UniqueIdentifier>{727FC459-C002-4027-B531-43C6DD0DB250}</UniqueIdentifier>
+      <UniqueIdentifier>{6e30bbb7-3a59-4d53-95e5-4d00879d8c6c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Video\QueueDataMessage.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueDataPacket.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueControlMessage.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueueControlPacket.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Video\QueuePipe.cpp">
+    <ClCompile Include="src\Video\Frame.cpp">
       <Filter>Video\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

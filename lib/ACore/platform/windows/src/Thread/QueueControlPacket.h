@@ -1,35 +1,40 @@
 
-#ifndef VIDEO__QUEUE_ControlPacket_H
-#define VIDEO__QUEUE_ControlPacket_H
+#ifndef THREAD__QUEUE_ControlPacket_H
+#define THREAD__QUEUE_ControlPacket_H
 
-#include "AVL.h"
+#include "ACore.h"
+#include <Data/DataTypes.h>
 
-#include "QueueControlMessage.h"
-
-namespace Video {
+namespace Thread {
 
 namespace Queue {
 
-class AVL_DLL_EXPORT ControlPacket {
+class ACORE_DLL_EXPORT ControlPacket {
 	public:
+		enum class MessageType {
+			none,
+			flush, // I8u flushID
+			start,
+			stop,
+			quit
+		};
+
 		typedef ControlPacket ThisType;
 
-		ThisType():messageType(ControlMessageType::none),parameter(nullptr){}
+		ThisType():messageType(MessageType::none),flushID(0){}
 
-		ThisType(const ControlMessageType & _messageType):messageType(_messageType),parameter(nullptr){}
-		ThisType(const ControlMessageType & _messageType, ControlMessageParameter * const & _parameter):messageType(_messageType),parameter(_parameter){}
+		ThisType(const MessageType & _messageType):messageType(_messageType),flushID(0){}
+		ThisType(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID){}
 
-		ThisType(const ThisType & _other):messageType(_other.messageType),parameter(_other.parameter){}
+		ThisType(const ThisType & _other):messageType(_other.messageType),flushID(_other.flushID){}
 
-		void releasePacket(){if(parameter!=nullptr){parameter->releaseParameter();delete parameter;parameter=nullptr;}}
-
-		ControlMessageType        & getMessageType() {return messageType;}
-		ControlMessageParameter * & getParameter()   {return parameter  ;}
+		const MessageType & getMessageType() const {return messageType;}
+		const I8u         & getFlushID()     const {return flushID    ;}
 
 	private:
 
-		ControlMessageType messageType;
-		ControlMessageParameter * parameter;
+		MessageType messageType;
+		I8u flushID;
 
 };
 

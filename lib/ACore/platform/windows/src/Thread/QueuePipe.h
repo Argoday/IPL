@@ -1,33 +1,47 @@
 
-#ifndef VIDEO__QUEUE__Pipe_H
-#define VIDEO__QUEUE__Pipe_H
+#ifndef THREAD__QUEUE__Pipe_H
+#define THREAD__QUEUE__Pipe_H
 
-#include "AVL.h"
+#include "ACore.h"
 #include "QueueControlPacket.h"
 #include "QueueDataPacket.h"
 #include <Data/DataTypes.h>
-#include <Thread/Semaphore.h>
 
-#include "agents.h"
-
-namespace Video {
+namespace Thread {
 
 namespace Queue {
 
-class AVL_DLL_EXPORT Pipe {
+class ACORE_DLL_EXPORT Pipe {
 	public:
-		Pipe(I8 _capacity):dataCapacity(_capacity){};
+		Pipe(I8 _capacity);
+		~Pipe();
 
-		void aboutToSendData(){dataCapacity.acquire();}
-		void releaseData(){dataCapacity.release();}
+		// Source methods
+		void sendFlush();
+		void sendStop();
+		void sendStart();
+		void sendQuit();
 
-		Concurrency::unbounded_buffer<Video::Queue::DataPacket>    & getDataQueue()   {return dataQueue;}
-		Concurrency::unbounded_buffer<Video::Queue::ControlPacket> & getControlQueue(){return controlQueue;}
+		void asendData(DataPacket & dataPacket);
+		void  sendData(DataPacket & dataPacket);
+		void asendControl(ControlPacket & controlPacket);
+		void  sendControl(ControlPacket & controlPacket);
+
+
+		// Target methods
+		DataPacket readData();
+		B1 areadData(DataPacket & dataPacket);
+		ControlPacket  readControl();
+		B1            areadControl(ControlPacket & controlPacket);
 
 	private:
-		Thread::Semaphore dataCapacity;
-		Concurrency::unbounded_buffer<Video::Queue::DataPacket>    dataQueue;
-		Concurrency::unbounded_buffer<Video::Queue::ControlPacket> controlQueue;
+
+		void acquireData();
+		void releaseData();
+
+		class Pipe_d;
+		Pipe_d * _this;
+
 };
 
 }

@@ -2,6 +2,7 @@
 #include "FFMPEGmediaPlayerAgent.h"
 
 #include <Data/DataManager.h>
+#include <Video/Frame.h>
 
 #pragma warning (disable : 4244) // Ignore conversion from 'int64_t' to 'int32_t' - determined safe
 #pragma warning (disable : 4005) // Ignore redefinition of macro UINT64_C
@@ -54,15 +55,11 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent_d {
 		bool             hasAudioStream;
 };
 
-AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent(Data::DataManager * const & _dataManager, Concurrency::ISource<Media::Player::ControlPacket> & _controlQueue , Video::Queue::Pipe & _videoPipe, Audio::Queue::Pipe & _audioPipe)
+AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent(Data::DataManager * const & _dataManager, Concurrency::ISource<Media::Player::ControlPacket> & _controlQueue , Thread::Queue::Pipe & _videoPipe, Thread::Queue::Pipe & _audioPipe)
 	:dataManager(_dataManager)
 	,controlQueue(_controlQueue)
 	,videoPipe(_videoPipe)
-	,videoDataQueue(_videoPipe.getDataQueue())
-	,videoControlQueue(_videoPipe.getControlQueue())
 	,audioPipe(_audioPipe)
-	,audioDataQueue(_audioPipe.getDataQueue())
-	,audioControlQueue(_audioPipe.getControlQueue())
 	,flushID(0)
 {
 	_this = new FFMPEGmediaPlayerAgent_d;
@@ -75,30 +72,20 @@ AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::~FFMPEGmediaPlayerAgent(){
 	delete _this;
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendFlush(){
-	++flushID;
-	auto dataFlushMessageParameter = new Video::Queue::DataMessageFlushParameter(flushID);
-	auto videoDataPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::flush,dataFlushMessageParameter);
-	videoPipe.aboutToSendData();
-	Concurrency::asend(videoDataQueue,videoDataPacket);
-
-	auto controlMessageParameter = new Video::Queue::ControlMessageFlushParameter(flushID);
-	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::flush,controlMessageParameter);
-	Concurrency::asend(videoControlQueue,videoControlPacket);
+	videoPipe.sendFlush();
+	//audioPipe.sendFlush();
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendPause(){
-	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::pause);
-	Concurrency::asend(videoControlQueue,videoControlPacket);
+	videoPipe.sendStop();
+	//audioPipe.sendStop();
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendPlay(){
-	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::play);
-	Concurrency::asend(videoControlQueue,videoControlPacket);
+	videoPipe.sendStart();
+	//audioPipe.sendStart();
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendQuit(){
-	auto videoDataPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::quit);
-	Concurrency::asend(videoDataQueue,videoDataPacket);
-
-	auto videoControlPacket = Video::Queue::ControlPacket(Video::Queue::ControlMessageType::quit);
-	Concurrency::asend(videoControlQueue,videoControlPacket);
+	videoPipe.sendQuit();
+	//audioPipe.sendQuit();
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 	auto & pCodecCtx  = _this->codecCtx;
@@ -120,8 +107,6 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 			const Media::Player::CommandOpenParameter      * openParameter             = nullptr;
 			const Media::Player::CommandPlayPauseParameter * playPauseParameter        = nullptr;
 			
-			Video::Queue::DataPacket videoDataPacket;
-			Video::Queue::ControlPacket videoControlPacket;
 			switch(controlPacket.getCommand()){
 				case Media::Player::Command::play :
 					if((state==State::stopped) || (state==State::paused)){
@@ -222,11 +207,10 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, data, &linesize);
 
 						++frameIndex;
-						auto messageParameter = new Video::Queue::DataMessageImageParameter<Pixel::PixelRGBi1u>(imagePtr,timeStamp,frameIndex);
-						auto videoPacket = Video::Queue::DataPacket(Video::Queue::DataMessageType::image,messageParameter);
+						auto messageParameter = new Video::Frame<Pixel::PixelRGBi1u>(imagePtr,timeStamp,frameIndex);
+						auto videoPacket = Thread::Queue::DataPacket(Thread::Queue::DataPacket::MessageType::data,messageParameter);
 						
-						videoPipe.aboutToSendData();
-						Concurrency::asend(videoDataQueue,videoPacket);
+						videoPipe.asendData(videoPacket);
 					}
 				}else if(packet.stream_index==_this->audioStreamID) {
 					//Concurrency::asend(audioQueue,audioPacket);

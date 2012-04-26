@@ -7,16 +7,66 @@
 #include <Image/Image_Qt.h>
 #include <Video/Widget.h>
 #include <Video/WidgetSurface.h>
+#include <Video/QueueQtTarget.h>
+
+#include <Media/FFMPEGmediaPlayerAgent.h>
+#include <Thread/QueuePipe.h>
+#include <Thread/QueueReaderAgent.h>
 
 
-MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::Control * const _mediaControl,Video::Queue::ReaderAgent * const readerAgent)
+class FFMPEGqtPlayer {
+	public:
+		FFMPEGqtPlayer(Data::DataManager * const _dataManager,QAbstractVideoSurface * surface)
+			:dataManager(_dataManager)
+		{
+			videoPipe = new Thread::Queue::Pipe(60);
+			audioPipe = new Thread::Queue::Pipe(6000);
+
+			mediaControl = new Media::Player::Control(controlQueue);
+
+			videoReaderAgent = new Thread::Queue::ReaderAgent(*videoPipe);
+			qtTarget = new Video::Queue::QtTarget(surface);
+			videoReaderAgent->registerTarget(qtTarget);
+
+			mediaPlayerAgent = new Media::FFMPEGmediaPlayerAgent(dataManager,controlQueue,*videoPipe,*audioPipe);
+
+			mediaPlayerAgent->start();
+			videoReaderAgent->start();
+		}
+		Media::Player::Control * getMediaControl(){return mediaControl;}
+		~FFMPEGqtPlayer(){
+			mediaControl->quit();
+			Concurrency::agent::wait(mediaPlayerAgent);
+			Concurrency::agent::wait(videoReaderAgent);
+
+			delete videoPipe;
+			delete audioPipe;
+			delete qtTarget;
+			delete mediaControl;
+			delete videoReaderAgent;
+			delete mediaPlayerAgent;
+		}
+	private:
+		Data::DataManager * const dataManager;
+
+		Concurrency::unbounded_buffer<Media::Player::ControlPacket> controlQueue;
+		Thread::Queue::Pipe * videoPipe;
+		Thread::Queue::Pipe * audioPipe;
+		Video::Queue::QtTarget * qtTarget;
+		Media::Player::Control * mediaControl;
+		Thread::Queue::ReaderAgent * videoReaderAgent;
+		Media::FFMPEGmediaPlayerAgent * mediaPlayerAgent;
+
+};
+
+MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 	:dataManager(_dataManager)
-	,mediaControl(_mediaControl)
 {
-	Video::Widget * videoWidget = new Video::Widget();
-	surface = videoWidget->videoSurface();
+	auto videoWidget = new Video::Widget();
+	auto surface = videoWidget->videoSurface();
 
-	readerAgent->registerVideoSurface(surface);
+	player = new FFMPEGqtPlayer(dataManager,surface);
+	mediaControl = player->getMediaControl();
 
 	playPauseButton = new QPushButton;
 	playPauseButton->setEnabled(false);
@@ -25,7 +75,7 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::C
 
 	connect(playPauseButton, SIGNAL(clicked()),this, SLOT(playPause()));
 
-	QSlider * positionSlider = new QSlider(Qt::Horizontal);
+	auto positionSlider = new QSlider(Qt::Horizontal);
 	positionSlider->setRange(0, 10000);
 	connect(positionSlider, SIGNAL(sliderMoved(int)),this, SLOT(sliderChanged(int)));
 
@@ -44,7 +94,7 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::C
 	createActions();
 	createMenus();
 
-	QWidget * window = new QWidget;
+	auto window = new QWidget;
 	window->setLayout(layout);
 	setCentralWidget(window);
 
@@ -54,6 +104,7 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager,Media::Player::C
 }
 
 MediaPlayer::~MediaPlayer(){
+	delete player;
 }
 void MediaPlayer::sliderChanged(int sliderIndex){
 	//seek

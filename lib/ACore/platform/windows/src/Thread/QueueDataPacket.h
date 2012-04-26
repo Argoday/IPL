@@ -1,35 +1,42 @@
 
-#ifndef VIDEO__QUEUE_DataPacket_H
-#define VIDEO__QUEUE_DataPacket_H
+#ifndef THREAD__QUEUE_DataPacket_H
+#define THREAD__QUEUE_DataPacket_H
 
-#include "AVL.h"
+#include "ACore.h"
+#include <Data/DataTypes.h>
 
-#include "QueueDataMessage.h"
-
-namespace Video {
+namespace Thread {
 
 namespace Queue {
 
-class AVL_DLL_EXPORT DataPacket {
+class ACORE_DLL_EXPORT DataPacket {
 	public:
+		enum class MessageType {
+			none,
+			data,  // void * data
+			flush, // I8u flushID
+			quit
+		};
 		typedef DataPacket ThisType;
 
-		ThisType():messageType(DataMessageType::none),parameter(nullptr){}
+		ThisType():messageType(MessageType::none),flushID(0),data(nullptr){}
 
-		ThisType(const DataMessageType & _messageType):messageType(_messageType),parameter(nullptr){}
-		ThisType(const DataMessageType & _messageType, DataMessageParameter * const & _parameter):messageType(_messageType),parameter(_parameter){}
+		ThisType(const MessageType & _messageType):messageType(_messageType),flushID(0),data(nullptr){}
+		ThisType(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID),data(nullptr){}
+		ThisType(const MessageType & _messageType, void * _data):messageType(_messageType),data(_data){}
 
-		ThisType(const ThisType & _other):messageType(_other.messageType),parameter(_other.parameter){}
+		ThisType(const ThisType & _other):messageType(_other.messageType),flushID(_other.flushID),data(_other.data){}
 
-		void releasePacket(){if(parameter!=nullptr){parameter->releaseParameter();delete parameter;parameter=nullptr;}}
+		void * takeData(){auto tempData = data;data = nullptr;return tempData;}
 
-		DataMessageType        & getMessageType() {return messageType;}
-		DataMessageParameter * & getParameter()   {return parameter  ;}
+		const MessageType & getMessageType() const {return messageType;}
+		const I8u         & getFlushID()     const {return flushID    ;}
 
 	private:
 
-		DataMessageType messageType;
-		DataMessageParameter * parameter;
+		MessageType messageType;
+		I8u flushID;
+		void * data;
 
 };
 

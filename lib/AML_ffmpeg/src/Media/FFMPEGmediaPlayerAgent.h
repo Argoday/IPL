@@ -7,8 +7,8 @@
 #include <Image/Image.h>
 
 #include <Media/PlayerControlPacket.h>
-#include <Video/QueuePipe.h>
-#include <Audio/QueuePipe.h>
+#include <Thread/QueuePipe.h>
+#include <Thread/QueueReaderAgentTarget.h>
 
 #include <agents.h>
 #include <string>
@@ -19,7 +19,7 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent : public Concurrency::agent {
 	public:
 		typedef FFMPEGmediaPlayerAgent ThisType;
 
-		ThisType(Data::DataManager * const & _dataManager, Concurrency::ISource<Media::Player::ControlPacket> & _controlQueue , Video::Queue::Pipe & _videoPipe, Audio::Queue::Pipe & _audioPipe);
+		ThisType(Data::DataManager * const & _dataManager,Concurrency::ISource<Media::Player::ControlPacket> & _controlQueue,Thread::Queue::Pipe & _videoPipe,Thread::Queue::Pipe & _audioPipe);
 		~FFMPEGmediaPlayerAgent();
 
 	protected:
@@ -53,13 +53,8 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent : public Concurrency::agent {
 		Concurrency::ISource<Media::Player::ControlPacket> & controlQueue;
 
 		I8u flushID;
-		Video::Queue::Pipe & videoPipe;
-		Concurrency::ITarget<Video::Queue::DataPacket>    & videoDataQueue;
-		Concurrency::ITarget<Video::Queue::ControlPacket> & videoControlQueue;
-
-		Audio::Queue::Pipe & audioPipe;
-		Concurrency::ITarget<Audio::Queue::DataPacket>    & audioDataQueue;
-		Concurrency::ITarget<Audio::Queue::ControlPacket> & audioControlQueue;
+		Thread::Queue::Pipe & videoPipe;
+		Thread::Queue::Pipe & audioPipe;
 };
 	
 }

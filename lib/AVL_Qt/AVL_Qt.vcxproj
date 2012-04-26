@@ -402,10 +402,10 @@ copy $(QTDIR)\lib\QtMultimedia4.dll $(ALIB)\export\$(Platform)-$(Configuration)\
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\AVL_Qt.h" />
-    <ClInclude Include="src\Video\ReaderAgent.h" />
+    <ClInclude Include="src\Video\QueueQtTarget.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Video\ReaderAgent.cpp" />
+    <ClCompile Include="src\Video\QueueQtTarget.cpp" />
     <ClCompile Include="GeneratedFiles\Win32-Debug-DLL\moc_Widget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">true</ExcludedFromBuild>

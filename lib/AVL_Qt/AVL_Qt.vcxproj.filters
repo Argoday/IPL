@@ -59,15 +59,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Video\ReaderAgent.h">
+    <ClInclude Include="src\AVL_Qt.h" />
+    <ClInclude Include="src\Video\QueueQtTarget.h">
       <Filter>Video\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\AVL_Qt.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Video\ReaderAgent.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Win32-Debug-DLL\moc_WidgetSurface.cpp">
       <Filter>Generated Files\Debug-DLL_Win32</Filter>
     </ClCompile>
@@ -120,6 +117,9 @@
       <Filter>Video\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Video\WidgetSurface.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Video\QueueQtTarget.cpp">
       <Filter>Video\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

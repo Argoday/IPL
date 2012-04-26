@@ -36,11 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AVL.h" />
-    <ClInclude Include="src\Video\QueueControlMessage.h" />
-    <ClInclude Include="src\Video\QueueControlPacket.h" />
-    <ClInclude Include="src\Video\QueueDataMessage.h" />
-    <ClInclude Include="src\Video\QueueDataPacket.h" />
-    <ClInclude Include="src\Video\QueuePipe.h" />
+    <ClInclude Include="src\Video\Frame.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ACore\ACore.vcxproj">
@@ -51,11 +47,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Video\QueueControlMessage.cpp" />
-    <ClCompile Include="src\Video\QueueControlPacket.cpp" />
-    <ClCompile Include="src\Video\QueueDataMessage.cpp" />
-    <ClCompile Include="src\Video\QueueDataPacket.cpp" />
-    <ClCompile Include="src\Video\QueuePipe.cpp" />
+    <ClCompile Include="src\Video\Frame.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{830C7521-7800-4877-AC29-686D38DEA25A}</ProjectGuid>

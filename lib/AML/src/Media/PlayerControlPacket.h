@@ -20,7 +20,7 @@ class AML_DLL_EXPORT ControlPacket {
 
 		ThisType(const ThisType & _other):command(_other.command),parameter(_other.parameter){}
 
-		void releasePacket(){parameter->releaseParameter();delete parameter;parameter=nullptr;}
+		void releasePacket(){if(parameter!=nullptr){parameter->releaseParameter();delete parameter;parameter=nullptr;}}
 
 		Command            & getCommand()   {return command  ;}
 		CommandParameter * & getParameter() {return parameter;}

@@ -343,6 +343,11 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="platform\windows\src\System\System.h" />
+    <ClInclude Include="platform\windows\src\Thread\QueueControlPacket.h" />
+    <ClInclude Include="platform\windows\src\Thread\QueueDataPacket.h" />
+    <ClInclude Include="platform\windows\src\Thread\QueuePipe.h" />
+    <ClInclude Include="platform\windows\src\Thread\QueueReaderAgent.h" />
+    <ClInclude Include="platform\windows\src\Thread\QueueReaderAgentTarget.h" />
     <ClInclude Include="platform\windows\src\Thread\Semaphore.h" />
     <ClInclude Include="src\ACore.h" />
     <ClInclude Include="src\Data\DataChunk.h" />
@@ -372,6 +377,10 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\windows\src\System\System.cpp" />
+    <ClCompile Include="platform\windows\src\Thread\QueueControlPacket.cpp" />
+    <ClCompile Include="platform\windows\src\Thread\QueueDataPacket.cpp" />
+    <ClCompile Include="platform\windows\src\Thread\QueuePipe.cpp" />
+    <ClCompile Include="platform\windows\src\Thread\QueueReaderAgent.cpp" />
     <ClCompile Include="platform\windows\src\Thread\Semaphore.cpp" />
     <ClCompile Include="src\Data\DataChunk.cpp" />
     <ClCompile Include="src\Data\DataManager.cpp" />
