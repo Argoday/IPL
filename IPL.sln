@@ -283,7 +283,7 @@ Global
 		{EA3DC27F-35F7-4BD7-905D-76F0FEBC872A}.Release|x86.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		HideSolutionNode = TRUE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{09418F70-1601-4EF5-B8B8-1518BE20DF62} = {54FF7069-1BDD-44CE-AE9A-23E20310BC3B}
