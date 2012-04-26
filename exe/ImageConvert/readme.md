@@ -2,13 +2,13 @@
 
 ## CLI
 
-./ImageConvert.exe <SourceImageName> <DestImageName>
+./ImageConvert.exe \<SourceImageName\> \<DestImageName\>
 
-Example:
-./ImageConvert.exe A.bmp A.png
+Example:  
+./ImageConvert.exe A.bmp A.png  
 
-Expected Output:
-./A.png
+Expected Output:  
+./A.png  
 
 
 ## Dependencies

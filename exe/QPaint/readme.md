@@ -8,6 +8,6 @@ Note: This application serves as a test bed for AIL, funcitonality is added as i
 
 ## Dependencies
 
-./lib/AIL
-./lib/AIL_Qt
-./lib/AIL_IO
+./lib/AIL  
+./lib/AIL_Qt  
+./lib/AIL_IO  
