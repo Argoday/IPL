@@ -1,5 +1,6 @@
 
 #include "QueueReaderAgent.h"
+#include <System/Time.h>
 
 namespace Thread {
 
@@ -24,6 +25,10 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 	Thread::Queue::DataPacket    dataPacket;
 	F8 lastTimeStamp=0.0;
 	F8 lastTimeDelta=0.0;
+
+	F8 startTimeStamp = 0.0;
+	F8 startWallTime  = 0.0;
+	B1 resetTime      = true;
 
 	for(;;){
 		Concurrency::Context::Yield();
@@ -62,6 +67,8 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 						}
 					}else{
 						if(controlPacket.getFlushID()==dataFlushID){
+							active = false;
+							target->stop();
 							dataFlushActive=false;
 							dataFlushID=0;
 							lastTimeStamp=0.0;
@@ -76,9 +83,13 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 				case Thread::Queue::ControlPacket::MessageType::stop :
 					active = false;
 					target->stop();
+					lastTimeStamp=0.0;
+					lastTimeDelta=0.0;
 				break;
 				case Thread::Queue::ControlPacket::MessageType::start :
 					active = true;
+					startWallTime = Time::getTime();
+					resetTime = true;
 					target->start();
 				break;
 				case Thread::Queue::ControlPacket::MessageType::quit :
@@ -89,22 +100,44 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 		}
 		if((active==true)&&(dataFlushActive==false)){
 			if(sourcePipe.areadData(dataPacket)==true){
+				F8  currentWallTime;
+				F8  elapsedWallTime;
+				F8  elapsedPacketTime;
 				F8  timeDelta;
 				I4u milliSecDelay;
 				switch(dataPacket.getMessageType()){
 					case Thread::Queue::DataPacket::MessageType::none :
 					break;
 					case Thread::Queue::DataPacket::MessageType::data :
-						timeDelta = dataPacket.getTimeStamp()-lastTimeStamp;
-						if((timeDelta>0.0)&&(timeDelta<10.0)){
-							milliSecDelay = static_cast<I4u>(timeDelta * 1000.0);
-							lastTimeDelta = timeDelta;
-							lastTimeStamp = dataPacket.getTimeStamp();
+						currentWallTime = Time::getTime();
+						if(resetTime==true){
+							if(dataPacket.getTimeStamp()!=std::numeric_limits<F8>::infinity()){
+								startTimeStamp = dataPacket.getTimeStamp();
+								lastTimeDelta=0.0;
+								resetTime=false;
+							}
 						}else{
-							milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);
-							lastTimeStamp+=lastTimeDelta;
+							if(dataPacket.getTimeStamp()!=std::numeric_limits<F8>::infinity()){
+								elapsedWallTime = currentWallTime - startWallTime;
+								elapsedPacketTime = dataPacket.getTimeStamp() - startTimeStamp;
+								timeDelta = elapsedPacketTime - elapsedWallTime;
+								if(timeDelta<-10.0){//TODO: Make tolerance configurable
+									milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);//Guess
+									Concurrency::wait(milliSecDelay);
+								}else if(timeDelta<0.0){
+								}else if (timeDelta<10.0){//TODO: Make tolerance configurable
+									milliSecDelay = static_cast<I4u>(timeDelta * 1000.0);
+									lastTimeDelta = timeDelta;
+									Concurrency::wait(milliSecDelay);
+								}else{
+									milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);//Guess
+									Concurrency::wait(milliSecDelay);
+								}
+							}else{
+								milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);//Guess
+								Concurrency::wait(milliSecDelay);
+							}
 						}
-						Concurrency::wait(milliSecDelay);
 						target->send(dataPacket.takeData());
 					break;
 					case Thread::Queue::DataPacket::MessageType::config :

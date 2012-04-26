@@ -169,6 +169,9 @@
     <ClInclude Include="platform\windows\src\Thread\QueueReaderAgentTarget.h">
       <Filter>platform-windows\Thread\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="platform\windows\src\System\Time.h">
+      <Filter>platform-windows\System\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\DataChunk.cpp">
@@ -206,6 +209,9 @@
     </ClCompile>
     <ClCompile Include="platform\windows\src\Thread\QueueReaderAgent.cpp">
       <Filter>platform-windows\Thread\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\windows\src\System\Time.cpp">
+      <Filter>platform-windows\System\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

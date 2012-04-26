@@ -347,6 +347,7 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="platform\windows\src\System\System.h" />
+    <ClInclude Include="platform\windows\src\System\Time.h" />
     <ClInclude Include="platform\windows\src\Thread\QueueControlPacket.h" />
     <ClInclude Include="platform\windows\src\Thread\QueueDataPacket.h" />
     <ClInclude Include="platform\windows\src\Thread\QueuePipe.h" />
@@ -381,6 +382,7 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\windows\src\System\System.cpp" />
+    <ClCompile Include="platform\windows\src\System\Time.cpp" />
     <ClCompile Include="platform\windows\src\Thread\QueueControlPacket.cpp" />
     <ClCompile Include="platform\windows\src\Thread\QueueDataPacket.cpp" />
     <ClCompile Include="platform\windows\src\Thread\QueuePipe.cpp" />

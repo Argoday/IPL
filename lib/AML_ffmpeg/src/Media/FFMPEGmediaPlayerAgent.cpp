@@ -5,6 +5,7 @@
 #include <Video/Frame.h>
 #include <Audio/Frame.h>
 #include <Audio/Config.h>
+#include <limits.h>
 
 #pragma warning (disable : 4244) // Ignore conversion from 'int64_t' to 'int32_t' - determined safe
 #pragma warning (disable : 4005) // Ignore redefinition of macro UINT64_C
@@ -204,7 +205,12 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
       
 					if(frameFinished) {
 				
-						F8 timeStamp = pFrame->pkt_pts * av_q2d(_this->vStream->time_base);
+						F8 timeStamp;
+						if(pFrame->pkt_pts!=AV_NOPTS_VALUE){
+							timeStamp = pFrame->pkt_pts * av_q2d(_this->vStream->time_base);
+						}else{
+							timeStamp = std::numeric_limits<F8>::infinity();
+						}
 
 						auto width  = pCodecCtx->width;
 						auto height = pCodecCtx->height;
@@ -232,7 +238,13 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						const int bps = av_get_bytes_per_sample(pACodecCtx->sample_fmt);
 						const int decoded_data_size = pAFrame->nb_samples * pACodecCtx->channels * bps;
 
-						F8 timeStamp = pAFrame->pkt_pts * av_q2d(_this->aStream->time_base);
+						F8 timeStamp;
+						if(pAFrame->pkt_pts!=AV_NOPTS_VALUE){
+							timeStamp = pAFrame->pkt_pts * av_q2d(_this->aStream->time_base);
+						}else{
+							timeStamp = std::numeric_limits<F8>::infinity();
+						}
+
 
 						auto audioData = new Audio::AudioData(dataManager,decoded_data_size);
 						memcpy(audioData->getData(),pAFrame->data[0],decoded_data_size);
