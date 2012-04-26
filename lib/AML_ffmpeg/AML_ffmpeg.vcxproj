@@ -214,8 +214,8 @@
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|Win32'">
@@ -239,8 +239,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -263,8 +263,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">
@@ -297,12 +297,12 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBFFMPEG_DIR)\bin\avcodec-54.dll $(ALIB)\export\$(Platform)-$(Configuration)\avcodec-54.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\avformat-54.dll $(ALIB)\export\$(Platform)-$(Configuration)\avformat-54.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(ALIB)\export\$(Platform)-$(Configuration)\avutil-51.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(ALIB)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(LIBFFMPEG_DIR)\bin\avcodec-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avcodec-54.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\avformat-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avformat-54.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(IPL)\export\$(Platform)-$(Configuration)\avutil-51.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(IPL)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -329,8 +329,8 @@ copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(ALIB)\export\$(Platform)-$(Configurati
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|Win32'">
@@ -357,8 +357,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -386,8 +386,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|x64'">
@@ -420,12 +420,12 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBFFMPEG_DIR)\bin\avcodec-54.dll $(ALIB)\export\$(Platform)-$(Configuration)\avcodec-54.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\avformat-54.dll $(ALIB)\export\$(Platform)-$(Configuration)\avformat-54.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(ALIB)\export\$(Platform)-$(Configuration)\avutil-51.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(ALIB)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(LIBFFMPEG_DIR)\bin\avcodec-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avcodec-54.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\avformat-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avformat-54.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(IPL)\export\$(Platform)-$(Configuration)\avutil-51.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(IPL)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

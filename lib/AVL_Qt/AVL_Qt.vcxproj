@@ -198,8 +198,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|Win32'">
@@ -221,8 +221,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -243,8 +243,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">
@@ -274,11 +274,11 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       </ShowProgress>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(QTDIR)\lib\QtCored4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCored4.dll /Y
-copy $(QTDIR)\lib\QtGuid4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtGuid4.dll /Y
-copy $(QTDIR)\lib\QtMultimediad4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtMultimediad4.dll /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(QTDIR)\lib\QtCored4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCored4.dll /Y
+copy $(QTDIR)\lib\QtGuid4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtGuid4.dll /Y
+copy $(QTDIR)\lib\QtMultimediad4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtMultimediad4.dll /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -303,8 +303,8 @@ copy $(QTDIR)\lib\QtMultimediad4.dll $(ALIB)\export\$(Platform)-$(Configuration)
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|Win32'">
@@ -330,8 +330,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGui4.lib;%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -357,8 +357,8 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
     <Lib>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;</AdditionalLibraryDirectories>
@@ -393,11 +393,11 @@ copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName)
       <AdditionalLibraryDirectories>$(QTDIR)\lib;</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(ALIB)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(ALIB)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(QTDIR)\lib\QtCore4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtCore4.dll /Y
-copy $(QTDIR)\lib\QtGui4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtGui4.dll /Y
-copy $(QTDIR)\lib\QtMultimedia4.dll $(ALIB)\export\$(Platform)-$(Configuration)\QtMultimedia4.dll /Y</Command>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(QTDIR)\lib\QtCore4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore4.dll /Y
+copy $(QTDIR)\lib\QtGui4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtGui4.dll /Y
+copy $(QTDIR)\lib\QtMultimedia4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtMultimedia4.dll /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
