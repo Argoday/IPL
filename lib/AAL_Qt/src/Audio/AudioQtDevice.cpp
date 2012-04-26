@@ -40,3 +40,4 @@ void AAL_QT_DLL_EXPORT AudioQtDevice::config(I8u channels,I8u freq,I8u sampleSiz
 
 
 }
+

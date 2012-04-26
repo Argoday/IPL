@@ -22,6 +22,8 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 
 	Thread::Queue::ControlPacket controlPacket;
 	Thread::Queue::DataPacket    dataPacket;
+	F8 lastTimeStamp=0.0;
+	F8 lastTimeDelta=0.0;
 
 	for(;;){
 		Concurrency::Context::Yield();
@@ -44,6 +46,8 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 									target->stop();
 									dataFlushActive=false;
 									dataFlushID=0;
+									lastTimeStamp=0.0;
+									lastTimeDelta=0.0;
 									break;
 								}else{
 									//TODO: ERROR
@@ -60,6 +64,8 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 						if(controlPacket.getFlushID()==dataFlushID){
 							dataFlushActive=false;
 							dataFlushID=0;
+							lastTimeStamp=0.0;
+							lastTimeDelta=0.0;
 						}else{
 							//TODO: ERROR
 							done();
@@ -83,10 +89,22 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 		}
 		if((active==true)&&(dataFlushActive==false)){
 			if(sourcePipe.areadData(dataPacket)==true){
+				F8  timeDelta;
+				I4u milliSecDelay;
 				switch(dataPacket.getMessageType()){
 					case Thread::Queue::DataPacket::MessageType::none :
 					break;
 					case Thread::Queue::DataPacket::MessageType::data :
+						timeDelta = dataPacket.getTimeStamp()-lastTimeStamp;
+						if((timeDelta>0.0)&&(timeDelta<10.0)){
+							milliSecDelay = static_cast<I4u>(timeDelta * 1000.0);
+							lastTimeDelta = timeDelta;
+							lastTimeStamp = dataPacket.getTimeStamp();
+						}else{
+							milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);
+							lastTimeStamp+=lastTimeDelta;
+						}
+						Concurrency::wait(milliSecDelay);
 						target->send(dataPacket.takeData());
 					break;
 					case Thread::Queue::DataPacket::MessageType::config :
@@ -96,6 +114,8 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 						dataFlushActive = true;
 						active = false;
 						target->stop();
+						lastTimeStamp=0.0;
+						lastTimeDelta=0.0;
 						dataFlushID = dataPacket.getFlushID();
 						target->release(dataPacket.takeData());
 					break;

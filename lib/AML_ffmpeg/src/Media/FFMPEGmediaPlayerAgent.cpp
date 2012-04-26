@@ -54,6 +54,7 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent_d {
 		AVCodecContext * aCodecCtx;
 		AVCodec        * aCodec;
 		AVFrame        * aFrame;
+		AVStream       * aStream;
 		unsigned int     audioStreamID;
 		bool             hasAudioStream;
 };
@@ -68,6 +69,12 @@ AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::FFMPEGmediaPlayerAgent(Data::DataM
 	_this = new FFMPEGmediaPlayerAgent_d;
 	av_register_all();
 	state = State::closed;
+	_this->buffer    = nullptr;
+	_this->frame     = nullptr;
+	_this->aFrame    = nullptr;
+	_this->codecCtx  = nullptr;
+	_this->aCodecCtx = nullptr;
+	_this->formatCtx = nullptr;
 }
 AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent::~FFMPEGmediaPlayerAgent(){
 	closeFile();
@@ -197,12 +204,8 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
       
 					if(frameFinished) {
 				
-						AVRational ratQ;
-						ratQ.num = 1;
-						ratQ.den = AV_TIME_BASE;
-						I8u timeStamp = av_rescale_q(packet.pts,_this->vStream->time_base, ratQ);
-						auto timeStamp2 = pFrame->pts;
-						
+						F8 timeStamp = pFrame->pkt_pts * av_q2d(_this->vStream->time_base);
+
 						auto width  = pCodecCtx->width;
 						auto height = pCodecCtx->height;
 						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
@@ -217,7 +220,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 
 						++videoFrameIndex;
 						auto videoFrame  = new Video::Frame<Pixel::PixelRGBi1u>(imagePtr,timeStamp,videoFrameIndex);
-						auto videoPacket = Thread::Queue::DataPacket(videoFrame);
+						auto videoPacket = Thread::Queue::DataPacket(videoFrame,timeStamp);
 						
 						videoPipe.asendData(videoPacket);
 					}
@@ -229,14 +232,14 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						const int bps = av_get_bytes_per_sample(pACodecCtx->sample_fmt);
 						const int decoded_data_size = pAFrame->nb_samples * pACodecCtx->channels * bps;
 
-						I8u  timeStamp     = pAFrame->pts;
+						F8 timeStamp = pAFrame->pkt_pts * av_q2d(_this->aStream->time_base);
 
 						auto audioData = new Audio::AudioData(dataManager,decoded_data_size);
 						memcpy(audioData->getData(),pAFrame->data[0],decoded_data_size);
 
 						++audioFrameIndex;
 						auto audioFrame = new Audio::Frame(audioData,timeStamp,audioFrameIndex);
-						auto audioPacket = Thread::Queue::DataPacket(audioFrame);
+						auto audioPacket = Thread::Queue::DataPacket(audioFrame,timeStamp);
 						
 						audioPipe.asendData(audioPacket);
 					}
@@ -255,6 +258,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 	auto & pFormatCtx     = _this->formatCtx;
 	auto & pCodecCtx      = _this->codecCtx;
 	auto & pVStream       = _this->vStream;
+	auto & pAStream       = _this->aStream;
 	auto & videoStreamID  = _this->videoStreamID;
 	auto & hasVideoStream = _this->hasVideoStream;
 	auto & audioStreamID  = _this->audioStreamID;
@@ -292,8 +296,8 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 	//*/
 
 	if(hasVideoStream==true){
-		pVStream = pFormatCtx->streams[videoStreamID];
-		pCodecCtx=pFormatCtx->streams[videoStreamID]->codec;
+		pVStream  = pFormatCtx->streams[videoStreamID];
+		pCodecCtx = pFormatCtx->streams[videoStreamID]->codec;
   
 		_this->codec=avcodec_find_decoder(pCodecCtx->codec_id);
 		if(_this->codec==NULL) {
@@ -312,7 +316,8 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
   
 	}
 	if(hasAudioStream==true){
-		aCodecCtx=pFormatCtx->streams[audioStreamID]->codec;
+		pAStream  = pFormatCtx->streams[audioStreamID];
+		aCodecCtx = pFormatCtx->streams[audioStreamID]->codec;
 
 		aCodec = avcodec_find_decoder(aCodecCtx->codec_id);
 		if(!aCodec) {
@@ -332,7 +337,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 		//auto channelLayout = aCodecCtx->channel_layout;
 
 		auto audioConfig = new Audio::Config(channels,sampleRate,bps);
-		auto audioPacket = Thread::Queue::DataPacket(audioConfig,0);
+		auto audioPacket = Thread::Queue::DataPacket(audioConfig,0,0);
 		audioPipe.asendData(audioPacket);
 
 	}

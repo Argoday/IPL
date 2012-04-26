@@ -20,7 +20,7 @@ template<typename PixelType> class AVL_DLL_EXPORT Frame {
 			other.timeStamp=0;
 			other.frameIndex=0;
 		}
-		ThisType(Image::Image<PixelType> * const & _image,const I8u & _timeStamp,const I8u & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
+		ThisType(Image::Image<PixelType> * const & _image,const F8 & _timeStamp,const I8u & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
 
 		Image::Image<PixelType> * takeImage() {
 			auto tempImage = image;
@@ -29,13 +29,13 @@ template<typename PixelType> class AVL_DLL_EXPORT Frame {
 		}
 
 		const Image::Image<PixelType> * const & getImage() const {return image;}
-		const I8u & getTimeStamp()  const {return timeStamp ;}
+		const F8  & getTimeStamp()  const {return timeStamp ;}
 		const I8u & getFrameIndex() const {return frameIndex;}
 
 		void release(){if(image!=nullptr){delete image;image=nullptr;}}
 	private:
 		Image::Image<PixelType> * image;
-		I8u timeStamp;
+		F8  timeStamp;
 		I8u frameIndex;
 };
 
