@@ -1,41 +1,32 @@
-# Argoday Library
-[Wiki](http://www.argoday.com/wiki/ALIB "Argoday Wiki")
+# Image Processing Library
+[Wiki](http://www.argoday.com/wiki/IPL "Argoday Wiki")
 
 ## Overview
 
-Argoday Library (ALIB) contains lots of functionality in seperate modules:
+Image Processing Library (IPL) is a template metaprogramming based image processing library designed for quick and easy implementation of Computer Vision and Computer Graphics algorithms while preserving runtime performance.
 
-### Lib
-* ACore - Argoday Core Library
-  * Basic helper functionality
-* AIL - Argoday Image Library
-  * A template metaprogramming based Image library
-* AAL - Argoday Audio Library
-  * A library to work with Audio
-* AVL - Argoday Video Library
-  * A library to work with Video
-* AML - Argoday Media Library
-  * A library to work with Media (Audio and Video)
-* \<AName\>_\<Name\> - Library Extension
-  * Adds support for \<AName\> to interact with library \<Name\>
-
-### Exe
-* ImageConvert - Calls AIL_IO to convert image files
-* FrameDump - Calls AML_ffmpeg to dump frames from a video file
-* MediaPlayer - Uses AML_ffmpeg to decode video and uses AML_Qt for display
-* QPaint - Qt based paint program to test AIL functionality
-
+See readme.md in each module for more details.
 
 ## Dependencies
 
-ALIB compiles using MSVC 2011 Beta and relies on:
+IPL compiles using MSVC 2011 Beta and relies on:
 
 Qt - qt-everywhere-opensource-src-4.7.3  
 LibPNG - lpng1510  
 FFMPEG - ffmpeg-git-41a097a-win64-dev  
 
+## Notice
+
+This library is not endorsed by or affiliated with any other software libraries, including (but not limited to):
+- Intel's [Integrated Performance Primitives](http://software.intel.com/en-us/articles/intel-ipp/ "Intel's IPP")
+- Andrea Gagliardi La Gala's [Image Processing Library](http://code.google.com/p/ipl/ "IPL")
+- The [CImg Library](http://cimg.sourceforge.net/ "CImg")
+- [OpenCV](http://opencv.willowgarage.com/wiki/ "OpenCV")
+
+'Image Processing Library' is a generic name and describes the functionality of this library only.
+
 ## License
 
 Copyright (c) 2012 argoday@argoday.com
 
-Argoday Library is licensed under the "Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)" license, see http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode
+[IPL](https://github.com/Argoday/IPL "IPL") is licensed under the "Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)" license, see http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode
