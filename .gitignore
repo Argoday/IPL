@@ -6,3 +6,5 @@ GeneratedFiles
 *.opensdf
 *.aps
 *.user
+bin
+obj
