@@ -203,13 +203,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\win32\Release-Library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|Win32'">
@@ -224,19 +223,18 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
       </PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\win32\Release</AdditionalLibraryDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(LIBPNG_DIR)\projects\vstudio\x64\Debug-Library</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;qtmaind.lib;QtCored4.lib;QtGuid4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -255,13 +253,12 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\x64\Release-Library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Debug\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">
@@ -296,8 +293,7 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Debug\libpng15.dll $(IPL)\export\$(Platf
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -320,13 +316,12 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\win32\Release-Library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|Win32'">
@@ -349,13 +344,12 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;qtmain.lib;QtCore4.lib;QtGui4.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(LIBPNG_DIR)\projects\vstudio\x64\Release-Library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -379,13 +373,12 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>libpng15.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\x64\Release-Library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories></AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|x64'">
@@ -420,8 +413,7 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
-copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
