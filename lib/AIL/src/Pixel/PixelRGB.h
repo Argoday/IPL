@@ -47,10 +47,11 @@ template <
 
 };
 
-typedef PixelRGBbaseType<I1u,PixelRange_3i1u ,0,1,2> PixelRGBi1utd;
-/*typedef PixelRGBbaseType<I4 ,PixelRange_3i4_1,0,1,2> PixelRGBi4_1;
-typedef PixelRGBbaseType<I4 ,PixelRange_3i4_2,0,1,2> PixelRGBi4_2;//*/
-typedef PixelRGBbaseType<F8 ,PixelRange_3f8  ,0,1,2> PixelRGBf8td;
+typedef PixelRGBbaseType<I1u,PixelRange_3i1u   ,0,1,2> PixelRGBi1utd;
+typedef PixelRGBbaseType<I4 ,PixelRange_3i4_i1u,0,1,2> PixelRGBi4_i1utd;
+typedef PixelRGBbaseType<I4 ,PixelRange_3i4_i2u,0,1,2> PixelRGBi4_i2utd;
+typedef PixelRGBbaseType<F4 ,PixelRange_3f4    ,0,1,2> PixelRGBf4td;
+typedef PixelRGBbaseType<F8 ,PixelRange_3f8    ,0,1,2> PixelRGBf8td;
 
 class AIL_DLL_EXPORT PixelRGBi1u : public PixelRGBi1utd {
 	public:
@@ -83,11 +84,6 @@ class AIL_DLL_EXPORT PixelRGBf8 : public PixelRGBf8td {
 
 		__forceinline explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);} //TODO: Use template specialization to keep memory accesses in-order?
 };
-
-/*typedef PixelRGBbaseType<I1u,PixelRange_3i1u ,2,1,0> PixelBGRi1u;
-typedef PixelRGBbaseType<I4 ,PixelRange_3i4_1,2,1,0> PixelBGRi4_1;
-typedef PixelRGBbaseType<I4 ,PixelRange_3i4_2,2,1,0> PixelBGRi4_2;
-typedef PixelRGBbaseType<F8 ,PixelRange_3f8  ,2,1,0> PixelBGRf8;//*/
 
 }
 
