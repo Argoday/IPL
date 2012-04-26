@@ -14,7 +14,7 @@ template<typename PixelType> AIL_IO_DLL_EXPORT Image<PixelType> read(Data::DataM
 	if(String::hasEnding(fileName,".png")){ //TODO: Add intelligent determination of fileType using Magic Bytes - or at least try multiple
 		return readPNG<PixelType>(dataManager,fileName);
 	}else{
-		return Convert::fromQt<PixelType>(dataManager,readQt(fileName));
+		return readQt<PixelType>(dataManager,fileName);
 	}
 }
 
@@ -25,7 +25,7 @@ template<typename PixelType> AIL_IO_DLL_EXPORT void write(const Image<PixelType>
 	}else if(String::hasEnding(fileName,".ppm")){
 		writePPM(image,fileName);
 	}else{
-		writeQt(Convert::toQt(image),fileName);
+		writeQt(image,fileName);
 	}
 }
 
