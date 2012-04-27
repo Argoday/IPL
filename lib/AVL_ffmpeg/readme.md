@@ -6,7 +6,7 @@
 A very simple class that lets you open a video file and get the frames.
 
 ## Example Usage
-------------
+ ------------
 Data::DataManager dataManager;  
 Video::FFMPEGvideoFile ffmpegFile(&dataManager);  
   
@@ -19,7 +19,7 @@ while(ffmpegFile.hasNextFrame(image)==true) {
 	//Use (*image) ...  
 }  
 if(image!=nullptr){delete image;}  
-------------
+ ------------
 
 ## Example Program
 See ./exe/FrameDump  

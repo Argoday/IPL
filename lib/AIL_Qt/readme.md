@@ -4,7 +4,7 @@
 
 ### Convert from a QImage
 Data::DataManager dataManager;  
-QImage qImage;
+QImage qImage;  
 auto image = Image::Convert::fromQt\<Pixel::PixelRGBi1u\>(&dataManager,qImage);  
 
 ### Convert to a QImage
