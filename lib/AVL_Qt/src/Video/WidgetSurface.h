@@ -35,10 +35,13 @@ class AVL_QT_DLL_EXPORT WidgetSurface : public QAbstractVideoSurface {
 	signals:
 
 		void frameChanged(I8u frame);
+		void durationFramesChanged(const I8u & durationFrames);
 
 	public slots:
 
 		bool present(const QVideoFrame & frame);
+
+		void config(const I8u & durationFrames);
 		void renderFrame(Image::Image<Pixel::PixelRGBi1u> * frame,const I8u & frameIndex);
 
 	private:

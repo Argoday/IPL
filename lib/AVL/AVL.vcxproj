@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AVL.h" />
+    <ClInclude Include="src\Video\Config.h" />
     <ClInclude Include="src\Video\Frame.h" />
   </ItemGroup>
   <ItemGroup>
@@ -47,6 +48,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Video\Config.cpp" />
     <ClCompile Include="src\Video\Frame.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

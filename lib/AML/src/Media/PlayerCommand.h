@@ -17,7 +17,7 @@ enum class AML_DLL_EXPORT Command {
 	pause,
 	stop,
 	playPause, // B1 state
-	seek, // I8 timeDelta
+	seek, // I8 videoFrameIndex
 	open, // std::string fileName, B1 autoPlay
 	close,
 	quit
@@ -52,12 +52,12 @@ class AML_DLL_EXPORT CommandPlayPauseParameter : public CommandParameter {
 class AML_DLL_EXPORT CommandSeekParameter : public CommandParameter {
 	public:
 		typedef CommandSeekParameter ThisType;
-		ThisType(const ThisType & other):timeDelta(other.timeDelta){}
-		ThisType(const I8 & _timeDelta):timeDelta(_timeDelta){}
+		ThisType(const ThisType & other):videoFrameIndex(other.videoFrameIndex){}
+		ThisType(const I8u & _videoFrameIndex):videoFrameIndex(_videoFrameIndex){}
 		void releaseParameter(){}
-		const I8 & getTimeDelta() const {return timeDelta;}
+		const I8u & getVideoFrameIndex() const {return videoFrameIndex;}
 	private:
-		I8 timeDelta;
+		I8u videoFrameIndex;
 };
 class AML_DLL_EXPORT CommandOpenParameter : public CommandParameter {
 	public:

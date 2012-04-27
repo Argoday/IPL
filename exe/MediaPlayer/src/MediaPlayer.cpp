@@ -26,11 +26,14 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 
 	connect(playPauseButton, SIGNAL(clicked()),this, SLOT(playPause()));
 
-	auto positionSlider = new QSlider(Qt::Horizontal);
+	positionSlider = new QSlider(Qt::Horizontal);
 	positionSlider->setRange(0, 10000);
 	connect(positionSlider, SIGNAL(sliderMoved(int)),this, SLOT(sliderChanged(int)));
+	connect(positionSlider, SIGNAL(sliderPressed()),this, SLOT(sliderPressed()));
+	connect(positionSlider, SIGNAL(sliderReleased()),this, SLOT(sliderReleased()));
 
 	connect(surface, SIGNAL(frameChanged(I8u)),this, SLOT(frameChanged(I8u)));
+	connect(surface, SIGNAL(durationFramesChanged(I8u)),this, SLOT(durationFramesChanged(I8u)));
 
 	connect(this, SIGNAL(setSlider(int)),positionSlider, SLOT(setValue(int)));
 	
@@ -58,7 +61,16 @@ MediaPlayer::~MediaPlayer(){
 	delete player;
 }
 void MediaPlayer::sliderChanged(int sliderIndex){
-	//seek
+}
+void MediaPlayer::sliderPressed(){
+	mediaControl->pause();
+}
+void MediaPlayer::sliderReleased(){
+	mediaControl->seek(positionSlider->sliderPosition());
+	mediaControl->play();
+}
+void MediaPlayer::durationFramesChanged(I8u durationFrames){
+	positionSlider->setRange(0, durationFrames);
 }
 void MediaPlayer::frameChanged(I8u frameIndex){
 	emit setSlider(frameIndex);

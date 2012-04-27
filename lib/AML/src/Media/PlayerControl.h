@@ -26,7 +26,7 @@ class AML_DLL_EXPORT Control {
 		void stop();
 		void playPause();
 		void playPause(const B1 & state);
-		void seek(const I8 & timeDelta);
+		void seek(const I8 & videoFrameIndex);
 		void quit();
 
 	private:

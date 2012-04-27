@@ -5,6 +5,9 @@
     <ClInclude Include="src\Video\Frame.h">
       <Filter>Video\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Video\Config.h">
+      <Filter>Video\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Video">
@@ -19,6 +22,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Video\Frame.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Video\Config.cpp">
       <Filter>Video\Source Files</Filter>
     </ClCompile>
   </ItemGroup>

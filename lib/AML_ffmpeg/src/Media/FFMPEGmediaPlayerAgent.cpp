@@ -3,6 +3,7 @@
 
 #include <Data/DataManager.h>
 #include <Video/Frame.h>
+#include <Video/Config.h>
 #include <Audio/Frame.h>
 #include <Audio/Config.h>
 #include <limits.h>
@@ -137,9 +138,11 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 			gotControlPacket=true;
 		}
 		if(gotControlPacket==true){
-			const Media::Player::CommandOpenParameter      * openParameter             = nullptr;
-			const Media::Player::CommandPlayPauseParameter * playPauseParameter        = nullptr;
-			
+			const Media::Player::CommandOpenParameter      * openParameter      = nullptr;
+			const Media::Player::CommandPlayPauseParameter * playPauseParameter = nullptr;
+			const Media::Player::CommandSeekParameter      * seekParameter      = nullptr;
+			int dir;
+			int code;
 			switch(controlPacket.getCommand()){
 				case Media::Player::Command::play :
 					if((state==State::stopped) || (state==State::paused)){
@@ -182,10 +185,20 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 					}
 				break;
 				case Media::Player::Command::seek :
+					seekParameter = static_cast<const Media::Player::CommandSeekParameter * const>(controlPacket.getParameter());
 					sendFlush();
-
-					//TODO: seek?
-					sendPlay();
+					videoFrameIndex = seekParameter->getVideoFrameIndex();
+					audioFrameIndex = 0;
+					dir = (seekParameter->getVideoFrameIndex() < videoFrameIndex) ? AVSEEK_FLAG_BACKWARD : 0;
+					code = av_seek_frame(_this->formatCtx,_this->videoStreamID,seekParameter->getVideoFrameIndex(),dir | AVSEEK_FLAG_FRAME );
+					if(code<0){
+						//TODO: ERROR:
+						dir=0;
+					}
+					if(state==State::playing){
+						sendPlay();
+					}
+					delete seekParameter;
 				break;
 				case Media::Player::Command::open :
 					if(state!=State::closed){
@@ -375,7 +388,18 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
   
 		_this->numBytes = avpicture_get_size(PIX_FMT_RGB24, pCodecCtx->width,pCodecCtx->height);
 		_this->buffer = (uint8_t *)av_malloc(_this->numBytes*sizeof(uint8_t));
-  
+
+		I8u framesEstimate = 0;
+		if(pVStream->nb_frames!=0){
+			framesEstimate = pVStream->nb_frames;
+		}else{
+			framesEstimate = static_cast<F8>(pVStream->duration) * av_q2d(pVStream->time_base) * av_q2d(pVStream->r_frame_rate);
+		}
+
+		auto videoConfig = new Video::Config(framesEstimate);
+		auto videoPacket = Thread::Queue::DataPacket(videoConfig,0,0);
+		videoPipe.asendData(videoPacket);
+
 	}
 	if(hasAudioStream==true){
 		pAStream  = pFormatCtx->streams[audioStreamID];

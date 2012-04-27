@@ -17,6 +17,7 @@ class QLabel;
 class QScrollArea;
 class QAbstractVideoSurface;
 class QPushButton;
+class QSlider;
 QT_END_NAMESPACE
 
 class MediaPlayer : public QMainWindow {
@@ -31,8 +32,12 @@ class MediaPlayer : public QMainWindow {
 		void exit();
 		void playPause();
 
+		void sliderPressed();
+		void sliderReleased();
+
 		void sliderChanged(int sliderIndex);
 		void frameChanged(I8u frameIndex);
+		void durationFramesChanged(I8u durationFrames);
 
 	signals:
 
@@ -53,6 +58,8 @@ class MediaPlayer : public QMainWindow {
 	
 		typedef Pixel::PixelRGBi1u PixelType;
 		Data::DataManager * const dataManager;
+
+		QSlider * positionSlider;
 		
 		Media::Player::Control * mediaControl;
 		Media::FFMPEGqtPlayer * player;

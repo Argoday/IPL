@@ -60,6 +60,9 @@ void AVL_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
 bool AVL_QT_DLL_EXPORT WidgetSurface::present(const QVideoFrame & frame){
 	return false;
 }
+void AVL_QT_DLL_EXPORT WidgetSurface::config(const I8u & durationFrames){
+	emit durationFramesChanged(durationFrames);
+}
 void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(Image::Image<Pixel::PixelRGBi1u> * frame,const I8u & frameIndex){
 	if(currentFrame!=nullptr){delete currentFrame;}
 	currentFrame = frame;
