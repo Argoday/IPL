@@ -35,6 +35,8 @@ class ACORE_DLL_EXPORT Pipe {
 
 	private:
 
+		void asendData(DataPacket & dataPacket,int bypassCapacityDummy);
+
 		void acquireData();
 		void releaseData();
 

@@ -43,11 +43,11 @@ ACORE_DLL_EXPORT Pipe::~Pipe(){
 }
 void ACORE_DLL_EXPORT Pipe::sendFlush(){
 	++_this->flushID;
-	auto dataPacket = Thread::Queue::DataPacket(Thread::Queue::DataPacket::MessageType::flush,_this->flushID);
-	asendData(dataPacket);
-
 	auto controlPacket = Thread::Queue::ControlPacket(Thread::Queue::ControlPacket::MessageType::flush,_this->flushID);
 	asendControl(controlPacket);
+
+	auto dataPacket = Thread::Queue::DataPacket(Thread::Queue::DataPacket::MessageType::flush,_this->flushID);
+	asendData(dataPacket);
 }
 void ACORE_DLL_EXPORT Pipe::sendStart(){
 	auto controlPacket = Thread::Queue::ControlPacket(Thread::Queue::ControlPacket::MessageType::start);
@@ -58,14 +58,17 @@ void ACORE_DLL_EXPORT Pipe::sendStop(){
 	asendControl(controlPacket);
 }
 void ACORE_DLL_EXPORT Pipe::sendQuit(){
-	auto dataPacket = Thread::Queue::DataPacket(Thread::Queue::DataPacket::MessageType::quit);
-	asendData(dataPacket);
-
 	auto controlPacket = Thread::Queue::ControlPacket(Thread::Queue::ControlPacket::MessageType::quit);
 	asendControl(controlPacket);
+
+	auto dataPacket = Thread::Queue::DataPacket(Thread::Queue::DataPacket::MessageType::quit);
+	asendData(dataPacket,0);
 }
 void ACORE_DLL_EXPORT Pipe::asendData(DataPacket & dataPacket){
 	acquireData();
+	Concurrency::asend(_this->dataQueueTarget,dataPacket);
+}
+void ACORE_DLL_EXPORT Pipe::asendData(DataPacket & dataPacket,int bypassCapacityDummy){
 	Concurrency::asend(_this->dataQueueTarget,dataPacket);
 }
 void ACORE_DLL_EXPORT Pipe::sendData(DataPacket & dataPacket){
