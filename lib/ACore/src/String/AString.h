@@ -12,8 +12,11 @@ namespace String {
 //TODO: Write a light-weight string class
 
 ACORE_DLL_EXPORT std::string getString(const I4  & number);
+ACORE_DLL_EXPORT std::string getString(const I4  & number,const I4 & zeros);
 ACORE_DLL_EXPORT std::string getString(const I8  & number);
+ACORE_DLL_EXPORT std::string getString(const I8  & number,const I4 & zeros);
 ACORE_DLL_EXPORT std::string getString(const I8u & number);
+ACORE_DLL_EXPORT std::string getString(const I8u & number,const I4 & zeros);
 
 ACORE_DLL_EXPORT std::string getString(const F4  & number);
 ACORE_DLL_EXPORT std::string getString(const F8  & number);
