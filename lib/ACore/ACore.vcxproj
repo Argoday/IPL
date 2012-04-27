@@ -346,7 +346,10 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="platform\gcc\ACore-GCC.h" />
+    <ClInclude Include="platform\gcc\Data\DataTypes.h" />
     <ClInclude Include="platform\msvc\src\ACore-MSVC.h" />
+    <ClInclude Include="platform\msvc\src\Data\DataTypes.h" />
     <ClInclude Include="platform\msvc\src\System\System.h" />
     <ClInclude Include="platform\msvc\src\System\Time.h" />
     <ClInclude Include="platform\msvc\src\Thread\QueueControlPacket.h" />
@@ -359,7 +362,6 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClInclude Include="src\Data\DataChunk.h" />
     <ClInclude Include="src\Data\DataManager.h" />
     <ClInclude Include="src\Data\DataRange.h" />
-    <ClInclude Include="src\Data\DataTypes.h" />
     <ClInclude Include="src\Data\Float.h" />
     <ClInclude Include="src\Meta\Boolean.h" />
     <ClInclude Include="src\Meta\Boolean_cpp.h" />

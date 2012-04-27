@@ -2,7 +2,7 @@
 #ifndef DATA__DataChunk_H
 #define DATA__DataChunk_H
 
-#include "DataTypes.h"
+#include <Data/DataTypes.h>
 
 namespace Data {
 

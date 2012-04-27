@@ -3,7 +3,7 @@
 #define DATA__DataManager_H
 
 #include "ACore.h"
-#include "DataTypes.h"
+#include <Data/DataTypes.h>
 
 namespace Data {
 

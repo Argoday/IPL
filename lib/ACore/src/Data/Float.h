@@ -3,7 +3,7 @@
 #define DATA__Float_H
 
 #include "ACore.h"
-#include "DataTypes.h"
+#include <Data/DataTypes.h>
 
 //TODO: Verify that these structures actually work
 //TODO: Examine the x64 generated for accessing the struct components versus the function versions

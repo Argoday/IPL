@@ -73,6 +73,21 @@
     <Filter Include="platform-msvc\Thread\Source Files">
       <UniqueIdentifier>{6f184820-6f84-483d-a193-2557982d1355}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platform-msvc\Data">
+      <UniqueIdentifier>{43cd8c85-304c-43e5-a5ae-4da924e2c02d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-msvc\Data\Header Files">
+      <UniqueIdentifier>{59bc73e4-33c7-47ed-878e-b39ed77bb2a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-gcc">
+      <UniqueIdentifier>{abb5cea5-d7c0-49d0-b3d6-954963ea1358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-gcc\Data">
+      <UniqueIdentifier>{2b1af1c9-e7c2-47e2-960e-83810608c65e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform-gcc\Data\Header Files">
+      <UniqueIdentifier>{4fe1a628-d5b6-4018-93cb-dd5b286357c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Meta\Boolean.h">
@@ -127,9 +142,6 @@
     <ClInclude Include="src\Meta\Swap.h">
       <Filter>Meta\Function Objects\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Data\DataTypes.h">
-      <Filter>Data\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Data\DataRange.h">
       <Filter>Data\Header Files</Filter>
     </ClInclude>
@@ -174,6 +186,15 @@
     </ClInclude>
     <ClInclude Include="platform\msvc\src\ACore-MSVC.h">
       <Filter>platform-msvc</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\msvc\src\Data\DataTypes.h">
+      <Filter>platform-msvc\Data\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\gcc\ACore-GCC.h">
+      <Filter>platform-gcc</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\gcc\Data\DataTypes.h">
+      <Filter>platform-gcc\Data\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
