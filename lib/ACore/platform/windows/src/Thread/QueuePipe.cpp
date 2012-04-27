@@ -12,6 +12,7 @@ class Pipe::Pipe_d {
 	public:
 		Pipe_d(I8 _capacity)
 			:dataCapacity(_capacity)
+			,bounded(_capacity!=0)
 			,flushID(0)
 			,dataQueueSource(dataQueue)
 			,dataQueueTarget(dataQueue)
@@ -20,6 +21,7 @@ class Pipe::Pipe_d {
 		{
 		}
 		Thread::Semaphore dataCapacity;
+		B1 bounded;
 
 		Concurrency::unbounded_buffer<Thread::Queue::DataPacket> dataQueue;
 		Concurrency::ISource<Thread::Queue::DataPacket> & dataQueueSource;
@@ -94,8 +96,8 @@ B1 ACORE_DLL_EXPORT Pipe::areadControl(ControlPacket & controlPacket){
 	return Concurrency::try_receive(_this->controlQueueSource,controlPacket);
 }
 
-void ACORE_DLL_EXPORT Pipe::acquireData(){_this->dataCapacity.acquire();}
-void ACORE_DLL_EXPORT Pipe::releaseData(){_this->dataCapacity.release();}
+void ACORE_DLL_EXPORT Pipe::acquireData(){if(_this->bounded==true){_this->dataCapacity.acquire();}}
+void ACORE_DLL_EXPORT Pipe::releaseData(){if(_this->bounded==true){_this->dataCapacity.release();}}
 
 
 }

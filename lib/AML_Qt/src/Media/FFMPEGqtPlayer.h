@@ -29,8 +29,8 @@ class AML_QT_DLL_EXPORT FFMPEGqtPlayer {
 		FFMPEGqtPlayer(Data::DataManager * const _dataManager,QAbstractVideoSurface * surface)
 			:dataManager(_dataManager)
 		{
-			videoPipe = new Thread::Queue::Pipe(60);
-			audioPipe = new Thread::Queue::Pipe(6000);
+			videoPipe = new Thread::Queue::Pipe(20);
+			audioPipe = new Thread::Queue::Pipe(0);
 
 			mediaControl = new Media::Player::Control(controlQueue);
 
@@ -80,6 +80,6 @@ class AML_QT_DLL_EXPORT FFMPEGqtPlayer {
 };
 
 
- }
+}
 
 #endif 
