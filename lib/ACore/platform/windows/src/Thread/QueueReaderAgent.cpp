@@ -125,6 +125,7 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 									milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);//Guess
 									Concurrency::wait(milliSecDelay);
 								}else if(timeDelta<0.0){
+									//Catchup - mimic a 'Dropped packet'
 								}else if (timeDelta<10.0){//TODO: Make tolerance configurable
 									milliSecDelay = static_cast<I4u>(timeDelta * 1000.0);
 									lastTimeDelta = timeDelta;
