@@ -2,13 +2,13 @@
 #ifndef VIDEO__FFMPEGvideoFile_H
 #define VIDEO__FFMPEGvideoFile_H
 
-#include "AML_ffmpeg.h"
+#include "AVL_ffmpeg.h"
 #include <Image/Image.h>
 #include <string>
 
 namespace Video {
 
-class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile {
+class AVL_FFMPEG_DLL_EXPORT FFMPEGvideoFile {
 	public:
 		typedef FFMPEGvideoFile ThisType;
 

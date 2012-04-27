@@ -14,7 +14,7 @@ extern "C" {
 
 namespace Video {
 
-class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile_d {
+class AVL_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile_d {
 	public:
 		FFMPEGvideoFile_d()
 			:formatCtx(nullptr)
@@ -37,7 +37,7 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile_d {
 
 };
 
-AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile(Data::DataManager * const & dataManager)
+AVL_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile(Data::DataManager * const & dataManager)
 	:dataManager(dataManager)
 	,frameIndex(0)
 {
@@ -48,12 +48,12 @@ AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile(Data::DataManager * const
 	_this->codecCtx        = nullptr;
 	_this->img_convert_ctx = nullptr;
 }
-AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::~FFMPEGvideoFile(){
+AVL_FFMPEG_DLL_EXPORT FFMPEGvideoFile::~FFMPEGvideoFile(){
 	closeFile();
 	if(_this->img_convert_ctx!=nullptr){sws_freeContext(_this->img_convert_ctx);}
 	delete _this;
 }
-AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(Image::Image<Pixel::PixelRGBi1u> * & imagePtr){
+AVL_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(Image::Image<Pixel::PixelRGBi1u> * & imagePtr){
 	auto & pCodecCtx  = _this->codecCtx;
 	auto & pFrame     = _this->frame;
 	auto & packet     = _this->packet;
@@ -97,7 +97,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(Image::Image<Pixel::Pix
 }
 
 
-AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::openFile(const std::string & fileName){
+AVL_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::openFile(const std::string & fileName){
 	auto & pFormatCtx    = _this->formatCtx;
 	auto & pCodecCtx     = _this->codecCtx;
 	auto & videoStreamID = _this->videoStreamID;
@@ -147,7 +147,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::openFile(const std::string & fileNam
 	return true;
 }
 
-AML_FFMPEG_DLL_EXPORT void FFMPEGvideoFile::closeFile(){
+AVL_FFMPEG_DLL_EXPORT void FFMPEGvideoFile::closeFile(){
 	frameIndex = 0;
 	if(_this->frame    !=nullptr){av_free(_this->frame);                _this->frame     = nullptr;}
 	if(_this->codecCtx !=nullptr){avcodec_close(_this->codecCtx);       _this->codecCtx  = nullptr;}

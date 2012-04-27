@@ -1,26 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Video">
-      <UniqueIdentifier>{DC216131-E0BC-4B48-8CB6-7117F9A7BEF1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Video\Header Files">
-      <UniqueIdentifier>{8672CEC1-2384-46DB-9EA7-ABBB04C04298}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Video\Source Files">
-      <UniqueIdentifier>{EE3FEFC0-A410-43BE-91DB-330C43FC0774}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Audio">
-      <UniqueIdentifier>{A511F1FC-395F-45E5-AA62-A7C40BC4A429}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Media">
       <UniqueIdentifier>{07F77B6C-8A60-443A-9C3D-CA2255AF52C2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Audio\Header Files">
-      <UniqueIdentifier>{00F14881-30B2-4262-B897-AD34C116A18F}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Audio\Source Files">
-      <UniqueIdentifier>{66E7CBBC-FA13-43AE-A94C-C397A4CB1202}</UniqueIdentifier>
     </Filter>
     <Filter Include="Media\Header Files">
       <UniqueIdentifier>{4F9C472A-89C0-4055-BC74-8D3DD59C178F}</UniqueIdentifier>
@@ -31,17 +13,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AML_ffmpeg.h" />
-    <ClInclude Include="src\Video\FFMPEGvideoFile.h">
-      <Filter>Video\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Media\FFMPEGmediaPlayerAgent.h">
       <Filter>Media\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Video\FFMPEGvideoFile.cpp">
-      <Filter>Video\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Media\FFMPEGmediaPlayerAgent.cpp">
       <Filter>Media\Source Files</Filter>
     </ClCompile>

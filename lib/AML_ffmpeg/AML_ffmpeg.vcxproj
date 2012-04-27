@@ -37,7 +37,6 @@
   <ItemGroup>
     <ClInclude Include="src\AML_ffmpeg.h" />
     <ClInclude Include="src\Media\FFMPEGmediaPlayerAgent.h" />
-    <ClInclude Include="src\Video\FFMPEGvideoFile.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AAL\AAL.vcxproj">
@@ -58,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Media\FFMPEGmediaPlayerAgent.cpp" />
-    <ClCompile Include="src\Video\FFMPEGvideoFile.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{98E5DFFD-DD87-4059-A6DC-67605A87D2D9}</ProjectGuid>
