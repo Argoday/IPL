@@ -52,25 +52,25 @@
     <Filter Include="String\Source Files">
       <UniqueIdentifier>{d5322d99-04d7-403f-bc04-ea9749e22440}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows">
+    <Filter Include="platform-msvc">
       <UniqueIdentifier>{efc9a89d-6c63-4236-9b15-438cb8fc0afb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows\Thread">
+    <Filter Include="platform-msvc\Thread">
       <UniqueIdentifier>{fa277e66-7605-4048-967b-407fcda12e6e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows\System">
+    <Filter Include="platform-msvc\System">
       <UniqueIdentifier>{9f8a835b-5317-409f-b6b8-bfc2f1cd8f10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows\System\Header Files">
+    <Filter Include="platform-msvc\System\Header Files">
       <UniqueIdentifier>{aa0546cd-990e-4269-862b-7b75673c1c12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows\Thread\Header Files">
+    <Filter Include="platform-msvc\Thread\Header Files">
       <UniqueIdentifier>{aee38e5a-1347-4666-b37c-3e94d1d7ed9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows\System\Source Files">
+    <Filter Include="platform-msvc\System\Source Files">
       <UniqueIdentifier>{dde744c4-296c-4368-9ed0-8ebc780d6aea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform-windows\Thread\Source Files">
+    <Filter Include="platform-msvc\Thread\Source Files">
       <UniqueIdentifier>{6f184820-6f84-483d-a193-2557982d1355}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -148,29 +148,32 @@
     <ClInclude Include="src\Data\Float.h">
       <Filter>Data\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\System\System.h">
-      <Filter>platform-windows\System\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\System\System.h">
+      <Filter>platform-msvc\System\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\Thread\Semaphore.h">
-      <Filter>platform-windows\Thread\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\Thread\Semaphore.h">
+      <Filter>platform-msvc\Thread\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\Thread\QueueControlPacket.h">
-      <Filter>platform-windows\Thread\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\Thread\QueueControlPacket.h">
+      <Filter>platform-msvc\Thread\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\Thread\QueueDataPacket.h">
-      <Filter>platform-windows\Thread\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\Thread\QueueDataPacket.h">
+      <Filter>platform-msvc\Thread\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\Thread\QueuePipe.h">
-      <Filter>platform-windows\Thread\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\Thread\QueuePipe.h">
+      <Filter>platform-msvc\Thread\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\Thread\QueueReaderAgent.h">
-      <Filter>platform-windows\Thread\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\Thread\QueueReaderAgent.h">
+      <Filter>platform-msvc\Thread\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\Thread\QueueReaderAgentTarget.h">
-      <Filter>platform-windows\Thread\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\Thread\QueueReaderAgentTarget.h">
+      <Filter>platform-msvc\Thread\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="platform\windows\src\System\Time.h">
-      <Filter>platform-windows\System\Header Files</Filter>
+    <ClInclude Include="platform\msvc\src\System\Time.h">
+      <Filter>platform-msvc\System\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\msvc\src\ACore-MSVC.h">
+      <Filter>platform-msvc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -192,26 +195,26 @@
     <ClCompile Include="src\Data\Float.cpp">
       <Filter>Data\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\System\System.cpp">
-      <Filter>platform-windows\System\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\System\System.cpp">
+      <Filter>platform-msvc\System\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\Thread\Semaphore.cpp">
-      <Filter>platform-windows\Thread\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\Thread\Semaphore.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\Thread\QueueControlPacket.cpp">
-      <Filter>platform-windows\Thread\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\Thread\QueueControlPacket.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\Thread\QueueDataPacket.cpp">
-      <Filter>platform-windows\Thread\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\Thread\QueueDataPacket.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\Thread\QueuePipe.cpp">
-      <Filter>platform-windows\Thread\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\Thread\QueuePipe.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\Thread\QueueReaderAgent.cpp">
-      <Filter>platform-windows\Thread\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\Thread\QueueReaderAgent.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="platform\windows\src\System\Time.cpp">
-      <Filter>platform-windows\System\Source Files</Filter>
+    <ClCompile Include="platform\msvc\src\System\Time.cpp">
+      <Filter>platform-msvc\System\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

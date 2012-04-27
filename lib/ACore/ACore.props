@@ -6,7 +6,7 @@
 	</PropertyGroup>
 	<ItemDefinitionGroup>
 		<ClCompile>
-			<AdditionalIncludeDirectories>$(IPL)/lib/ACore/src;$(IPL)/lib/ACore/platform/windows/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>$(IPL)/lib/ACore/src;$(IPL)/lib/ACore/platform/msvc/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ClCompile>
 	</ItemDefinitionGroup>
 	<ItemGroup />

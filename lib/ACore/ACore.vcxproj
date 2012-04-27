@@ -346,14 +346,15 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="platform\windows\src\System\System.h" />
-    <ClInclude Include="platform\windows\src\System\Time.h" />
-    <ClInclude Include="platform\windows\src\Thread\QueueControlPacket.h" />
-    <ClInclude Include="platform\windows\src\Thread\QueueDataPacket.h" />
-    <ClInclude Include="platform\windows\src\Thread\QueuePipe.h" />
-    <ClInclude Include="platform\windows\src\Thread\QueueReaderAgent.h" />
-    <ClInclude Include="platform\windows\src\Thread\QueueReaderAgentTarget.h" />
-    <ClInclude Include="platform\windows\src\Thread\Semaphore.h" />
+    <ClInclude Include="platform\msvc\src\ACore-MSVC.h" />
+    <ClInclude Include="platform\msvc\src\System\System.h" />
+    <ClInclude Include="platform\msvc\src\System\Time.h" />
+    <ClInclude Include="platform\msvc\src\Thread\QueueControlPacket.h" />
+    <ClInclude Include="platform\msvc\src\Thread\QueueDataPacket.h" />
+    <ClInclude Include="platform\msvc\src\Thread\QueuePipe.h" />
+    <ClInclude Include="platform\msvc\src\Thread\QueueReaderAgent.h" />
+    <ClInclude Include="platform\msvc\src\Thread\QueueReaderAgentTarget.h" />
+    <ClInclude Include="platform\msvc\src\Thread\Semaphore.h" />
     <ClInclude Include="src\ACore.h" />
     <ClInclude Include="src\Data\DataChunk.h" />
     <ClInclude Include="src\Data\DataManager.h" />
@@ -381,13 +382,13 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClInclude Include="src\String\AString.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="platform\windows\src\System\System.cpp" />
-    <ClCompile Include="platform\windows\src\System\Time.cpp" />
-    <ClCompile Include="platform\windows\src\Thread\QueueControlPacket.cpp" />
-    <ClCompile Include="platform\windows\src\Thread\QueueDataPacket.cpp" />
-    <ClCompile Include="platform\windows\src\Thread\QueuePipe.cpp" />
-    <ClCompile Include="platform\windows\src\Thread\QueueReaderAgent.cpp" />
-    <ClCompile Include="platform\windows\src\Thread\Semaphore.cpp" />
+    <ClCompile Include="platform\msvc\src\System\System.cpp" />
+    <ClCompile Include="platform\msvc\src\System\Time.cpp" />
+    <ClCompile Include="platform\msvc\src\Thread\QueueControlPacket.cpp" />
+    <ClCompile Include="platform\msvc\src\Thread\QueueDataPacket.cpp" />
+    <ClCompile Include="platform\msvc\src\Thread\QueuePipe.cpp" />
+    <ClCompile Include="platform\msvc\src\Thread\QueueReaderAgent.cpp" />
+    <ClCompile Include="platform\msvc\src\Thread\Semaphore.cpp" />
     <ClCompile Include="src\Data\DataChunk.cpp" />
     <ClCompile Include="src\Data\DataManager.cpp" />
     <ClCompile Include="src\Data\DataRange.cpp" />
