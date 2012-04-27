@@ -89,10 +89,22 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendFlush(){
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendPause(){
 	videoPipe.sendStop();
 	audioPipe.sendStop();
+	lastVideoTimeStamp = 0.0;
+	lastVideoTimeDelta = 0.0;
+	lastAudioTimeStamp = 0.0;
+	lastAudioTimeDelta = 0.0;
+	resetVideoTime = true;
+	resetAudioTime = true;
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendPlay(){
 	videoPipe.sendStart();
 	audioPipe.sendStart();
+	lastVideoTimeStamp = 0.0;
+	lastVideoTimeDelta = 0.0;
+	lastAudioTimeStamp = 0.0;
+	lastAudioTimeDelta = 0.0;
+	resetVideoTime = true;
+	resetAudioTime = true;
 }
 AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::sendQuit(){
 	videoPipe.sendQuit();
@@ -108,6 +120,12 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 	auto & hasAudioStream = _this->hasAudioStream;
 
 	int frameFinished = 0;
+	lastVideoTimeStamp = 0.0;
+	lastVideoTimeDelta = 0.0;
+	lastAudioTimeStamp = 0.0;
+	lastAudioTimeDelta = 0.0;
+	resetVideoTime = true;
+	resetAudioTime = true;
 	for(;;){
 		Concurrency::Context::Yield();
 		Media::Player::ControlPacket controlPacket;
@@ -201,15 +219,32 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 			if(av_read_frame(_this->formatCtx, &packet)>=0) {
 				if((hasVideoStream==true)&&(packet.stream_index==_this->videoStreamID)){
 
-					avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished,&packet);
-      
-					if(frameFinished) {
+					auto code = avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished,&packet);
+					if(code<0){
+						//TODO: Error decoding video
+					}else if(frameFinished) {
 				
 						F8 timeStamp;
 						if(pFrame->pkt_pts!=AV_NOPTS_VALUE){
 							timeStamp = pFrame->pkt_pts * av_q2d(_this->vStream->time_base);
+						}else if(pFrame->pts!=AV_NOPTS_VALUE){
+							timeStamp = pFrame->pts * av_q2d(_this->vStream->time_base) / 1000.0;
 						}else{
-							timeStamp = std::numeric_limits<F8>::infinity();
+							timeStamp = static_cast<F8>(videoFrameIndex) * av_q2d(_this->vStream->r_frame_rate) / 1000.0;
+						}
+						F8 timeDelta = timeStamp - lastVideoTimeStamp;
+
+						if(resetVideoTime==false){
+							if((timeDelta>0.0)&&(timeDelta<1.0)){
+								lastVideoTimeStamp = timeStamp;
+								lastVideoTimeDelta = timeDelta;
+							}else{
+								timeStamp = lastVideoTimeStamp+timeDelta;
+							}
+						}else{
+							resetVideoTime=false;
+							lastVideoTimeStamp = timeStamp;
+							lastVideoTimeDelta = timeDelta;
 						}
 
 						auto width  = pCodecCtx->width;
@@ -241,10 +276,25 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						F8 timeStamp;
 						if(pAFrame->pkt_pts!=AV_NOPTS_VALUE){
 							timeStamp = pAFrame->pkt_pts * av_q2d(_this->aStream->time_base);
+						}else if(pAFrame->pts!=AV_NOPTS_VALUE){
+							timeStamp = pAFrame->pts * av_q2d(_this->aStream->time_base) / 1000.0;
 						}else{
 							timeStamp = std::numeric_limits<F8>::infinity();
 						}
+						F8 timeDelta = timeStamp - lastAudioTimeStamp;
 
+						if(resetAudioTime==false){
+							if((timeDelta>0.0)&&(timeDelta<1.0)){
+								lastAudioTimeStamp = timeStamp;
+								lastAudioTimeDelta = timeDelta;
+							}else{
+								timeStamp = lastAudioTimeStamp+timeDelta;
+							}
+						}else{
+							resetAudioTime=false;
+							lastAudioTimeStamp = timeStamp;
+							lastAudioTimeDelta = timeDelta;
+						}
 
 						auto audioData = new Audio::AudioData(dataManager,decoded_data_size);
 						memcpy(audioData->getData(),pAFrame->data[0],decoded_data_size);
