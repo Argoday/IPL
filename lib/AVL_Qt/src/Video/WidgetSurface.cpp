@@ -47,10 +47,13 @@ bool AVL_QT_DLL_EXPORT WidgetSurface::start(const QVideoSurfaceFormat & format){
 	}
 }
 void AVL_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
-	QSize size = surfaceFormat().sizeHint();
-	size.scale(widget->size().boundedTo(size), Qt::KeepAspectRatio);
+	QSize videoSize  = surfaceFormat().sizeHint();
+	QSize widgetSize = widget->size();
 
-	targetRect = QRect(QPoint(0, 0), size);
+	QSize targetSize = videoSize;
+	targetSize.scale(widgetSize, Qt::KeepAspectRatio);
+
+	targetRect = QRect(QPoint(0, 0), targetSize);
 	targetRect.moveCenter(widget->rect().center());
 }
 
