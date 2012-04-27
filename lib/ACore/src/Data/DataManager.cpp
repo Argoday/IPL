@@ -19,13 +19,13 @@ class DataManager::DataManager_d {
 };
 
 void * const DataManager::getMemory(const I4  & numBytes){
-	return _aligned_malloc(numBytes,4096);
+	return _aligned_malloc(numBytes,4096); //TODO: Allow for different alignments for smaller allocations
 }
 void * const DataManager::getMemory(const I4u & numBytes){
-	return _aligned_malloc(numBytes,4096);
+	return _aligned_malloc(numBytes,4096); //TODO: Allow for different alignments for smaller allocations
 }
 void * const DataManager::getMemory(const I8u & numBytes){
-	return _aligned_malloc(numBytes,4096);
+	return _aligned_malloc(numBytes,4096); //TODO: Allow for different alignments for smaller allocations
 }
 
 void DataManager::release(const void * const dataPtr){
