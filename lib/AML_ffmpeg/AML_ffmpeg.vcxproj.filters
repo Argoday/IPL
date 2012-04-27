@@ -31,9 +31,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AML_ffmpeg.h" />
-    <ClInclude Include="src\Audio\FFMPEGaudioFile.h">
-      <Filter>Audio\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Video\FFMPEGvideoFile.h">
       <Filter>Video\Header Files</Filter>
     </ClInclude>
@@ -42,9 +39,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Audio\FFMPEGaudioFile.cpp">
-      <Filter>Audio\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Video\FFMPEGvideoFile.cpp">
       <Filter>Video\Source Files</Filter>
     </ClCompile>

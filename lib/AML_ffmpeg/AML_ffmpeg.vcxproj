@@ -36,7 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AML_ffmpeg.h" />
-    <ClInclude Include="src\Audio\FFMPEGaudioFile.h" />
     <ClInclude Include="src\Media\FFMPEGmediaPlayerAgent.h" />
     <ClInclude Include="src\Video\FFMPEGvideoFile.h" />
   </ItemGroup>
@@ -58,7 +57,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Audio\FFMPEGaudioFile.cpp" />
     <ClCompile Include="src\Media\FFMPEGmediaPlayerAgent.cpp" />
     <ClCompile Include="src\Video\FFMPEGvideoFile.cpp" />
   </ItemGroup>
