@@ -30,11 +30,12 @@ class ACORE_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 
 	private:
 
-		Concurrency::event targetSetEvent;
-
-		ReaderAgentTarget * target;
-
 		Thread::Queue::Pipe & sourcePipe;
+		ReaderAgentTarget * target;
+		Concurrency::event targetSetEvent;
+		
+
+		
 };
 
 }
