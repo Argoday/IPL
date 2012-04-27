@@ -4,7 +4,7 @@
 
 QPaint is a simple paint-like gui application.
 
-Note: This application serves as a test bed for AIL, funcitonality is added as it is added to AIL.
+Note: This application is not useful yet.  At the moment it only serves as a hap-hazard test bed for AIL.
 
 ## Dependencies
 
