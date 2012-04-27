@@ -18,9 +18,8 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile {
 		bool openFile(const std::string & fileName);
 		void closeFile();
 
-		bool hasNextFrame();
+		bool hasNextFrame(Image::Image<Pixel::PixelRGBi1u> * & imagePtr);
 
-		Image::Image<Pixel::PixelRGBi1u> getFrame() const ;
 		const I8u & getFrameIndex() const {return frameIndex;}
 
 	private:
@@ -28,6 +27,7 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile {
 
 		class FFMPEGvideoFile_d;
 		FFMPEGvideoFile_d * _this;
+
 		Data::DataManager * const dataManager;
 };
 	

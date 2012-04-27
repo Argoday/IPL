@@ -21,9 +21,7 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile_d {
 			,codecCtx(nullptr)
 			,codec(nullptr)
 			,frame(nullptr)
-			,frameRGB(nullptr)
 			,numBytes(0)
-			,buffer(nullptr)
 			,img_convert_ctx(nullptr)
 		{
 		}
@@ -32,11 +30,9 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile_d {
 		AVCodecContext  * codecCtx;
 		AVCodec         * codec;
 		AVFrame         * frame; 
-		AVFrame         * frameRGB;
 		AVPacket          packet;
 		int               numBytes;
 		unsigned int      videoStreamID;
-		uint8_t         * buffer;
 		SwsContext      * img_convert_ctx;
 
 };
@@ -47,17 +43,19 @@ AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::FFMPEGvideoFile(Data::DataManager * const
 {
 	_this = new FFMPEGvideoFile_d;
 	av_register_all();
-	_this->formatCtx = avformat_alloc_context();
+	_this->formatCtx       = avformat_alloc_context();
+	_this->frame           = nullptr;
+	_this->codecCtx        = nullptr;
+	_this->img_convert_ctx = nullptr;
 }
 AML_FFMPEG_DLL_EXPORT FFMPEGvideoFile::~FFMPEGvideoFile(){
 	closeFile();
-	sws_freeContext(_this->img_convert_ctx);
+	if(_this->img_convert_ctx!=nullptr){sws_freeContext(_this->img_convert_ctx);}
 	delete _this;
 }
-AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(){
+AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(Image::Image<Pixel::PixelRGBi1u> * & imagePtr){
 	auto & pCodecCtx  = _this->codecCtx;
 	auto & pFrame     = _this->frame;
-	auto & pFrameRGB  = _this->frameRGB;
 	auto & packet     = _this->packet;
 
 	int frameFinished=0;
@@ -67,14 +65,28 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(){
 			avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished,&packet);
       
 			if(frameFinished) {
-				auto w = pCodecCtx->width;
-				auto h = pCodecCtx->height;
-				_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,w, h, pCodecCtx->pix_fmt, w, h, PIX_FMT_RGB24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
-				sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, pFrameRGB->data, pFrameRGB->linesize);
+				auto width  = pCodecCtx->width;
+				auto height = pCodecCtx->height;
 
-				av_free_packet(&packet);
+				Image::Image<Pixel::PixelRGBi1u> * image = nullptr;
+				if((imagePtr->getWidth()==width)&&(imagePtr->getHeight()==height)){
+					image = imagePtr;
+				}else{
+					if(imagePtr!=nullptr){delete imagePtr;}
+					image = new Image::Image<Pixel::PixelRGBi1u>(width,height,dataManager);
+					imagePtr = image;
+				}
+
+				uint8_t * data[AV_NUM_DATA_POINTERS];
+				int linesize[AV_NUM_DATA_POINTERS];
+				data[0] = static_cast<uint8_t*const>(static_cast<void*const>(image->getDataPtr()));
+				linesize[0] = width*3;
+
+				_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+				sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, data, linesize);
 
 				++frameIndex;
+				av_free_packet(&packet);
 				return true;
 			}
 		}
@@ -91,9 +103,15 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::openFile(const std::string & fileNam
 	auto & videoStreamID = _this->videoStreamID;
 	frameIndex = 0;
 
-	if(avformat_open_input(&pFormatCtx, fileName.c_str(), NULL, 0)!=0){return false;}
+	if(avformat_open_input(&pFormatCtx, fileName.c_str(), NULL, 0)!=0){
+		//TODO: ERROR:
+		return false;
+	}
   
-	if(avformat_find_stream_info(pFormatCtx,NULL)<0){return false;}
+	if(avformat_find_stream_info(pFormatCtx,NULL)<0){
+		//TODO: ERROR:
+		return false;
+	}
   
 	// Find the first video stream
 	videoStreamID=-1;
@@ -116,51 +134,24 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::openFile(const std::string & fileNam
 		return false;
 	}
 
-	if(avcodec_open2(pCodecCtx, _this->codec, NULL)<0){return false;}
+	if(avcodec_open2(pCodecCtx, _this->codec, NULL)<0){
+		//TODO: ERROR:
+		return false;
+	}
   
 	_this->frame=avcodec_alloc_frame();
 	if(_this->frame==NULL){return false;}
   
-	_this->frameRGB=avcodec_alloc_frame();
-	if(_this->frameRGB==NULL){return false;}
-  
 	_this->numBytes = avpicture_get_size(PIX_FMT_RGB24, pCodecCtx->width,pCodecCtx->height);
-	_this->buffer = (uint8_t *)av_malloc(_this->numBytes*sizeof(uint8_t));
-  
-	avpicture_fill((AVPicture *)_this->frameRGB, _this->buffer, PIX_FMT_RGB24,pCodecCtx->width, pCodecCtx->height);
 
 	return true;
 }
 
 AML_FFMPEG_DLL_EXPORT void FFMPEGvideoFile::closeFile(){
 	frameIndex = 0;
-	if(_this->buffer   !=nullptr){av_free(_this->buffer);               _this->buffer    = nullptr;}
 	if(_this->frame    !=nullptr){av_free(_this->frame);                _this->frame     = nullptr;}
-	if(_this->frameRGB !=nullptr){av_free(_this->frameRGB);             _this->frameRGB  = nullptr;}
 	if(_this->codecCtx !=nullptr){avcodec_close(_this->codecCtx);       _this->codecCtx  = nullptr;}
 	if(_this->formatCtx!=nullptr){av_close_input_file(_this->formatCtx);_this->formatCtx = nullptr;}
-}
-
-AML_FFMPEG_DLL_EXPORT Image::Image<Pixel::PixelRGBi1u> FFMPEGvideoFile::getFrame() const {
-	
-	auto & pFrame = _this->frameRGB;
-	auto & width  = _this->codecCtx->width;
-	auto & height = _this->codecCtx->height;
-
-	Image::Image<Pixel::PixelRGBi1u> image(width,height,dataManager);
-	if(pFrame->linesize[0]==width*3){
-		memcpy(image.getDataPtr(),pFrame->data[0],_this->numBytes);
-	}else{
-		auto dataPtr  = image.getDataPtr();
-		auto framePtr = pFrame->data[0];
-		auto linesize = pFrame->linesize[0];
-		for(int y=0; y<height; y++){
-			memcpy(dataPtr,framePtr,linesize);
-			dataPtr+=width;
-			framePtr+=linesize;
-		}
-	}
-	return image;
 }
 
 }
