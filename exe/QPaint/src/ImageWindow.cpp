@@ -123,8 +123,8 @@ class NegateObj {
 			(*dstPixelPtr) = (((*srcPixelPtr21) - (*srcPixelPtr01)) / 2) + 0.5;
 		}//*/
 		static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
-																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
-																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
+															   const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
+															   const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			PixelDataType Gx = (((*srcPixelPtr01)*2) + (*srcPixelPtr02) + (*srcPixelPtr00) - (((*srcPixelPtr21)*2) + (*srcPixelPtr22) + (*srcPixelPtr20)));
 			PixelDataType Gy = (((*srcPixelPtr12)*2) + (*srcPixelPtr02) + (*srcPixelPtr22) - (((*srcPixelPtr10)*2) + (*srcPixelPtr00) + (*srcPixelPtr20)));
 			(*dstPixelPtr).get<0>() = sqrt((Gx.get<0>()*Gx.get<0>()+Gy.get<0>()*Gy.get<0>()) / 32);
