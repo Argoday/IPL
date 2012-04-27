@@ -10,13 +10,14 @@ namespace Pixel {
 //TODO: Actually make the Alpha channel do stuff
 template <
 	typename NumberType,
-	typename BasePixelDataType
-> class AIL_DLL_EXPORT PixelDataType3A
-	: public BasePixelDataType
-{
+	int Xposition,
+	int Yposition,
+	int Zposition,
+	int Aposition
+> class AIL_DLL_EXPORT PixelDataType3A {
 	public:
-		typedef PixelDataType3A<NumberType,BasePixelDataType> ThisType;
-		typedef BasePixelDataType ParentType;
+		typedef PixelDataType3A<NumberType,Xposition,Yposition,Zposition,Aposition> ThisType;
+		typedef NumberType NumberType;
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(scalar),a(scalar){}

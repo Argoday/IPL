@@ -13,6 +13,7 @@ template <
 > class AIL_DLL_EXPORT PixelDataType1 {
 	public:
 		typedef PixelDataType1<NumberType> ThisType;
+		typedef NumberType NumberType;
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType & _scalar):x(_scalar){}

@@ -33,7 +33,7 @@ template <
 		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
 		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
 
-		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);} //TODO: Use template specialization to keep memory accesses in-order
+		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
 		
 		FINLINE void setY(const NumberType & _y) {this->set<Yposition>(_y);}
 		FINLINE void setU(const NumberType & _u) {this->set<Uposition>(_u);}
@@ -51,11 +51,11 @@ template <
 
 };
 
-//typedef PixelYUVbaseType<I1u,PixelRange_3i1u ,0,1,2> PixelYUVi1u;
-//typedef PixelYUVbaseType<I4 ,PixelRange_3i4_1,0,1,2> PixelYUVi4_1;
-//typedef PixelYUVbaseType<I4 ,PixelRange_3i4_2,0,1,2> PixelYUVi4_2;
-//typedef PixelYUVbaseType<F8 ,PixelRange_3f8  ,0,1,2> PixelYUVf8;
-typedef PixelYUVbaseType<F8,PixelRange_Y2_0f8  ,0,1,2> PixelYUVf8td;
+//typedef PixelYUVbaseType<I1u,PixelRange_Y2_0i1u   ,0,1,2> PixelYUVi1utd;
+//typedef PixelYUVbaseType<I4 ,PixelRange_Y2_0i4    ,0,1,2> PixelYUVi4td;
+//typedef PixelYUVbaseType<I4 ,PixelRange_Y2_0i4_i1u,0,1,2> PixelYUVi4_i1utd;
+typedef PixelYUVbaseType<F4 ,PixelRange_Y2_0f4  ,0,1,2> PixelYUVf4td;
+typedef PixelYUVbaseType<F8 ,PixelRange_Y2_0f8  ,0,1,2> PixelYUVf8td;
 
 class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
 	public:

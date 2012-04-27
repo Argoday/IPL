@@ -13,6 +13,7 @@ template <
 > class AIL_DLL_EXPORT PixelDataTypeY2 {
 	public:
 		typedef PixelDataTypeY2<NumberType,Yposition> ThisType;
+		typedef NumberType NumberType;
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType & _scalar):x(_scalar) ,y(_scalar) ,z(_scalar){} //TODO: Is this correct? - I expect not , perhaps use (scalar,0,0) ?
@@ -79,7 +80,12 @@ template <
 };
 
 typedef PixelDataTypeY2<I1u,0> PixelDataTypeY2_0i1u;
+
+typedef PixelDataTypeY2<I2u,0> PixelDataTypeY2_0i2u;
+typedef PixelDataTypeY2<I2 ,0> PixelDataTypeY2_0i2;
+
 typedef PixelDataTypeY2<I4 ,0> PixelDataTypeY2_0i4;
+
 typedef PixelDataTypeY2<F4 ,0> PixelDataTypeY2_0f4;
 typedef PixelDataTypeY2<F8 ,0> PixelDataTypeY2_0f8;
 

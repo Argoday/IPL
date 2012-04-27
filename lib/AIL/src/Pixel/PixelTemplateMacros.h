@@ -8,8 +8,10 @@
 
 #define PIXEL_TYPE_1 Pixel::PixelYb1
 #define PIXEL_TYPE_2 Pixel::PixelYi1u
+
 #define PIXEL_TYPE_3 Pixel::PixelRGBi1u
 #define PIXEL_TYPE_4 Pixel::PixelRGBf8
+
 #define PIXEL_TYPE_5 Pixel::PixelYUVf8
 
 #define PIXEL_TYPE_F_1 Pixel::PixelRGBf8
