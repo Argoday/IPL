@@ -17,8 +17,8 @@ template <
 		static const NumberType min;
 		static const NumberType max;
 
-		static __forceinline const NumberType & getMin() {return min;}
-		static __forceinline const NumberType & getMax() {return max;}
+		static FINLINE const NumberType & getMin() {return min;}
+		static FINLINE const NumberType & getMax() {return max;}
 
 };
 
@@ -30,8 +30,8 @@ template <
 		static const NumberType min;
 		static const NumberType max;
 
-		static __forceinline const NumberType & getMin() {return min;}
-		static __forceinline const NumberType & getMax() {return max;}
+		static FINLINE const NumberType & getMin() {return min;}
+		static FINLINE const NumberType & getMax() {return max;}
 
 };
 

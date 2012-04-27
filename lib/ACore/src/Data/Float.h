@@ -37,14 +37,14 @@ class ACORE_DLL_EXPORT F8c {
 				I8u sign : 1;
 			} s ;
 		};
-		__forceinline F8c(){}
-		explicit __forceinline F8c(const I8u & _u,const bool & dummy):u(_u){}
-		__forceinline F8c(const F8 & _f):f(_f){}
-		__forceinline operator F8(){return f;}
+		FINLINE F8c(){}
+		explicit FINLINE F8c(const I8u & _u,const bool & dummy):u(_u){}
+		FINLINE F8c(const F8 & _f):f(_f){}
+		FINLINE operator F8(){return f;}
 
-	    __forceinline bool sign()     const { return (u >> 63) != 0; }
-		__forceinline I8u  mantissa() const { return  u & ((1i64 << 52) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
-		__forceinline I8u  exponent() const { return (u >> 52) & 0x7FF; }
+	    FINLINE bool sign()     const { return (u >> 63) != 0; }
+		FINLINE I8u  mantissa() const { return  u & ((1i64 << 52) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
+		FINLINE I8u  exponent() const { return (u >> 52) & 0x7FF; }
 
 };
 
@@ -59,14 +59,14 @@ class ACORE_DLL_EXPORT F4c {
 				I4u sign : 1;
 			} s ;
 		};
-		__forceinline F4c(){}
-		explicit __forceinline F4c(const I4u & _u,const bool & dummy):u(_u){}
-		__forceinline F4c(const F4 & _f):f(_f){}
-		__forceinline operator F4(){return f;}
+		FINLINE F4c(){}
+		explicit FINLINE F4c(const I4u & _u,const bool & dummy):u(_u){}
+		FINLINE F4c(const F4 & _f):f(_f){}
+		FINLINE operator F4(){return f;}
 
-	    __forceinline bool sign()     const { return (u >> 31) != 0; }
-		__forceinline I4u  mantissa() const { return  u & ((1 << 23) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
-		__forceinline I4u  exponent() const { return (u >> 23) & 0xFF; }
+	    FINLINE bool sign()     const { return (u >> 31) != 0; }
+		FINLINE I4u  mantissa() const { return  u & ((1 << 23) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
+		FINLINE I4u  exponent() const { return (u >> 23) & 0xFF; }
 
 };
 
@@ -83,9 +83,9 @@ class ACORE_DLL_EXPORT F2c {
 			} s ;
 		};
 
-		__forceinline bool sign() const { return (u >> 15) != 0; }
-		__forceinline I2u mantissa() const { return u & ((1 << 10) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
-		__forceinline I2u exponent() const { return (u >> 10) & 0x1F; }
+		FINLINE bool sign() const { return (u >> 15) != 0; }
+		FINLINE I2u mantissa() const { return u & ((1 << 10) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
+		FINLINE I2u exponent() const { return (u >> 10) & 0x1F; }
 
 		F2c(const F4c & f){
 			u=0;

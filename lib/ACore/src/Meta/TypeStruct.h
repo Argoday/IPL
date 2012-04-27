@@ -2,6 +2,8 @@
 #ifndef META__TypeStruct_H
 #define META__TypeStruct_H
 
+#include "ACore.h"
+
 namespace Meta {
 
 template <typename ElementType> class TypeStructEnd {
@@ -12,22 +14,22 @@ template <typename ElementType> class TypeStructEnd {
 
 		typedef TypeStructEnd<ElementType> ThisType;
 
-		__forceinline ThisType(){};
+		FINLINE ThisType(){};
 		
-		__forceinline ThisType &operator -=(const ThisType &other){value-=other.value;return (*this);};
-		__forceinline ThisType &operator +=(const ThisType &other){value+=other.value;return (*this);};
-		__forceinline ThisType &operator *=(const ThisType &other){value*=other.value;return (*this);};
-		__forceinline ThisType &operator /=(const ThisType &other){value/=other.value;return (*this);};
+		FINLINE ThisType &operator -=(const ThisType &other){value-=other.value;return (*this);};
+		FINLINE ThisType &operator +=(const ThisType &other){value+=other.value;return (*this);};
+		FINLINE ThisType &operator *=(const ThisType &other){value*=other.value;return (*this);};
+		FINLINE ThisType &operator /=(const ThisType &other){value/=other.value;return (*this);};
 
-		__forceinline ThisType operator-(const ThisType &other) const {return ThisType(*this)-=other;};
-		__forceinline ThisType operator+(const ThisType &other) const {return ThisType(*this)+=other;};
-		__forceinline ThisType operator*(const ThisType &other) const {return ThisType(*this)*=other;};
-		__forceinline ThisType operator/(const ThisType &other) const {return ThisType(*this)/=other;};
+		FINLINE ThisType operator-(const ThisType &other) const {return ThisType(*this)-=other;};
+		FINLINE ThisType operator+(const ThisType &other) const {return ThisType(*this)+=other;};
+		FINLINE ThisType operator*(const ThisType &other) const {return ThisType(*this)*=other;};
+		FINLINE ThisType operator/(const ThisType &other) const {return ThisType(*this)/=other;};
 
-		template <int TypeNumber,typename ReturnType> __forceinline const ElementType &get() const {return value;}
-		template <int TypeNumber,typename ReturnType> __forceinline       ElementType &get()       {return value;}
+		template <int TypeNumber,typename ReturnType> FINLINE const ElementType &get() const {return value;}
+		template <int TypeNumber,typename ReturnType> FINLINE       ElementType &get()       {return value;}
 		
-		template <int TypeNumber,typename OtherType> __forceinline void set(const OtherType & _otherElement){this->get<TypeNumber,OtherType>()=_otherElement;}
+		template <int TypeNumber,typename OtherType> FINLINE void set(const OtherType & _otherElement){this->get<TypeNumber,OtherType>()=_otherElement;}
 		
 };
 
@@ -40,28 +42,28 @@ template <typename ElementType,typename ParentType> class TypeStruct {
 
 		typedef TypeStruct<ElementType,ParentType> ThisType;
 
-		__forceinline ThisType(){};
-		__forceinline ThisType(const ThisType &_struct);
+		FINLINE ThisType(){};
+		FINLINE ThisType(const ThisType &_struct);
 
-		__forceinline ThisType &operator =(const ThisType &_struct);
+		FINLINE ThisType &operator =(const ThisType &_struct);
 
-		__forceinline ThisType &operator -=(const ThisType &other);
-		__forceinline ThisType &operator +=(const ThisType &other);
-		__forceinline ThisType &operator *=(const ThisType &other);
-		__forceinline ThisType &operator /=(const ThisType &other);
+		FINLINE ThisType &operator -=(const ThisType &other);
+		FINLINE ThisType &operator +=(const ThisType &other);
+		FINLINE ThisType &operator *=(const ThisType &other);
+		FINLINE ThisType &operator /=(const ThisType &other);
 
-		__forceinline ThisType operator-(const ThisType &other) const ;
-		__forceinline ThisType operator+(const ThisType &other) const ;
-		__forceinline ThisType operator*(const ThisType &other) const ;
-		__forceinline ThisType operator/(const ThisType &other) const ;
+		FINLINE ThisType operator-(const ThisType &other) const ;
+		FINLINE ThisType operator+(const ThisType &other) const ;
+		FINLINE ThisType operator*(const ThisType &other) const ;
+		FINLINE ThisType operator/(const ThisType &other) const ;
 
-		template <int TypeNumber,typename ReturnType> __forceinline const ReturnType  & get               () const {return ParentType::get<TypeNumber-1,ReturnType>();}
-		template <                                  > __forceinline const ElementType & get<0,ElementType>() const {return value;}
+		template <int TypeNumber,typename ReturnType> FINLINE const ReturnType  & get               () const {return ParentType::get<TypeNumber-1,ReturnType>();}
+		template <                                  > FINLINE const ElementType & get<0,ElementType>() const {return value;}
 
-		template <int TypeNumber,typename ReturnType> __forceinline ReturnType  & get               (){return ParentType::get<TypeNumber-1,ReturnType>();}
-		template <                                  > __forceinline ElementType & get<0,ElementType>(){return value;}
+		template <int TypeNumber,typename ReturnType> FINLINE ReturnType  & get               (){return ParentType::get<TypeNumber-1,ReturnType>();}
+		template <                                  > FINLINE ElementType & get<0,ElementType>(){return value;}
 
-		template <int TypeNumber,typename OtherType> __forceinline void set(const OtherType & _otherElement){this->get<TypeNumber,OtherType>()=_otherElement;}
+		template <int TypeNumber,typename OtherType> FINLINE void set(const OtherType & _otherElement){this->get<TypeNumber,OtherType>()=_otherElement;}
 
 };
 

@@ -108,21 +108,21 @@ class NegateObj {
 	public:
 		typedef ImageWindow::PixelType::DataType PixelDataType;
 
-		static __forceinline void process(PixelDataType * const & srcImageDataPtr){
+		static FINLINE void process(PixelDataType * const & srcImageDataPtr){
 			(*srcImageDataPtr) = 1.0 - (*srcImageDataPtr);
 		}
-		//static __forceinline void process(const PixelDataType * const & srcImageDataPtr,PixelDataType * const & dstImageDataPtr){
+		//static FINLINE void process(const PixelDataType * const & srcImageDataPtr,PixelDataType * const & dstImageDataPtr){
 		//	(*dstImageDataPtr) = 1.0 - (*srcImageDataPtr);
 		//}
-		static __forceinline void process(PixelDataType * const & dstImageDataPtr,const PixelDataType * const & srcImageDataPtr){
+		static FINLINE void process(PixelDataType * const & dstImageDataPtr,const PixelDataType * const & srcImageDataPtr){
 			(*dstImageDataPtr) = 1.0 - (*srcImageDataPtr);
 		}
-		/*static __forceinline void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
+		/*static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
 																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
 																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			(*dstPixelPtr) = (((*srcPixelPtr21) - (*srcPixelPtr01)) / 2) + 0.5;
 		}//*/
-		static __forceinline void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
+		static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
 																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
 																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			PixelDataType Gx = (((*srcPixelPtr01)*2) + (*srcPixelPtr02) + (*srcPixelPtr00) - (((*srcPixelPtr21)*2) + (*srcPixelPtr22) + (*srcPixelPtr20)));
@@ -131,7 +131,7 @@ class NegateObj {
 			(*dstPixelPtr).get<1>() = sqrt((Gx.get<1>()*Gx.get<1>()+Gy.get<1>()*Gy.get<1>()) / 32);
 			(*dstPixelPtr).get<2>() = sqrt((Gx.get<2>()*Gx.get<2>()+Gy.get<2>()*Gy.get<2>()) / 32);
 		}//*/
-		/*static __forceinline void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
+		/*static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
 																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
 																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			PixelDataType Gx = (((*srcPixelPtr01)*2) + (*srcPixelPtr02) + (*srcPixelPtr00) - (((*srcPixelPtr21)*2) + (*srcPixelPtr22) + (*srcPixelPtr20)));
@@ -140,7 +140,7 @@ class NegateObj {
 			(*dstPixelPtr).get<1>() = (sqrt(Gx.get<1>()*Gx.get<1>()+Gy.get<1>()*Gy.get<1>())) / 5.6568542494923;
 			(*dstPixelPtr).get<2>() = (sqrt(Gx.get<2>()*Gx.get<2>()+Gy.get<2>()*Gy.get<2>())) / 5.6568542494923;
 		}//*/
-		/*static __forceinline void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
+		/*static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
 																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
 																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			(*dstPixelPtr) = (((*srcPixelPtr01)*2) + (*srcPixelPtr02) + (*srcPixelPtr00) - (((*srcPixelPtr21)*2) + (*srcPixelPtr22) + (*srcPixelPtr20))) / 8 + 0.5;

@@ -2,7 +2,8 @@
 #ifndef AIL__AIL_H
 #define AIL__AIL_H
 
-#include "Data/DataTypes.h"
+#include <ACore.h>
+#include <Data/DataTypes.h>
 
 #ifdef BUILD_DLL
 	#ifdef AIL_BUILD

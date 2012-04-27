@@ -13,7 +13,7 @@ template <
 	private:
 		enum { halfLength = length / 2 };
 	public:
-		__forceinline static void process(DataType * & dataPtr,const ParameterDataType * & parameterDataPtr){
+		FINLINE static void process(DataType * & dataPtr,const ParameterDataType * & parameterDataPtr){
 			Unroller2<DataType,ParameterDataType,AlgorithmType,halfLength>::process(dataPtr,parameterDataPtr);
 			Unroller2<DataType,ParameterDataType,AlgorithmType,halfLength>::process(dataPtr,parameterDataPtr);
 		}
@@ -25,7 +25,7 @@ template <
 	typename AlgorithmType
 > class Unroller2<DataType,ParameterDataType,AlgorithmType,1> {
 	public:
-		__forceinline static void process(DataType * & dataPtr,const ParameterDataType * & parameterDataPtr){
+		FINLINE static void process(DataType * & dataPtr,const ParameterDataType * & parameterDataPtr){
 			AlgorithmType::process(dataPtr,parameterDataPtr);
 			++dataPtr;
 			++parameterDataPtr;

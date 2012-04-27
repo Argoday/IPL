@@ -77,22 +77,22 @@ template <
 		{
 		}
 
-		__forceinline       PixelDataType * getDataPtr()       {return imageDataPtr;}
-		__forceinline const PixelDataType * getDataPtr() const {return imageDataPtr;}
+		FINLINE       PixelDataType * getDataPtr()       {return imageDataPtr;}
+		FINLINE const PixelDataType * getDataPtr() const {return imageDataPtr;}
 
-		__forceinline const PixelDataType * const & getDataPtrEnd() const {return imageDataPtrEnd;}
+		FINLINE const PixelDataType * const & getDataPtrEnd() const {return imageDataPtrEnd;}
 
-		__forceinline const ImageSize & getSize() const {return size;}
+		FINLINE const ImageSize & getSize() const {return size;}
 		
-		__forceinline const I4 & getWidth()  const {return size.getWidth();}
-		__forceinline const I4 & getHeight() const {return size.getHeight();}
+		FINLINE const I4 & getWidth()  const {return size.getWidth();}
+		FINLINE const I4 & getHeight() const {return size.getHeight();}
 
-		__forceinline const bool & isSimpleView() const {return simpleView;}
+		FINLINE const bool & isSimpleView() const {return simpleView;}
 
-		__forceinline const bool & hasTop()    const {return top   ;}
-		__forceinline const bool & hasBottom() const {return bottom;}
-		__forceinline const bool & hasLeft()   const {return left  ;}
-		__forceinline const bool & hasRight()  const {return right ;}
+		FINLINE const bool & hasTop()    const {return top   ;}
+		FINLINE const bool & hasBottom() const {return bottom;}
+		FINLINE const bool & hasLeft()   const {return left  ;}
+		FINLINE const bool & hasRight()  const {return right ;}
 
 		PixelDataType & getPixel(const I4 & x,const I4 & y) {
 			I4 tempX=x;if(x<0){tempX=0;}else if(x>=size.getWidth() ){tempX=size.getWidth_1();}

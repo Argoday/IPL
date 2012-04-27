@@ -24,14 +24,14 @@ template <
 		typedef PixelDataType1<NumberType> ParentType;
 		typedef PixelYbaseType<NumberType,PixelRangeType> ThisType;
 
-		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
+		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
 		
-		__forceinline void setY(const NumberType & _y) {this->set<0>(_y);}
+		FINLINE void setY(const NumberType & _y) {this->set<0>(_y);}
 
-		__forceinline const NumberType & getY() const {return this->get<0>();}
+		FINLINE const NumberType & getY() const {return this->get<0>();}
 
 };
 
@@ -46,16 +46,16 @@ class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
 		typedef PixelYb1td ParentType;
 		typedef PixelYb1 ThisType;
 
-		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
+		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
 };
 
 //TODO: Move this to a seperate 'TestType' file ?
 class BooleanTestType {
 	public:
-		static __forceinline Meta::Boolean isIncluded(const Pixel::PixelYb1 &boolToTest){
+		static FINLINE Meta::Boolean isIncluded(const Pixel::PixelYb1 &boolToTest){
 			return boolToTest.getY();
 		}
 };
@@ -68,10 +68,10 @@ class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 		typedef PixelYi1utd ParentType;
 		typedef PixelYi1u ThisType;
 
-		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
+		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
 };
 
 }

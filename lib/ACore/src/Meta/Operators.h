@@ -2,10 +2,12 @@
 #ifndef META__OPERATORS_H
 #define META__OPERATORS_H
 
+#include "ACore.h"
+
 namespace Meta {
 
 #define TEMPLATE_DEF template <typename T,typename U>
-#define SI_DEF static __forceinline
+#define SI_DEF static FINLINE
 
 //TODO: Think about changing 'process' as the standardized name to instead use operator()
 TEMPLATE_DEF class Add {

@@ -27,8 +27,8 @@ template <
 		{
 		};
 
-		__forceinline const I4 & getHeight()  const {return filterHeight;}
-		__forceinline const I4 & getYoffset() const {return yOffset;}
+		FINLINE const I4 & getHeight()  const {return filterHeight;}
+		FINLINE const I4 & getYoffset() const {return yOffset;}
 
 		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 

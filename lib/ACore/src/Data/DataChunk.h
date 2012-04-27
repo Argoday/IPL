@@ -2,6 +2,7 @@
 #ifndef DATA__DataChunk_H
 #define DATA__DataChunk_H
 
+#include "ACore.h"
 #include <Data/DataTypes.h>
 
 namespace Data {
@@ -22,17 +23,17 @@ class DataChunk {
 
 		DataChunk(const I8u & _numBytes, DataChunk * const & _nextPtr);
 
-		__forceinline const I8u & getNumBytes() const {return numBytes;}
-		__forceinline void * const & getDataPtr(){return dataPtr;}
-		__forceinline const B1 & isLocked() const {return locked;}
-		__forceinline DataChunk * const & getNextPtr() const {return nextPtr;}
+		FINLINE const I8u & getNumBytes() const {return numBytes;}
+		FINLINE void * const & getDataPtr(){return dataPtr;}
+		FINLINE const B1 & isLocked() const {return locked;}
+		FINLINE DataChunk * const & getNextPtr() const {return nextPtr;}
 
 		void Lock  (){locked=true ;}
 		void Unlock(){locked=false;}
 
 		void release();
 
-		__forceinline void setNextPtr(DataChunk *_nextPtr){nextPtr=_nextPtr;}
+		FINLINE void setNextPtr(DataChunk *_nextPtr){nextPtr=_nextPtr;}
 
 		void * dataPtr;
 		I8u numBytes;

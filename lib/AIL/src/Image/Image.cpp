@@ -166,7 +166,7 @@ template <typename PixelType> void Image<PixelType>::setAs(const ThisType & othe
 
 template <typename T> class Clip {
 	public:
-		static __forceinline void process(typename T::DataType * const &object){typename T::RangeType::clip(*object);}
+		static FINLINE void process(typename T::DataType * const &object){typename T::RangeType::clip(*object);}
 };
 
 template <typename PixelType> void Image<PixelType>::clip(){

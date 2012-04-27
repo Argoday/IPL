@@ -41,28 +41,28 @@ template <
 
 		~Image();
 
-		__forceinline const ImageSize & getSize() const {return size;}
-		__forceinline const I4 & getWidth()  const {return size.getWidth();}
-		__forceinline const I4 & getHeight() const {return size.getHeight();}
+		FINLINE const ImageSize & getSize() const {return size;}
+		FINLINE const I4 & getWidth()  const {return size.getWidth();}
+		FINLINE const I4 & getHeight() const {return size.getHeight();}
 
-		__forceinline const size_t & getNumBytes() const {return dataNumBytes;}
+		FINLINE const size_t & getNumBytes() const {return dataNumBytes;}
 
-		__forceinline       ImageView<typename PixelType::DataType> & getDataView()       {return dataView;}
-		__forceinline const ImageView<typename PixelType::DataType> & getDataView() const {return dataView;}
+		FINLINE       ImageView<typename PixelType::DataType> & getDataView()       {return dataView;}
+		FINLINE const ImageView<typename PixelType::DataType> & getDataView() const {return dataView;}
 
-		__forceinline       ImageView<PixelType> & getPixelView()       {return pixelView;}
-		__forceinline const ImageView<PixelType> & getPixelView() const {return pixelView;}
+		FINLINE       ImageView<PixelType> & getPixelView()       {return pixelView;}
+		FINLINE const ImageView<PixelType> & getPixelView() const {return pixelView;}
 
-		__forceinline       PixelType * getDataPtr()       {return dataPtr;}
-		__forceinline const PixelType * getDataPtr() const {return dataPtr;}
+		FINLINE       PixelType * getDataPtr()       {return dataPtr;}
+		FINLINE const PixelType * getDataPtr() const {return dataPtr;}
 
-		__forceinline const PixelType * const & getDataPtrEnd() const {return dataPtrEnd;}
+		FINLINE const PixelType * const & getDataPtrEnd() const {return dataPtrEnd;}
 
-		__forceinline       PixelType & operator()(const I4 &x,const I4 &y);
-		__forceinline const PixelType & operator()(const I4 &x,const I4 &y) const ;
+		FINLINE       PixelType & operator()(const I4 &x,const I4 &y);
+		FINLINE const PixelType & operator()(const I4 &x,const I4 &y) const ;
 
-		__forceinline       PixelType & getPixel(const I4 &x,const I4 &y);
-		__forceinline const PixelType & getPixel(const I4 &x,const I4 &y) const ;
+		FINLINE       PixelType & getPixel(const I4 &x,const I4 &y);
+		FINLINE const PixelType & getPixel(const I4 &x,const I4 &y) const ;
 
 		void clip();
 
@@ -98,8 +98,8 @@ template <
 
 	private:
 
-		__forceinline void resetImageData();
-		__forceinline void releaseImageData();
+		FINLINE void resetImageData();
+		FINLINE void releaseImageData();
 
 		ImageSize size;
 		PixelType * dataPtr;

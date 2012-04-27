@@ -27,8 +27,8 @@ template <
 		{
 		};
 
-		__forceinline const I4 & getWidth()   const {return filterWidth;}
-		__forceinline const I4 & getXoffset() const {return xOffset;}
+		FINLINE const I4 & getWidth()   const {return filterWidth;}
+		FINLINE const I4 & getXoffset() const {return xOffset;}
 
 		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
 

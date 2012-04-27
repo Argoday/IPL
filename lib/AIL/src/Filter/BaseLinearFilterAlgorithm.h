@@ -13,14 +13,14 @@ template <
 	typename TempType
 > class BaseLinearFilterAlgorithm {
 	public:
-		static __forceinline void initial(
+		static FINLINE void initial(
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
 			tempData.tempPixel = parameters.minPixel;
 		}
 
-		static __forceinline void inner(
+		static FINLINE void inner(
 			TempType & tempData,
 			const ParametersType & parameters,
 			const PixelType & srcImageData,
@@ -29,7 +29,7 @@ template <
 			tempData.tempPixel+=srcImageData*filterData;
 		}
 
-		static __forceinline void final(
+		static FINLINE void final(
 			TempType & tempData,
 			const ParametersType & parameters)
 		{

@@ -18,7 +18,7 @@ class AIL_DLL_EXPORT ImageBase {
 
 		static I4 nextImageId;
 
-		__forceinline ImageBase()
+		FINLINE ImageBase()
 			:imageId(nextImageId)
 		{
 			++nextImageId;

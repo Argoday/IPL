@@ -29,23 +29,23 @@ template <
 		typedef PixelDataType3A<NumberType,PixelDataType3<NumberType>> ParentType;
 		typedef PixelRGBAbaseType<NumberType,PixelRangeType,Rposition,Gposition,Bposition> ThisType;
 
-		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
+		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
 
-		__forceinline explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);} //TODO: Use template specialization to keep memory accesses in-order?
+		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);} //TODO: Use template specialization to keep memory accesses in-order?
 		
-		__forceinline void setR(const NumberType & _r) {this->set<Rposition>(_r);}
-		__forceinline void setG(const NumberType & _g) {this->set<Gposition>(_g);}
-		__forceinline void setB(const NumberType & _b) {this->set<Bposition>(_b);}
-		__forceinline void setA(const NumberType & _a) {this->set<3>(_a);}
+		FINLINE void setR(const NumberType & _r) {this->set<Rposition>(_r);}
+		FINLINE void setG(const NumberType & _g) {this->set<Gposition>(_g);}
+		FINLINE void setB(const NumberType & _b) {this->set<Bposition>(_b);}
+		FINLINE void setA(const NumberType & _a) {this->set<3>(_a);}
 
-		__forceinline void clip(){RangeType::clip(*static_cast<ParentType*>(this));}
+		FINLINE void clip(){RangeType::clip(*static_cast<ParentType*>(this));}
 
-		__forceinline const NumberType & getR() const {return this->get<Rposition>();}
-		__forceinline const NumberType & getG() const {return this->get<Gposition>();}
-		__forceinline const NumberType & getB() const {return this->get<Bposition>();}
+		FINLINE const NumberType & getR() const {return this->get<Rposition>();}
+		FINLINE const NumberType & getG() const {return this->get<Gposition>();}
+		FINLINE const NumberType & getB() const {return this->get<Bposition>();}
 
 };
 
@@ -61,12 +61,12 @@ class AIL_DLL_EXPORT PixelRGBf8 : public PixelRGBf8td {
 		typedef PixelRGBf8td ParentType;
 		typedef PixelRGBf8 ThisType;
 
-		__forceinline explicit ThisType(){}
-		__forceinline explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		__forceinline ThisType(const DataType & _pixel):ParentType(_pixel){}
-		__forceinline ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
+		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
 
-		__forceinline explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);} //TODO: Use template specialization to keep memory accesses in-order?
+		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);} //TODO: Use template specialization to keep memory accesses in-order?
 };
 
 /*typedef PixelRGBbaseType<I1u,PixelRange_3i1u ,2,1,0> PixelBGRi1u;

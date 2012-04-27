@@ -11,7 +11,7 @@ template <
 	typename TempType
 > class BasicWx1baseAlgorithm {
 	public:
-		static __forceinline void process(
+		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
 			const Image::ImageView<PixelDataType> & srcImage,
 			const ParametersType & parameters,
@@ -26,7 +26,7 @@ template <
 			DerivedAlgorithmType::final(tempData,parameters);
 			(*dstImageDataPtr)=tempData.tempPixel;
 		}
-		static __forceinline void process(
+		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
 			const PixelDataType * const & srcImageDataPtrIn,
 			const ParametersType & parameters)

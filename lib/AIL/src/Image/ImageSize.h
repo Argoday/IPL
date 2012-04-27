@@ -15,7 +15,7 @@ class AIL_DLL_EXPORT ImageSize {
 
 		typedef ImageSize ThisType;
 
-		__forceinline void set(const I4 & _width,const I4 & _height) {
+		FINLINE void set(const I4 & _width,const I4 & _height) {
 			width     = _width;
 			width_1   = _width - 1;
 			height    = _height;
@@ -23,21 +23,21 @@ class AIL_DLL_EXPORT ImageSize {
 			numPixels = _width * _height;
 		}
 
-		__forceinline const I4 & getWidth()    const {return width   ;}
-		__forceinline const I4 & getWidth_1()  const {return width_1 ;}
+		FINLINE const I4 & getWidth()    const {return width   ;}
+		FINLINE const I4 & getWidth_1()  const {return width_1 ;}
 
-		__forceinline const I4 & getHeight()   const {return height   ;}
-		__forceinline const I4 & getHeight_1() const {return height_1 ;}
+		FINLINE const I4 & getHeight()   const {return height   ;}
+		FINLINE const I4 & getHeight_1() const {return height_1 ;}
 		
-		__forceinline const I4 & getNumPixels() const {return numPixels;}
+		FINLINE const I4 & getNumPixels() const {return numPixels;}
 
-		friend __forceinline bool operator<(const ThisType &other1, const ThisType &other2){
+		friend FINLINE bool operator<(const ThisType &other1, const ThisType &other2){
 			return (other1.getNumPixels() < other2.getNumPixels());
 		}
-		friend __forceinline bool operator!=(const ThisType &other1, const ThisType &other2){
+		friend FINLINE bool operator!=(const ThisType &other1, const ThisType &other2){
 			return (other1.getWidth()!=other2.getWidth())||(other1.getHeight()!=other2.getHeight());
 		}
-		friend __forceinline bool operator==(const ThisType &other1, const ThisType &other2){
+		friend FINLINE bool operator==(const ThisType &other1, const ThisType &other2){
 			return (other1.getWidth()==other2.getWidth())&&(other1.getHeight()==other2.getHeight());
 		}
 

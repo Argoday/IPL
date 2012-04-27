@@ -27,7 +27,7 @@ template <
 
 		void resetTotalColor();
 
-		__forceinline const PixelType & getTotalColor() const {return totalColor;}
+		FINLINE const PixelType & getTotalColor() const {return totalColor;}
 
 	protected:
 		PixelType totalColor; //TODO: pick a better name

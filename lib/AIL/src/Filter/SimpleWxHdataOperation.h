@@ -20,16 +20,16 @@ template <
 
 	public:
 
-		__forceinline const Image::Image<PixelType> &getFilterData() const {return filterData;}
+		FINLINE const Image::Image<PixelType> &getFilterData() const {return filterData;}
 
-		__forceinline const I4 & getXoffset() const {return xOffset;}
-		__forceinline const I4 & getYoffset() const {return yOffset;}
+		FINLINE const I4 & getXoffset() const {return xOffset;}
+		FINLINE const I4 & getYoffset() const {return yOffset;}
 
-		__forceinline void setXoffset(const I4 & _xOffset){xOffset=_xOffset;}
-		__forceinline void setYoffset(const I4 & _yOffset){yOffset=_yOffset;}
+		FINLINE void setXoffset(const I4 & _xOffset){xOffset=_xOffset;}
+		FINLINE void setYoffset(const I4 & _yOffset){yOffset=_yOffset;}
 
-		__forceinline       PixelType & operator()(const I4 & x,const I4 & y)       {return filterData(x,y);};
-		__forceinline const PixelType & operator()(const I4 & x,const I4 & y) const {return filterData(x,y);};
+		FINLINE       PixelType & operator()(const I4 & x,const I4 & y)       {return filterData(x,y);};
+		FINLINE const PixelType & operator()(const I4 & x,const I4 & y) const {return filterData(x,y);};
 
 		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 
