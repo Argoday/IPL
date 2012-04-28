@@ -35,8 +35,8 @@ template <
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
-			const PixelDataType *srcImageDataPtr=srcImageDataPtrIn;
-			const PixelDataType * const srcImageDataPtrEnd=srcImageDataPtrIn+parameters.srcImageWidth_x_filterHeight;
+			auto srcImageDataPtr    = srcImageDataPtrIn;
+			auto srcImageDataPtrEnd = srcImageDataPtrIn + parameters.srcImageWidth_x_filterHeight;
 			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll
 				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr));
 				srcImageDataPtr+=parameters.srcImageWidth;

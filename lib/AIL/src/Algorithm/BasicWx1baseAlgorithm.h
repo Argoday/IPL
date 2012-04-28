@@ -2,6 +2,8 @@
 #ifndef IMAGE__BasicWx1baseAlgorithm_H
 #define IMAGE__BasicWx1baseAlgorithm_H
 
+#include "AIL.h"
+
 namespace Algorithm {
 
 template <
@@ -34,7 +36,7 @@ template <
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto srcImageDataPtr    = srcImageDataPtrIn;
-			auto srcImageDataPtrEnd = srcImageDataPtrIn+parameters.filterWidth;
+			auto srcImageDataPtrEnd = srcImageDataPtrIn + parameters.filterWidth;
 			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll
 				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr));
 				++srcImageDataPtr;

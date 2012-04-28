@@ -5,7 +5,7 @@
 #include "ACore.h"
 #include <Meta/Boolean.h>
 
-typedef   Meta::Boolean  B1 ; //bool
+typedef Meta::Boolean    B1 ; //bool
 
 typedef 		 __int8  I1 ; //char
 typedef unsigned __int8  I1u;

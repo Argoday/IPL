@@ -16,47 +16,47 @@ class ACORE_DLL_EXPORT Boolean {
 		NumberType value;
 
 		FINLINE ThisType():value(false){}
-		FINLINE ThisType(const ThisType &other);
-		FINLINE ThisType(const NumberType &_value);
+		FINLINE ThisType(const ThisType   &  other);
+		FINLINE ThisType(const NumberType & _value);
 
-		FINLINE ThisType &operator =(const ThisType &other);
-		FINLINE ThisType &operator =(const NumberType &_value);
+		FINLINE ThisType & operator =(const ThisType   &  other);
+		FINLINE ThisType & operator =(const NumberType & _value);
 
 		FINLINE operator bool() const {return value;}
 
-		FINLINE bool operator ==(const ThisType &other) const ;
-		FINLINE bool operator ==(const NumberType &_value) const ;
+		FINLINE bool operator ==(const ThisType   &  other) const ;
+		FINLINE bool operator ==(const NumberType & _value) const ;
 
-		FINLINE void setAs(const ThisType &other);
-		FINLINE void setAs(const NumberType &_value);
+		FINLINE void setAs(const ThisType   &  other);
+		FINLINE void setAs(const NumberType & _value);
 
 	//Operators
 		//With NumberType:
-		FINLINE ThisType &operator -=(const NumberType &number);
-		FINLINE ThisType &operator +=(const NumberType &number);
-		FINLINE ThisType &operator *=(const NumberType &number);
-		FINLINE ThisType &operator /=(const NumberType &number);
+		FINLINE ThisType & operator -=(const NumberType & number);
+		FINLINE ThisType & operator +=(const NumberType & number);
+		FINLINE ThisType & operator *=(const NumberType & number);
+		FINLINE ThisType & operator /=(const NumberType & number);
 
-		FINLINE ThisType operator-(const NumberType &number) const ;
-		FINLINE ThisType operator+(const NumberType &number) const ;
-		FINLINE ThisType operator*(const NumberType &number) const ;
-		FINLINE ThisType operator/(const NumberType &number) const ;
+		FINLINE ThisType operator-(const NumberType & number) const ;
+		FINLINE ThisType operator+(const NumberType & number) const ;
+		FINLINE ThisType operator*(const NumberType & number) const ;
+		FINLINE ThisType operator/(const NumberType & number) const ;
 
 		//With ThisType:
-		FINLINE ThisType &operator -=(const ThisType &other);
-		FINLINE ThisType &operator +=(const ThisType &other);
-		FINLINE ThisType &operator *=(const ThisType &other);
-		FINLINE ThisType &operator /=(const ThisType &other);
+		FINLINE ThisType & operator -=(const ThisType & other);
+		FINLINE ThisType & operator +=(const ThisType & other);
+		FINLINE ThisType & operator *=(const ThisType & other);
+		FINLINE ThisType & operator /=(const ThisType & other);
 
-		FINLINE ThisType operator-(const ThisType &other) const ;
-		FINLINE ThisType operator+(const ThisType &other) const ;
-		FINLINE ThisType operator*(const ThisType &other) const ;
-		FINLINE ThisType operator/(const ThisType &other) const ;
+		FINLINE ThisType operator-(const ThisType & other) const ;
+		FINLINE ThisType operator+(const ThisType & other) const ;
+		FINLINE ThisType operator*(const ThisType & other) const ;
+		FINLINE ThisType operator/(const ThisType & other) const ;
 
-		friend FINLINE ThisType operator-(const NumberType &number, const ThisType &other);
-		friend FINLINE ThisType operator+(const NumberType &number, const ThisType &other);
-		friend FINLINE ThisType operator*(const NumberType &number, const ThisType &other);
-		friend FINLINE ThisType operator/(const NumberType &number, const ThisType &other);
+		friend FINLINE ThisType operator-(const NumberType & number, const ThisType & other);
+		friend FINLINE ThisType operator+(const NumberType & number, const ThisType & other);
+		friend FINLINE ThisType operator*(const NumberType & number, const ThisType & other);
+		friend FINLINE ThisType operator/(const NumberType & number, const ThisType & other);
 
 };
 
