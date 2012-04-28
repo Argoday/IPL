@@ -16,10 +16,10 @@ Boolean & Boolean::operator =(const NumberType &_value){value=_value; return (*t
 
 Boolean::Boolean(const NumberType &_value):value(_value){}
 
-Boolean & Boolean::operator -=(const NumberType &number){value = value && !number; return (*this);}
-Boolean & Boolean::operator +=(const NumberType &number){value = value ||  number; return (*this);}
-Boolean & Boolean::operator *=(const NumberType &number){value = value &&  number; return (*this);}
-Boolean & Boolean::operator /=(const NumberType &number){value = value  ^  number; return (*this);}
+Boolean & Boolean::operator -=(const NumberType &number){value = value & ~number; return (*this);}
+Boolean & Boolean::operator +=(const NumberType &number){value = value |  number; return (*this);}
+Boolean & Boolean::operator *=(const NumberType &number){value = value &  number; return (*this);}
+Boolean & Boolean::operator /=(const NumberType &number){value = value ^  number; return (*this);}
 
 Boolean Boolean::operator-(const NumberType &value) const {return ThisType(*this)-=value;}
 Boolean Boolean::operator+(const NumberType &value) const {return ThisType(*this)+=value;}
@@ -32,7 +32,7 @@ Boolean::Boolean(const ThisType & other){value=other.value;}
 
 Boolean & Boolean::operator  =(const ThisType & other) {value = other.value; return (*this);}
 
-Boolean & Boolean::operator -=(const ThisType & other) {value = value & !other.value; return (*this);}
+Boolean & Boolean::operator -=(const ThisType & other) {value = value & ~other.value; return (*this);}
 Boolean & Boolean::operator +=(const ThisType & other) {value = value |  other.value; return (*this);}
 Boolean & Boolean::operator *=(const ThisType & other) {value = value &  other.value; return (*this);}
 Boolean & Boolean::operator /=(const ThisType & other) {value = value ^  other.value; return (*this);}
