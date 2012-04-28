@@ -11,23 +11,26 @@ template <
 	typename PixelType
 > void MaxFilterWx1basic<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
-	typedef typename PixelType::DataType PixelDataType;
+	typedef typename PixelType::DataType        PixelDataType;
+	typedef typename PixelType::ComputationType PixelComputationType;
 
-	MaxFilterWx1basicParametersType<PixelDataType> parameters(xOffset,filterWidth,PixelType::RangeType::getMinPixel());
+	MaxFilterWx1basicParametersType<PixelDataType,PixelComputationType> parameters(xOffset,filterWidth,PixelType::ComputationRange::getMinPixel());
 
 	Algorithm::BaseAlgorithmWx1<
 		Algorithm::BasicWx1baseAlgorithm<
 			BaseMaxFilterAlgorithm<
 				PixelDataType,
-				MaxFilterWx1basicParametersType<PixelDataType>,
-				Algorithm::BaseOperationTempType<PixelDataType>
+				PixelComputationType,
+				MaxFilterWx1basicParametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
-			MaxFilterWx1basicParametersType<PixelDataType>,
-			Algorithm::BaseOperationTempType<PixelDataType>
+			PixelComputationType,
+			MaxFilterWx1basicParametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		MaxFilterWx1basicParametersType<PixelDataType>
+		MaxFilterWx1basicParametersType<PixelDataType,PixelComputationType>
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),

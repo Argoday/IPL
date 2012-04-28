@@ -17,6 +17,7 @@ template <
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType & _scalar):x(_scalar) ,y(_scalar) ,z(_scalar){} //TODO: Is this correct? - I expect not , perhaps use (scalar,0,0) ?
+		FINLINE explicit ThisType(const NumberType & _scalar1,const NumberType & _scalar2,const NumberType & _scalar3):x(_scalar1) ,y(_scalar2) ,z(_scalar3){}
 		FINLINE          ThisType(const ThisType   & _pixel ):x(_pixel.x),y(_pixel.y),z(_pixel.z){}
 	
 		FINLINE ThisType & operator =(const ThisType   & _pixel ){x=_pixel.x;y=_pixel.y;z=_pixel.z;return (*this);}
@@ -25,7 +26,9 @@ template <
 		FINLINE bool operator ==(const ThisType   & _pixel ) const {if(x==_pixel.x){if(y==_pixel.y){if(z==_pixel.z){return true;}}}return false;}
 		FINLINE bool operator ==(const NumberType & _scalar) const {if(x==scalar  ){if(y==scalar  ){if(z==scalar  ){return true;}}}return false;}
 
-		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataTypeY2<DiffNumberType,Yposition> & _pixel){x=_pixel.x;y=_pixel.y;z=_pixel.z;};
+		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataTypeY2<DiffNumberType,Yposition> & _pixel){x=_pixel.get<0>();y=_pixel.get<1>();z=_pixel.get<2>();};
+
+		template <typename DiffNumberType> FINLINE PixelDataTypeY2<DiffNumberType,Yposition> getAsComp() const {return PixelDataTypeY2<DiffNumberType,Yposition>(x,y,z);};
 
 		FINLINE void setAs   (const ThisType & _pixel){x=_pixel.x;y=_pixel.y;z=_pixel.z;}
 		FINLINE void setAsMin(const ThisType &  pixel){if(pixel.get<Yposition>()<get<Yposition>()){(*this)=pixel;}}

@@ -27,10 +27,10 @@ template <
 
 		void resetTotalColor();
 
-		FINLINE const PixelType & getTotalColor() const {return totalColor;}
+		FINLINE const typename PixelType::ComputationType & getTotalColor() const {return totalColor;}
 
 	protected:
-		PixelType totalColor; //TODO: pick a better name
+		typename PixelType::ComputationType totalColor; //TODO: pick a better name
 
 };
 

@@ -9,6 +9,7 @@ namespace Filter {
 template <
 	typename DerivedAlgorithmType,
 	typename PixelDataType,
+	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
 > class SimpleWxHdataOperationBaseAlgorithm {
@@ -25,12 +26,12 @@ template <
 			auto filterDataPtr = parameters.filterDataPtr;
 			for (I4 yf=y-parameters.yOffset; yf<y-parameters.yOffset+parameters.filterHeight; ++yf){
 				for (I4 xf=x-parameters.xOffset; xf<x-parameters.xOffset+parameters.filterWidth; ++xf){
-					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf),(*filterDataPtr));
+					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
 					++filterDataPtr;
 				}
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
@@ -44,7 +45,7 @@ template <
 			auto filterDataPtrRowEnd = parameters.filterDataPtr+parameters.filterWidth; //TODO: store this information in the parameters and just use a lookup?
 			for (;filterDataPtr!=parameters.filterDataPtrEnd;){
 				for (;filterDataPtr!=filterDataPtrRowEnd;){
-					DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr),(*filterDataPtr));
+					DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
 					++filterDataPtr;
 					++srcImageDataPtr;
 				}
@@ -52,7 +53,7 @@ template <
 				srcImageDataPtr+=parameters.srcImageWidth_filterWidth;
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 
 };

@@ -8,7 +8,8 @@
 namespace Filter {
 
 template <
-	typename PixelType,
+	typename PixelDataType,
+	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
 > class BaseMinFilterAlgorithm {
@@ -23,7 +24,7 @@ template <
 		static FINLINE void inner(
 			TempType & tempData,
 			const ParametersType & parameters,
-			const PixelType & srcImageData)
+			const PixelComputationType & srcImageData)
 		{
 			tempData.tempPixel.setAsMin(srcImageData);
 		}
@@ -32,6 +33,7 @@ template <
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
+			tempData.resultPixel.setComp(tempData.tempPixel);
 		}
 
 };

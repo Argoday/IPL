@@ -72,6 +72,7 @@ class AIL_DLL_EXPORT PixelRGBi1u : public PixelRGBi1utd {
 		typedef I1u                            NumberType;
 		typedef PixelRGBi1utd::DataType        DataType;
 		typedef PixelRGBi1utd::ComputationType ComputationType;
+		typedef PixelRange_3i4                 ComputationRange;
 		typedef PixelRange_3i1u                RangeType;
 		typedef PixelRGBi1utd                  ParentType;
 		typedef PixelRGBi1u                    ThisType;
@@ -89,6 +90,7 @@ class AIL_DLL_EXPORT PixelRGBf8 : public PixelRGBf8td {
 		typedef F8                            NumberType;
 		typedef PixelRGBf8td::DataType        DataType;
 		typedef PixelRGBf8td::ComputationType ComputationType;
+		typedef PixelRange_3f8                ComputationRange;
 		typedef PixelRange_3f8                RangeType;
 		typedef PixelRGBf8td                  ParentType;
 		typedef PixelRGBf8                    ThisType;

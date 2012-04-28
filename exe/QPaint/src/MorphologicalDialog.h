@@ -21,7 +21,7 @@ class MorphologicalDialog : public QDialog {
 	Q_OBJECT
 
 	public:
-		typedef Pixel::PixelRGBf8 PixelType;
+		typedef Pixel::PixelRGBi1u PixelType;
 
 		MorphologicalDialog(Data::DataManager * const _dataManager,const Image::Image<PixelType> *inputImage,QWidget *parent = nullptr);
 		~MorphologicalDialog();

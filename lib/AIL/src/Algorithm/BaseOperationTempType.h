@@ -5,10 +5,12 @@
 namespace Algorithm {
 
 template <
-	typename PixelDataType
+	typename PixelDataType,
+	typename PixelComputationType
 > class BaseOperationTempType {
 	public:
-		PixelDataType tempPixel;
+		PixelDataType        resultPixel;
+		PixelComputationType tempPixel;
 };
 
 }

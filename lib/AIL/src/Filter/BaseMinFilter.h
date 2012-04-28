@@ -8,7 +8,7 @@
 namespace Filter {
 
 template <
-	typename PixelType = Image::ImageBase::DefaultPixelType
+	typename PixelType
 > class BaseMinFilter
 	: public SimpleWxHbooleanOperation<PixelType>
 {

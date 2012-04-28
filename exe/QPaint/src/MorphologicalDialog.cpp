@@ -100,16 +100,16 @@ void MorphologicalDialog::updatePreview() {
 		break;
 		case 6:
 			{
-				Filter::LinearFilterWxH<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
+				/*Filter::LinearFilterWxH<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
 				Filter::LinearFilterWxH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
 				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 				blurFilter1.applyTo(*previewBeforeImage,tempImage1);
-				blurFilter2.applyTo(tempImage1,*previewAfterImage);
+				blurFilter2.applyTo(tempImage1,*previewAfterImage);//*/
 			}
 		break;
 		case 7:
 			{
-				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
+				/*Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 				Image::Image<PixelType> tempImage2 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 				Filter::LinearFilterWxH<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
 				Filter::LinearFilterWxH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
@@ -119,7 +119,7 @@ void MorphologicalDialog::updatePreview() {
 				(tempImage2)-=(tempImage1);
 				(*previewAfterImage)=(*previewBeforeImage);
 				(*previewAfterImage)+=(tempImage2);
-				previewAfterImage->clip();
+				previewAfterImage->clip();//*/
 			}
 		break;
 	}

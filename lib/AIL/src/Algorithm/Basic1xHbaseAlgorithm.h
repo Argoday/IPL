@@ -9,6 +9,7 @@ namespace Algorithm {
 template <
 	typename DerivedAlgorithmType,
 	typename PixelDataType,
+	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
 > class Basic1xHbaseAlgorithm {
@@ -23,10 +24,10 @@ template <
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			for (I4 yf=y-parameters.yOffset; yf<=y+parameters.borderYTop; ++yf){
-				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf));
+				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType::NumberType>());
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
@@ -38,11 +39,11 @@ template <
 			auto srcImageDataPtr    = srcImageDataPtrIn;
 			auto srcImageDataPtrEnd = srcImageDataPtrIn + parameters.srcImageWidth_x_filterHeight;
 			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll
-				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr));
+				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 				srcImageDataPtr+=parameters.srcImageWidth;
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 };
 

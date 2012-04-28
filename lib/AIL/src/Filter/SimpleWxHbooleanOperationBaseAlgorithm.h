@@ -9,6 +9,7 @@ namespace Filter {
 template <
 	typename DerivedAlgorithmType,
 	typename PixelDataType,
+	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
 > class SimpleWxHbooleanOperationBaseAlgorithm {
@@ -26,13 +27,13 @@ template <
 			for (I4 yf=y-parameters.yOffset; yf<y-parameters.yOffset+parameters.filterHeight; ++yf){
 				for (I4 xf=x-parameters.xOffset; xf<x-parameters.xOffset+parameters.filterWidth; ++xf){
 					if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
-						DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf));
+						DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>());
 					}
 					++filterDataPtr;
 				}
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
@@ -47,12 +48,12 @@ template <
 			srcImageDataPtr+=(*filterSkipDataPtr);
 			++filterSkipDataPtr;
 			for (;filterSkipDataPtr!=parameters.filterSkipDataPtrEnd;){
-				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr));
+				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 				srcImageDataPtr+=(*filterSkipDataPtr);
 				++filterSkipDataPtr;
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 };
 

@@ -8,14 +8,14 @@
 namespace Filter {
 
 template <
-	typename PixelType
+	typename PixelDataType
 > class SimpleWxHdataOperationParametersType
 	: public Image::BaseAlgorithmWxHparametersType
 {
 	public:
 
 		SimpleWxHdataOperationParametersType(
-			const Image::ImageView<PixelType> & _filter,
+			const Image::ImageView<PixelDataType> & _filter,
 			const I4 & _xOffset,
 			const I4 & _yOffset,
 			const I4 & _srcImageWidth
@@ -44,8 +44,8 @@ template <
 
 		const I4 srcImageWidth;
 
-		const PixelType * const filterDataPtr;
-		const PixelType * const filterDataPtrEnd;
+		const PixelDataType * const filterDataPtr;
+		const PixelDataType * const filterDataPtrEnd;
 
 		const I4 srcImageWidth_filterWidth;
 

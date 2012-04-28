@@ -62,6 +62,7 @@ class AIL_DLL_EXPORT PixelRGBAf8 : public PixelRGBAf8td {
 		typedef F8                             NumberType;
 		typedef PixelRGBAf8td::DataType        DataType;
 		typedef PixelRGBAf8td::ComputationType ComputationType;
+		typedef PixelRange_4f8                 ComputationRange;
 		typedef PixelRGBAf8td                  ParentType;
 		typedef PixelRGBAf8                    ThisType;
 

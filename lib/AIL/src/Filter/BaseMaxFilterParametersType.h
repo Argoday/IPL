@@ -8,7 +8,8 @@
 namespace Filter {
 
 template <
-	typename PixelType
+	typename PixelDataType,
+	typename PixelComputationType
 > class BaseMaxFilterParametersType
 	: public SimpleWxHbooleanOperationParametersType
 {
@@ -19,7 +20,7 @@ template <
 			const I4 & _xOffset,
 			const I4 & _yOffset,
 			const I4 & _srcImageWidth,
-			const PixelType & _minPixel)
+			const PixelComputationType & _minPixel)
 			:SimpleWxHbooleanOperationParametersType(
 				_kernel,
 				_xOffset,
@@ -29,7 +30,7 @@ template <
 		{
 		}
 
-		const PixelType minPixel;
+		const PixelComputationType minPixel;
 };
 
 }

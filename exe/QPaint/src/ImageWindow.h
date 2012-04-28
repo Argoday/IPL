@@ -25,7 +25,7 @@ class ImageWindow : public QMainWindow {
 		ImageWindow(Data::DataManager * const _dataManager);
 		~ImageWindow();
 
-		typedef Pixel::PixelRGBf8 PixelType;
+		typedef Pixel::PixelRGBi1u PixelType;
 
 	private slots:
 		void open();

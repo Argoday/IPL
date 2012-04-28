@@ -24,7 +24,9 @@ template <
 		FINLINE bool operator ==(const ThisType   & _pixel ) const {return (x==_pixel.x);}
 		FINLINE bool operator ==(const NumberType & _scalar) const {return (x==_scalar );}
 
-		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataType1<DiffNumberType> & _pixel){x=_pixel.x;};
+		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataType1<DiffNumberType> & _pixel){x=_pixel.get<0>();};
+
+		template <typename DiffNumberType> FINLINE PixelDataType1<DiffNumberType> getAsComp() const {return PixelDataType1<DiffNumberType>(x);};
 
 		FINLINE void setAs   (const ThisType & _pixel){x=_pixel.x;}
 		FINLINE void setAsMin(const ThisType &  pixel){if(x>pixel.x){x=pixel.x;}}

@@ -1,7 +1,7 @@
 
 #include "LinearFilterWx1.h"
-#include <Algorithm/BaseAlgorithmWx1.h>
 #include "BaseLinearFilterAlgorithm.h"
+#include <Algorithm/BaseAlgorithmWx1.h>
 #include "SimpleWx1dataOperationBaseAlgorithm.h"
 
 namespace Filter {
@@ -10,30 +10,33 @@ template <
 	typename PixelType
 > void LinearFilterWx1<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
-	typedef typename PixelType::DataType PixelDataType;
+	typedef typename PixelType::DataType        PixelDataType;
+	typedef typename PixelType::ComputationType PixelComputationType;
 
-	BaseLinearFilterParametersType<PixelDataType> parameters(
+	BaseLinearFilterParametersType<PixelDataType,PixelComputationType> parameters(
 		getFilterData().getDataView(),
 		getXoffset(),
 		getYoffset(),
 		srcImage.getWidth(),
 		getTotalColor(),
-		PixelType::RangeType::getMinPixel()
+		PixelType::ComputationRange::getMinPixel()
 	);
 
 	Algorithm::BaseAlgorithmWx1<
 		SimpleWx1dataOperationBaseAlgorithm<
 			BaseLinearFilterAlgorithm<
 				PixelDataType,
-				BaseLinearFilterParametersType<PixelDataType>,
-				Algorithm::BaseOperationTempType<PixelDataType>
+				PixelComputationType,
+				BaseLinearFilterParametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
-			BaseLinearFilterParametersType<PixelDataType>,
-			Algorithm::BaseOperationTempType<PixelDataType>
+			PixelComputationType,
+			BaseLinearFilterParametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		BaseLinearFilterParametersType<PixelDataType>
+		BaseLinearFilterParametersType<PixelDataType,PixelComputationType>
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),

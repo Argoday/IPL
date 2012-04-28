@@ -7,7 +7,8 @@
 namespace Filter {
 
 template <
-	typename PixelType
+	typename PixelDataType,
+	typename PixelComputationType
 > class MinFilter1xHbasicParametersType
 	: public Algorithm::Basic1xHbaseAlgorithmParametersType
 {
@@ -17,7 +18,7 @@ template <
 			const I4 & _yOffset,
 			const I4 & _height,
 			const I4 & _srcImageWidth,
-			const PixelType & _maxPixel
+			const PixelComputationType & _maxPixel
 		)
 			:Basic1xHbaseAlgorithmParametersType(
 				_yOffset,
@@ -28,7 +29,7 @@ template <
 		{
 		}
 
-		const PixelType maxPixel;
+		const PixelComputationType maxPixel;
 };
 
 }

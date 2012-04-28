@@ -7,7 +7,7 @@
 namespace Filter {
 
 template <
-	typename PixelType = Image::ImageBase::DefaultPixelType
+	typename PixelType
 > class MinFilter1xHbasic {
 
 	public:

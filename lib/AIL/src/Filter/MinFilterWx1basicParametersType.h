@@ -7,7 +7,8 @@
 namespace Filter {
 
 template <
-	typename PixelType
+	typename PixelDataType,
+	typename PixelComputationType
 > class MinFilterWx1basicParametersType
 	: public Algorithm::BasicWx1baseAlgorithmParametersType
 {
@@ -16,7 +17,7 @@ template <
 		MinFilterWx1basicParametersType(
 			const I4 & _xOffset,
 			const I4 & _filterWidth,
-			const PixelType & _maxPixel
+			const PixelComputationType & _maxPixel
 		)
 			:BasicWx1baseAlgorithmParametersType(
 				_xOffset,
@@ -26,7 +27,7 @@ template <
 		{
 		}
 
-		const PixelType maxPixel;
+		const PixelComputationType maxPixel;
 };
 
 }

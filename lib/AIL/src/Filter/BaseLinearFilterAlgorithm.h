@@ -8,7 +8,8 @@
 namespace Filter {
 
 template <
-	typename PixelType,
+	typename PixelDataType,
+	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
 > class BaseLinearFilterAlgorithm {
@@ -23,8 +24,8 @@ template <
 		static FINLINE void inner(
 			TempType & tempData,
 			const ParametersType & parameters,
-			const PixelType & srcImageData,
-			const PixelType & filterData)
+			const PixelComputationType & srcImageData,
+			const PixelComputationType & filterData)
 		{
 			tempData.tempPixel+=srcImageData*filterData;
 		}
@@ -34,6 +35,7 @@ template <
 			const ParametersType & parameters)
 		{
 			tempData.tempPixel/=parameters.totalColor;
+			tempData.resultPixel.setComp(tempData.tempPixel);
 		}
 
 };

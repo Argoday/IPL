@@ -64,6 +64,7 @@ class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
 		typedef F8                            NumberType;
 		typedef PixelYUVf8td::DataType        DataType;
 		typedef PixelYUVf8td::ComputationType ComputationType;
+		typedef PixelRange_Y2_0f8             ComputationRange;
 		typedef PixelRange_Y2_0f8             RangeType;
 		typedef PixelYUVf8td                  ParentType;
 		typedef PixelYUVf8                    ThisType;

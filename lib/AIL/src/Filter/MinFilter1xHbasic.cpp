@@ -11,23 +11,26 @@ template <
 	typename PixelType
 > void MinFilter1xHbasic<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
-	typedef typename PixelType::DataType PixelDataType;
+	typedef typename PixelType::DataType        PixelDataType;
+	typedef typename PixelType::ComputationType PixelComputationType;
 
-	MinFilter1xHbasicParametersType<PixelDataType> parameters(yOffset,filterHeight,srcImage.getWidth(),PixelType::RangeType::getMaxPixel());
+	MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType> parameters(yOffset,filterHeight,srcImage.getWidth(),PixelType::ComputationRange::getMaxPixel());
 
 	Algorithm::BaseAlgorithm1xH<
 		Algorithm::Basic1xHbaseAlgorithm<
 			BaseMinFilterAlgorithm<
 				PixelDataType,
-				MinFilter1xHbasicParametersType<PixelDataType>,
-				Algorithm::BaseOperationTempType<PixelDataType>
+				PixelComputationType,
+				MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
-			MinFilter1xHbasicParametersType<PixelDataType>,
-			Algorithm::BaseOperationTempType<PixelDataType>
+			PixelComputationType,
+			MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		MinFilter1xHbasicParametersType<PixelDataType>
+		MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType>
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),

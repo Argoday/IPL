@@ -8,21 +8,22 @@
 namespace Filter {
 
 template <
-	typename PixelType
+	typename PixelDataType,
+	typename PixelComputationType
 > class BaseLinearFilterParametersType
-	: public SimpleWxHdataOperationParametersType<PixelType>
+	: public SimpleWxHdataOperationParametersType<PixelDataType>
 {
 	public:
 
 		BaseLinearFilterParametersType(
-			const Image::ImageView<PixelType> & _filter,
+			const Image::ImageView<PixelDataType> & _filter,
 			const I4 & _xOffset,
 			const I4 & _yOffset,
 			const I4 & _srcImageWidth,
-			const PixelType _totalColor,
-			const PixelType _minPixel
+			const PixelComputationType _totalColor,
+			const PixelComputationType _minPixel
 		)
-			:SimpleWxHdataOperationParametersType<PixelType>(
+			:SimpleWxHdataOperationParametersType<PixelDataType>(
 				_filter,
 				_xOffset,
 				_yOffset,
@@ -33,8 +34,8 @@ template <
 		{
 		}
 
-		const PixelType totalColor;
-		const PixelType minPixel;
+		const PixelComputationType totalColor;
+		const PixelComputationType minPixel;
 };
 
 }

@@ -9,6 +9,7 @@ namespace Algorithm {
 template <
 	typename DerivedAlgorithmType,
 	typename PixelDataType,
+	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
 > class BasicWx1baseAlgorithm {
@@ -23,10 +24,10 @@ template <
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			for (I4 xf=x-parameters.xOffset; xf<=x+parameters.borderXRight; ++xf){
-				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,y));
+				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>());
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
@@ -38,11 +39,11 @@ template <
 			auto srcImageDataPtr    = srcImageDataPtrIn;
 			auto srcImageDataPtrEnd = srcImageDataPtrIn + parameters.filterWidth;
 			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll
-				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr));
+				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 				++srcImageDataPtr;
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
-			(*dstImageDataPtr)=tempData.tempPixel;
+			(*dstImageDataPtr)=tempData.resultPixel;
 		}
 };
 

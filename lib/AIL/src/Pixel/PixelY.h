@@ -42,12 +42,13 @@ typedef PixelYbaseType<I1u,I4,PixelRange_1i1u> PixelYi1utd;
 
 class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
 	public:
-		typedef Meta::Boolean NumberType;
-		typedef PixelYb1td::DataType DataType;
+		typedef B1                          NumberType;
+		typedef PixelYb1td::DataType        DataType;
 		typedef PixelYb1td::ComputationType ComputationType;
-		typedef PixelRange_1b1 RangeType;
-		typedef PixelYb1td ParentType;
-		typedef PixelYb1 ThisType;
+		typedef PixelRange_1i4              ComputationRange;
+		typedef PixelRange_1b1              RangeType;
+		typedef PixelYb1td                  ParentType;
+		typedef PixelYb1                    ThisType;
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
@@ -66,12 +67,13 @@ class BooleanTestType {
 
 class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 	public:
-		typedef I1u NumberType;
-		typedef PixelYi1utd::DataType DataType;
+		typedef I1u                          NumberType;
+		typedef PixelYi1utd::DataType        DataType;
 		typedef PixelYi1utd::ComputationType ComputationType;
-		typedef PixelRange_1i1u RangeType;
-		typedef PixelYi1utd ParentType;
-		typedef PixelYi1u ThisType;
+		typedef PixelRange_1i4               ComputationRange;
+		typedef PixelRange_1i1u              RangeType;
+		typedef PixelYi1utd                  ParentType;
+		typedef PixelYi1u                    ThisType;
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
