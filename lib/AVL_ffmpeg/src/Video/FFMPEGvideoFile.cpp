@@ -82,7 +82,7 @@ AVL_FFMPEG_DLL_EXPORT bool FFMPEGvideoFile::hasNextFrame(Image::Image<Pixel::Pix
 				data[0] = static_cast<uint8_t*const>(static_cast<void*const>(image->getDataPtr()));
 				linesize[0] = width*3;
 
-				_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+				_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
 				sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, data, linesize);
 
 				++frameIndex;

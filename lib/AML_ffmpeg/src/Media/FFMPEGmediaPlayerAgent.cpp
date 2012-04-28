@@ -262,7 +262,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 
 						auto width  = pCodecCtx->width;
 						auto height = pCodecCtx->height;
-						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_FAST_BILINEAR, NULL, NULL, NULL);
+						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
 
 						auto imagePtr = new Image::Image<Pixel::PixelRGBi1u>(width,height,dataManager);
 
@@ -393,7 +393,7 @@ AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & 
 		if(pVStream->nb_frames!=0){
 			framesEstimate = pVStream->nb_frames;
 		}else{
-			framesEstimate = static_cast<F8>(pVStream->duration) * av_q2d(pVStream->time_base) * av_q2d(pVStream->r_frame_rate);
+			framesEstimate = static_cast<I8u>(static_cast<F8>(pVStream->duration) * av_q2d(pVStream->time_base) * av_q2d(pVStream->r_frame_rate));
 		}
 
 		auto videoConfig = new Video::Config(framesEstimate);
