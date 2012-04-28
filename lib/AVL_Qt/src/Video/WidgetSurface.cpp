@@ -80,6 +80,7 @@ void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(Image::Image<Pixel::PixelRGBi1
 }
 
 void AVL_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){
+	painter->setRenderHint(QPainter::SmoothPixmapTransform);
 	painter->drawImage(targetRect, currentQFrame, sourceRect);
 }
 
