@@ -3,7 +3,7 @@
 
 namespace Pixel {
 
-template class PixelYbaseType<Meta::Boolean,PixelRange_1b1>;
-template class PixelYbaseType<I1u          ,PixelRange_1i1u>;
+template class PixelYbaseType<B1 ,I4,PixelRange_1b1 >;
+template class PixelYbaseType<I1u,I4,PixelRange_1i1u>;
 
 }

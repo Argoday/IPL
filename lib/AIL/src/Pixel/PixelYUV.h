@@ -13,6 +13,7 @@ namespace Pixel {
 
 template <
 	typename NumberType,
+	typename ComputationDataType,
 	typename PixelRangeType,
 	int Yposition,
 	int Uposition,
@@ -22,24 +23,25 @@ template <
 {
 	public:
 
-		typedef typename NumberType NumberType;
-		typedef typename PixelRangeType RangeType;
-		typedef PixelDataTypeY2<NumberType,Yposition> DataType;
-		typedef PixelDataTypeY2<NumberType,Yposition> ParentType;
-		typedef PixelYUVbaseType<NumberType,PixelRangeType,Yposition,Uposition,Vposition> ThisType;
+		typedef typename NumberType                            NumberType;
+		typedef typename PixelRangeType                        RangeType;
+		typedef PixelDataTypeY2<NumberType,Yposition>          DataType;
+		typedef PixelDataTypeY2<ComputationDataType,Yposition> ComputationType;
+		typedef PixelDataTypeY2<NumberType,Yposition>          ParentType;
+		typedef PixelYUVbaseType<NumberType,ComputationDataType,PixelRangeType,Yposition,Uposition,Vposition> ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
-		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
-		
+
 		FINLINE void setY(const NumberType & _y) {this->set<Yposition>(_y);}
 		FINLINE void setU(const NumberType & _u) {this->set<Uposition>(_u);}
 		FINLINE void setV(const NumberType & _v) {this->set<Vposition>(_v);}
 
-		FINLINE void clip(){RangeType::clip(*static_cast<ParentType*>(this));} //TODO: What is the 'right' way to do this? , or is this the right way?
+		FINLINE void clip(){RangeType::clip(*static_cast<ParentType*>(this));}
 		
 		FINLINE NumberType & getY() {return this->get<Yposition>();}
 		FINLINE NumberType & getU() {return this->get<Uposition>();}
@@ -51,24 +53,25 @@ template <
 
 };
 
-//typedef PixelYUVbaseType<I1u,PixelRange_Y2_0i1u   ,0,1,2> PixelYUVi1utd;
-//typedef PixelYUVbaseType<I4 ,PixelRange_Y2_0i4    ,0,1,2> PixelYUVi4td;
-//typedef PixelYUVbaseType<I4 ,PixelRange_Y2_0i4_i1u,0,1,2> PixelYUVi4_i1utd;
-typedef PixelYUVbaseType<F4 ,PixelRange_Y2_0f4  ,0,1,2> PixelYUVf4td;
-typedef PixelYUVbaseType<F8 ,PixelRange_Y2_0f8  ,0,1,2> PixelYUVf8td;
+typedef PixelYUVbaseType<I1u,I4,PixelRange_Y2_0i1u   ,0,1,2> PixelYUVi1utd;
+typedef PixelYUVbaseType<I4 ,I4,PixelRange_Y2_0i4    ,0,1,2> PixelYUVi4td;
+typedef PixelYUVbaseType<I4 ,I4,PixelRange_Y2_0i4_i1u,0,1,2> PixelYUVi4_i1utd;
+typedef PixelYUVbaseType<F4 ,F8,PixelRange_Y2_0f4    ,0,1,2> PixelYUVf4td;
+typedef PixelYUVbaseType<F8 ,F8,PixelRange_Y2_0f8    ,0,1,2> PixelYUVf8td;
 
 class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
 	public:
-		typedef F8 NumberType;
-		typedef PixelYUVf8td::DataType DataType;
-		typedef PixelRange_Y2_0f8 RangeType;
-		typedef PixelYUVf8td ParentType;
-		typedef PixelYUVf8 ThisType;
+		typedef F8                            NumberType;
+		typedef PixelYUVf8td::DataType        DataType;
+		typedef PixelYUVf8td::ComputationType ComputationType;
+		typedef PixelRange_Y2_0f8             RangeType;
+		typedef PixelYUVf8td                  ParentType;
+		typedef PixelYUVf8                    ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE ThisType(const DataType & _pixel):ParentType(_pixel){}
-		FINLINE ThisType(const ThisType & _pixel):ParentType(_pixel){}
+		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
 };

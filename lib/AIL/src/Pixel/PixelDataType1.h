@@ -3,7 +3,6 @@
 #define PIXEL__PixelDataType1_H
 
 #include <AIL.h>
-#include <Meta/Boolean.h>
 #include <Data/DataTypes.h>
 
 namespace Pixel {
@@ -12,33 +11,35 @@ template <
 	typename NumberType
 > class AIL_DLL_EXPORT PixelDataType1 {
 	public:
+		typedef NumberType                 NumberType;
 		typedef PixelDataType1<NumberType> ThisType;
-		typedef NumberType NumberType;
 
 		FINLINE explicit ThisType(){}
 		FINLINE explicit ThisType(const NumberType & _scalar):x(_scalar){}
 		FINLINE          ThisType(const ThisType   & _pixel) :x(_pixel.x){}
 	
-		FINLINE ThisType &operator =(const ThisType & _pixel )  {x=_pixel.x;return (*this);}
-		FINLINE ThisType &operator =(const NumberType & _scalar){x=_scalar;return (*this);}
+		FINLINE ThisType & operator =(const ThisType   & _pixel ){x=_pixel.x;return (*this);}
+		FINLINE ThisType & operator =(const NumberType & _scalar){x=_scalar ;return (*this);}
 
 		FINLINE bool operator ==(const ThisType   & _pixel ) const {return (x==_pixel.x);}
-		FINLINE bool operator ==(const NumberType & _scalar) const {return (x==_scalar);}
+		FINLINE bool operator ==(const NumberType & _scalar) const {return (x==_scalar );}
 
-		FINLINE void setAs(const ThisType & _pixel)  {x=_pixel.x;}
-		FINLINE void setAsMin(const ThisType & pixel){if(x>pixel.x){x=pixel.x;}}
-		FINLINE void setAsMax(const ThisType & pixel){if(x<pixel.x){x=pixel.x;}}
+		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataType1<DiffNumberType> & _pixel){x=_pixel.x;};
 
-		FINLINE void setAs(const NumberType & _scalar)  {x=_scalar;}
-		FINLINE void setAsMin(const NumberType & scalar){if(x>scalar){x=scalar;}}
-		FINLINE void setAsMax(const NumberType & scalar){if(x<scalar){x=scalar;}}
+		FINLINE void setAs   (const ThisType & _pixel){x=_pixel.x;}
+		FINLINE void setAsMin(const ThisType &  pixel){if(x>pixel.x){x=pixel.x;}}
+		FINLINE void setAsMax(const ThisType &  pixel){if(x<pixel.x){x=pixel.x;}}
+
+		FINLINE void setAs   (const NumberType & _scalar){x=_scalar;}
+		FINLINE void setAsMin(const NumberType &  scalar){if(x>scalar){x=scalar;}}
+		FINLINE void setAsMax(const NumberType &  scalar){if(x<scalar){x=scalar;}}
 
 	//Operators
 		//With Scalar:
-		FINLINE ThisType &operator -=(const NumberType & scalar){x-=scalar;return (*this);}
-		FINLINE ThisType &operator +=(const NumberType & scalar){x+=scalar;return (*this);}
-		FINLINE ThisType &operator *=(const NumberType & scalar){x*=scalar;return (*this);}
-		FINLINE ThisType &operator /=(const NumberType & scalar){x/=scalar;return (*this);}
+		FINLINE ThisType & operator -=(const NumberType & scalar){x-=scalar;return (*this);}
+		FINLINE ThisType & operator +=(const NumberType & scalar){x+=scalar;return (*this);}
+		FINLINE ThisType & operator *=(const NumberType & scalar){x*=scalar;return (*this);}
+		FINLINE ThisType & operator /=(const NumberType & scalar){x/=scalar;return (*this);}
 		
 		FINLINE ThisType operator-(const NumberType & scalar) const {return ThisType(*this)-=scalar;}
 		FINLINE ThisType operator+(const NumberType & scalar) const {return ThisType(*this)+=scalar;}
@@ -46,10 +47,10 @@ template <
 		FINLINE ThisType operator/(const NumberType & scalar) const {return ThisType(*this)/=scalar;}
 
 		//With Pixel:
-		FINLINE ThisType &operator -=(const ThisType & pixel){x-=pixel.x;return (*this);}
-		FINLINE ThisType &operator +=(const ThisType & pixel){x+=pixel.x;return (*this);}
-		FINLINE ThisType &operator *=(const ThisType & pixel){x*=pixel.x;return (*this);}
-		FINLINE ThisType &operator /=(const ThisType & pixel){x/=pixel.x;return (*this);}
+		FINLINE ThisType & operator -=(const ThisType & pixel){x-=pixel.x;return (*this);}
+		FINLINE ThisType & operator +=(const ThisType & pixel){x+=pixel.x;return (*this);}
+		FINLINE ThisType & operator *=(const ThisType & pixel){x*=pixel.x;return (*this);}
+		FINLINE ThisType & operator /=(const ThisType & pixel){x/=pixel.x;return (*this);}
 
 		FINLINE ThisType operator-(const ThisType & pixel) const {return ThisType(*this)-=pixel;}
 		FINLINE ThisType operator+(const ThisType & pixel) const {return ThisType(*this)+=pixel;}
@@ -73,11 +74,11 @@ template <
 		NumberType x;
 };
 
-typedef PixelDataType1<Meta::Boolean> PixelDataType1b1;
-typedef PixelDataType1<I1u>           PixelDataType1i1u;
-typedef PixelDataType1<I4>            PixelDataType1i4;
-typedef PixelDataType1<F4>            PixelDataType1f4;
-typedef PixelDataType1<F8>            PixelDataType1f8;
+typedef PixelDataType1<B1 > PixelDataType1b1;
+typedef PixelDataType1<I1u> PixelDataType1i1u;
+typedef PixelDataType1<I4 > PixelDataType1i4;
+typedef PixelDataType1<F4 > PixelDataType1f4;
+typedef PixelDataType1<F8 > PixelDataType1f8;
 
 }
 
