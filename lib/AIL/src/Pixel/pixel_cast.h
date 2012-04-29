@@ -1,9 +1,10 @@
 
-#ifndef PIXEL__PIXEL_CAST_H
-#define PIXEL__PIXEL_CAST_H
+#ifndef PIXEL__pixel_cast_H
+#define PIXEL__pixel_cast_H
 
 #include "PixelY.h"
 #include "PixelRGB.h"
+#include "PixelRGBA.h"
 #include "PixelYUV.h"
 
 namespace Pixel {
@@ -38,6 +39,13 @@ template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelRGBf8 & _color){
 	tempY+= _color.getB()*0.114;
 	if(tempY>0.5){return PixelYb1(true);}return PixelYb1(false);
 }
+template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelARGBi1u & _color){
+	I8 tempY;
+	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
+	tempY+= static_cast<I8>(_color.getG())*587;
+	tempY+= static_cast<I8>(_color.getB())*114;
+	if(tempY>127500){return PixelYb1(true);}return PixelYb1(false); // 127500 = 0.5 * 255 * 1000
+}
 template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelYUVf8 & _color){
 	if(_color.getY()>0.5){return PixelYb1(true);}return PixelYb1(false);
 }
@@ -60,6 +68,13 @@ template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelRGBf8 & _color){
 	tempY+= _color.getB()*0.114;
 	return PixelYi1u(static_cast<I1u>(tempY*255.0));
 }
+template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelARGBi1u & _color){
+	I8 tempY;
+	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
+	tempY+= static_cast<I8>(_color.getG())*587;
+	tempY+= static_cast<I8>(_color.getB())*114;
+	return PixelYi1u(static_cast<I1u>(tempY/1000));//TODO: Redo the calculation so that this can be a shift (aka /1024)
+}
 template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelYUVf8 & _color){
 	return PixelYi1u(static_cast<I1u>(_color.getY()));
 }
@@ -78,6 +93,28 @@ template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBf8 & _colo
 		static_cast<I1u>((_color.getB()*255.0)))
 	;
 }
+template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelARGBi1u & _color){
+	return PixelRGBi1u(_color.getR(),_color.getG(),_color.getB());
+}
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelYb1 & _color){
+	if(_color.getY()==true){return PixelARGBi1u::RangeType::maxPixel;}return PixelARGBi1u(0,0,0,0xff);
+}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelYi1u & _color){
+	return PixelARGBi1u(_color.getY(),_color.getY(),_color.getY(),0xff);
+}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelRGBf8 & _color){
+	return PixelARGBi1u(
+		static_cast<I1u>((_color.getR()*255.0)),
+		static_cast<I1u>((_color.getG()*255.0)),
+		static_cast<I1u>((_color.getB()*255.0)),
+		0xff)
+	;
+}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelRGBi1u & _color){
+	return PixelARGBi1u(_color.getR(),_color.getG(),_color.getB(),0xff);
+}
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYb1 & _color){
@@ -87,6 +124,13 @@ template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYi1u & _color){
 	return PixelRGBf8(_color.getY());
 }
 template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelRGBi1u & _color){
+	return PixelRGBf8(
+		(static_cast<F8>(_color.getR()) / 255.0),
+		(static_cast<F8>(_color.getG()) / 255.0),
+		(static_cast<F8>(_color.getB()) / 255.0))
+	;
+}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelARGBi1u & _color){
 	return PixelRGBf8(
 		(static_cast<F8>(_color.getR()) / 255.0),
 		(static_cast<F8>(_color.getG()) / 255.0),
@@ -120,16 +164,23 @@ template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBf8 & _color)
 template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelYUVf8 & _color){
 	return pixel_cast<PixelRGBi1u>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
 }
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelYUVf8 & _color){
+	return pixel_cast<PixelARGBi1u>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
+}
 
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBi1u & _color){
 	return pixel_cast<PixelYUVf8>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
 }
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelARGBi1u & _color){
+	return pixel_cast<PixelYUVf8>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
+}
 
-template <> FINLINE PixelYb1    pixel_cast<PixelYb1   >(const PixelYb1    & _color){return _color;}
-template <> FINLINE PixelYi1u   pixel_cast<PixelYi1u  >(const PixelYi1u   & _color){return _color;}
-template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBi1u & _color){return _color;}
-template <> FINLINE PixelRGBf8  pixel_cast<PixelRGBf8 >(const PixelRGBf8  & _color){return _color;}
-template <> FINLINE PixelYUVf8  pixel_cast<PixelYUVf8 >(const PixelYUVf8  & _color){return _color;}
+template <> FINLINE PixelYb1     pixel_cast<PixelYb1    >(const PixelYb1     & _color){return _color;}
+template <> FINLINE PixelYi1u    pixel_cast<PixelYi1u   >(const PixelYi1u    & _color){return _color;}
+template <> FINLINE PixelRGBi1u  pixel_cast<PixelRGBi1u >(const PixelRGBi1u  & _color){return _color;}
+template <> FINLINE PixelRGBf8   pixel_cast<PixelRGBf8  >(const PixelRGBf8   & _color){return _color;}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelARGBi1u & _color){return _color;}
+template <> FINLINE PixelYUVf8   pixel_cast<PixelYUVf8  >(const PixelYUVf8   & _color){return _color;}
 
 };
 

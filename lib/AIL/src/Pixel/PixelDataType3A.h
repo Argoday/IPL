@@ -33,22 +33,22 @@ template <
 
 		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataType3A<DiffNumberType,Xposition,Yposition,Zposition,Aposition> & _pixel){x=_pixel.get<0>();y=_pixel.get<1>();z=_pixel.get<2>();w=_pixel.get<3>();};
 
-		template <typename DiffNumberType> FINLINE PixelDataType3A<DiffNumberType> getAsComp() const {return PixelDataType3A<DiffNumberType>(x,y,z,w);};
+		template <typename DiffNumberType> FINLINE PixelDataType3A<DiffNumberType,Xposition,Yposition,Zposition,Aposition> getAsComp() const {return PixelDataType3A<DiffNumberType,Xposition,Yposition,Zposition,Aposition>(x,y,z,w);};
 
 		FINLINE void setAs   (const ThisType & _pixel){x=_pixel.x;y=_pixel.y;z=_pixel.z;w=_pixel.w;}
-		FINLINE void setAsMin(const ThisType &  pixel){if(x>pixel.x){x=pixel.x;}if(y>pixel.y){y=pixel.y;}if(z>pixel.z){z=pixel.z;}}
-		FINLINE void setAsMax(const ThisType &  pixel){if(x<pixel.x){x=pixel.x;}if(y<pixel.y){y=pixel.y;}if(z<pixel.z){z=pixel.z;}}
+		FINLINE void setAsMin(const ThisType &  pixel){if(x>pixel.x){x=pixel.x;}if(y>pixel.y){y=pixel.y;}if(z>pixel.z){z=pixel.z;}if(w>pixel.w){w=pixel.w;}}
+		FINLINE void setAsMax(const ThisType &  pixel){if(x<pixel.x){x=pixel.x;}if(y<pixel.y){y=pixel.y;}if(z<pixel.z){z=pixel.z;}if(w>pixel.w){w=pixel.w;}}
 
-		FINLINE void setAs   (const NumberType & _scalar){x=_scalar;y=_scalar;z=_scalar;}
-		FINLINE void setAsMin(const NumberType &  scalar){if(x>scalar){x=scalar;}if(y>scalar){y=scalar;}if(z>scalar){z=scalar;}}
-		FINLINE void setAsMax(const NumberType &  scalar){if(x<scalar){x=scalar;}if(y<scalar){y=scalar;}if(z<scalar){z=scalar;}}
+		FINLINE void setAs   (const NumberType & _scalar){x=_scalar;y=_scalar;z=_scalar;w=_scalar;}
+		FINLINE void setAsMin(const NumberType &  scalar){if(x>scalar){x=scalar;}if(y>scalar){y=scalar;}if(z>scalar){z=scalar;}if(w>scalar){w=scalar;}}
+		FINLINE void setAsMax(const NumberType &  scalar){if(x<scalar){x=scalar;}if(y<scalar){y=scalar;}if(z<scalar){z=scalar;}if(w>scalar){w=scalar;}}
 
 	//Operators
 		//With Scalar:
-		FINLINE ThisType & operator -=(const NumberType & scalar){x-=scalar;y-=scalar;z-=scalar;return (*this);}
-		FINLINE ThisType & operator +=(const NumberType & scalar){x+=scalar;y+=scalar;z+=scalar;return (*this);}
-		FINLINE ThisType & operator *=(const NumberType & scalar){x*=scalar;y*=scalar;z*=scalar;return (*this);}
-		FINLINE ThisType & operator /=(const NumberType & scalar){x/=scalar;y/=scalar;z/=scalar;return (*this);}
+		FINLINE ThisType & operator -=(const NumberType & scalar){x-=scalar;y-=scalar;z-=scalar;w-=scalar;return (*this);}
+		FINLINE ThisType & operator +=(const NumberType & scalar){x+=scalar;y+=scalar;z+=scalar;w+=scalar;return (*this);}
+		FINLINE ThisType & operator *=(const NumberType & scalar){x*=scalar;y*=scalar;z*=scalar;w*=scalar;return (*this);}
+		FINLINE ThisType & operator /=(const NumberType & scalar){x/=scalar;y/=scalar;z/=scalar;w/=scalar;return (*this);}
 		
 		FINLINE ThisType operator-(const NumberType & scalar) const {return ThisType(*this)-=scalar;}
 		FINLINE ThisType operator+(const NumberType & scalar) const {return ThisType(*this)+=scalar;}
@@ -56,20 +56,20 @@ template <
 		FINLINE ThisType operator/(const NumberType & scalar) const {return ThisType(*this)/=scalar;}
 
 		//With Pixel:
-		FINLINE ThisType & operator -=(const ThisType & pixel){x-=pixel.x;y-=pixel.y;z-=pixel.z;return (*this);}
-		FINLINE ThisType & operator +=(const ThisType & pixel){x+=pixel.x;y+=pixel.y;z+=pixel.z;return (*this);}
-		FINLINE ThisType & operator *=(const ThisType & pixel){x*=pixel.x;y*=pixel.y;z*=pixel.z;return (*this);}
-		FINLINE ThisType & operator /=(const ThisType & pixel){x/=pixel.x;y/=pixel.y;z/=pixel.z;return (*this);}
+		FINLINE ThisType & operator -=(const ThisType & pixel){x-=pixel.x;y-=pixel.y;z-=pixel.z;w-=pixel.w;return (*this);}
+		FINLINE ThisType & operator +=(const ThisType & pixel){x+=pixel.x;y+=pixel.y;z+=pixel.z;w+=pixel.w;return (*this);}
+		FINLINE ThisType & operator *=(const ThisType & pixel){x*=pixel.x;y*=pixel.y;z*=pixel.z;w*=pixel.w;return (*this);}
+		FINLINE ThisType & operator /=(const ThisType & pixel){x/=pixel.x;y/=pixel.y;z/=pixel.z;w/=pixel.w;return (*this);}
 
 		FINLINE ThisType operator-(const ThisType & pixel) const {return ThisType(*this)-=pixel;}
 		FINLINE ThisType operator+(const ThisType & pixel) const {return ThisType(*this)+=pixel;}
 		FINLINE ThisType operator*(const ThisType & pixel) const {return ThisType(*this)*=pixel;}
 		FINLINE ThisType operator/(const ThisType & pixel) const {return ThisType(*this)/=pixel;}
 
-		friend FINLINE ThisType operator-(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,BasePixelDataType>(scalar)-pixel;}
-		friend FINLINE ThisType operator+(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,BasePixelDataType>(scalar)+pixel;}
-		friend FINLINE ThisType operator*(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,BasePixelDataType>(scalar)*pixel;}
-		friend FINLINE ThisType operator/(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,BasePixelDataType>(scalar)/pixel;}
+		friend FINLINE ThisType operator-(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,Xposition,Yposition,Zposition,Aposition>(scalar)-pixel;}
+		friend FINLINE ThisType operator+(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,Xposition,Yposition,Zposition,Aposition>(scalar)+pixel;}
+		friend FINLINE ThisType operator*(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,Xposition,Yposition,Zposition,Aposition>(scalar)*pixel;}
+		friend FINLINE ThisType operator/(const NumberType & scalar, const ThisType & pixel){return PixelDataType3A<NumberType,Xposition,Yposition,Zposition,Aposition>(scalar)/pixel;}
 
 		template <int TypeNumber> FINLINE const NumberType & get()    const ;
 		template <              > FINLINE const NumberType & get<0>() const {return x;}
@@ -92,19 +92,26 @@ template <
 		NumberType w;
 };
 
-typedef PixelDataType3A<I1u,0,1,2,3> PixelDataTypeA3i1u;
-typedef PixelDataType3A<I2 ,0,1,2,3> PixelDataTypeA3i2;
-typedef PixelDataType3A<I2u,0,1,2,3> PixelDataTypeA3i2u;
-typedef PixelDataType3A<I4 ,0,1,2,3> PixelDataTypeA3i4;
-typedef PixelDataType3A<F4 ,0,1,2,3> PixelDataTypeA3f4;
-typedef PixelDataType3A<F8 ,0,1,2,3> PixelDataTypeA3f8;
+typedef PixelDataType3A<I1u,0,1,2,3> PixelDataTypeXYZAi1u; //RGBA
+typedef PixelDataType3A<I2 ,0,1,2,3> PixelDataTypeXYZAi2;
+typedef PixelDataType3A<I2u,0,1,2,3> PixelDataTypeXYZAi2u;
+typedef PixelDataType3A<I4 ,0,1,2,3> PixelDataTypeXYZAi4;
+typedef PixelDataType3A<F4 ,0,1,2,3> PixelDataTypeXYZAf4;
+typedef PixelDataType3A<F8 ,0,1,2,3> PixelDataTypeXYZAf8;
 
-typedef PixelDataType3A<I1u,3,0,1,2> PixelDataType3Ai1u;
-typedef PixelDataType3A<I2 ,3,0,1,2> PixelDataType3Ai2;
-typedef PixelDataType3A<I2u,3,0,1,2> PixelDataType3Ai2u;
-typedef PixelDataType3A<I4 ,3,0,1,2> PixelDataType3Ai4;
-typedef PixelDataType3A<F4 ,3,0,1,2> PixelDataType3Af4;
-typedef PixelDataType3A<F8 ,3,0,1,2> PixelDataType3Af8;
+typedef PixelDataType3A<I1u,1,2,3,0> PixelDataTypeAXYZi1u; //ARGB
+typedef PixelDataType3A<I2 ,1,2,3,0> PixelDataTypeAXYZi2;
+typedef PixelDataType3A<I2u,1,2,3,0> PixelDataTypeAXYZi2u;
+typedef PixelDataType3A<I4 ,1,2,3,0> PixelDataTypeAXYZi4;
+typedef PixelDataType3A<F4 ,1,2,3,0> PixelDataTypeAXYZf4;
+typedef PixelDataType3A<F8 ,1,2,3,0> PixelDataTypeAXYZf8;
+
+typedef PixelDataType3A<I1u,3,2,1,0> PixelDataTypeZYXAi1u; //BGRA
+typedef PixelDataType3A<I2 ,3,2,1,0> PixelDataTypeZYXAi2;
+typedef PixelDataType3A<I2u,3,2,1,0> PixelDataTypeZYXAi2u;
+typedef PixelDataType3A<I4 ,3,2,1,0> PixelDataTypeZYXAi4;
+typedef PixelDataType3A<F4 ,3,2,1,0> PixelDataTypeZYXAf4;
+typedef PixelDataType3A<F8 ,3,2,1,0> PixelDataTypeZYXAf8;
 
 }
 

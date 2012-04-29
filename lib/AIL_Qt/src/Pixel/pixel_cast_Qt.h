@@ -6,30 +6,42 @@
 #include "AIL_QT.h"
 #include <Pixel/PixelY.h>
 #include <Pixel/PixelRGB.h>
+#include <Pixel/PixelRGBA.h>
 #include <Pixel/PixelYUV.h>
 #include <Pixel/pixel_cast.h>
 #include <QColor>
 
 namespace Pixel {
 
-template<typename PixelType> FINLINE PixelType pixel_cast(const QRgb &color);
+template<typename PixelType> FINLINE PixelType pixel_cast(const QRgb & color);
 
-template<> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const QRgb &_color){
+template<> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const QRgb & _color){
 	PixelRGBi1u color; //NOTE: There is potentially a much faster way to do this
 	color.setR(qRed  (_color));
 	color.setG(qGreen(_color));
 	color.setB(qBlue (_color));
 	return color;
 }
+template<> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const QRgb & _color){
+	PixelARGBi1u color; //NOTE: There is potentially a much much faster way to do this - or for RGBA, not sure which
+	color.setR(qRed  (_color));
+	color.setG(qGreen(_color));
+	color.setB(qBlue (_color));
+	color.setA(qAlpha(_color));
+	return color;
+}
 
-template<> FINLINE QRgb pixel_cast<QRgb>(const PixelRGBi1u &_color){
+template<> FINLINE QRgb pixel_cast<QRgb>(const PixelRGBi1u & _color){
 	return qRgba(_color.getR(),_color.getG(),_color.getB(),255); //NOTE: There is potentially a much faster way to do this
+}
+template<> FINLINE QRgb pixel_cast<QRgb>(const PixelARGBi1u & _color){
+	return qRgba(_color.getR(),_color.getG(),_color.getB(),_color.getA()); //NOTE: There is potentially a much much faster way to do this - or for RGBA, not sure which
 }
 
 template<> FINLINE QRgb pixel_cast<QRgb>(const PixelYi1u &_color){
 	return qRgba(_color.getY(),_color.getY(),_color.getY(),255);
 }
-template<> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const QRgb &_color){
+template<> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const QRgb & _color){
 	double tempY;
 	tempY = qRed  (_color)*0.299; //NOTE: Fix this so that it is faster
 	tempY+= qGreen(_color)*0.587;
@@ -37,10 +49,10 @@ template<> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const QRgb &_color){
 	return PixelYi1u(tempY);
 }
 
-template<> FINLINE QRgb pixel_cast<QRgb>(const PixelRGBf8 &_color){
+template<> FINLINE QRgb pixel_cast<QRgb>(const PixelRGBf8 & _color){
 	return qRgba(_color.getR()*255.0,_color.getG()*255.0,_color.getB()*255.0,255);
 }
-template<> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const QRgb &_color){
+template<> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const QRgb & _color){
 	PixelRGBf8 color(
 		((double)qRed  (_color))/255.0,
 		((double)qGreen(_color))/255.0,

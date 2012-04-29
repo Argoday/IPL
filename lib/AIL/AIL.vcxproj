@@ -496,6 +496,7 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClCompile Include="src\Paint\Circle.cpp" />
     <ClCompile Include="src\Paint\Cross.cpp" />
     <ClCompile Include="src\Paint\Gaussian.cpp" />
+    <ClCompile Include="src\Pixel\PixelRGBA.cpp" />
     <ClCompile Include="src\Pixel\PixelY.cpp" />
     <ClCompile Include="src\Pixel\PixelRange.cpp" />
     <ClCompile Include="src\Pixel\PixelRGB.cpp" />

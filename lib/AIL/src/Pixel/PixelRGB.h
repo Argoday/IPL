@@ -31,9 +31,9 @@ template <
 		typedef PixelRGBbaseType<NumberType,ComputationDataType,PixelRangeType,Rposition,Gposition,Bposition> ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 
@@ -78,9 +78,9 @@ class AIL_DLL_EXPORT PixelRGBi1u : public PixelRGBi1utd {
 		typedef PixelRGBi1u                    ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 };
@@ -96,9 +96,9 @@ class AIL_DLL_EXPORT PixelRGBf8 : public PixelRGBf8td {
 		typedef PixelRGBf8                    ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 };

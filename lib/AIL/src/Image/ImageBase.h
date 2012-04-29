@@ -3,13 +3,15 @@
 #define IMAGE__ImageBase_H
 
 #include <AIL.h>
+#include <Pixel/PixelY.h>
 #include <Pixel/PixelRGB.h>
+#include <Pixel/PixelRGBA.h>
+#include <Pixel/PixelYUV.h>
 
 namespace Image {
 
 class AIL_DLL_EXPORT ImageBase {
 	public:
-		typedef Pixel::PixelRGBi1u DefaultPixelType;
 
 		const I4 & getImageId() const {return imageId;}
 

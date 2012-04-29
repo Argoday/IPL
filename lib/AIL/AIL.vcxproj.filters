@@ -267,6 +267,9 @@
     <ClCompile Include="src\Pixel\PixelY.cpp">
       <Filter>Pixel\Pixel Types\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Pixel\PixelRGBA.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Algorithm\BaseAlgorithm1x1.h">

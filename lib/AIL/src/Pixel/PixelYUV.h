@@ -31,9 +31,9 @@ template <
 		typedef PixelYUVbaseType<NumberType,ComputationDataType,PixelRangeType,Yposition,Uposition,Vposition> ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
 
@@ -70,9 +70,9 @@ class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
 		typedef PixelYUVf8                    ThisType;
 
 		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType      & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType        & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType        & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
 };
