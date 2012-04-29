@@ -262,14 +262,15 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 
 						auto width  = pCodecCtx->width;
 						auto height = pCodecCtx->height;
-						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
+						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB, SWS_BICUBIC, NULL, NULL, NULL);
 
 						auto imagePtr = new Image::Image<Pixel::PixelRGBi1u>(width,height,dataManager);
 
 						uint8_t * data[AV_NUM_DATA_POINTERS];
 						int linesize[AV_NUM_DATA_POINTERS];
 						data[0] = static_cast<uint8_t*const>(static_cast<void*const>(imagePtr->getDataPtr()));
-						linesize[0] = width*3;
+						data[1] = nullptr;data[2] = nullptr;data[3] = nullptr;data[4] = nullptr;data[5] = nullptr;data[6] = nullptr;data[7] = nullptr;
+						linesize[0] = width*3;linesize[1] = 0;linesize[2] = 0;linesize[3] = 0;linesize[4] = 0;linesize[5] = 0;linesize[6] = 0;linesize[7] = 0;
 						sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, data, linesize);
 
 						++videoFrameIndex;
