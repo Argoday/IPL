@@ -4,6 +4,7 @@
 #include "MorphologicalDialog.h"
 #include <Image/Image.h>
 #include <Image/Image_Qt.h>
+#include <Image/image_cast.h>
 
 #include <Filter/DilateFilter.h>
 #include <Filter/ErodeFilter.h>
@@ -12,6 +13,10 @@
 #include <Filter/OpenFilter.h>
 #include <Filter/CloseFilter.h>
 #include <Filter/LinearFilterWxH.h>
+#include <Filter/LinearFilterWx1.h>
+#include <Filter/LinearFilter1xH.h>
+#include <Filter/BoxFilterWx1.h>
+#include <Filter/BoxFilter1xH.h>
 #include <Paint/Gaussian.h>
 
 void MorphologicalDialog::updateSize(int _size) {
@@ -100,8 +105,13 @@ void MorphologicalDialog::updatePreview() {
 		break;
 		case 6:
 			{
-				/*Filter::LinearFilterWxH<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
-				Filter::LinearFilterWxH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
+				Filter::BoxFilterWx1<PixelType> boxFilter1(size*2+1);
+				Filter::BoxFilter1xH<PixelType> boxFilter2(size*2+1);
+				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
+				boxFilter1.applyTo(*previewBeforeImage,tempImage1);
+				boxFilter2.applyTo(tempImage1,*previewAfterImage);
+				/*Filter::LinearFilterWx1<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
+				Filter::LinearFilter1xH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
 				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 				blurFilter1.applyTo(*previewBeforeImage,tempImage1);
 				blurFilter2.applyTo(tempImage1,*previewAfterImage);//*/
@@ -109,12 +119,30 @@ void MorphologicalDialog::updatePreview() {
 		break;
 		case 7:
 			{
+				Image::Image<PixelType::ComputationPixel> previewBeforeImageComp = Image::image_cast<PixelType::ComputationPixel>(*previewBeforeImage);
+				Image::Image<PixelType::ComputationPixel> previewAfterImageComp  = Image::Image<PixelType::ComputationPixel>(previewAfterImage->getSize(),dataManager);
+				
+				Image::Image<PixelType::ComputationPixel> tempImage1 = Image::Image<PixelType::ComputationPixel>(previewAfterImage->getSize(),dataManager);
+				Image::Image<PixelType::ComputationPixel> tempImage2 = Image::Image<PixelType::ComputationPixel>(previewAfterImage->getSize(),dataManager);
+				Filter::BoxFilterWx1<PixelType::ComputationPixel> boxFilter1(size*2+1);
+				Filter::BoxFilter1xH<PixelType::ComputationPixel> boxFilter2(size*2+1);
+				boxFilter1.applyTo(previewBeforeImageComp,tempImage1);
+				boxFilter2.applyTo(tempImage1,tempImage2);
+				
+				tempImage1=previewBeforeImageComp;
+				tempImage1-=tempImage2;
+
+				previewAfterImageComp=previewBeforeImageComp;
+				previewAfterImageComp+=tempImage1;
+				previewAfterImageComp.clip();
+
+				(*previewAfterImage) = Image::image_cast<PixelType>(previewAfterImageComp);
 				/*Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 				Image::Image<PixelType> tempImage2 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
-				Filter::LinearFilterWxH<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
-				Filter::LinearFilterWxH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
+				Filter::LinearFilterWx1<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
+				Filter::LinearFilter1xH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
 				blurFilter1.applyTo(*previewBeforeImage,tempImage1);
-				blurFilter2.applyTo(*previewBeforeImage,tempImage1);
+				blurFilter2.applyTo(tempImage1,tempImage2);
 				(tempImage2)=(*previewBeforeImage);
 				(tempImage2)-=(tempImage1);
 				(*previewAfterImage)=(*previewBeforeImage);

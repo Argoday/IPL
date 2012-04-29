@@ -109,7 +109,7 @@ class NegateObj {
 		typedef ImageWindow::PixelType::DataType PixelDataType;
 
 		static FINLINE void process(PixelDataType * const & srcImageDataPtr){
-			(*srcImageDataPtr) = 1.0 - (*srcImageDataPtr);
+			(*srcImageDataPtr) = 255 - (*srcImageDataPtr);
 		}
 		//static FINLINE void process(const PixelDataType * const & srcImageDataPtr,PixelDataType * const & dstImageDataPtr){
 		//	(*dstImageDataPtr) = 1.0 - (*srcImageDataPtr);
@@ -163,11 +163,11 @@ void ImageWindow::negative(){
 	//(*wImage)+=  1.0;
 	//Image::BaseAlgorithm1x1<Image::ImageBase::DefaultPixelType::DataType,NegateObj>(wImage->getView());
 
-	Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(wImage->getSize(),dataManager);
-	Algorithm::BaseAlgorithm3x3<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
-	//Algorithm::BaseAlgorithm1x1<NegateObj,Image::ImageBase::DefaultPixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
-	//Algorithm::BaseAlgorithm1x1<NegateObj,Image::ImageBase::DefaultPixelType::DataType>(wImage->getDataView());
-	wImage->swap(tempImage1);
+	//Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(wImage->getSize(),dataManager);
+	//Algorithm::BaseAlgorithm3x3<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
+	//Algorithm::BaseAlgorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
+	Algorithm::BaseAlgorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView());
+	//wImage->swap(tempImage1);
 	//wImage->clip();
 	//(*wImage)+= wImage->getMaxValueVol();
 	clock_t endTime = clock();
