@@ -1,9 +1,8 @@
 
-#ifndef FILTER__BaseMinFilterAlgorithm_H
-#define FILTER__BaseMinFilterAlgorithm_H
+#ifndef FILTER__BaseBoxFilterAlgorithm_H
+#define FILTER__BaseBoxFilterAlgorithm_H
 
 #include <Algorithm/BaseOperationTempType.h>
-#include "BaseMinFilterParametersType.h"
 
 namespace Filter {
 
@@ -12,13 +11,13 @@ template <
 	typename PixelComputationType,
 	typename ParametersType,
 	typename TempType
-> class AIL_DLL_EXPORT BaseMinFilterAlgorithm {
+> class AIL_DLL_EXPORT BaseBoxFilterAlgorithm {
 	public:
 		static FINLINE void initial(
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
-			tempData.tempPixel = parameters.maxPixel;
+			tempData.tempPixel = parameters.minPixel;
 		}
 
 		static FINLINE void inner(
@@ -26,14 +25,14 @@ template <
 			const ParametersType & parameters,
 			const PixelComputationType & srcImageData)
 		{
-			tempData.tempPixel.setAsMin(srcImageData);
+			tempData.tempPixel+= srcImageData;
 		}
 
 		static FINLINE void final(
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
-			tempData.resultPixel.setComp(tempData.tempPixel);
+			tempData.resultPixel.setComp(tempData.tempPixel/parameters.size);
 		}
 
 };

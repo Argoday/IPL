@@ -39,13 +39,33 @@ template <
 
 typedef PixelYbaseType<B1 ,I4,PixelRange_1b1 > PixelYb1td;
 typedef PixelYbaseType<I1u,I4,PixelRange_1i1u> PixelYi1utd;
+typedef PixelYbaseType<I4 ,I4,PixelRange_1i4 > PixelYi4td;
+
+class AIL_DLL_EXPORT PixelYi4 : public PixelYi4td {
+	public:
+		typedef I4                          NumberType;
+		typedef PixelYi4td::DataType        DataType;
+		typedef PixelYi4td::ComputationType ComputationType;
+		typedef PixelYi4td                  ComputationPixel;
+		typedef PixelRange_1i4_i1u          ComputationRange;
+		typedef PixelRange_1i4_i1u          RangeType;
+		typedef PixelYi4td                  ParentType;
+		typedef PixelYi4                    ThisType;
+
+		FINLINE explicit ThisType(){}
+		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+
+};
 
 class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
 	public:
 		typedef B1                          NumberType;
 		typedef PixelYb1td::DataType        DataType;
 		typedef PixelYb1td::ComputationType ComputationType;
-		typedef PixelRange_1i4              ComputationRange;
+		typedef PixelYi4                    ComputationPixel;
+		typedef PixelRange_1i4_i1u          ComputationRange;
 		typedef PixelRange_1b1              RangeType;
 		typedef PixelYb1td                  ParentType;
 		typedef PixelYb1                    ThisType;
@@ -70,7 +90,8 @@ class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 		typedef I1u                          NumberType;
 		typedef PixelYi1utd::DataType        DataType;
 		typedef PixelYi1utd::ComputationType ComputationType;
-		typedef PixelRange_1i4               ComputationRange;
+		typedef PixelYi4                     ComputationPixel;
+		typedef PixelRange_1i4_i1u           ComputationRange;
 		typedef PixelRange_1i1u              RangeType;
 		typedef PixelYi1utd                  ParentType;
 		typedef PixelYi1u                    ThisType;

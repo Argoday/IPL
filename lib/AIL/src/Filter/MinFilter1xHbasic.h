@@ -8,7 +8,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> class MinFilter1xHbasic {
+> class AIL_DLL_EXPORT MinFilter1xHbasic {
 
 	public:
 		MinFilter1xHbasic(

@@ -11,7 +11,7 @@ namespace Filter {
 
 template <
 	typename PixelType = Image::ImageBase::DefaultPixelType
-> class SimpleWxHbooleanOperation
+> class AIL_DLL_EXPORT SimpleWxHbooleanOperation
 	: public ImageOperation<PixelType>
 {
 	protected:

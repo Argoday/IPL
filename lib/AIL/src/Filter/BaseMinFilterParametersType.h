@@ -10,7 +10,7 @@ namespace Filter {
 template <
 	typename PixelDataType,
 	typename PixelComputationType
-> class BaseMinFilterParametersType
+> class AIL_DLL_EXPORT BaseMinFilterParametersType
 	: public SimpleWxHbooleanOperationParametersType
 {
 	public:

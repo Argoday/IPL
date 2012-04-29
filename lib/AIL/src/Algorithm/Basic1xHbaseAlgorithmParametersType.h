@@ -4,7 +4,7 @@
 
 namespace Algorithm {
 
-class Basic1xHbaseAlgorithmParametersType {
+class AIL_DLL_EXPORT Basic1xHbaseAlgorithmParametersType {
 	public:
 
 		Basic1xHbaseAlgorithmParametersType(

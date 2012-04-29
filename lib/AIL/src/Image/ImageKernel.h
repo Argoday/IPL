@@ -10,7 +10,7 @@ namespace Image {
 template <
 	typename PixelType,
 	typename InclusionTestType
-> class ImageKernel {
+> class AIL_DLL_EXPORT ImageKernel {
 	public:
 
 		ImageKernel(Image<PixelType> && _kernel);

@@ -470,6 +470,8 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClCompile Include="src\Filter\BaseMaxFilter.cpp" />
     <ClCompile Include="src\Filter\BaseMinFilter.cpp" />
     <ClCompile Include="src\Filter\BlackTopHatFilter.cpp" />
+    <ClCompile Include="src\Filter\BoxFilter1xH.cpp" />
+    <ClCompile Include="src\Filter\BoxFilterWx1.cpp" />
     <ClCompile Include="src\Filter\CloseFilter.cpp" />
     <ClCompile Include="src\Filter\DilateFilter.cpp" />
     <ClCompile Include="src\Filter\ErodeFilter.cpp" />
@@ -523,6 +525,9 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClInclude Include="src\Algorithm\Basic1xHbaseAlgorithmParametersType.h" />
     <ClInclude Include="src\Algorithm\BasicWx1baseAlgorithm.h" />
     <ClInclude Include="src\Algorithm\BasicWx1baseAlgorithmParametersType.h" />
+    <ClInclude Include="src\Filter\BaseBoxFilter.h" />
+    <ClInclude Include="src\Filter\BaseBoxFilterAlgorithm.h" />
+    <ClInclude Include="src\Filter\BoxFilter1xHparametersType.h" />
     <ClInclude Include="src\Filter\BaseLinearFilter.h" />
     <ClInclude Include="src\Filter\BaseLinearFilterAlgorithm.h" />
     <ClInclude Include="src\Filter\BaseLinearFilterParametersType.h" />
@@ -533,6 +538,9 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClInclude Include="src\Filter\BaseMinFilterAlgorithm.h" />
     <ClInclude Include="src\Filter\BaseMinFilterParametersType.h" />
     <ClInclude Include="src\Filter\BlackTopHatFilter.h" />
+    <ClInclude Include="src\Filter\BoxFilterWx1.h" />
+    <ClInclude Include="src\Filter\BoxFilter1xH.h" />
+    <ClInclude Include="src\Filter\BoxFilterWx1parametersType.h" />
     <ClInclude Include="src\Filter\CloseFilter.h" />
     <ClInclude Include="src\Filter\DilateFilter.h" />
     <ClInclude Include="src\Filter\ErodeFilter.h" />

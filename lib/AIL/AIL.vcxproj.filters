@@ -160,6 +160,18 @@
     <Filter Include="Paint\Primitives\Source Files">
       <UniqueIdentifier>{c9e94061-e229-4a25-8204-cee75fc4beaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Filter\Box">
+      <UniqueIdentifier>{337d2dff-671b-411f-991c-7f86ca2694dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filter\Box\Header Files">
+      <UniqueIdentifier>{4c3a2aac-9871-4ec3-acc7-331b21af9139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filter\Box\Source Files">
+      <UniqueIdentifier>{9171e082-540e-4777-b0f3-95154735481d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Filter\Box\BaseBoxFilter">
+      <UniqueIdentifier>{86d6dc31-e283-40e9-a68c-b4c2e25f5df1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Filter\BaseLinearFilter.cpp">
@@ -269,6 +281,12 @@
     </ClCompile>
     <ClCompile Include="src\Pixel\PixelRGBA.cpp">
       <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\BoxFilter1xH.cpp">
+      <Filter>Filter\Box\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\BoxFilterWx1.cpp">
+      <Filter>Filter\Box\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -527,6 +545,24 @@
     </ClInclude>
     <ClInclude Include="src\Pixel\PixelY.h">
       <Filter>Pixel\Pixel Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilter1xH.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseBoxFilter.h">
+      <Filter>Filter\Box\BaseBoxFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseBoxFilterAlgorithm.h">
+      <Filter>Filter\Box\BaseBoxFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilter1xHparametersType.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilterWx1parametersType.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilterWx1.h">
+      <Filter>Filter\Box\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

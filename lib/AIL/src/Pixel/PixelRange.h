@@ -34,6 +34,10 @@ template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataType1b1 
 template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataType1i1u,1>::clip(PixelDataType1i1u & pixel){};
 template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataType1i4 ,1>::clip(PixelDataType1i4  & pixel){};
 
+template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataType1i4 ,2>::clip(PixelDataType1i4  & pixel){
+	if(pixel.get<0>()<0){pixel.set<0>(0);}else if(pixel.get<0>()>255){pixel.set<0>(255);}
+};
+
 ///////////////////////////////////////////////////////////////////
 
 template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataType3i1u,1>::clip(PixelDataType3i1u & pixel){};
@@ -274,6 +278,7 @@ template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataTypeY2_0
 typedef PixelRange_Base<PixelDataType1b1 ,1> PixelRange_1b1;
 typedef PixelRange_Base<PixelDataType1i1u,1> PixelRange_1i1u;
 typedef PixelRange_Base<PixelDataType1i4 ,1> PixelRange_1i4;
+typedef PixelRange_Base<PixelDataType1i4 ,2> PixelRange_1i4_i1u;
 
 ///////////////////////////////////////////////////////////////////
 

@@ -8,7 +8,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> class MaxFilter1xH
+> class AIL_DLL_EXPORT MaxFilter1xH
 	: public BaseMaxFilter<PixelType>
 {
 

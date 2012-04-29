@@ -8,7 +8,7 @@
 
 namespace Filter {
 
-class SimpleWxHbooleanOperationParametersType
+class AIL_DLL_EXPORT SimpleWxHbooleanOperationParametersType
 	: public Image::BaseAlgorithmWxHparametersType
 {
 	public:

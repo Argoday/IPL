@@ -16,10 +16,15 @@ const PixelDataType1i1u PixelRange_1i1u::maxPixel  = PixelDataType1i1u(0xff);
 const I1u               PixelRange_1i1u::minValue  = I1u(0x00);
 const I1u               PixelRange_1i1u::maxValue  = I1u(0xff);
 
-const PixelDataType1i4  PixelRange_1i4::minPixel   = PixelDataType1i4(0x00000000);
-const PixelDataType1i4  PixelRange_1i4::maxPixel   = PixelDataType1i4(0x7fffffff);
-const I4                PixelRange_1i4::minValue   = I4(0x00000000);
-const I4                PixelRange_1i4::maxValue   = I4(0x7fffffff);
+const PixelDataType1i4  PixelRange_1i4::minPixel   = PixelDataType1i4(0x00);
+const PixelDataType1i4  PixelRange_1i4::maxPixel   = PixelDataType1i4(0xff);
+const I4                PixelRange_1i4::minValue   = I4(0x00);
+const I4                PixelRange_1i4::maxValue   = I4(0xff);
+
+const PixelDataType1i4  PixelRange_1i4_i1u::minPixel   = PixelDataType1i4(0x00);
+const PixelDataType1i4  PixelRange_1i4_i1u::maxPixel   = PixelDataType1i4(0xff);
+const I4                PixelRange_1i4_i1u::minValue   = I4(0x00);
+const I4                PixelRange_1i4_i1u::maxValue   = I4(0xff);
 
 ///////////////////////////////////////////////////////////////////
 
@@ -28,10 +33,10 @@ const PixelDataType3i1u PixelRange_3i1u::maxPixel  = PixelDataType3i1u(0xff);
 const I1u               PixelRange_3i1u::minValue  = I1u(0x00);
 const I1u               PixelRange_3i1u::maxValue  = I1u(0xff);
 
-const PixelDataType3i4  PixelRange_3i4::minPixel   = PixelDataType3i4(0x00000000);
-const PixelDataType3i4  PixelRange_3i4::maxPixel   = PixelDataType3i4(0x7fffffff);
-const I4                PixelRange_3i4::minValue   = I4(0x00000000);
-const I4                PixelRange_3i4::maxValue   = I4(0x7fffffff);
+const PixelDataType3i4  PixelRange_3i4::minPixel   = PixelDataType3i4(0x00);
+const PixelDataType3i4  PixelRange_3i4::maxPixel   = PixelDataType3i4(0xff);
+const I4                PixelRange_3i4::minValue   = I4(0x00);
+const I4                PixelRange_3i4::maxValue   = I4(0xff);
 
 const PixelDataType3i4  PixelRange_3i4_i1u::minPixel = PixelDataType3i4(0x00);
 const PixelDataType3i4  PixelRange_3i4_i1u::maxPixel = PixelDataType3i4(0xff);
@@ -60,10 +65,10 @@ const PixelDataTypeXYZAi1u PixelRange_XYZAi1u::maxPixel  = PixelDataTypeXYZAi1u(
 const I1u                  PixelRange_XYZAi1u::minValue  = I1u(0x00);
 const I1u                  PixelRange_XYZAi1u::maxValue  = I1u(0xff);
 
-const PixelDataTypeXYZAi4 PixelRange_XYZAi4::minPixel   = PixelDataTypeXYZAi4(0x00000000);
-const PixelDataTypeXYZAi4 PixelRange_XYZAi4::maxPixel   = PixelDataTypeXYZAi4(0x7fffffff);
-const I4                  PixelRange_XYZAi4::minValue   = I4(0x00000000);
-const I4                  PixelRange_XYZAi4::maxValue   = I4(0x7fffffff);
+const PixelDataTypeXYZAi4 PixelRange_XYZAi4::minPixel   = PixelDataTypeXYZAi4(0x00);
+const PixelDataTypeXYZAi4 PixelRange_XYZAi4::maxPixel   = PixelDataTypeXYZAi4(0xff);
+const I4                  PixelRange_XYZAi4::minValue   = I4(0x00);
+const I4                  PixelRange_XYZAi4::maxValue   = I4(0xff);
 
 const PixelDataTypeXYZAi4 PixelRange_XYZAi4_i1u::minPixel = PixelDataTypeXYZAi4(0x00);
 const PixelDataTypeXYZAi4 PixelRange_XYZAi4_i1u::maxPixel = PixelDataTypeXYZAi4(0xff);
@@ -92,10 +97,10 @@ const PixelDataTypeAXYZi1u PixelRange_AXYZi1u::maxPixel  = PixelDataTypeAXYZi1u(
 const I1u                  PixelRange_AXYZi1u::minValue  = I1u(0x00);
 const I1u                  PixelRange_AXYZi1u::maxValue  = I1u(0xff);
 
-const PixelDataTypeAXYZi4 PixelRange_AXYZi4::minPixel   = PixelDataTypeAXYZi4(0x00000000);
-const PixelDataTypeAXYZi4 PixelRange_AXYZi4::maxPixel   = PixelDataTypeAXYZi4(0x7fffffff);
-const I4                  PixelRange_AXYZi4::minValue   = I4(0x00000000);
-const I4                  PixelRange_AXYZi4::maxValue   = I4(0x7fffffff);
+const PixelDataTypeAXYZi4 PixelRange_AXYZi4::minPixel   = PixelDataTypeAXYZi4(0x00);
+const PixelDataTypeAXYZi4 PixelRange_AXYZi4::maxPixel   = PixelDataTypeAXYZi4(0xff);
+const I4                  PixelRange_AXYZi4::minValue   = I4(0x00);
+const I4                  PixelRange_AXYZi4::maxValue   = I4(0xff);
 
 const PixelDataTypeAXYZi4 PixelRange_AXYZi4_i1u::minPixel = PixelDataTypeAXYZi4(0x00);
 const PixelDataTypeAXYZi4 PixelRange_AXYZi4_i1u::maxPixel = PixelDataTypeAXYZi4(0xff);
@@ -124,10 +129,10 @@ const PixelDataTypeZYXAi1u PixelRange_ZYXAi1u::maxPixel  = PixelDataTypeZYXAi1u(
 const I1u                  PixelRange_ZYXAi1u::minValue  = I1u(0x00);
 const I1u                  PixelRange_ZYXAi1u::maxValue  = I1u(0xff);
 
-const PixelDataTypeZYXAi4 PixelRange_ZYXAi4::minPixel   = PixelDataTypeZYXAi4(0x00000000);
-const PixelDataTypeZYXAi4 PixelRange_ZYXAi4::maxPixel   = PixelDataTypeZYXAi4(0x7fffffff);
-const I4                  PixelRange_ZYXAi4::minValue   = I4(0x00000000);
-const I4                  PixelRange_ZYXAi4::maxValue   = I4(0x7fffffff);
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4::minPixel   = PixelDataTypeZYXAi4(0x00);
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4::maxPixel   = PixelDataTypeZYXAi4(0xff);
+const I4                  PixelRange_ZYXAi4::minValue   = I4(0x00);
+const I4                  PixelRange_ZYXAi4::maxValue   = I4(0xff);
 
 const PixelDataTypeZYXAi4 PixelRange_ZYXAi4_i1u::minPixel = PixelDataTypeZYXAi4(0x00);
 const PixelDataTypeZYXAi4 PixelRange_ZYXAi4_i1u::maxPixel = PixelDataTypeZYXAi4(0xff);
@@ -160,6 +165,11 @@ const PixelDataTypeY2_0i2  PixelRange_Y2_0i2::minPixel = PixelDataTypeY2_0i2(0x0
 const PixelDataTypeY2_0i2  PixelRange_Y2_0i2::maxPixel = PixelDataTypeY2_0i2(0x7fff);
 const I2                   PixelRange_Y2_0i2::minValue = I2(0x0000);
 const I2                   PixelRange_Y2_0i2::maxValue = I2(0xffff);
+
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4::minPixel = PixelDataTypeY2_0i4(0x00);
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4::maxPixel = PixelDataTypeY2_0i4(0xff);
+const I4                   PixelRange_Y2_0i4::minValue = I4(0x00);
+const I4                   PixelRange_Y2_0i4::maxValue = I4(0xff);
 
 const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i1u::minPixel = PixelDataTypeY2_0i4(0x00);
 const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i1u::maxPixel = PixelDataTypeY2_0i4(0xff);

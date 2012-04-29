@@ -6,7 +6,7 @@
 
 namespace Algorithm {
 
-class BasicWx1baseAlgorithmParametersType {
+class AIL_DLL_EXPORT BasicWx1baseAlgorithmParametersType {
 	public:
 
 		BasicWx1baseAlgorithmParametersType(

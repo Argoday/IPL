@@ -1,6 +1,6 @@
 
-#ifndef FILTER__MinFilterWx1basicParametersType_H
-#define FILTER__MinFilterWx1basicParametersType_H
+#ifndef FILTER__BoxFilterWx1parametersType_H
+#define FILTER__BoxFilterWx1parametersType_H
 
 #include <Algorithm/BasicWx1baseAlgorithmParametersType.h>
 
@@ -9,25 +9,28 @@ namespace Filter {
 template <
 	typename PixelDataType,
 	typename PixelComputationType
-> class AIL_DLL_EXPORT MinFilterWx1basicParametersType
+> class AIL_DLL_EXPORT BoxFilterWx1parametersType
 	: public Algorithm::BasicWx1baseAlgorithmParametersType
 {
 	public:
 
-		MinFilterWx1basicParametersType(
+		BoxFilterWx1parametersType(
 			const I4 & _xOffset,
 			const I4 & _filterWidth,
-			const PixelComputationType & _maxPixel
+			const PixelComputationType & _minPixel,
+			const PixelComputationType & _size
 		)
 			:BasicWx1baseAlgorithmParametersType(
 				_xOffset,
 				_filterWidth
 			)
-			,maxPixel(_maxPixel)
+			,minPixel(_minPixel)
+			,size(_size)
 		{
 		}
 
-		const PixelComputationType maxPixel;
+		const PixelComputationType minPixel;
+		const PixelComputationType size;
 };
 
 }

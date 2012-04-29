@@ -9,7 +9,7 @@ namespace Filter {
 template <
 	typename PixelDataType,
 	typename PixelComputationType
-> class MinFilter1xHbasicParametersType
+> class AIL_DLL_EXPORT MinFilter1xHbasicParametersType
 	: public Algorithm::Basic1xHbaseAlgorithmParametersType
 {
 	public:

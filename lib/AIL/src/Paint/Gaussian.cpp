@@ -17,8 +17,8 @@ template <typename PixelType> AIL_DLL_EXPORT Image::Image<PixelType> MakeGaussia
 	PixelType::DataType * filterDataPtr = image.getDataPtr();
 	F8 param = -1.0 / (2.0 * sigma * sigma);
 	F8 radiusSq = radius*radius;
-	for (I4 y=0; y<image.getHeight(); ++y)    { F8 yDistance = ((F8)y)-yCenter;
-		for (I4 x=0; x<image.getWidth(); ++x) { F8 xDistance = ((F8)x)-xCenter;
+	for (I4 y=0; y<image.getHeight(); ++y)    { F8 yDistance = y-yCenter;
+		for (I4 x=0; x<image.getWidth(); ++x) { F8 xDistance = x-xCenter;
 			F8 distanceSq = (xDistance*xDistance + yDistance*yDistance);
 			if (distanceSq < radiusSq){
 				F8 pdfValue = exp(distanceSq*param);

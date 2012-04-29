@@ -9,7 +9,7 @@ namespace Filter {
 template <
 	typename PixelDataType,
 	typename PixelComputationType
-> class MaxFilterWx1basicParametersType
+> class AIL_DLL_EXPORT MaxFilterWx1basicParametersType
 	: public Algorithm::BasicWx1baseAlgorithmParametersType
 {
 	public:

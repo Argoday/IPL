@@ -1,36 +1,36 @@
 
-#include "MinFilterWx1basic.h"
+#include "BoxFilterWx1.h"
 #include <Algorithm/BaseAlgorithmWx1.h>
-#include "BaseMinFilterAlgorithm.h"
+#include "BaseBoxFilterAlgorithm.h"
+#include "BoxFilterWx1parametersType.h"
 #include <Algorithm/BasicWx1baseAlgorithm.h>
-#include "MinFilterWx1basicParametersType.h"
 
 namespace Filter {
 
 template <
 	typename PixelType
-> void AIL_DLL_EXPORT MinFilterWx1basic<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
+> void AIL_DLL_EXPORT BoxFilterWx1<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
 	typedef typename PixelType::DataType        PixelDataType;
 	typedef typename PixelType::ComputationType PixelComputationType;
 
-	MinFilterWx1basicParametersType<PixelDataType,PixelComputationType> parameters(xOffset,filterWidth,PixelType::ComputationRange::getMaxPixel());
+	BoxFilterWx1parametersType<PixelDataType,PixelComputationType> parameters(xOffset,filterWidth,PixelType::ComputationRange::getMinPixel(),PixelComputationType(filterWidth));
 
 	Algorithm::BaseAlgorithmWx1<
 		Algorithm::BasicWx1baseAlgorithm<
-			BaseMinFilterAlgorithm<
+			BaseBoxFilterAlgorithm<
 				PixelDataType,
 				PixelComputationType,
-				MinFilterWx1basicParametersType<PixelDataType,PixelComputationType>,
+				BoxFilterWx1parametersType<PixelDataType,PixelComputationType>,
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
 			PixelComputationType,
-			MinFilterWx1basicParametersType<PixelDataType,PixelComputationType>,
+			BoxFilterWx1parametersType<PixelDataType,PixelComputationType>,
 			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		MinFilterWx1basicParametersType<PixelDataType,PixelComputationType>
+		BoxFilterWx1parametersType<PixelDataType,PixelComputationType>
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),
@@ -42,4 +42,4 @@ template <
 }
 
 #include <Pixel/PixelTemplateMacros.h>
-CREATE_PIXEL_TEMPLATE_CALLS(Filter::MinFilterWx1basic)
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::BoxFilterWx1)

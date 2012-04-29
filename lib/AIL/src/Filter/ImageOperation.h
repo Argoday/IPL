@@ -7,8 +7,8 @@
 namespace Filter {
 
 template <
-	typename PixelType = Image::ImageBase::DefaultPixelType
-> class ImageOperation {
+	typename PixelType
+> class AIL_DLL_EXPORT ImageOperation {
 	public:
 		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 };

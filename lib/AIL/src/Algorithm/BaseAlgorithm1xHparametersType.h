@@ -6,7 +6,7 @@
 
 namespace Image {
 
-class BaseAlgorithm1xHparametersType{
+class AIL_DLL_EXPORT BaseAlgorithm1xHparametersType {
 	public:
 
 		BaseAlgorithm1xHparametersType(

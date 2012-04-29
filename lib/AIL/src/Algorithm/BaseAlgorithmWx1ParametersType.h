@@ -6,7 +6,7 @@
 
 namespace Image {
 
-class BaseAlgorithmWx1parametersType{
+class AIL_DLL_EXPORT BaseAlgorithmWx1parametersType {
 	public:
 
 		BaseAlgorithmWx1parametersType(

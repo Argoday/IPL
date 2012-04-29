@@ -1,29 +1,23 @@
 
-#ifndef FILTER__MinFilterWx1basic_H
-#define FILTER__MinFilterWx1basic_H
+#ifndef FILTER__BoxFilterWx1basic_H
+#define FILTER__BoxFilterWx1basic_H
 
-#include "BaseMinFilter.h"
+#include "BaseBoxFilter.h"
 
 namespace Filter {
 
 template <
 	typename PixelType
-> class AIL_DLL_EXPORT MinFilterWx1basic {
+> class AIL_DLL_EXPORT BoxFilterWx1
+	: public BaseBoxFilter<PixelType>
+{
 
 	public:
-		MinFilterWx1basic(
+		BoxFilterWx1(
 			const I4 & _filterWidth
 		)
 			:filterWidth(_filterWidth)	
 			,xOffset( (_filterWidth - 1) / 2 )
-		{
-		};
-		MinFilterWx1basic(
-			const I4 & _filterWidth,
-			const I4 & _xOffset
-		)
-			:filterWidth(_filterWidth)
-			,xOffset(_xOffset)
 		{
 		};
 

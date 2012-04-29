@@ -9,7 +9,7 @@ namespace Filter {
 
 template <
 	typename PixelType
-> class MinFilterWx1
+> class AIL_DLL_EXPORT MinFilterWx1
 	: public BaseMinFilter<PixelType>
 {
 
