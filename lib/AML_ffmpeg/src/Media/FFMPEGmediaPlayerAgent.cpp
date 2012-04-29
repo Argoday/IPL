@@ -262,7 +262,7 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 
 						auto width  = pCodecCtx->width;
 						auto height = pCodecCtx->height;
-						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB, SWS_BICUBIC, NULL, NULL, NULL);
+						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
 
 						auto imagePtr = new Image::Image<Pixel::PixelRGBi1u>(width,height,dataManager);
 
