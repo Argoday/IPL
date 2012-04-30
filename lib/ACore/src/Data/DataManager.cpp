@@ -1,12 +1,12 @@
 
 #include "DataManager.h"
 #include "DataChunk.h"
+
 #include <vector> //TODO: Remove usage of std::vector , it adds too much to the binary for what it is worth
 #include <map> //TODO: Remove usage of std::map , it adds too much to the binary for what it is worth
+
 #include <stdlib.h> //For: _aligned_malloc() , _aligned_free()
-
-#include <concrt.h> // Concurrency - used to make DataManager thread-safe
-
+#include <mutex> //For: std::mutex , std::lock_guard<std::mutex>
 
 namespace Data {
 
@@ -15,7 +15,7 @@ class DataManagerHelper;
 class DataManager::DataManager_d {
 	public:
 		std::map<I8u,DataManagerHelper> dataMap;
-		Concurrency::critical_section criticalSection;
+		std::mutex criticalSection;
 };
 
 void * const DataManager::getMemory(const I4  & numBytes){
@@ -125,7 +125,7 @@ void * const DataManager::getMemoryFromPool(const I4u &_numBytes){
 	return getMemoryFromPool(static_cast<I8u>(_numBytes));
 }
 void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
-	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	auto dataMapIter = _this->dataMap.find(_numBytes);
 	if(dataMapIter!=_this->dataMap.end()){
 		return dataMapIter->second.getMemory();
@@ -135,7 +135,7 @@ void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
 }
 
 B1 DataManager::releaseFromPool(const void * const dataPtr){
-	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	auto dataMapIter = _this->dataMap.begin();
 	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
 		if(dataMapIter->second.release(dataPtr)==true){
@@ -146,20 +146,20 @@ B1 DataManager::releaseFromPool(const void * const dataPtr){
 	return false;
 }
 B1 DataManager::releaseFromPool(const void * const dataPtr,const I4  & numBytes){
-	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 B1 DataManager::releaseFromPool(const void * const dataPtr,const I4u & numBytes){
-	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 B1 DataManager::releaseFromPool(const void * const dataPtr,const I8u & numBytes){
-	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 
 I8u DataManager::releaseFreeFromPool(){
-	Concurrency::critical_section::scoped_lock lock(_this->criticalSection);
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	I8u amountFreed = 0;
 	auto dataMapIter = _this->dataMap.begin();
 	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
