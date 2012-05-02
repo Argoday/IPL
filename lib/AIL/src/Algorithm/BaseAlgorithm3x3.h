@@ -2,6 +2,8 @@
 #ifndef ALGORITHM__BaseAlgorithm3x3_H
 #define ALGORITHM__BaseAlgorithm3x3_H
 
+#include "AIL.h"
+
 namespace Algorithm {
 
 template <
