@@ -27,7 +27,7 @@ template <
 		{
 		}
 
-		const ImageView &operator=(const ThisType & _view){
+		const ImageView & operator=(const ThisType & _view){
 			imageDataPtr=_view.imageDataPtr;
 			imageDataPtrEnd=_view.imageDataPtrEnd;
 			size=_view.size;
@@ -59,11 +59,11 @@ template <
 		ImageView(PixelDataType * const & _imageDataPtr,
 				  const PixelDataType * const & _imageDataPtrEnd,
 				  const ImageSize & _size,
-				  const I4   & _numPixelsBetweenRows,
-				  const bool & _hasTop,
-				  const bool & _hasBottom,
-				  const bool & _hasLeft,
-				  const bool & _hasRight
+				  const I4 & _numPixelsBetweenRows,
+				  const B1 & _hasTop,
+				  const B1 & _hasBottom,
+				  const B1 & _hasLeft,
+				  const B1 & _hasRight
 		)
 			:imageDataPtr(_imageDataPtr)
 			,imageDataPtrEnd(_imageDataPtrEnd)
@@ -87,12 +87,14 @@ template <
 		FINLINE const I4 & getWidth()  const {return size.getWidth();}
 		FINLINE const I4 & getHeight() const {return size.getHeight();}
 
-		FINLINE const bool & isSimpleView() const {return simpleView;}
+		FINLINE const B1 & isSimpleView() const {return simpleView;}
 
-		FINLINE const bool & hasTop()    const {return top   ;}
-		FINLINE const bool & hasBottom() const {return bottom;}
-		FINLINE const bool & hasLeft()   const {return left  ;}
-		FINLINE const bool & hasRight()  const {return right ;}
+		FINLINE const B1 & hasTop()    const {return top   ;}
+		FINLINE const B1 & hasBottom() const {return bottom;}
+		FINLINE const B1 & hasLeft()   const {return left  ;}
+		FINLINE const B1 & hasRight()  const {return right ;}
+
+		FINLINE const I4 & getNumPixelsBetweenRows()  const {return numPixelsBetweenRows;}
 
 		PixelDataType & getPixel(const I4 & x,const I4 & y) {
 			I4 tempX=x;if(x<0){tempX=0;}else if(x>=size.getWidth() ){tempX=size.getWidth_1();}
@@ -113,12 +115,12 @@ template <
 
 		I4 numPixelsBetweenRows;
 
-		bool simpleView;
+		B1 simpleView;
 
-		bool top;
-		bool bottom;
-		bool left;
-		bool right;
+		B1 top;
+		B1 bottom;
+		B1 left;
+		B1 right;
 
 };
 

@@ -31,13 +31,13 @@ class AIL_DLL_EXPORT ImageSize {
 		
 		FINLINE const I4 & getNumPixels() const {return numPixels;}
 
-		friend FINLINE bool operator<(const ThisType &other1, const ThisType &other2){
+		friend FINLINE bool operator<(const ThisType & other1, const ThisType & other2){
 			return (other1.getNumPixels() < other2.getNumPixels());
 		}
-		friend FINLINE bool operator!=(const ThisType &other1, const ThisType &other2){
+		friend FINLINE bool operator!=(const ThisType & other1, const ThisType & other2){
 			return (other1.getWidth()!=other2.getWidth())||(other1.getHeight()!=other2.getHeight());
 		}
-		friend FINLINE bool operator==(const ThisType &other1, const ThisType &other2){
+		friend FINLINE bool operator==(const ThisType & other1, const ThisType & other2){
 			return (other1.getWidth()==other2.getWidth())&&(other1.getHeight()==other2.getHeight());
 		}
 

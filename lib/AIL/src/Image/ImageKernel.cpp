@@ -27,10 +27,7 @@ template <
 	,kernelSize(0)
 	,parentImageWidth(0)
 {
-
-	//if((_parentImageWidth-kernel.getWidth())<0){ //TODO: Is this really faster/better?
 	if(_parentImageWidth<kernel.getWidth()){return;} //TODO: Report an error
-
 	calculateKernelSkipData(_parentImageWidth);
 }
 
