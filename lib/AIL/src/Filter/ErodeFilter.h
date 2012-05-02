@@ -15,8 +15,8 @@ template <
 {
 
 	public:
-		ErodeFilter():iterations(3),type(MorphKernelType::getSquare()){};
-		ErodeFilter(const I4 & _iterations):iterations(_iterations),type(MorphKernelType::getSquare()){};
+		ErodeFilter():iterations(3),type(MorphKernelType::square){};
+		ErodeFilter(const I4 & _iterations):iterations(_iterations),type(MorphKernelType::square){};
 		ErodeFilter(const I4 & _iterations,const MorphKernelType & _type):iterations(_iterations),type(_type){};
 
 		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;

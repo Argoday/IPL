@@ -40,12 +40,12 @@ void MorphologicalDialog::updatePreview() {
 
 	int tempSize = size;
 
-	Filter::MorphKernelType tempKernelType = Filter::MorphKernelType::getNone();
-	if(crossButton    ->isChecked()==true){tempKernelType = Filter::MorphKernelType::getCross()  ;tempSize=tempSize*2+1;}
-	if(squareButton   ->isChecked()==true){tempKernelType = Filter::MorphKernelType::getSquare() ;tempSize=tempSize*2+1;}
-	if(circleButton   ->isChecked()==true){tempKernelType = Filter::MorphKernelType::getCircle() ;tempSize=tempSize*2+1;}
-	if(diamondButton  ->isChecked()==true){tempKernelType = Filter::MorphKernelType::getDiamond();}
-	if(tempKernelType==Filter::MorphKernelType::getNone()){return;}
+	Filter::MorphKernelType tempKernelType = Filter::MorphKernelType::none;
+	if(crossButton    ->isChecked()==true){tempKernelType = Filter::MorphKernelType::cross  ;tempSize=tempSize*2+1;}
+	if(squareButton   ->isChecked()==true){tempKernelType = Filter::MorphKernelType::square ;tempSize=tempSize*2+1;}
+	if(circleButton   ->isChecked()==true){tempKernelType = Filter::MorphKernelType::circle ;tempSize=tempSize*2+1;}
+	if(diamondButton  ->isChecked()==true){tempKernelType = Filter::MorphKernelType::diamond;}
+	if(tempKernelType==Filter::MorphKernelType::none){return;}
 
 	if((operatorChoice==tempOperatorChoice)&&(kernelType==tempKernelType)&&(lastSize==size)){
 		return;
@@ -159,7 +159,7 @@ MorphologicalDialog::~MorphologicalDialog(){
 }
 MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,const Image::Image<PixelType> *inputImage,QWidget *parent)
 	:QDialog(parent)
-	,kernelType(Filter::MorphKernelType::getNone())
+	,kernelType(Filter::MorphKernelType::none)
 	,dataManager(_dataManager)
 	,previewBeforeImage(inputImage)
 {

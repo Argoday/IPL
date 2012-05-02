@@ -13,13 +13,13 @@ namespace Filter {
 template <
 	typename PixelType
 > void ErodeFilter<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
-	if(type==MorphKernelType::getCross()){
+	if(type==MorphKernelType::cross){
 		this->applyToCross(srcImage,dstImage);
-	}else if(type==MorphKernelType::getSquare()){
+	}else if(type==MorphKernelType::square){
 		this->applyToSquare(srcImage,dstImage);
-	}else if(type==MorphKernelType::getCircle()){
+	}else if(type==MorphKernelType::circle){
 		this->applyToCircle(srcImage,dstImage);
-	}else if(type==MorphKernelType::getDiamond()){
+	}else if(type==MorphKernelType::diamond){
 		this->applyToDiamond(srcImage,dstImage);
 	}
 }
@@ -62,13 +62,13 @@ template <
 
 	Image::Image<PixelType> tempImage(dstImage.getSize(),dstImage.getDataManager());
 
-	bool flip=false;
-
 	Algorithm::BaseAlgorithm3x3<ErodeAlgorithm3x3Cross<PixelDataType>,PixelDataType>(dstImage.getDataView(),tempImage.getDataView());
 	if(iterations==2){
 		dstImage.swap(tempImage);
 		return;
 	}
+
+	B1 flip=false;
 	I4 x=2;
 
 	if(iterations%2!=1){
