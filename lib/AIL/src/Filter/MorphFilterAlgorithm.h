@@ -2,6 +2,8 @@
 #ifndef FILTER__MorphFilterAlgorithm_H
 #define FILTER__MorphFilterAlgorithm_H
 
+#include "AIL.h"
+
 namespace Filter {
 
 template <
@@ -9,8 +11,8 @@ template <
 > class DilateAlgorithm3x3Cross {
 	public:
 		static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
-																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
-																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
+															   const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
+															   const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			PixelDataType tempPixel=(*srcPixelPtr12);
 			tempPixel.setAsMax(*srcPixelPtr01);
 			tempPixel.setAsMax(*srcPixelPtr11);
@@ -25,8 +27,8 @@ template <
 > class ErodeAlgorithm3x3Cross {
 	public:
 		static FINLINE void process(PixelDataType *dstPixelPtr,const PixelDataType *srcPixelPtr02,const PixelDataType *srcPixelPtr12,const PixelDataType *srcPixelPtr22,
-																	 const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
-																	 const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
+															   const PixelDataType *srcPixelPtr01,const PixelDataType *srcPixelPtr11,const PixelDataType *srcPixelPtr21,
+															   const PixelDataType *srcPixelPtr00,const PixelDataType *srcPixelPtr10,const PixelDataType *srcPixelPtr20){
 			PixelDataType tempPixel=(*srcPixelPtr12);
 			tempPixel.setAsMin(*srcPixelPtr01);
 			tempPixel.setAsMin(*srcPixelPtr11);
