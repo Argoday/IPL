@@ -2,8 +2,8 @@
 #include "DataManager.h"
 #include "DataChunk.h"
 
-#include <vector> //TODO: Remove usage of std::vector , it adds too much to the binary for what it is worth
-#include <map> //TODO: Remove usage of std::map , it adds too much to the binary for what it is worth
+#include <vector>
+#include <map>
 
 #include <stdlib.h> //For: _aligned_malloc() , _aligned_free()
 #include <mutex> //For: std::mutex , std::lock_guard<std::mutex>
