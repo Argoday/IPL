@@ -4,6 +4,7 @@
 
 #include "AIL.h"
 #include "ImageSize.h"
+#include <vector>
 
 namespace Image {
 
@@ -40,7 +41,7 @@ template <
 			return (*this);
 		}
 
-		ImageView(PixelDataType * const & _imageDataPtr,
+		ImageView(		PixelDataType * const & _imageDataPtr,
 				  const PixelDataType * const & _imageDataPtrEnd,
 				  const ImageSize & _size
 		)
@@ -56,7 +57,7 @@ template <
 		{
 		}
 
-		ImageView(PixelDataType * const & _imageDataPtr,
+		ImageView(		PixelDataType * const & _imageDataPtr,
 				  const PixelDataType * const & _imageDataPtrEnd,
 				  const ImageSize & _size,
 				  const I4 & _numPixelsBetweenRows,
@@ -76,6 +77,9 @@ template <
 			,right(_hasRight)
 		{
 		}
+
+		      std::vector<ThisType> makeGrid(const I4 & width,const I4 & height, const I4 & borderXLeft, const I4 & borderXRight, const I4 & borderYBottom, const I4 & borderYTop);
+		const std::vector<ThisType> makeGrid(const I4 & width,const I4 & height, const I4 & borderXLeft, const I4 & borderXRight, const I4 & borderYBottom, const I4 & borderYTop) const ;
 
 		FINLINE       PixelDataType * getDataPtr()       {return imageDataPtr;}
 		FINLINE const PixelDataType * getDataPtr() const {return imageDataPtr;}
@@ -108,6 +112,9 @@ template <
 		}
 
 	private:
+
+		std::vector<ThisType> makeGrid_p(const I4 & width,const I4 & height, const I4 & borderXLeft, const I4 & borderXRight, const I4 & borderYBottom, const I4 & borderYTop) const ;
+
 		PixelDataType * imageDataPtr;
 		const PixelDataType * imageDataPtrEnd;
 
