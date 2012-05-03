@@ -38,7 +38,7 @@ template <
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto srcImageDataPtr    = srcImageDataPtrIn;
 			auto srcImageDataPtrEnd = srcImageDataPtrIn + parameters.filterWidth;
-			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll
+			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll?
 				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 				++srcImageDataPtr;
 			}
