@@ -23,6 +23,20 @@
 #define PIXEL_TYPE_F_1 Pixel::PixelRGBf8
 #define PIXEL_TYPE_F_2 Pixel::PixelYUVf8
 
+#define CREATE_PIXELDATA_TEMPLATE_CALLS(x) \
+	template class x<Pixel::PixelYb1::DataType>; \
+	template class x<Pixel::PixelYi1u::DataType>; \
+	template class x<Pixel::PixelYi4::DataType>; \
+	\
+	template class x<Pixel::PixelRGBi1u::DataType>; \
+	template class x<Pixel::PixelRGBi4::DataType>; \
+	template class x<Pixel::PixelRGBf8::DataType>; \
+	\
+	template class x<Pixel::PixelARGBi1u::DataType>; \
+	template class x<Pixel::PixelARGBi4::DataType>; \
+	\
+	template class x<Pixel::PixelYUVf8::DataType>;
+
 #define CREATE_PIXEL_TEMPLATE_CALLS(x) \
 	template class x<Pixel::PixelYb1>; \
 	template class x<Pixel::PixelYi1u>; \
