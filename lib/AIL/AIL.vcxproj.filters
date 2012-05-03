@@ -172,6 +172,15 @@
     <Filter Include="Filter\Box\BaseBoxFilter">
       <UniqueIdentifier>{86d6dc31-e283-40e9-a68c-b4c2e25f5df1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Algorithm\Algorithms">
+      <UniqueIdentifier>{bf9e0603-47e7-4191-a554-0fc7421eb4d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithm\Algorithms\Header Files">
+      <UniqueIdentifier>{e824167a-f0ed-44ef-9ead-da42f7a08c81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithm\Algorithms\Source Files">
+      <UniqueIdentifier>{64c00cc0-741c-421d-b045-0154da776a06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Filter\BaseLinearFilter.cpp">
@@ -287,6 +296,9 @@
     </ClCompile>
     <ClCompile Include="src\Filter\BoxFilterWx1.cpp">
       <Filter>Filter\Box\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\ImageView.cpp">
+      <Filter>Image\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -563,6 +575,12 @@
     </ClInclude>
     <ClInclude Include="src\Filter\BoxFilterWx1.h">
       <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1x1.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1x1_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

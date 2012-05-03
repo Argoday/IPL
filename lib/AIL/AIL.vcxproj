@@ -494,6 +494,7 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClCompile Include="src\Image\ImageBase.cpp" />
     <ClCompile Include="src\Image\ImageKernel.cpp" />
     <ClCompile Include="src\Image\ImageSize.cpp" />
+    <ClCompile Include="src\Image\ImageView.cpp" />
     <ClCompile Include="src\Image\image_cast.cpp" />
     <ClCompile Include="src\Paint\Circle.cpp" />
     <ClCompile Include="src\Paint\Cross.cpp" />
@@ -507,6 +508,8 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AIL.h" />
+    <ClInclude Include="src\Algorithm\Algorithm1x1.h" />
+    <ClInclude Include="src\Algorithm\Algorithm1x1_cpp.h" />
     <ClInclude Include="src\Algorithm\BaseAlgorithm1x1.h" />
     <ClInclude Include="src\Algorithm\BaseAlgorithm1x1_cpp.h" />
     <ClInclude Include="src\Algorithm\BaseAlgorithm1xH.h" />
