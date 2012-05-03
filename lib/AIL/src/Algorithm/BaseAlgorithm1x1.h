@@ -25,10 +25,9 @@ template <
 template <
 	typename AlgorithmType,
 	typename PixelDataType
->
-	void BaseAlgorithm1x1p(
-		Image::ImageView<PixelDataType> & srcImage,
-		const Image::ImageView<PixelDataType> & parameterImage
+> void BaseAlgorithm1x1p(
+	Image::ImageView<PixelDataType> & srcImage,
+	const Image::ImageView<PixelDataType> & parameterImage
 );
 
 template <
