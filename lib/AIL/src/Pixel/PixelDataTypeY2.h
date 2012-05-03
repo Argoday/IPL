@@ -61,10 +61,10 @@ template <
 		FINLINE ThisType operator*(const ThisType & pixel) const {return ThisType(*this)*=pixel;}
 		FINLINE ThisType operator/(const ThisType & pixel) const {return ThisType(*this)/=pixel;}
 
-		friend FINLINE ThisType operator-(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType>(scalar)-pixel;}
-		friend FINLINE ThisType operator+(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType>(scalar)+pixel;}
-		friend FINLINE ThisType operator*(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType>(scalar)*pixel;}
-		friend FINLINE ThisType operator/(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType>(scalar)/pixel;}
+		friend FINLINE ThisType operator-(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType,Yposition>(scalar)-pixel;}
+		friend FINLINE ThisType operator+(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType,Yposition>(scalar)+pixel;}
+		friend FINLINE ThisType operator*(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType,Yposition>(scalar)*pixel;}
+		friend FINLINE ThisType operator/(const NumberType & scalar, const ThisType & pixel){return PixelDataTypeY2<NumberType,Yposition>(scalar)/pixel;}
 
 		template <int TypeNumber> FINLINE const NumberType & get()    const ;
 		template <              > FINLINE const NumberType & get<0>() const {return x;}
