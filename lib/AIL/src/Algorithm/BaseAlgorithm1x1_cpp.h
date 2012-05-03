@@ -240,7 +240,7 @@ template <
 				Meta::Unroller2<PixelDataType,PixelDataType,AlgorithmType,UNROLL_COUNT>::process(srcImageDataPtr,parameterImageDataPtr);
 			}
 			srcImageDataPtrEnd+=lineDiff;
-			for(;srcImageDataPtrEnd!=srcImageDataPtrEnd;){
+			for(;srcImageDataPtr!=srcImageDataPtrEnd;){
 				AlgorithmType::process(srcImageDataPtr,parameterImageDataPtr);
 				++parameterImageDataPtr;
 				++srcImageDataPtr;
