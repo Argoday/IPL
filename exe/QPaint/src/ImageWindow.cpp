@@ -13,7 +13,7 @@ using String::getString;
 #include <Image/Image_Qt.h>
 #include <Filter/DilateFilter.h>
 #include <Filter/LinearFilterWxH.h>
-#include <Algorithm/BaseAlgorithm1x1.h>
+#include <Algorithm/Algorithm1x1.h>
 #include <Algorithm/BaseAlgorithm3x3.h>
 
 
@@ -166,7 +166,7 @@ void ImageWindow::negative(){
 	//Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(wImage->getSize(),dataManager);
 	//Algorithm::BaseAlgorithm3x3<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
 	//Algorithm::BaseAlgorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
-	Algorithm::BaseAlgorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView());
+	Algorithm::Algorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView());
 	//wImage->swap(tempImage1);
 	//wImage->clip();
 	//(*wImage)+= wImage->getMaxValueVol();

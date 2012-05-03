@@ -1,6 +1,6 @@
 
 #include "image_cast.h"
-#include "Algorithm/BaseAlgorithm1x1.h"
+#include "Algorithm/Algorithm1x1.h"
 #include <Pixel/pixel_cast.h>
 #include <Meta/enable_if.h>
 #include <Meta/disable_if.h>
@@ -13,7 +13,7 @@ template<class DstPixelType,class SrcPixelType> AIL_DLL_EXPORT typename Meta::en
 }
 template<class DstPixelType,class SrcPixelType> AIL_DLL_EXPORT typename Meta::disable_if< Meta::is_same<DstPixelType,SrcPixelType>, Image<DstPixelType> >::type image_cast(const Image<SrcPixelType> & _image){
 	Image<DstPixelType> image(_image.getSize(),_image.getDataManager());
-	Algorithm::BaseAlgorithm1x1<
+	Algorithm::Algorithm1x1<
 		Pixel::pixel_cast_alg<DstPixelType,SrcPixelType>,
 		SrcPixelType,
 		DstPixelType

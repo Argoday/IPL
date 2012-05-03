@@ -2,10 +2,11 @@
 #include "Image.h"
 #include "ImageSize.h"
 #include <Pixel/pixel_cast.h>
-#include <Algorithm/BaseAlgorithm1x1.h>
+#include <Algorithm/Algorithm1x1.h>
 #include <Meta/Operators.h>
 #include <Meta/Assign.h>
 #include <Data/DataManager.h>
+
 #include <memory.h> //For: memcpy()
 
 namespace Image {
@@ -170,24 +171,24 @@ template <typename T> class Clip {
 };
 
 template <typename PixelType> void Image<PixelType>::clip(){
-	Algorithm::BaseAlgorithm1x1<Clip<PixelType>>(dataView);
+	Algorithm::Algorithm1x1<Clip<PixelType>>(dataView);
 }
 
 // --- Operators ---
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator +=(const typename PixelType::NumberType & value){Algorithm::BaseAlgorithm1x1p<Meta::AddEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator -=(const typename PixelType::NumberType & value){Algorithm::BaseAlgorithm1x1p<Meta::SubEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator *=(const typename PixelType::NumberType & value){Algorithm::BaseAlgorithm1x1p<Meta::MulEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator /=(const typename PixelType::NumberType & value){Algorithm::BaseAlgorithm1x1p<Meta::DivEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);} //TODO: Check for zero
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator +=(const typename PixelType::NumberType & value){Algorithm::Algorithm1x1p<Meta::AddEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator -=(const typename PixelType::NumberType & value){Algorithm::Algorithm1x1p<Meta::SubEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator *=(const typename PixelType::NumberType & value){Algorithm::Algorithm1x1p<Meta::MulEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator /=(const typename PixelType::NumberType & value){Algorithm::Algorithm1x1p<Meta::DivEq<PixelDataType,typename PixelType::NumberType>>(dataView,value);return (*this);} //TODO: Check for zero
 
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator +=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::BaseAlgorithm1x1p<Meta::AddEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator -=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::BaseAlgorithm1x1p<Meta::SubEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator *=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::BaseAlgorithm1x1p<Meta::MulEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator /=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::BaseAlgorithm1x1p<Meta::DivEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);} //TODO: Check for zero
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator +=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::Algorithm1x1p<Meta::AddEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator -=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::Algorithm1x1p<Meta::SubEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator *=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::Algorithm1x1p<Meta::MulEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator /=(const ThisType & value){if(size!=value.getSize()){return (*this);/*TODO: Report an error*/}Algorithm::Algorithm1x1p<Meta::DivEq<PixelDataType,PixelDataType>>(dataView,value.getDataView());return (*this);} //TODO: Check for zero
 
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator +=(const PixelType & value){Algorithm::BaseAlgorithm1x1p<Meta::AddEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator -=(const PixelType & value){Algorithm::BaseAlgorithm1x1p<Meta::SubEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator *=(const PixelType & value){Algorithm::BaseAlgorithm1x1p<Meta::MulEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);}
-template <typename PixelType> Image<PixelType> & Image<PixelType>::operator /=(const PixelType & value){Algorithm::BaseAlgorithm1x1p<Meta::DivEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);} //TODO: Check for zero
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator +=(const PixelType & value){Algorithm::Algorithm1x1p<Meta::AddEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator -=(const PixelType & value){Algorithm::Algorithm1x1p<Meta::SubEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator *=(const PixelType & value){Algorithm::Algorithm1x1p<Meta::MulEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);}
+template <typename PixelType> Image<PixelType> & Image<PixelType>::operator /=(const PixelType & value){Algorithm::Algorithm1x1p<Meta::DivEq<PixelDataType,PixelDataType>>(dataView,value);return (*this);} //TODO: Check for zero
 
 }
 
