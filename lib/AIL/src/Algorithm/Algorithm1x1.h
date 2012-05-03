@@ -2,8 +2,7 @@
 #ifndef ALGORITHM__Algorithm1x1_H
 #define ALGORITHM__Algorithm1x1_H
 
-#include "ACore.h"
-#include "Algorithm1x1.h"
+#include "AIL.h"
 
 namespace Algorithm {
 
