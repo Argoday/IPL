@@ -4,4 +4,6 @@
 
 #define FINLINE __forceinline
 
+#define PPL
+
 #endif
