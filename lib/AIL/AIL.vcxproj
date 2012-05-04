@@ -510,6 +510,14 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClInclude Include="src\AIL.h" />
     <ClInclude Include="src\Algorithm\Algorithm1x1.h" />
     <ClInclude Include="src\Algorithm\Algorithm1x1_cpp.h" />
+    <ClInclude Include="src\Algorithm\Algorithm1xH.h" />
+    <ClInclude Include="src\Algorithm\Algorithm1xH_cpp.h" />
+    <ClInclude Include="src\Algorithm\Algorithm3x3.h" />
+    <ClInclude Include="src\Algorithm\Algorithm3x3_cpp.h" />
+    <ClInclude Include="src\Algorithm\AlgorithmWx1.h" />
+    <ClInclude Include="src\Algorithm\AlgorithmWx1_cpp.h" />
+    <ClInclude Include="src\Algorithm\AlgorithmWxH.h" />
+    <ClInclude Include="src\Algorithm\AlgorithmWxH_cpp.h" />
     <ClInclude Include="src\Algorithm\BaseAlgorithm1x1.h" />
     <ClInclude Include="src\Algorithm\BaseAlgorithm1x1_cpp.h" />
     <ClInclude Include="src\Algorithm\BaseAlgorithm1xH.h" />

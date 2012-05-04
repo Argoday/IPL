@@ -181,6 +181,9 @@
     <Filter Include="Algorithm\Algorithms\Source Files">
       <UniqueIdentifier>{64c00cc0-741c-421d-b045-0154da776a06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Algorithm\TempTypes">
+      <UniqueIdentifier>{6a8da98a-269a-4f76-82c9-970c8d4aa0d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Filter\BaseLinearFilter.cpp">
@@ -345,9 +348,6 @@
       <Filter>Algorithm\BasicAlgorithms\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Algorithm\BasicWx1baseAlgorithm.h">
-      <Filter>Algorithm\BasicAlgorithms\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Algorithm\BaseOperationTempType.h">
       <Filter>Algorithm\BasicAlgorithms\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Algorithm\Basic1xHbaseAlgorithmParametersType.h">
@@ -581,6 +581,33 @@
     </ClInclude>
     <ClInclude Include="src\Algorithm\Algorithm1x1_cpp.h">
       <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm3x3.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1xH.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWx1.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWxH.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm3x3_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1xH_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWx1_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWxH_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseOperationTempType.h">
+      <Filter>Algorithm\TempTypes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
