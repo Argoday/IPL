@@ -54,10 +54,6 @@ void MorphologicalDialog::updatePreview() {
 	kernelType=tempKernelType;
 	lastSize=size;
 
-	
-	//Filter::WhiteTopHatFilter<PixelType> whiteTopHatFilter(tempSize,kernelType);
-	//Filter::BlackTopHatFilter<PixelType> blackTopHatFilter(tempSize,kernelType);
-
 	switch(operatorChoice){
 		case 0:
 			{
@@ -85,7 +81,6 @@ void MorphologicalDialog::updatePreview() {
 		break;
 		case 4:
 			{
-				
 				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 
 				Filter::BlackTopHatFilter<PixelType> blackTopHatFilter(tempSize,kernelType);
@@ -110,11 +105,6 @@ void MorphologicalDialog::updatePreview() {
 				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
 				boxFilter1.applyTo(*previewBeforeImage,tempImage1);
 				boxFilter2.applyTo(tempImage1,*previewAfterImage);
-				/*Filter::LinearFilterWx1<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
-				Filter::LinearFilter1xH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
-				Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
-				blurFilter1.applyTo(*previewBeforeImage,tempImage1);
-				blurFilter2.applyTo(tempImage1,*previewAfterImage);//*/
 			}
 		break;
 		case 7:
@@ -137,24 +127,12 @@ void MorphologicalDialog::updatePreview() {
 				previewAfterImageComp.clip();
 
 				(*previewAfterImage) = Image::image_cast<PixelType>(previewAfterImageComp);
-				/*Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
-				Image::Image<PixelType> tempImage2 = Image::Image<PixelType>(previewAfterImage->getSize(),dataManager);
-				Filter::LinearFilterWx1<PixelType> blurFilter1(Paint::MakeGaussian<PixelType>(size*2+1,1,size/2.0));
-				Filter::LinearFilter1xH<PixelType> blurFilter2(Paint::MakeGaussian<PixelType>(1,size*2+1,size/2.0));
-				blurFilter1.applyTo(*previewBeforeImage,tempImage1);
-				blurFilter2.applyTo(tempImage1,tempImage2);
-				(tempImage2)=(*previewBeforeImage);
-				(tempImage2)-=(tempImage1);
-				(*previewAfterImage)=(*previewBeforeImage);
-				(*previewAfterImage)+=(tempImage2);
-				previewAfterImage->clip();//*/
 			}
 		break;
 	}
 	previewAfterImageLabel->setPixmap(QPixmap::fromImage(Image::Convert::toQt(*previewAfterImage)));
 }
 MorphologicalDialog::~MorphologicalDialog(){
-	//if(previewBeforeImage!=nullptr){delete previewBeforeImage;previewBeforeImage=nullptr;}
 	if(previewAfterImage !=nullptr){delete previewAfterImage ;previewAfterImage =nullptr;}
 }
 MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,const Image::Image<PixelType> *inputImage,QWidget *parent)
@@ -172,19 +150,11 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	operationDescription = new QLabel(tr("Select an Operator..."));
 
 	//--------------------------------------------------------
-	//previewBeforeImage = new Image::Image<PixelType>(inputImage->getSize(),dataManager);
 	previewAfterImage  = new Image::Image<PixelType>(inputImage->getSize(),dataManager);
 	
 	(*previewAfterImage)=(*previewBeforeImage);
 
-	//previewBeforeTitle = new QLabel(tr("Before:"));
 	previewAfterTitle = new QLabel(tr("After:"));
-
-	/*previewBeforeImageLabel = new QLabel();
-	previewBeforeImageLabel->setBackgroundRole(QPalette::Base);
-	previewBeforeImageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	previewBeforeImageLabel->setScaledContents(true);
-	previewBeforeImageLabel->setPixmap(QPixmap::fromImage(Image::Convert::convertToQt(*previewBeforeImage)));//*/
 
 	previewAfterImageLabel = new QLabel();
 	previewAfterImageLabel->setBackgroundRole(QPalette::Base);
@@ -192,15 +162,10 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	previewAfterImageLabel->setScaledContents(true);
 	previewAfterImageLabel->setPixmap(QPixmap::fromImage(Image::Convert::toQt(*previewAfterImage)));
 
-	/*QVBoxLayout *previewLayout1 = new QVBoxLayout;
-	previewLayout1->addWidget(previewBeforeTitle);
-	previewLayout1->addWidget(previewBeforeImageLabel);
-	previewLayout1->addStretch();//*/
-
-	QVBoxLayout *previewLayout2 = new QVBoxLayout;
-	previewLayout2->addWidget(previewAfterTitle);
-	previewLayout2->addWidget(previewAfterImageLabel);
-	previewLayout2->addStretch();
+	QVBoxLayout * previewLayout = new QVBoxLayout;
+	previewLayout->addWidget(previewAfterTitle);
+	previewLayout->addWidget(previewAfterImageLabel);
+	previewLayout->addStretch();
 	//--------------------------------------------------------
 
 	//--------------------------------------------------------
@@ -257,10 +222,10 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	circleButton   = new QRadioButton(tr("&Circle"));
 	diamondButton  = new QRadioButton(tr("&Diamond"));
 
-	QObject::connect(crossButton    , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
-	QObject::connect(squareButton   , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
-	QObject::connect(circleButton   , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
-	QObject::connect(diamondButton  , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
+	QObject::connect(crossButton   , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
+	QObject::connect(squareButton  , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
+	QObject::connect(circleButton  , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
+	QObject::connect(diamondButton , SIGNAL(clicked()) , this,  SLOT(updatePreview()));
 
 	kernelButtonGroup = new QButtonGroup;
 	kernelButtonGroup->addButton(crossButton  );
@@ -269,7 +234,7 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	kernelButtonGroup->addButton(diamondButton);
 	QObject::connect(kernelButtonGroup, SIGNAL(buttonClicked()) , this,  SLOT(updatePreview()));
 	
-	QVBoxLayout *kernelLayout = new QVBoxLayout;
+	QVBoxLayout * kernelLayout = new QVBoxLayout;
 	kernelLayout->addWidget(crossButton  );
 	kernelLayout->addWidget(squareButton );
 	kernelLayout->addWidget(circleButton );
@@ -278,17 +243,16 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	kernelSelector->setLayout(kernelLayout);
 	//--------------------------------------------------------
 
-	QVBoxLayout *selectionPreviewLayout = new QVBoxLayout;
+	QVBoxLayout * selectionPreviewLayout = new QVBoxLayout;
 	selectionPreviewLayout->addWidget(operationSelector);
 	selectionPreviewLayout->addWidget(kernelSelector);
 	selectionPreviewLayout->addStretch();
 
 	//--------------------------------------------------------
-	QHBoxLayout *operationPreviewLayout = new QHBoxLayout;
+	QHBoxLayout * operationPreviewLayout = new QHBoxLayout;
 	operationPreviewLayout->addLayout(selectionPreviewLayout);
 	operationPreviewLayout->addStretch();
-	//operationPreviewLayout->addLayout(previewLayout1);
-	operationPreviewLayout->addLayout(previewLayout2);
+	operationPreviewLayout->addLayout(previewLayout);
 	//--------------------------------------------------------
 
 	//--------------------------------------------------------
@@ -302,7 +266,7 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	QObject::connect(sizeSlider,  SIGNAL(valueChanged(int)) , this, SLOT(updateSize(int)));
 	sizeSpinBox->setValue(3);
 	
-	QHBoxLayout *sizeLayout = new QHBoxLayout;
+	QHBoxLayout * sizeLayout = new QHBoxLayout;
 	sizeLayout->addWidget(sizeLabel);
 	sizeLayout->addWidget(sizeSpinBox);
 	sizeLayout->addWidget(sizeSlider);
@@ -320,14 +284,14 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	cancelButton->setEnabled(true);
 	QObject::connect(cancelButton, SIGNAL(clicked()) , this,  SLOT(reject()));
 
-	QHBoxLayout *buttonLayout = new QHBoxLayout;
+	QHBoxLayout * buttonLayout = new QHBoxLayout;
 	buttonLayout->addStretch();
 	buttonLayout->addWidget(applyButton);
 	buttonLayout->addWidget(cancelButton);
 	//--------------------------------------------------------
 
 	//--------------------------------------------------------
-	QVBoxLayout *mainLayout = new QVBoxLayout;
+	QVBoxLayout * mainLayout = new QVBoxLayout;
 	mainLayout->addWidget(instructions);
 	mainLayout->addLayout(operationPreviewLayout);
 	mainLayout->addLayout(sizeLayout);

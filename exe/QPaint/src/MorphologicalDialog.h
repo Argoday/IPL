@@ -30,7 +30,7 @@ class MorphologicalDialog : public QDialog {
 		int operatorChoice;
 		Filter::MorphKernelType kernelType;
 
-		QSpinBox *sizeSpinBox;
+		QSpinBox * sizeSpinBox;
 
 	//signals:
 	//	void applyOperator();
@@ -43,41 +43,41 @@ class MorphologicalDialog : public QDialog {
 
 	private:
 
-		QLabel *instructions;
-		QLabel *operationDescription;
+		QLabel * instructions;
+		QLabel * operationDescription;
 		
-		QLabel *previewBeforeTitle;
-		QLabel *previewAfterTitle;
+		QLabel * previewBeforeTitle;
+		QLabel * previewAfterTitle;
 
-		QLabel *previewBeforeImageLabel;
-		QLabel *previewAfterImageLabel;
+		QLabel * previewBeforeImageLabel;
+		QLabel * previewAfterImageLabel;
 
-		QButtonGroup *operationButtonGroup;
-		QGroupBox *operationSelector;
-		QRadioButton *dilateButton;
-		QRadioButton *erodeButton;
-		QRadioButton *openButton;
-		QRadioButton *closeButton;
-		QRadioButton *tophatButton;
-		QRadioButton *bottomhatButton;
-		QRadioButton *blurButton;
-		QRadioButton *unmaskSharpButton;
+		QButtonGroup * operationButtonGroup;
+		QGroupBox    * operationSelector;
+		QRadioButton * dilateButton;
+		QRadioButton * erodeButton;
+		QRadioButton * openButton;
+		QRadioButton * closeButton;
+		QRadioButton * tophatButton;
+		QRadioButton * bottomhatButton;
+		QRadioButton * blurButton;
+		QRadioButton * unmaskSharpButton;
 
-		QButtonGroup *kernelButtonGroup;
-		QGroupBox *kernelSelector;
-		QRadioButton *crossButton;
-		QRadioButton *squareButton;
-		QRadioButton *circleButton;
-		QRadioButton *diamondButton;
+		QButtonGroup * kernelButtonGroup;
+		QGroupBox    * kernelSelector;
+		QRadioButton * crossButton;
+		QRadioButton * squareButton;
+		QRadioButton * circleButton;
+		QRadioButton * diamondButton;
 
-		QLabel *sizeLabel;
-		QSlider *sizeSlider;
+		QLabel  * sizeLabel;
+		QSlider * sizeSlider;
 
 		QPushButton *applyButton;
 		QPushButton *cancelButton;
 
 		const Image::Image<PixelType> * const previewBeforeImage;
-		Image::Image<PixelType> *previewAfterImage;
+		Image::Image<PixelType> * previewAfterImage;
 		Data::DataManager * dataManager;
 
 		long lastSize;
