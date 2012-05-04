@@ -19,13 +19,11 @@ template <
 			const Image::ImageKernel<Pixel::PixelYb1,Pixel::BooleanTestType> & _kernel,
 			const I4 & _xOffset,
 			const I4 & _yOffset,
-			const I4 & _srcImageWidth,
 			const PixelComputationType & _minPixel)
 			:SimpleWxHbooleanOperationParametersType(
 				_kernel,
 				_xOffset,
-				_yOffset,
-				_srcImageWidth)
+				_yOffset)
 			,minPixel(_minPixel)
 		{
 		}

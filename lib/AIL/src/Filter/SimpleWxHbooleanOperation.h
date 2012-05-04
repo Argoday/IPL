@@ -10,7 +10,7 @@
 namespace Filter {
 
 template <
-	typename PixelType = Image::ImageBase::DefaultPixelType
+	typename PixelType
 > class AIL_DLL_EXPORT SimpleWxHbooleanOperation
 	: public ImageOperation<PixelType>
 {
@@ -30,8 +30,8 @@ template <
 		FINLINE void setXoffset(const I4 & _xOffset){xOffset=_xOffset;}
 		FINLINE void setYoffset(const I4 & _yOffset){yOffset=_yOffset;}
 
-		FINLINE       bool & operator()(const I4 &x,const I4 &y)       {return filterData(x,y);};
-		FINLINE const bool & operator()(const I4 &x,const I4 &y) const {return filterData(x,y);};
+		FINLINE       B1 & operator()(const I4 & x,const I4 & y)       {return filterData(x,y);};
+		FINLINE const B1 & operator()(const I4 & x,const I4 & y) const {return filterData(x,y);};
 
 		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
 

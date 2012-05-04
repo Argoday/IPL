@@ -16,7 +16,7 @@ template <
 
 	filterData.calculateKernelSkipData(srcImage.getWidth());
 
-	BaseMinFilterParametersType<PixelDataType,PixelComputationType> parameters(getFilterData(),getXoffset(),getYoffset(),srcImage.getWidth(),PixelType::ComputationRange::getMaxPixel());
+	BaseMinFilterParametersType<PixelDataType,PixelComputationType> parameters(getFilterData(),getXoffset(),getYoffset(),PixelType::ComputationRange::getMaxPixel());
 
 	Algorithm::BaseAlgorithmWxH<
 		SimpleWxHbooleanOperationBaseAlgorithm<

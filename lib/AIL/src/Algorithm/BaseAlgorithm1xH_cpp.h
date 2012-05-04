@@ -20,22 +20,23 @@ template <
 	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	auto srcImageHeight = srcImage.getHeight();
-	auto srcImageWidth  = srcImage.getWidth();
+	const auto & srcImageHeight = srcImage.getHeight();
+	const auto & srcImageWidth  = srcImage.getWidth();
 
-	auto borderYBottom = parameter.borderYBottom;
-	auto borderYTop    = parameter.borderYTop;
+	const auto & yOffset      = parameter.yOffset;
+	const auto & filterHeight = parameter.filterHeight;
+
+	auto srcImageHeight_filterHeightOffset = srcImageHeight-(filterHeight-yOffset);
 
 	auto srcImageDataPtr = srcImage.getDataPtr();
-
 	auto dstImageDataPtr = dstImage.getDataPtr();
-	auto dstImageDataPtrRowsEnd = dstImage.getDataPtr() + (srcImageHeight-borderYTop)*srcImageWidth;
+	auto dstImageDataPtrRowsEnd = dstImage.getDataPtr() + (srcImageHeight_filterHeightOffset)*srcImageWidth;
 
 	I4 y = 0;
 	I4 x = 0;
 
 	//First Rows
-	for(;y<borderYBottom;++y){
+	for(;y<yOffset;++y){
 		for (x=0; x<srcImageWidth; ++x){
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;
@@ -50,7 +51,7 @@ template <
 	}
 
 	//Last Rows
-	for(y=srcImageHeight-borderYTop;y<srcImageHeight;++y){
+	for(y=srcImageHeight_filterHeightOffset;y<srcImageHeight;++y){
 		for (x=0; x<srcImageWidth; ++x){
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;

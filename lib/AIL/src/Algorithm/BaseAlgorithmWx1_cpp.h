@@ -20,24 +20,24 @@ template <
 	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	auto srcImageHeight = srcImage.getHeight();
-	auto srcImageWidth  = srcImage.getWidth();
+	const auto & srcImageHeight = srcImage.getHeight();
+	const auto & srcImageWidth  = srcImage.getWidth();
 
-	auto borderXLeft   = parameter.borderXLeft;
-	auto borderXRight  = parameter.borderXRight;
+	const auto & xOffset     = parameter.xOffset;
+	const auto & filterWidth = parameter.filterWidth;
 
-	auto borderXRightAndLeft=borderXRight+borderXLeft;
+	auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - xOffset);
 
 	auto srcImageDataPtr = srcImage.getDataPtr();
 	auto dstImageDataPtr = dstImage.getDataPtr();
-	auto dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth-borderXLeft;
+	auto dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth_filterWidthOffset;
 
 	I4 y = 0;
 	I4 x = 0;
 
 	for (;y<srcImageHeight;++y){
 		//First Pixels of Row
-		for (x=0;x<borderXRight;++x){
+		for (x=0;x<xOffset;++x){
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;
 		}
@@ -48,12 +48,12 @@ template <
 			++srcImageDataPtr;
 		}
 		//Last Pixels of Row
-		for (x=srcImageWidth-borderXLeft;x<srcImageWidth;++x){
+		for (x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;
 		}
 		dstImageDataPtrRowEnd+=srcImageWidth;
-		srcImageDataPtr+=borderXRightAndLeft;
+		srcImageDataPtr+=filterWidth;
 	}
 
 }

@@ -10,20 +10,20 @@ class AIL_DLL_EXPORT BaseAlgorithm1xHparametersType {
 	public:
 
 		BaseAlgorithm1xHparametersType(
-			const I4 & _borderYBottom,
-			const I4 & _borderYTop)
-			:borderYBottom(_borderYBottom)
-			,borderYTop(_borderYTop)
+			const I4 & _yOffset,
+			const I4 & _filterHeight)
+			:yOffset(_yOffset)
+			,filterHeight(_filterHeight)
 		{
 		}
 		BaseAlgorithm1xHparametersType(const BaseAlgorithm1xHparametersType & _other)
-			:borderYBottom(_other.borderYBottom)
-			,borderYTop(_other.borderYTop)
+			:yOffset(_other.yOffset)
+			,filterHeight(_other.filterHeight)
 		{
 		}
 
-		const I4 borderYBottom;
-		const I4 borderYTop;
+		const I4 yOffset;
+		const I4 filterHeight;
 };
 
 }

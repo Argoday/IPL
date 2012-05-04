@@ -23,7 +23,7 @@ template <
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
-			for (I4 yf=y-parameters.yOffset; yf<=y+parameters.borderYTop; ++yf){
+			for (I4 yf=y-parameters.yOffset; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
 				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType::NumberType>());
 			}
 			DerivedAlgorithmType::final(tempData,parameters);

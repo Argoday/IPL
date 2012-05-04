@@ -23,12 +23,14 @@ template <
 	auto srcImageHeight = srcImage.getHeight();
 	auto srcImageWidth  = srcImage.getWidth();
 
-	auto borderXLeft   = parameter.borderXLeft;
-	auto borderXRight  = parameter.borderXRight;
-	auto borderYBottom = parameter.borderYBottom;
-	auto borderYTop    = parameter.borderYTop;
+	const auto & xOffset = parameter.xOffset;
+	const auto & yOffset = parameter.yOffset;
+	
+	const auto & filterWidth  = parameter.filterWidth;
+	const auto & filterHeight = parameter.filterHeight;
 
-	auto borderXRightAndLeft = borderXRight + borderXLeft;
+	auto srcImageWidth_filterWidthOffset   = srcImageWidth  - (filterWidth  - xOffset);
+	auto srcImageHeight_filterHeightOffset = srcImageHeight - (filterHeight - yOffset);
 
 	auto srcImageDataPtr = srcImage.getDataPtr();
 	auto dstImageDataPtr = dstImage.getDataPtr();
@@ -37,21 +39,21 @@ template <
 	I4 x = 0;
 
 	//First Rows
-	for(;y<borderYBottom;++y){
+	for(;y<yOffset;++y){
 		for (x=0; x<srcImageWidth; ++x){
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;
 		}
 	}
 	
-	for (; y<srcImageHeight-borderYTop; ++y){	
+	for (; y<srcImageHeight_filterHeightOffset; ++y){	
 		//First Pixels of inside Row
-		for (x=0; x<borderXRight; ++x){
+		for (x=0; x<xOffset; ++x){
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;
 		}
 		//Inside Row
-		for (; x<srcImageWidth-borderXLeft; ++x){
+		for (; x<srcImageWidth_filterWidthOffset; ++x){
 			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
 			++dstImageDataPtr;
 			++srcImageDataPtr;
@@ -61,7 +63,7 @@ template <
 			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 			++dstImageDataPtr;
 		}
-		srcImageDataPtr+=borderXRightAndLeft;
+		srcImageDataPtr+=filterWidth;
 	}
 
 	//Last Rows

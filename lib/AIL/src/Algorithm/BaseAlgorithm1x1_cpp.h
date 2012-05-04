@@ -25,8 +25,8 @@ template <
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
 	if((srcImage.isSimpleView()==true)&&(dstImage.isSimpleView()==true)){
-		auto   srcImageDataPtr = srcImage.getDataPtr();
-		auto   dstImageDataPtr = dstImage.getDataPtr();
+		auto srcImageDataPtr = srcImage.getDataPtr();
+		auto dstImageDataPtr = dstImage.getDataPtr();
 		
 		I4 unrollCount = (dstImage.getSize().getNumPixels() / (I4)UNROLL_COUNT) * (I4)UNROLL_COUNT;
 		auto dstImageDataPtrUnrollEnd = dstImage.getDataPtr() + unrollCount;

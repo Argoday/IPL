@@ -22,24 +22,17 @@ template <
 		)
 			:BaseAlgorithmWxHparametersType(
 				_xOffset,
-				_filter.getWidth()  - _xOffset -1,
 				_yOffset,
-				_filter.getHeight() - _yOffset -1)
+				_filter.getWidth(),
+				_filter.getHeight())
 
 			,srcImageWidth(_srcImageWidth)
 
 			,filterDataPtr   (_filter.getDataPtr())
 			,filterDataPtrEnd(_filter.getDataPtrEnd())
 
-			,xOffset(_xOffset)
-			,yOffset(_yOffset)
-
-			,filterWidth (_filter.getWidth())
-			,filterHeight(_filter.getHeight())
-
 			,srcImageWidth_filterWidth(_srcImageWidth - _filter.getWidth())
 		{
-
 		}
 
 		const I4 srcImageWidth;
@@ -48,12 +41,6 @@ template <
 		const PixelDataType * const filterDataPtrEnd;
 
 		const I4 srcImageWidth_filterWidth;
-
-		const I4 xOffset;
-		const I4 yOffset;
-
-		const I4 filterHeight;
-		const I4 filterWidth;
 
 };
 

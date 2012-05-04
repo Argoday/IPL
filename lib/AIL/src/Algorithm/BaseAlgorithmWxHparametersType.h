@@ -10,28 +10,29 @@ class AIL_DLL_EXPORT BaseAlgorithmWxHparametersType {
 	public:
 
 		BaseAlgorithmWxHparametersType(
-			const I4 & _borderXLeft,
-			const I4 & _borderXRight,
-			const I4 & _borderYBottom,
-			const I4 & _borderYTop)
-			:borderXLeft(_borderXLeft)
-			,borderXRight(_borderXRight)
-			,borderYBottom(_borderYBottom)
-			,borderYTop(_borderYTop)
+			const I4 & _xOffset,
+			const I4 & _yOffset,
+			const I4 & _filterWidth,
+			const I4 & _filterHeight)
+			:xOffset(_xOffset)
+			,yOffset(_yOffset)
+			,filterWidth(_filterWidth)
+			,filterHeight(_filterHeight)
 		{
 		}
 		BaseAlgorithmWxHparametersType(const BaseAlgorithmWxHparametersType & _other)
-			:borderXLeft(_other.borderXLeft)
-			,borderXRight(_other.borderXRight)
-			,borderYBottom(_other.borderYBottom)
-			,borderYTop(_other.borderYTop)
+			:xOffset(_other.xOffset)
+			,yOffset(_other.yOffset)
+			,filterWidth(_other.filterWidth)
+			,filterHeight(_other.filterHeight)
 		{
 		}
 
-		const I4 borderXLeft;
-		const I4 borderXRight;
-		const I4 borderYBottom;
-		const I4 borderYTop;
+		const I4 xOffset;
+		const I4 yOffset;
+
+		const I4 filterWidth;
+		const I4 filterHeight;
 
 };
 

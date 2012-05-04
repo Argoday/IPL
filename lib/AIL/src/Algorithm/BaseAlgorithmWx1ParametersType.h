@@ -10,20 +10,20 @@ class AIL_DLL_EXPORT BaseAlgorithmWx1parametersType {
 	public:
 
 		BaseAlgorithmWx1parametersType(
-			const I4 & _borderXLeft,
-			const I4 & _borderXRight)
-			:borderXLeft(_borderXLeft)
-			,borderXRight(_borderXRight)
+			const I4 & _xOffset,
+			const I4 & _filterWidth)
+			:xOffset(_xOffset)
+			,filterWidth(_filterWidth)
 		{
 		}
 		BaseAlgorithmWx1parametersType(const BaseAlgorithmWx1parametersType & _other)
-			:borderXLeft(_other.borderXLeft)
-			,borderXRight(_other.borderXRight)
+			:xOffset(_other.xOffset)
+			,filterWidth(_other.filterWidth)
 		{
 		}
 
-		const I4 borderXLeft;
-		const I4 borderXRight;
+		const I4 xOffset;
+		const I4 filterWidth;
 };
 
 }
