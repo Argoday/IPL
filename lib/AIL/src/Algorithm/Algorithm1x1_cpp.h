@@ -26,8 +26,8 @@ template <
 		BaseAlgorithm1x1p<AlgorithmType,SrcPixelDataType,DstPixelDataType>(srcImage,dstImage,parameter);
 	#else
 		if(srcImage.getSize()!=dstImage.getSize()){return;}
-		auto srcGrid = srcImage.makeGrid(500,500,0,0,0,0);
-		auto dstGrid = dstImage.makeGrid(500,500,0,0,0,0);
+		auto srcGrid = srcImage.makeGrid(100,100,0,0,1,1);
+		auto dstGrid = dstImage.makeGrid(100,100,0,0,1,1);
 		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
 			BaseAlgorithm1x1p<AlgorithmType,SrcPixelDataType,DstPixelDataType>(srcGrid[i],dstGrid[i],parameter);
 		});
@@ -47,8 +47,8 @@ template <
 	#else
 		if(srcImage.getSize()!=dstImage.getSize()){return;}
 		if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;}
-		auto srcGrid = srcImage.makeGrid(500,500,0,0,0,0);
-		auto dstGrid = dstImage.makeGrid(500,500,0,0,0,0);
+		auto srcGrid = srcImage.makeGrid(100,100,0,0,1,1);
+		auto dstGrid = dstImage.makeGrid(100,100,0,0,1,1);
 		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
 			BaseAlgorithm1x1<AlgorithmType,SrcPixelDataType,DstPixelDataType>(srcGrid[i],dstGrid[i]);
 		});
@@ -65,7 +65,7 @@ template <
 		BaseAlgorithm1x1<AlgorithmType,PixelDataType>(image);
 	#else
 		if(image.isSimpleView()==false){return;}
-		auto grid = image.makeGrid(500,500,0,0,0,0);
+		auto grid = image.makeGrid(100,100,0,0,1,1);
 		Concurrency::parallel_for<I8u>(0,grid.size(),[&](I8u i){
 			BaseAlgorithm1x1<AlgorithmType,PixelDataType>(grid[i]);
 		});
@@ -84,7 +84,7 @@ template <
 		BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(image,parameter);
 	#else
 		if(image.isSimpleView()==false){return;}
-		auto grid = image.makeGrid(500,500,0,0,0,0);
+		auto grid = image.makeGrid(100,100,0,0,1,1);
 		Concurrency::parallel_for<I8u>(0,grid.size(),[&](I8u i){
 			BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(grid[i],parameter);
 		});
@@ -103,8 +103,8 @@ template <
 	#else
 		if(srcImage.getSize()!=parameterImage.getSize()){return;}
 		if((srcImage.isSimpleView()==false)||(parameterImage.isSimpleView()==false)){return;}
-		auto srcGrid       = srcImage.makeGrid(      500,500,0,0,0,0);
-		auto parameterGrid = parameterImage.makeGrid(500,500,0,0,0,0);
+		auto srcGrid       = srcImage.makeGrid(      100,100,0,0,1,1);
+		auto parameterGrid = parameterImage.makeGrid(100,100,0,0,1,1);
 		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
 			BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(srcGrid[i],parameterGrid[i]);
 		});

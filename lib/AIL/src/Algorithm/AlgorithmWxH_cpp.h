@@ -25,8 +25,8 @@ template <
 		BaseAlgorithmWxH<AlgorithmType,PixelDataType,ParameterType>(srcImage,dstImage,parameter);
 	#else
 		if(srcImage.getSize()!=dstImage.getSize()){return;}
-		auto srcGrid = srcImage.makeGrid(500,500,0,0,0,0);
-		auto dstGrid = dstImage.makeGrid(500,500,0,0,0,0);
+		auto srcGrid = srcImage.makeGrid(100,100,parameter.xOffset,parameter.yOffset,parameter.filterWidth,parameter.filterHeight);
+		auto dstGrid = dstImage.makeGrid(100,100,parameter.xOffset,parameter.yOffset,parameter.filterWidth,parameter.filterHeight);
 		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
 			BaseAlgorithmWxH<AlgorithmType,PixelDataType,ParameterType>(srcGrid[i],dstGrid[i],parameter);
 		});
