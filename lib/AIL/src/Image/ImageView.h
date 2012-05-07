@@ -18,26 +18,28 @@ template <
 		ImageView(const ThisType & _view)
 			:imageDataPtr(_view.imageDataPtr)
 			,imageDataPtrEnd(_view.imageDataPtrEnd)
+			,stride(_view.stride)
 			,size(_view.size)
 			,simpleView(_view.simpleView)
 			,numPixelsBetweenRows(_view.numPixelsBetweenRows)
-			,top(_view.top)
-			,bottom(_view.bottom)
-			,left(_view.left)
-			,right(_view.right)
+			,xBeginSection(_view.xBeginSection)
+			,xEndSection(_view.xEndSection)
+			,yBeginSection(_view.yBeginSection)
+			,yEndSection(_view.yEndSection)
 		{
 		}
 
 		const ImageView & operator=(const ThisType & _view){
 			imageDataPtr=_view.imageDataPtr;
 			imageDataPtrEnd=_view.imageDataPtrEnd;
+			stride=_view.stride;
 			size=_view.size;
 			simpleView=_view.simpleView;
 			numPixelsBetweenRows=_view.numPixelsBetweenRows;
-			top=_view.top;
-			bottom=_view.bottom;
-			left=_view.left;
-			right=_view.right;
+			xBeginSection=_view.xBeginSection;
+			xEndSection=_view.xEndSection;
+			yBeginSection=_view.yBeginSection;
+			yEndSection=_view.yEndSection;
 			return (*this);
 		}
 
@@ -47,87 +49,93 @@ template <
 		)
 			:imageDataPtr(_imageDataPtr)
 			,imageDataPtrEnd(_imageDataPtrEnd)
+			,stride(_size.getWidth())
 			,size(_size)
 			,simpleView(true)
 			,numPixelsBetweenRows(0)
-			,top(true)
-			,bottom(true)
-			,left(true)
-			,right(true)
+			,xBeginSection(true)
+			,xEndSection(true)
+			,yBeginSection(true)
+			,yEndSection(true)
 		{
 		}
 
 		ImageView(		PixelDataType * const & _imageDataPtr,
 				  const PixelDataType * const & _imageDataPtrEnd,
 				  const ImageSize & _size,
+				  const I4 & _stride,
 				  const I4 & _numPixelsBetweenRows,
-				  const B1 & _hasTop,
-				  const B1 & _hasBottom,
-				  const B1 & _hasLeft,
-				  const B1 & _hasRight
+				  const B1 & _xBeginSection,
+				  const B1 & _xEndSection,
+				  const B1 & _yBeginSection,
+				  const B1 & _yEndSection
 		)
 			:imageDataPtr(_imageDataPtr)
 			,imageDataPtrEnd(_imageDataPtrEnd)
+			,stride(_stride)
 			,size(_size)
 			,simpleView(false)
 			,numPixelsBetweenRows(_numPixelsBetweenRows)
-			,top(_hasTop)
-			,bottom(_hasBottom)
-			,left(_hasLeft)
-			,right(_hasRight)
+			,xBeginSection(_xBeginSection)
+			,xEndSection(_xEndSection)
+			,yBeginSection(_yBeginSection)
+			,yEndSection(_yEndSection)
 		{
 		}
 
-		      std::vector<ThisType> makeGrid(const I4 & width,const I4 & height, const I4 & borderXLeft, const I4 & borderXRight, const I4 & borderYBottom, const I4 & borderYTop);
-		const std::vector<ThisType> makeGrid(const I4 & width,const I4 & height, const I4 & borderXLeft, const I4 & borderXRight, const I4 & borderYBottom, const I4 & borderYTop) const ;
+		      std::vector<ThisType> makeGrid(const I4 & cellWidthTry,const I4 & cellHeightTry, const I4 & xOffset, const I4 & yOffset, const I4 & filterWidth, const I4 & filterHeight);
+		const std::vector<ThisType> makeGrid(const I4 & cellWidthTry,const I4 & cellHeightTry, const I4 & xOffset, const I4 & yOffset, const I4 & filterWidth, const I4 & filterHeight) const ;
 
 		FINLINE       PixelDataType * getDataPtr()       {return imageDataPtr;}
 		FINLINE const PixelDataType * getDataPtr() const {return imageDataPtr;}
 
 		FINLINE const PixelDataType * const & getDataPtrEnd() const {return imageDataPtrEnd;}
 
+		FINLINE const I4 & getStride() const {return stride;}
+
 		FINLINE const ImageSize & getSize() const {return size;}
 		
-		FINLINE const I4 & getWidth()  const {return size.getWidth();}
+		FINLINE const I4 & getWidth()  const {return size.getWidth() ;}
 		FINLINE const I4 & getHeight() const {return size.getHeight();}
 
 		FINLINE const B1 & isSimpleView() const {return simpleView;}
 
-		FINLINE const B1 & hasTop()    const {return top   ;}
-		FINLINE const B1 & hasBottom() const {return bottom;}
-		FINLINE const B1 & hasLeft()   const {return left  ;}
-		FINLINE const B1 & hasRight()  const {return right ;}
+		FINLINE const B1 & hasXbeginSection() const {return xBeginSection;}
+		FINLINE const B1 & hasXendSection()   const {return xEndSection  ;}
+		FINLINE const B1 & hasYbeginSection() const {return yBeginSection;}
+		FINLINE const B1 & hasYendSection()   const {return yEndSection  ;}
 
 		FINLINE const I4 & getNumPixelsBetweenRows()  const {return numPixelsBetweenRows;}
 
 		PixelDataType & getPixel(const I4 & x,const I4 & y) {
-			I4 tempX=x;if(x<0){tempX=0;}else if(x>=size.getWidth() ){tempX=size.getWidth_1();}
+			I4 tempX=x;if(x<0){tempX=0;}else if(x>=size.getWidth() ){tempX=size.getWidth_1() ;}
 			I4 tempY=y;if(y<0){tempY=0;}else if(y>=size.getHeight()){tempY=size.getHeight_1();}
-			return imageDataPtr[tempX+tempY*size.getWidth()];
+			return imageDataPtr[tempX+tempY*stride];
 		}
 		const PixelDataType & getPixel(const I4 & x,const I4 & y) const {
-			I4 tempX=x;if(x<0){tempX=0;}else if(x>=size.getWidth() ){tempX=size.getWidth_1();}
+			I4 tempX=x;if(x<0){tempX=0;}else if(x>=size.getWidth() ){tempX=size.getWidth_1() ;}
 			I4 tempY=y;if(y<0){tempY=0;}else if(y>=size.getHeight()){tempY=size.getHeight_1();}
-			return imageDataPtr[tempX+tempY*size.getWidth()];
+			return imageDataPtr[tempX+tempY*stride];
 		}
 
 	private:
 
-		std::vector<ThisType> makeGrid_p(const I4 & width,const I4 & height, const I4 & borderXLeft, const I4 & borderXRight, const I4 & borderYBottom, const I4 & borderYTop) const ;
+		std::vector<ThisType> makeGrid_p(const I4 & width,const I4 & height, const I4 & xOffset, const I4 & yOffset, const I4 & filterWidth, const I4 & filterHeight) const ;
 
-		PixelDataType * imageDataPtr;
+		      PixelDataType * imageDataPtr;
 		const PixelDataType * imageDataPtrEnd;
+
+		I4 stride;
+		I4 numPixelsBetweenRows;
 
 		ImageSize size;
 
-		I4 numPixelsBetweenRows;
-
 		B1 simpleView;
 
-		B1 top;
-		B1 bottom;
-		B1 left;
-		B1 right;
+		B1 xBeginSection;
+		B1 xEndSection;
+		B1 yBeginSection;
+		B1 yEndSection;
 
 };
 
