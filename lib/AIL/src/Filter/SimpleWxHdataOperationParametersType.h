@@ -26,20 +26,18 @@ template <
 				_filter.getWidth(),
 				_filter.getHeight())
 
-			,srcImageWidth(_srcImageWidth)
-
 			,filterDataPtr   (_filter.getDataPtr())
 			,filterDataPtrEnd(_filter.getDataPtrEnd())
 
+			,srcImageWidth(_srcImageWidth)
 			,srcImageWidth_filterWidth(_srcImageWidth - _filter.getWidth())
 		{
 		}
 
-		const I4 srcImageWidth;
-
 		const PixelDataType * const filterDataPtr;
 		const PixelDataType * const filterDataPtrEnd;
 
+		const I4 srcImageWidth;
 		const I4 srcImageWidth_filterWidth;
 
 };
