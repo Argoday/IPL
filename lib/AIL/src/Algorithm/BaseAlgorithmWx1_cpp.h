@@ -17,43 +17,150 @@ template <
 	Image::ImageView<PixelDataType> & dstImage,
 	const ParameterType & parameter)
 {
-	if((srcImage.isSimpleView()==false)||(dstImage.isSimpleView()==false)){return;} // TODO: implement the other cases
 	if(srcImage.getSize()!=dstImage.getSize()){return;}
 
-	const auto & srcImageHeight = srcImage.getHeight();
-	const auto & srcImageWidth  = srcImage.getWidth();
+	if((srcImage.isSimpleView()==true)&&(dstImage.isSimpleView()==true)){
+		const auto & srcImageHeight = srcImage.getHeight();
+		const auto & srcImageWidth  = srcImage.getWidth();
 
-	const auto & xOffset     = parameter.xOffset;
-	const auto & filterWidth = parameter.filterWidth;
+		const auto & xOffset     = parameter.xOffset;
+		const auto & filterWidth = parameter.filterWidth;
 
-	auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - xOffset);
+		auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - xOffset - 1);
 
-	auto srcImageDataPtr = srcImage.getDataPtr();
-	auto dstImageDataPtr = dstImage.getDataPtr();
-	auto dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth_filterWidthOffset;
+		auto srcImageDataPtr = srcImage.getDataPtr();
+		auto dstImageDataPtr = dstImage.getDataPtr();
+		auto dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth_filterWidthOffset;
 
-	I4 y = 0;
-	I4 x = 0;
+		I4 y = 0;
+		I4 x = 0;
 
-	for (;y<srcImageHeight;++y){
-		//First Pixels of Row
-		for (x=0;x<xOffset;++x){
-			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
-			++dstImageDataPtr;
+		for (;y<srcImageHeight;++y){
+			//First Pixels of Row
+			for (x=0;x<xOffset;++x){
+				AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+				++dstImageDataPtr;
+			}
+			//Inside Row
+			for (;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+			}
+			//Last Pixels of Row
+			for (x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
+				AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+				++dstImageDataPtr;
+			}
+			dstImageDataPtrRowEnd+=srcImageWidth;
+			srcImageDataPtr+=filterWidth;
 		}
-		//Inside Row
-		for (;dstImageDataPtr!=dstImageDataPtrRowEnd;){
-			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
-			++dstImageDataPtr;
-			++srcImageDataPtr;
+	}else{
+		const auto & srcImageHeight = srcImage.getHeight();
+		const auto & srcImageWidth  = srcImage.getWidth();
+
+		const auto & srcImageStride = srcImage.getStride();
+		const auto & dstImageStride = dstImage.getStride();
+
+		const auto & xOffset     = parameter.xOffset;
+		const auto & filterWidth = parameter.filterWidth;
+
+		auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - xOffset - 1);
+
+		auto srcImageDataPtr = srcImage.getDataPtr();
+		auto dstImageDataPtr = dstImage.getDataPtr();
+		auto dstImageDataPtrRowEnd = dstImage.getDataPtr() + srcImageWidth_filterWidthOffset;
+
+		I4 y = 0;
+		I4 x = 0;
+
+		if((srcImage.hasXbeginSection()==false)&&(srcImage.hasXendSection()==false)){
+			for(;y<srcImageHeight;++y){
+
+				dstImageDataPtr+=xOffset;
+
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+
+				dstImageDataPtr+=filterWidth - xOffset - 1;
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+
+				srcImageDataPtr+=filterWidth - 1;
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else if((srcImage.hasXbeginSection()==true)&&(srcImage.hasXendSection()==false)){
+			for(;y<srcImageHeight;++y){
+
+				//First Pixels of Row
+				for(x=0;x<xOffset;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+
+				dstImageDataPtr+=filterWidth - xOffset - 1;
+
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+
+				srcImageDataPtr+=filterWidth - 1;
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else if((srcImage.hasXbeginSection()==false)&&(srcImage.hasXendSection()==true)){
+			for(;y<srcImageHeight;++y){
+				dstImageDataPtr+=xOffset;
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				//Last Pixels of Row
+				for(x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+				srcImageDataPtr+=filterWidth-1;
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else{
+			for(;y<srcImageHeight;++y){
+				//First Pixels of Row
+				for(x=0;x<xOffset;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				//Last Pixels of Row
+				for(x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+
+				srcImageDataPtr+=filterWidth;
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
 		}
-		//Last Pixels of Row
-		for (x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
-			AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
-			++dstImageDataPtr;
-		}
-		dstImageDataPtrRowEnd+=srcImageWidth;
-		srcImageDataPtr+=filterWidth;
 	}
 
 }
