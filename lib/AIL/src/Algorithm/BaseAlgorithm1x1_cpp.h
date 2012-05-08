@@ -246,6 +246,7 @@ template <
 				++srcImageDataPtr;
 			}
 			parameterImageDataPtr+=parameterImage.getNumPixelsBetweenRows();
+			srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			srcImageDataPtrEnd+=srcImage.getNumPixelsBetweenRows();
 			srcImageDataPtrEnd+=unrollLineCount;
 		}
