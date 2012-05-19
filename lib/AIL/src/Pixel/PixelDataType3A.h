@@ -20,10 +20,10 @@ template <
 		typedef NumberType NumberType;
 		typedef PixelDataType3A<NumberType,Xposition,Yposition,Zposition,Aposition> ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):x(_scalar) ,y(_scalar) ,z(_scalar ),w(_scalar ){}
-		FINLINE explicit ThisType(const NumberType & _scalar1,const NumberType & _scalar2,const NumberType & _scalar3,const NumberType & _scalar4):x(_scalar1) ,y(_scalar2) ,z(_scalar3),w(_scalar4){}
-		FINLINE          ThisType(const ThisType   & _pixel) :x(_pixel.x),y(_pixel.y),z(_pixel.z),w(_pixel.w){}
+		FINLINE explicit PixelDataType3A(){}
+		FINLINE explicit PixelDataType3A(const NumberType & _scalar):x(_scalar) ,y(_scalar) ,z(_scalar ),w(_scalar ){}
+		FINLINE explicit PixelDataType3A(const NumberType & _scalar1,const NumberType & _scalar2,const NumberType & _scalar3,const NumberType & _scalar4):x(_scalar1) ,y(_scalar2) ,z(_scalar3),w(_scalar4){}
+		FINLINE          PixelDataType3A(const ThisType   & _pixel) :x(_pixel.x),y(_pixel.y),z(_pixel.z),w(_pixel.w){}
 	
 		FINLINE ThisType & operator =(const ThisType   & _pixel ){x=_pixel.x;y=_pixel.y;z=_pixel.z;w=_pixel.w;return (*this);}
 		FINLINE ThisType & operator =(const NumberType & _scalar){x=_scalar ;y=_scalar ;z=_scalar ;w=_scalar ;return (*this);}

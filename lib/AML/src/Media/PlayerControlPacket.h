@@ -13,12 +13,12 @@ class AML_DLL_EXPORT ControlPacket {
 	public:
 		typedef ControlPacket ThisType;
 
-		ThisType():command(Command::none),parameter(nullptr){}
+		ControlPacket():command(Command::none),parameter(nullptr){}
 		
-		ThisType(const Command & _command):command(_command),parameter(nullptr){}
-		ThisType(const Command & _command, CommandParameter * const & _parameter):command(_command),parameter(_parameter){}
+		ControlPacket(const Command & _command):command(_command),parameter(nullptr){}
+		ControlPacket(const Command & _command, CommandParameter * const & _parameter):command(_command),parameter(_parameter){}
 
-		ThisType(const ThisType & _other):command(_other.command),parameter(_other.parameter){}
+		ControlPacket(const ThisType & _other):command(_other.command),parameter(_other.parameter){}
 
 		void releasePacket(){if(parameter!=nullptr){parameter->releaseParameter();delete parameter;parameter=nullptr;}}
 

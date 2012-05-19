@@ -15,9 +15,9 @@ template <typename ElementType> class TypeVector<ElementType,0> {
 		typedef typename ElementType ElementType;
 		typedef TypeVector<ElementType,0> ThisType;
 
-		FINLINE ThisType(){}
-		FINLINE explicit ThisType(const ElementType &scalar){}
-		FINLINE ThisType(const ThisType &vector){}
+		FINLINE TypeVector(){}
+		FINLINE explicit TypeVector(const ElementType &scalar){}
+		FINLINE TypeVector(const ThisType &vector){}
 
 		FINLINE ThisType &operator =(const ThisType    &_vector){return (*this);}
 		FINLINE ThisType &operator =(const ElementType &_scalar){return (*this);}
@@ -76,9 +76,9 @@ template <typename ElementType,int Length> class TypeVector {
 		typedef TypeVector<ElementType,Length> ThisType;
 		typedef TypeVector<ElementType,Length-1> ParentType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const ElementType &_scalar);
-		FINLINE ThisType(const ThisType &_vector);
+		FINLINE explicit TypeVector(){}
+		FINLINE explicit TypeVector(const ElementType &_scalar);
+		FINLINE          TypeVector(const ThisType &_vector);
 
 		FINLINE ThisType &operator =(const ThisType &_vector);
 		FINLINE ThisType &operator =(const ElementType &_scalar);

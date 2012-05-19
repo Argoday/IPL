@@ -19,7 +19,7 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent : public Concurrency::agent {
 	public:
 		typedef FFMPEGmediaPlayerAgent ThisType;
 
-		ThisType(Data::DataManager * const & _dataManager,Concurrency::ISource<Media::Player::ControlPacket> & _controlQueue,Thread::Queue::Pipe & _videoPipe,Thread::Queue::Pipe & _audioPipe);
+		FFMPEGmediaPlayerAgent(Data::DataManager * const & _dataManager,Concurrency::ISource<Media::Player::ControlPacket> & _controlQueue,Thread::Queue::Pipe & _videoPipe,Thread::Queue::Pipe & _audioPipe);
 		~FFMPEGmediaPlayerAgent();
 
 	protected:

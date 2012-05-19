@@ -11,9 +11,9 @@ class AAL_DLL_EXPORT Config {
 	public:
 		typedef Config ThisType;
 
-		ThisType(I4  & _channels,I4  & _freq,I4  & _sampleSize):channels(_channels),freq(_freq),sampleSize(_sampleSize){}
-		ThisType(I8u & _channels,I8u & _freq,I8u & _sampleSize):channels(_channels),freq(_freq),sampleSize(_sampleSize){}
-		ThisType(const ThisType & other):channels(other.channels),freq(other.freq),sampleSize(other.sampleSize){}
+		Config(I4  & _channels,I4  & _freq,I4  & _sampleSize):channels(_channels),freq(_freq),sampleSize(_sampleSize){}
+		Config(I8u & _channels,I8u & _freq,I8u & _sampleSize):channels(_channels),freq(_freq),sampleSize(_sampleSize){}
+		Config(const ThisType & other):channels(other.channels),freq(other.freq),sampleSize(other.sampleSize){}
 
 		const I8u & getChannels()   const {return channels;}
 		const I8u & getFrequency()  const {return freq;}

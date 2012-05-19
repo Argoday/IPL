@@ -14,9 +14,9 @@ template <
 		typedef NumberType                 NumberType;
 		typedef PixelDataType1<NumberType> ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):x(_scalar){}
-		FINLINE          ThisType(const ThisType   & _pixel) :x(_pixel.x){}
+		FINLINE explicit PixelDataType1(){}
+		FINLINE explicit PixelDataType1(const NumberType & _scalar):x(_scalar){}
+		FINLINE          PixelDataType1(const ThisType   & _pixel) :x(_pixel.x){}
 	
 		FINLINE ThisType & operator =(const ThisType   & _pixel ){x=_pixel.x;return (*this);}
 		FINLINE ThisType & operator =(const NumberType & _scalar){x=_scalar ;return (*this);}

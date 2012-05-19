@@ -21,12 +21,12 @@ class ACORE_DLL_EXPORT ControlPacket {
 
 		typedef ControlPacket ThisType;
 
-		ThisType():messageType(MessageType::none),flushID(0){}
+		ControlPacket():messageType(MessageType::none),flushID(0){}
 
-		ThisType(const MessageType & _messageType):messageType(_messageType),flushID(0){}
-		ThisType(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID){}
+		ControlPacket(const MessageType & _messageType):messageType(_messageType),flushID(0){}
+		ControlPacket(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID){}
 
-		ThisType(const ThisType & _other):messageType(_other.messageType),flushID(_other.flushID){}
+		ControlPacket(const ThisType & _other):messageType(_other.messageType),flushID(_other.flushID){}
 
 		const MessageType & getMessageType() const {return messageType;}
 		const I8u         & getFlushID()     const {return flushID    ;}

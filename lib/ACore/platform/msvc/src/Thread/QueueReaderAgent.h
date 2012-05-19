@@ -19,8 +19,8 @@ class ACORE_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 
 		typedef ReaderAgent ThisType;
 
-		ThisType(Thread::Queue::Pipe & _sourcePipe):sourcePipe(_sourcePipe),target(nullptr){}
-		ThisType(Thread::Queue::Pipe & _sourcePipe,ReaderAgentTarget * & _target):sourcePipe(_sourcePipe),target(_target){}
+		ReaderAgent(Thread::Queue::Pipe & _sourcePipe):sourcePipe(_sourcePipe),target(nullptr){}
+		ReaderAgent(Thread::Queue::Pipe & _sourcePipe,ReaderAgentTarget * & _target):sourcePipe(_sourcePipe),target(_target){}
 
 		void registerTarget(ReaderAgentTarget * const & _target);
 

@@ -16,7 +16,7 @@ class AML_DLL_EXPORT Control {
 	public:
 		typedef Control ThisType;
 
-		ThisType(Concurrency::ITarget<ControlPacket> & _controlQueue):controlQueue(_controlQueue){};
+		Control(Concurrency::ITarget<ControlPacket> & _controlQueue):controlQueue(_controlQueue){};
 
 		void open(const std::string & fileName);
 		void open(const std::string & fileName,const B1 & autoPlay);

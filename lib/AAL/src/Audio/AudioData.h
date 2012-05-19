@@ -11,11 +11,11 @@ namespace Audio {
 class AAL_DLL_EXPORT AudioData {
 	public:
 		typedef AudioData ThisType;
-		ThisType(Data::DataManager * const _dataManager,const I8u & _numBytes):dataManager(_dataManager),numBytes(_numBytes){
+		AudioData(Data::DataManager * const _dataManager,const I8u & _numBytes):dataManager(_dataManager),numBytes(_numBytes){
 			data = reinterpret_cast<I1u*>(_dataManager->getMemoryFromPool(_numBytes));
 		}
-		ThisType(const ThisType & other):dataManager(other.dataManager),data(other.data),numBytes(other.numBytes){}
-		ThisType(ThisType && other)
+		AudioData(const ThisType & other):dataManager(other.dataManager),data(other.data),numBytes(other.numBytes){}
+		AudioData(ThisType && other)
 			:dataManager(other.dataManager)
 		{
 			data = other.data;

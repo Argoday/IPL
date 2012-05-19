@@ -30,12 +30,12 @@ template <
 		typedef PixelDataTypeY2<NumberType,Yposition>          ParentType;
 		typedef PixelYUVbaseType<NumberType,ComputationDataType,PixelRangeType,Yposition,Uposition,Vposition> ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelYUVbaseType(){}
+		FINLINE explicit PixelYUVbaseType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYUVbaseType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYUVbaseType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
-		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
+		FINLINE explicit PixelYUVbaseType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
 
 		FINLINE void setY(const NumberType & _y) {this->set<Yposition>(_y);}
 		FINLINE void setU(const NumberType & _u) {this->set<Uposition>(_u);}
@@ -70,12 +70,12 @@ class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
 		typedef PixelYUVf8td                  ParentType;
 		typedef PixelYUVf8                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelYUVf8(){}
+		FINLINE explicit PixelYUVf8(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYUVf8(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYUVf8(const ThisType   & _pixel ):ParentType(_pixel ){}
 
-		FINLINE explicit ThisType(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
+		FINLINE explicit PixelYUVf8(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
 };
 
 }

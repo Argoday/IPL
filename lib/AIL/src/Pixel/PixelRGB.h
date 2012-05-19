@@ -30,12 +30,12 @@ template <
 		typedef PixelDataType3<NumberType>          ParentType;
 		typedef PixelRGBbaseType<NumberType,ComputationDataType,PixelRangeType,Rposition,Gposition,Bposition> ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelRGBbaseType(){}
+		FINLINE explicit PixelRGBbaseType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelRGBbaseType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelRGBbaseType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
-		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
+		FINLINE explicit PixelRGBbaseType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 
 		FINLINE void setR(const NumberType & _r) {this->set<Rposition>(_r);}
 		FINLINE void setG(const NumberType & _g) {this->set<Gposition>(_g);}
@@ -80,12 +80,12 @@ class AIL_DLL_EXPORT PixelRGBi4 : public PixelRGBi4td {
 		typedef PixelRGBi4td                  ParentType;
 		typedef PixelRGBi4                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelRGBi4(){}
+		FINLINE explicit PixelRGBi4(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelRGBi4(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelRGBi4(const ThisType   & _pixel ):ParentType(_pixel ){}
 
-		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
+		FINLINE explicit PixelRGBi4(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 };
 
 class AIL_DLL_EXPORT PixelRGBi1u : public PixelRGBi1utd {
@@ -99,12 +99,12 @@ class AIL_DLL_EXPORT PixelRGBi1u : public PixelRGBi1utd {
 		typedef PixelRGBi1utd                  ParentType;
 		typedef PixelRGBi1u                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelRGBi1u(){}
+		FINLINE explicit PixelRGBi1u(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelRGBi1u(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelRGBi1u(const ThisType   & _pixel ):ParentType(_pixel ){}
 
-		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
+		FINLINE explicit PixelRGBi1u(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 };
 
 
@@ -119,12 +119,12 @@ class AIL_DLL_EXPORT PixelRGBf8 : public PixelRGBf8td {
 		typedef PixelRGBf8td                  ParentType;
 		typedef PixelRGBf8                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelRGBf8(){}
+		FINLINE explicit PixelRGBf8(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelRGBf8(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelRGBf8(const ThisType   & _pixel ):ParentType(_pixel ){}
 
-		FINLINE explicit ThisType(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
+		FINLINE explicit PixelRGBf8(const NumberType & _r,const NumberType & _g,const NumberType & _b){setR(_r);setG(_g);setB(_b);}
 };
 
 }

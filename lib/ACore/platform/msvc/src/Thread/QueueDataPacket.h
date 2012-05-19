@@ -20,16 +20,16 @@ class ACORE_DLL_EXPORT DataPacket {
 		};
 		typedef DataPacket ThisType;
 
-		ThisType():messageType(MessageType::none),flushID(0),data(nullptr),timeStamp(0.0){}
+		DataPacket():messageType(MessageType::none),flushID(0),data(nullptr),timeStamp(0.0){}
 
-		ThisType(const MessageType & _messageType):messageType(_messageType),flushID(0),data(nullptr),timeStamp(0.0){}
-		ThisType(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID),data(nullptr),timeStamp(0.0){}
-		ThisType(const MessageType & _messageType, void * _data):messageType(_messageType),data(_data),timeStamp(0.0){}
-		ThisType(const MessageType & _messageType, void * _data,const F8 & _timeStamp):messageType(_messageType),data(_data),timeStamp(_timeStamp){}
-		ThisType(void * _data,const F8 & _timeStamp):messageType(MessageType::data),data(_data),timeStamp(_timeStamp){}
-		ThisType(void * _data,const F8 & _timeStamp,const int & _configFlagDummy):messageType(MessageType::config),data(_data),timeStamp(_timeStamp){}
+		DataPacket(const MessageType & _messageType):messageType(_messageType),flushID(0),data(nullptr),timeStamp(0.0){}
+		DataPacket(const MessageType & _messageType, const I8u & _flushID):messageType(_messageType),flushID(_flushID),data(nullptr),timeStamp(0.0){}
+		DataPacket(const MessageType & _messageType, void * _data):messageType(_messageType),data(_data),timeStamp(0.0){}
+		DataPacket(const MessageType & _messageType, void * _data,const F8 & _timeStamp):messageType(_messageType),data(_data),timeStamp(_timeStamp){}
+		DataPacket(void * _data,const F8 & _timeStamp):messageType(MessageType::data),data(_data),timeStamp(_timeStamp){}
+		DataPacket(void * _data,const F8 & _timeStamp,const int & _configFlagDummy):messageType(MessageType::config),data(_data),timeStamp(_timeStamp){}
 
-		ThisType(const ThisType & other):messageType(other.messageType),flushID(other.flushID),data(other.data),timeStamp(other.timeStamp){}
+		DataPacket(const ThisType & other):messageType(other.messageType),flushID(other.flushID),data(other.data),timeStamp(other.timeStamp){}
 
 		void * takeData(){auto tempData = data;data = nullptr;return tempData;}
 

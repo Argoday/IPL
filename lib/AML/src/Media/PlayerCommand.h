@@ -34,16 +34,16 @@ class AML_DLL_EXPORT CommandParameter {
 class AML_DLL_EXPORT CommandDefaultParameter : public CommandParameter {
 	public:
 		typedef CommandDefaultParameter ThisType;
-		ThisType(const ThisType & other){}
-		ThisType(){}
+		CommandDefaultParameter(const ThisType & other){}
+		CommandDefaultParameter(){}
 		void releaseParameter(){}
 	private:
 };
 class AML_DLL_EXPORT CommandPlayPauseParameter : public CommandParameter {
 	public:
 		typedef CommandPlayPauseParameter ThisType;
-		ThisType(const ThisType & other):state(other.state){}
-		ThisType(const B1 & _state):state(_state){}
+		CommandPlayPauseParameter(const ThisType & other):state(other.state){}
+		CommandPlayPauseParameter(const B1 & _state):state(_state){}
 		void releaseParameter(){}
 		const B1 & getState() const {return state;}
 	private:
@@ -52,8 +52,8 @@ class AML_DLL_EXPORT CommandPlayPauseParameter : public CommandParameter {
 class AML_DLL_EXPORT CommandSeekParameter : public CommandParameter {
 	public:
 		typedef CommandSeekParameter ThisType;
-		ThisType(const ThisType & other):videoFrameIndex(other.videoFrameIndex){}
-		ThisType(const I8u & _videoFrameIndex):videoFrameIndex(_videoFrameIndex){}
+		CommandSeekParameter(const ThisType & other):videoFrameIndex(other.videoFrameIndex){}
+		CommandSeekParameter(const I8u & _videoFrameIndex):videoFrameIndex(_videoFrameIndex){}
 		void releaseParameter(){}
 		const I8u & getVideoFrameIndex() const {return videoFrameIndex;}
 	private:
@@ -62,8 +62,8 @@ class AML_DLL_EXPORT CommandSeekParameter : public CommandParameter {
 class AML_DLL_EXPORT CommandOpenParameter : public CommandParameter {
 	public:
 		typedef CommandOpenParameter ThisType;
-		ThisType(const ThisType & other):autoPlay(other.autoPlay),fileName(other.fileName){}
-		ThisType(const std::string & _fileName,const B1 & _autoPlay):autoPlay(_autoPlay),fileName(_fileName){}
+		CommandOpenParameter(const ThisType & other):autoPlay(other.autoPlay),fileName(other.fileName){}
+		CommandOpenParameter(const std::string & _fileName,const B1 & _autoPlay):autoPlay(_autoPlay),fileName(_fileName){}
 		void releaseParameter(){}
 		const B1 & getAutoPlay() const {return autoPlay;}
 		const std::string & getFileName() const {return fileName;}

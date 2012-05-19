@@ -12,7 +12,7 @@ class AVL_FFMPEG_DLL_EXPORT FFMPEGvideoFile {
 	public:
 		typedef FFMPEGvideoFile ThisType;
 
-		ThisType(Data::DataManager * const & dataManager);
+		FFMPEGvideoFile(Data::DataManager * const & dataManager);
 		~FFMPEGvideoFile();
 
 		bool openFile(const std::string & fileName);

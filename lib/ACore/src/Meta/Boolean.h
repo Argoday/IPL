@@ -15,9 +15,9 @@ class ACORE_DLL_EXPORT Boolean {
 
 		NumberType value;
 
-		FINLINE ThisType():value(false){}
-		FINLINE ThisType(const ThisType   &  other);
-		FINLINE ThisType(const NumberType & _value);
+		FINLINE Boolean():value(false){}
+		FINLINE Boolean(const ThisType   &  other);
+		FINLINE Boolean(const NumberType & _value);
 
 		FINLINE ThisType & operator =(const ThisType   &  other);
 		FINLINE ThisType & operator =(const NumberType & _value);

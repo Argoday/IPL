@@ -14,7 +14,7 @@ template <typename ElementType> class TypeStructEnd {
 
 		typedef TypeStructEnd<ElementType> ThisType;
 
-		FINLINE ThisType(){};
+		FINLINE TypeStructEnd(){};
 		
 		FINLINE ThisType &operator -=(const ThisType &other){value-=other.value;return (*this);};
 		FINLINE ThisType &operator +=(const ThisType &other){value+=other.value;return (*this);};
@@ -42,8 +42,8 @@ template <typename ElementType,typename ParentType> class TypeStruct {
 
 		typedef TypeStruct<ElementType,ParentType> ThisType;
 
-		FINLINE ThisType(){};
-		FINLINE ThisType(const ThisType &_struct);
+		FINLINE TypeStruct(){};
+		FINLINE TypeStruct(const ThisType &_struct);
 
 		FINLINE ThisType &operator =(const ThisType &_struct);
 

@@ -26,10 +26,10 @@ template <
 		typedef PixelDataType1<NumberType>          ParentType;
 		typedef PixelYbaseType<NumberType,ComputationDataType,PixelRangeType> ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelYbaseType(){}
+		FINLINE explicit PixelYbaseType(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYbaseType(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYbaseType(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 		FINLINE void setY(const NumberType & _y) {this->set<0>(_y);}
 
@@ -52,10 +52,10 @@ class AIL_DLL_EXPORT PixelYi4 : public PixelYi4td {
 		typedef PixelYi4td                  ParentType;
 		typedef PixelYi4                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelYi4(){}
+		FINLINE explicit PixelYi4(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYi4(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYi4(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 };
 
@@ -70,10 +70,10 @@ class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
 		typedef PixelYb1td                  ParentType;
 		typedef PixelYb1                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelYb1(){}
+		FINLINE explicit PixelYb1(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYb1(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYb1(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 };
 
@@ -96,10 +96,10 @@ class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 		typedef PixelYi1utd                  ParentType;
 		typedef PixelYi1u                    ThisType;
 
-		FINLINE explicit ThisType(){}
-		FINLINE explicit ThisType(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          ThisType(const DataType   & _pixel ):ParentType(_pixel ){}
-		FINLINE          ThisType(const ThisType   & _pixel ):ParentType(_pixel ){}
+		FINLINE explicit PixelYi1u(){}
+		FINLINE explicit PixelYi1u(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYi1u(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYi1u(const ThisType   & _pixel ):ParentType(_pixel ){}
 
 };
 

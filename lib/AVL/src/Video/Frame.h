@@ -11,8 +11,8 @@ namespace Video {
 template<typename PixelType> class AVL_DLL_EXPORT Frame {
 	public:
 		typedef Frame ThisType;
-		ThisType(const ThisType & other):image(other.image),timeStamp(other.timeStamp),frameIndex(other.frameIndex){}
-		ThisType(ThisType && other){
+		Frame(const ThisType & other):image(other.image),timeStamp(other.timeStamp),frameIndex(other.frameIndex){}
+		Frame(ThisType && other){
 			image=other.image;
 			timeStamp=other.timeStamp;
 			frameIndex=other.frameIndex;
@@ -20,7 +20,7 @@ template<typename PixelType> class AVL_DLL_EXPORT Frame {
 			other.timeStamp=0;
 			other.frameIndex=0;
 		}
-		ThisType(Image::Image<PixelType> * const & _image,const F8 & _timeStamp,const I8u & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
+		Frame(Image::Image<PixelType> * const & _image,const F8 & _timeStamp,const I8u & _frameIndex):image(_image),timeStamp(_timeStamp),frameIndex(_frameIndex){}
 
 		Image::Image<PixelType> * takeImage() {
 			auto tempImage = image;

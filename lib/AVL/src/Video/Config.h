@@ -11,8 +11,8 @@ class AVL_DLL_EXPORT Config {
 	public:
 		typedef Config ThisType;
 
-		ThisType(const I8u & _durationFrames):durationFrames(_durationFrames){}
-		ThisType(const ThisType & other):durationFrames(other.durationFrames){}
+		Config(const I8u & _durationFrames):durationFrames(_durationFrames){}
+		Config(const ThisType & other):durationFrames(other.durationFrames){}
 
 		const I8u & getDurationFrames() const {return durationFrames;}
 

@@ -26,14 +26,14 @@ template <
 
 	public:
 		
-		ThisType();
-		ThisType(const ImageSize & _imageSize);
-		ThisType(const I4 & _width,const I4 & _height);
-		ThisType(const ThisType & _image);
-		ThisType(ThisType && _image);
+		Image();
+		Image(const ImageSize & _imageSize);
+		Image(const I4 & _width,const I4 & _height);
+		Image(const ThisType & _image);
+		Image(ThisType && _image);
 
-		ThisType(const ImageSize & _imageSize,Data::DataManager * const _dataManager);
-		ThisType(const I4 & _width,const I4 & _height,Data::DataManager * const _dataManager);
+		Image(const ImageSize & _imageSize,Data::DataManager * const _dataManager);
+		Image(const I4 & _width,const I4 & _height,Data::DataManager * const _dataManager);
 
 		void setAs(const ThisType & otherImage,const ImageSize & _imageSize);
 		const ThisType & operator=(const ThisType & _image);
