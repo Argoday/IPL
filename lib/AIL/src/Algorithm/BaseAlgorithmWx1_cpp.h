@@ -26,7 +26,7 @@ template <
 		const auto & xOffset     = parameter.xOffset;
 		const auto & filterWidth = parameter.filterWidth;
 
-		auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - xOffset - 1);
+		auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - 1 - xOffset);
 
 		auto srcImageDataPtr = srcImage.getDataPtr();
 		auto dstImageDataPtr = dstImage.getDataPtr();
@@ -62,10 +62,11 @@ template <
 		const auto & srcImageStride = srcImage.getStride();
 		const auto & dstImageStride = dstImage.getStride();
 
-		const auto & xOffset     = parameter.xOffset;
-		const auto & filterWidth = parameter.filterWidth;
+		const auto & xOffset       = parameter.xOffset;
+		const auto & filterWidth   = parameter.filterWidth;
+		const auto & filterWidth_1 = parameter.filterWidth - 1;
 
-		auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth - xOffset - 1);
+		auto srcImageWidth_filterWidthOffset = srcImageWidth - (filterWidth_1 - xOffset);
 
 		auto srcImageDataPtr = srcImage.getDataPtr();
 		auto dstImageDataPtr = dstImage.getDataPtr();
@@ -87,10 +88,10 @@ template <
 				}
 				dstImageDataPtrRowEnd+=dstImageStride;
 
-				dstImageDataPtr+=filterWidth - xOffset - 1;
+				dstImageDataPtr+=filterWidth_1 - xOffset;
 				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
 
-				srcImageDataPtr+=filterWidth - 1;
+				srcImageDataPtr+=filterWidth_1;
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}else if((srcImage.hasXbeginSection()==true)&&(srcImage.hasXendSection()==false)){
@@ -109,11 +110,10 @@ template <
 				}
 				dstImageDataPtrRowEnd+=dstImageStride;
 
-				dstImageDataPtr+=filterWidth - xOffset - 1;
-
+				dstImageDataPtr+=filterWidth_1 - xOffset;
 				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
 
-				srcImageDataPtr+=filterWidth - 1;
+				srcImageDataPtr+=filterWidth_1;
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}else if((srcImage.hasXbeginSection()==false)&&(srcImage.hasXendSection()==true)){
@@ -131,8 +131,10 @@ template <
 					++dstImageDataPtr;
 				}
 				dstImageDataPtrRowEnd+=dstImageStride;
+
 				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
-				srcImageDataPtr+=filterWidth-1;
+
+				srcImageDataPtr+=filterWidth_1;
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}else{
@@ -157,7 +159,7 @@ template <
 
 				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
 
-				srcImageDataPtr+=filterWidth;
+				srcImageDataPtr+=filterWidth;//TEST!
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}
