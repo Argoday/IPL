@@ -14,7 +14,7 @@ class Semaphore::Semaphore_d {
 };
 
 
-Semaphore::Semaphore(I8 capacity)
+Semaphore::Semaphore(const I8 & capacity)
 	:_this(new Semaphore_d)
 {
 	_this->count = capacity;

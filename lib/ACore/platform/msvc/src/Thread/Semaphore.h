@@ -9,7 +9,7 @@ namespace Thread {
 
 class ACORE_DLL_EXPORT Semaphore {
 	public:
-	   explicit Semaphore(I8 capacity);
+	   explicit Semaphore(const I8 & capacity);
 
 	   ~Semaphore();
 

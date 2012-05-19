@@ -48,11 +48,11 @@ class ImageWindow : public QMainWindow {
 		void createMenus();
 		void updateActions();
 		void scaleImage(double factor);
-		void adjustScrollBar(QScrollBar *scrollBar, double factor);
+		void adjustScrollBar(QScrollBar * scrollBar, double factor);
 
 		QPrinter printer;
 		QImageWriter imageWriter;
-		QLabel *imageLabel;
+		QLabel * imageLabel;
 		QScrollArea *scrollArea;
 		double scaleFactor;
 

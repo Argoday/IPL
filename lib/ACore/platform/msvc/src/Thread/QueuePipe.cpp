@@ -34,7 +34,7 @@ class Pipe::Pipe_d {
 		I8u flushID;
 };
 
-ACORE_DLL_EXPORT Pipe::Pipe(I8 _capacity)
+ACORE_DLL_EXPORT Pipe::Pipe(const I8 & _capacity)
 	:_this(new Pipe_d(_capacity))
 {
 }

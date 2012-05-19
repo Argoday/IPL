@@ -13,7 +13,7 @@ namespace Queue {
 
 class ACORE_DLL_EXPORT Pipe {
 	public:
-		Pipe(I8 _capacity);
+		Pipe(const I8 & _capacity);
 		~Pipe();
 
 		// Source methods
@@ -28,8 +28,8 @@ class ACORE_DLL_EXPORT Pipe {
 		void  sendControl(ControlPacket & controlPacket);
 
 		// Target methods
-		DataPacket readData();
-		B1 areadData(DataPacket & dataPacket);
+		DataPacket  readData();
+		B1         areadData(DataPacket & dataPacket);
 		ControlPacket  readControl();
 		B1            areadControl(ControlPacket & controlPacket);
 
