@@ -1,5 +1,5 @@
 # Image Processing Library
-[Wiki](http://www.argoday.com/wiki/IPL "Argoday Wiki")
+[Wiki](http://www.argoday.com/wiki/IPL "Argoday Wiki") - (Not developed yet)
 
 ## Overview
 
@@ -22,6 +22,7 @@ This library is not endorsed by or affiliated with any other software libraries,
 - Andrea Gagliardi La Gala's [Image Processing Library](http://code.google.com/p/ipl/ "IPL")
 - The [CImg Library](http://cimg.sourceforge.net/ "CImg")
 - [OpenCV](http://opencv.willowgarage.com/wiki/ "OpenCV")
+- [Vigra](http://hci.iwr.uni-heidelberg.de/vigra/ "Vigra")
 
 'Image Processing Library' is a generic name and describes the functionality of this library only.
 
