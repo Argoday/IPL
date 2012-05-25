@@ -19,15 +19,15 @@ template <
 	const Image::ImageView<PixelDataType> & srcImage,
 	Image::ImageView<PixelDataType> & dstImage)
 {
-	#ifndef PPL
-		BaseAlgorithm3x3<AlgorithmType,PixelDataType>(srcImage,dstImage);
-	#else
+	#ifdef PPL
 		if(srcImage.getSize()!=dstImage.getSize()){return;}
 		auto srcGrid = srcImage.makeGrid(100,100,1,1,3,3);
 		auto dstGrid = dstImage.makeGrid(100,100,1,1,3,3);
 		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
 			BaseAlgorithm3x3<AlgorithmType,PixelDataType>(srcGrid[i],dstGrid[i]);
 		});
+	#else
+		BaseAlgorithm3x3<AlgorithmType,PixelDataType>(srcImage,dstImage);
 	#endif
 }
 

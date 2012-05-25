@@ -21,15 +21,15 @@ template <
 	Image::ImageView<PixelDataType> & dstImage,
 	const ParameterType & parameter)
 {
-	#ifndef PPL
-		BaseAlgorithmWxH<AlgorithmType,PixelDataType,ParameterType>(srcImage,dstImage,parameter);
-	#else
+	#ifdef PPL
 		if(srcImage.getSize()!=dstImage.getSize()){return;}
 		auto srcGrid = srcImage.makeGrid(100,100,parameter.xOffset,parameter.yOffset,parameter.filterWidth,parameter.filterHeight);
 		auto dstGrid = dstImage.makeGrid(100,100,parameter.xOffset,parameter.yOffset,parameter.filterWidth,parameter.filterHeight);
 		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
 			BaseAlgorithmWxH<AlgorithmType,PixelDataType,ParameterType>(srcGrid[i],dstGrid[i],parameter);
 		});
+	#else
+		BaseAlgorithmWxH<AlgorithmType,PixelDataType,ParameterType>(srcImage,dstImage,parameter);
 	#endif
 }
 
