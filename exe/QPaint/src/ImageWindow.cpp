@@ -14,7 +14,7 @@ using String::getString;
 #include <Filter/DilateFilter.h>
 #include <Filter/LinearFilterWxH.h>
 #include <Algorithm/Algorithm1x1.h>
-#include <Algorithm/BaseAlgorithm3x3.h>
+#include <Algorithm/Algorithm3x3.h>
 
 
 //--- ImageWindow Constructor ---												//Constructor
@@ -164,10 +164,12 @@ void ImageWindow::negative(){
 	//Image::BaseAlgorithm1x1<Image::ImageBase::DefaultPixelType::DataType,NegateObj>(wImage->getView());
 
 	//Image::Image<PixelType> tempImage1 = Image::Image<PixelType>(wImage->getSize(),dataManager);
-	//Algorithm::BaseAlgorithm3x3<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
-	//Algorithm::BaseAlgorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
-	Algorithm::Algorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView());
+	//Algorithm::Algorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
 	//wImage->swap(tempImage1);
+
+	//Algorithm::Algorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView(),tempImage1.getDataView());
+	Algorithm::Algorithm1x1<NegateObj,ImageWindow::PixelType::DataType>(wImage->getDataView());
+	
 	//wImage->clip();
 	//(*wImage)+= wImage->getMaxValueVol();
 	clock_t endTime = clock();
