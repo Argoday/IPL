@@ -1,8 +1,8 @@
 
 #include "BoxFilter1xH.h"
-#include <Algorithm/BaseAlgorithm1xH.h>
 #include "BaseBoxFilterAlgorithm.h"
 #include "BoxFilter1xHparametersType.h"
+#include <Algorithm/Algorithm1xH.h>
 #include <Algorithm/Basic1xHbaseAlgorithm.h>
 
 namespace Filter {
@@ -16,7 +16,7 @@ template <
 
 	BoxFilter1xHparametersType<PixelDataType,PixelComputationType> parameters(yOffset,filterHeight,srcImage.getWidth(),PixelType::ComputationRange::getMinPixel(),PixelComputationType(filterHeight));
 
-	Algorithm::BaseAlgorithm1xH<
+	Algorithm::Algorithm1xH<
 		Algorithm::Basic1xHbaseAlgorithm<
 			BaseBoxFilterAlgorithm<
 				PixelDataType,

@@ -1,6 +1,6 @@
 
 #include "MaxFilter1xHbasic.h"
-#include <Algorithm/BaseAlgorithm1xH.h>
+#include <Algorithm/Algorithm1xH.h>
 #include "BaseMaxFilterAlgorithm.h"
 #include "MaxFilter1xHbasicParametersType.h"
 #include <Algorithm/Basic1xHbaseAlgorithm.h>
@@ -16,7 +16,7 @@ template <
 
 	MaxFilter1xHbasicParametersType<PixelDataType,PixelComputationType> parameters(yOffset,filterHeight,srcImage.getWidth(),PixelType::ComputationRange::getMinPixel());
 
-	Algorithm::BaseAlgorithm1xH<
+	Algorithm::Algorithm1xH<
 		Algorithm::Basic1xHbaseAlgorithm<
 			BaseMaxFilterAlgorithm<
 				PixelDataType,

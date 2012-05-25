@@ -1,6 +1,6 @@
 
 #include "MinFilterWx1basic.h"
-#include <Algorithm/BaseAlgorithmWx1.h>
+#include <Algorithm/AlgorithmWx1.h>
 #include "BaseMinFilterAlgorithm.h"
 #include <Algorithm/BasicWx1baseAlgorithm.h>
 #include "MinFilterWx1basicParametersType.h"
@@ -16,7 +16,7 @@ template <
 
 	MinFilterWx1basicParametersType<PixelDataType,PixelComputationType> parameters(xOffset,filterWidth,PixelType::ComputationRange::getMaxPixel());
 
-	Algorithm::BaseAlgorithmWx1<
+	Algorithm::AlgorithmWx1<
 		Algorithm::BasicWx1baseAlgorithm<
 			BaseMinFilterAlgorithm<
 				PixelDataType,

@@ -1,7 +1,7 @@
 
 #include "LinearFilterWx1.h"
 #include "BaseLinearFilterAlgorithm.h"
-#include <Algorithm/BaseAlgorithmWx1.h>
+#include <Algorithm/AlgorithmWx1.h>
 #include "SimpleWx1dataOperationBaseAlgorithm.h"
 
 namespace Filter {
@@ -22,7 +22,7 @@ template <
 		PixelType::ComputationRange::getMinPixel()
 	);
 
-	Algorithm::BaseAlgorithmWx1<
+	Algorithm::AlgorithmWx1<
 		SimpleWx1dataOperationBaseAlgorithm<
 			BaseLinearFilterAlgorithm<
 				PixelDataType,

@@ -1,8 +1,8 @@
 
 #include "BoxFilterWx1.h"
-#include <Algorithm/BaseAlgorithmWx1.h>
 #include "BaseBoxFilterAlgorithm.h"
 #include "BoxFilterWx1parametersType.h"
+#include <Algorithm/AlgorithmWx1.h>
 #include <Algorithm/BasicWx1baseAlgorithm.h>
 
 namespace Filter {
@@ -16,7 +16,7 @@ template <
 
 	BoxFilterWx1parametersType<PixelDataType,PixelComputationType> parameters(xOffset,filterWidth,PixelType::ComputationRange::getMinPixel(),PixelComputationType(filterWidth));
 
-	Algorithm::BaseAlgorithmWx1<
+	Algorithm::AlgorithmWx1<
 		Algorithm::BasicWx1baseAlgorithm<
 			BaseBoxFilterAlgorithm<
 				PixelDataType,

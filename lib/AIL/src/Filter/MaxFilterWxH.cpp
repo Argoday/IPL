@@ -1,6 +1,6 @@
 
 #include "MaxFilterWxH.h"
-#include <Algorithm/BaseAlgorithmWxH.h>
+#include <Algorithm/AlgorithmWxH.h>
 #include "BaseMaxFilterAlgorithm.h"
 #include "BaseMaxFilterParametersType.h"
 #include "SimpleWxHbooleanOperationBaseAlgorithm.h"
@@ -18,7 +18,7 @@ template <
 
 	BaseMaxFilterParametersType<PixelDataType,PixelComputationType> parameters(getFilterData(),getXoffset(),getYoffset(),PixelType::ComputationRange::getMinPixel());
 
-	Algorithm::BaseAlgorithmWxH<
+	Algorithm::AlgorithmWxH<
 		SimpleWxHbooleanOperationBaseAlgorithm<
 			BaseMaxFilterAlgorithm<
 				PixelDataType,
