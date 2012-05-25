@@ -120,7 +120,7 @@ template <
 
 	private:
 
-		std::vector<ThisType> makeGrid_p(const I4 & width,const I4 & height, const I4 & xOffset, const I4 & yOffset, const I4 & filterWidth, const I4 & filterHeight) const ;
+		std::vector<ThisType> makeGrid_p(const I4 & cellWidthTry,const I4 & cellHeightTry, const I4 & xOffset, const I4 & yOffset, const I4 & filterWidth, const I4 & filterHeight) const ;
 
 		      PixelDataType * imageDataPtr;
 		const PixelDataType * imageDataPtrEnd;
