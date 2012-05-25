@@ -2,8 +2,9 @@
 #include "MinFilterWxH.h"
 #include <Algorithm/AlgorithmWxH.h>
 #include "BaseMinFilterAlgorithm.h"
-#include "BaseMinFilterParametersType.h"
+#include "SimpleWxHbooleanOperationParametersType.h"
 #include "SimpleWxHbooleanOperationBaseAlgorithm.h"
+#include <Algorithm/BaseOperationTempType.h>
 
 namespace Filter {
 
@@ -16,23 +17,23 @@ template <
 
 	filterData.calculateKernelSkipData(srcImage.getWidth());
 
-	BaseMinFilterParametersType<PixelDataType,PixelComputationType> parameters(getFilterData(),getXoffset(),getYoffset(),PixelType::ComputationRange::getMaxPixel());
+	SimpleWxHbooleanOperationParametersType parameters(getFilterData(),getXoffset(),getYoffset());
 
 	Algorithm::AlgorithmWxH<
 		SimpleWxHbooleanOperationBaseAlgorithm<
 			BaseMinFilterAlgorithm<
 				PixelDataType,
 				PixelComputationType,
-				BaseMinFilterParametersType<PixelDataType,PixelComputationType>,
+				SimpleWxHbooleanOperationParametersType,
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
 			PixelComputationType,
-			BaseMinFilterParametersType<PixelDataType,PixelComputationType>,
+			SimpleWxHbooleanOperationParametersType,
 			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		BaseMinFilterParametersType<PixelDataType,PixelComputationType>
+		SimpleWxHbooleanOperationParametersType
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),

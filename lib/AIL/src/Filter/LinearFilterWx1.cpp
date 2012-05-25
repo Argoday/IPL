@@ -3,6 +3,8 @@
 #include "BaseLinearFilterAlgorithm.h"
 #include <Algorithm/AlgorithmWx1.h>
 #include "SimpleWx1dataOperationBaseAlgorithm.h"
+#include <Algorithm/BaseOperationTempType.h>
+#include "BaseLinearFilterParametersType.h"
 
 namespace Filter {
 
@@ -18,8 +20,7 @@ template <
 		getXoffset(),
 		getYoffset(),
 		srcImage.getWidth(),
-		getTotalColor(),
-		PixelType::ComputationRange::getMinPixel()
+		getTotalColor()
 	);
 
 	Algorithm::AlgorithmWx1<

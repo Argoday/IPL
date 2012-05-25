@@ -24,7 +24,16 @@ template <
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto filterDataPtr = parameters.filterDataPtr;
-			for (I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+			I4 xf=x-parameters.xOffset;
+			for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
+					DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>());
+					++filterDataPtr;
+					break;
+				}
+				++filterDataPtr;
+			}
+			for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
 				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
 					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>());
 				}
@@ -43,6 +52,9 @@ template <
 			auto srcImageDataPtr   = srcImageDataPtrIn;
 			auto filterSkipDataPtr = parameters.filterSkipDataPtr;
 
+			srcImageDataPtr+=(*filterSkipDataPtr);
+			++filterSkipDataPtr;
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 			srcImageDataPtr+=(*filterSkipDataPtr);
 			++filterSkipDataPtr;
 			for (;filterSkipDataPtr!=parameters.filterSkipDataPtrEnd;){

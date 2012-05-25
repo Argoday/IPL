@@ -23,7 +23,10 @@ template <
 		{
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
-			for (I4 yf=y-parameters.yOffset; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+			I4 yf=y-parameters.yOffset;
+			DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType::NumberType>());
+			++yf;
+			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
 				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType::NumberType>());
 			}
 			DerivedAlgorithmType::final(tempData,parameters);
@@ -38,7 +41,9 @@ template <
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto srcImageDataPtr    = srcImageDataPtrIn;
 			auto srcImageDataPtrEnd = srcImageDataPtrIn + parameters.srcImageWidth_x_filterHeight;
-			for (;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll?
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
+			srcImageDataPtr+=parameters.srcImageWidth;
+			for(;srcImageDataPtr!=srcImageDataPtrEnd;){//TODO: loop unroll?
 				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 				srcImageDataPtr+=parameters.srcImageWidth;
 			}

@@ -2,9 +2,6 @@
 #ifndef FILTER__BaseMinFilterAlgorithm_H
 #define FILTER__BaseMinFilterAlgorithm_H
 
-#include <Algorithm/BaseOperationTempType.h>
-#include "BaseMinFilterParametersType.h"
-
 namespace Filter {
 
 template <
@@ -18,7 +15,14 @@ template <
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
-			tempData.tempPixel = parameters.maxPixel;
+		}
+
+		static FINLINE void first(
+			TempType & tempData,
+			const ParametersType & parameters,
+			const PixelComputationType & srcImageData)
+		{
+			tempData.tempPixel = srcImageData;
 		}
 
 		static FINLINE void inner(

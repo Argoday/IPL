@@ -2,9 +2,6 @@
 #ifndef FILTER__BaseLinearFilterAlgorithm_H
 #define FILTER__BaseLinearFilterAlgorithm_H
 
-#include <Algorithm/BaseOperationTempType.h>
-#include "BaseLinearFilterParametersType.h"
-
 namespace Filter {
 
 template <
@@ -18,7 +15,15 @@ template <
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
-			tempData.tempPixel = parameters.minPixel;
+		}
+
+		static FINLINE void first(
+			TempType & tempData,
+			const ParametersType & parameters,
+			const PixelComputationType & srcImageData,
+			const PixelComputationType & filterData)
+		{
+			tempData.tempPixel =srcImageData*filterData;
 		}
 
 		static FINLINE void inner(

@@ -413,25 +413,16 @@
     <ClInclude Include="src\Filter\BaseMaxFilterAlgorithm.h">
       <Filter>Filter\Max\BaseMaxFilter\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Filter\BaseMaxFilterParametersType.h">
-      <Filter>Filter\Max\BaseMaxFilter\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Filter\MaxFilter1xH.h">
       <Filter>Filter\Max\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Filter\MaxFilter1xHbasic.h">
       <Filter>Filter\Max\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Filter\MaxFilter1xHbasicParametersType.h">
-      <Filter>Filter\Max\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Filter\MaxFilterWx1.h">
       <Filter>Filter\Max\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Filter\MaxFilterWx1basic.h">
-      <Filter>Filter\Max\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Filter\MaxFilterWx1basicParametersType.h">
       <Filter>Filter\Max\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Filter\MaxFilterWxH.h">
@@ -443,25 +434,16 @@
     <ClInclude Include="src\Filter\BaseMinFilterAlgorithm.h">
       <Filter>Filter\Min\BaseMinFilter\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Filter\BaseMinFilterParametersType.h">
-      <Filter>Filter\Min\BaseMinFilter\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Filter\MinFilter1xH.h">
       <Filter>Filter\Min\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Filter\MinFilter1xHbasic.h">
       <Filter>Filter\Min\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Filter\MinFilter1xHbasicParametersType.h">
-      <Filter>Filter\Min\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Filter\MinFilterWx1.h">
       <Filter>Filter\Min\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Filter\MinFilterWx1basic.h">
-      <Filter>Filter\Min\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Filter\MinFilterWx1basicParametersType.h">
       <Filter>Filter\Min\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Filter\MinFilterWxH.h">

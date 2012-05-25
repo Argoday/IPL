@@ -20,8 +20,7 @@ template <
 			const I4 & _xOffset,
 			const I4 & _yOffset,
 			const I4 & _srcImageWidth,
-			const PixelComputationType _totalColor,
-			const PixelComputationType _minPixel
+			const PixelComputationType _totalColor
 		)
 			:SimpleWxHdataOperationParametersType<PixelDataType>(
 				_filter,
@@ -30,12 +29,10 @@ template <
 				_srcImageWidth
 			)
 			,totalColor(_totalColor)
-			,minPixel(_minPixel)
 		{
 		}
 
 		const PixelComputationType totalColor;
-		const PixelComputationType minPixel;
 };
 
 }

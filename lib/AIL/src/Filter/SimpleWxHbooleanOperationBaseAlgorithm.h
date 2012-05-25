@@ -24,8 +24,28 @@ template <
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto filterDataPtr = parameters.filterDataPtr;
-			for (I4 yf=y-parameters.yOffset; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
-				for (I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+			I4 yf=y-parameters.yOffset;
+			for(; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+				for(I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+					if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
+						DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>());
+						++filterDataPtr;
+
+						//Finish out the row then break out of the double loop
+						for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+							if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
+								DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>());
+							}
+							++filterDataPtr;
+						}
+						goto breakFromLoop_SimpleWxHbooleanOperationBaseAlgorithm;
+					}
+					++filterDataPtr;
+				}
+			}
+			breakFromLoop_SimpleWxHbooleanOperationBaseAlgorithm:
+			for(; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+				for(I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
 					if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
 						DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>());
 					}
@@ -45,6 +65,9 @@ template <
 			auto srcImageDataPtr   = srcImageDataPtrIn;
 			auto filterSkipDataPtr = parameters.filterSkipDataPtr;
 
+			srcImageDataPtr+=(*filterSkipDataPtr);
+			++filterSkipDataPtr;
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 			srcImageDataPtr+=(*filterSkipDataPtr);
 			++filterSkipDataPtr;
 			for (;filterSkipDataPtr!=parameters.filterSkipDataPtrEnd;){

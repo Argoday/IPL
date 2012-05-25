@@ -2,8 +2,9 @@
 #include "MaxFilter1xH.h"
 #include <Algorithm/Algorithm1xH.h>
 #include "BaseMaxFilterAlgorithm.h"
-#include "BaseMaxFilterParametersType.h"
+#include "SimpleWxHbooleanOperationParametersType.h"
 #include "Simple1xHbooleanOperationBaseAlgorithm.h"
+#include <Algorithm/BaseOperationTempType.h>
 
 namespace Filter {
 
@@ -16,23 +17,23 @@ template <
 
 	filterData.calculateKernelSkipData(srcImage.getWidth());
 
-	BaseMaxFilterParametersType<PixelDataType,PixelComputationType> parameters(getFilterData(),getXoffset(),getYoffset(),PixelType::ComputationRange::getMinPixel());
+	SimpleWxHbooleanOperationParametersType parameters(getFilterData(),getXoffset(),getYoffset());
 
 	Algorithm::Algorithm1xH<
 		Simple1xHbooleanOperationBaseAlgorithm<
 			BaseMaxFilterAlgorithm<
 				PixelDataType,
 				PixelComputationType,
-				BaseMaxFilterParametersType<PixelDataType,PixelComputationType>,
+				SimpleWxHbooleanOperationParametersType,
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
 			PixelComputationType,
-			BaseMaxFilterParametersType<PixelDataType,PixelComputationType>,
+			SimpleWxHbooleanOperationParametersType,
 			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		BaseMaxFilterParametersType<PixelDataType,PixelComputationType>
+		SimpleWxHbooleanOperationParametersType
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),

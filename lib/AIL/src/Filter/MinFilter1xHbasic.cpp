@@ -2,8 +2,9 @@
 #include "MinFilter1xHbasic.h"
 #include <Algorithm/Algorithm1xH.h>
 #include "BaseMinFilterAlgorithm.h"
+#include <Algorithm/Basic1xHbaseAlgorithmParametersType.h>
 #include <Algorithm/Basic1xHbaseAlgorithm.h>
-#include "MinFilter1xHbasicParametersType.h"
+#include <Algorithm/BaseOperationTempType.h>
 
 namespace Filter {
 
@@ -14,23 +15,23 @@ template <
 	typedef typename PixelType::DataType        PixelDataType;
 	typedef typename PixelType::ComputationType PixelComputationType;
 
-	MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType> parameters(yOffset,filterHeight,srcImage.getWidth(),PixelType::ComputationRange::getMaxPixel());
+	Algorithm::Basic1xHbaseAlgorithmParametersType parameters(yOffset,filterHeight,srcImage.getWidth());
 
 	Algorithm::Algorithm1xH<
 		Algorithm::Basic1xHbaseAlgorithm<
 			BaseMinFilterAlgorithm<
 				PixelDataType,
 				PixelComputationType,
-				MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType>,
+				Algorithm::Basic1xHbaseAlgorithmParametersType,
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
 			PixelComputationType,
-			MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType>,
+			Algorithm::Basic1xHbaseAlgorithmParametersType,
 			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		MinFilter1xHbasicParametersType<PixelDataType,PixelComputationType>
+		Algorithm::Basic1xHbaseAlgorithmParametersType
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),

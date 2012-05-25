@@ -24,8 +24,17 @@ template <
 			TempType tempData;
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto filterDataPtr = parameters.filterDataPtr;
-			for (I4 yf=y-parameters.yOffset; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
-				for (I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+			I4 yf=y-parameters.yOffset;
+			I4 xf=x-parameters.xOffset;
+			DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+			++filterDataPtr;++xf;
+			for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+				++filterDataPtr;
+			}
+			++yf;
+			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+				for(xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
 					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
 					++filterDataPtr;
 				}
@@ -43,8 +52,11 @@ template <
 			auto srcImageDataPtr     = srcImageDataPtrIn;
 			auto filterDataPtr       = parameters.filterDataPtr;
 			auto filterDataPtrRowEnd = parameters.filterDataPtr+parameters.filterWidth; //TODO: store this information in the parameters and just use a lookup?
-			for (;filterDataPtr!=parameters.filterDataPtrEnd;){
-				for (;filterDataPtr!=filterDataPtrRowEnd;){
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+			++filterDataPtr;
+			++srcImageDataPtr;
+			for(;filterDataPtr!=parameters.filterDataPtrEnd;){
+				for(;filterDataPtr!=filterDataPtrRowEnd;){
 					DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
 					++filterDataPtr;
 					++srcImageDataPtr;
