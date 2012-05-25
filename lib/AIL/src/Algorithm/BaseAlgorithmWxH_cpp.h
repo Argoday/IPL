@@ -115,7 +115,7 @@ template <
 					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 					++dstImageDataPtr;
 				}
-				dstImageDataPtr+=filterWidth;
+				dstImageDataPtr+=filterWidth_1;
 				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
 			}
 
@@ -127,7 +127,7 @@ template <
 						AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 						++dstImageDataPtr;
 					}
-					dstImageDataPtr+=dstImageStride - filterWidth + xOffset;
+					dstImageDataPtr+=dstImageStride - filterWidth_1 + xOffset;
 				}
 			}
 		}
