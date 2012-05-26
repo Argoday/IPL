@@ -25,12 +25,12 @@ template <
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto filterDataPtr = parameters.filterDataPtr;
 			I4 yf=y-parameters.yOffset;
-			for(; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
 				for(I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
 					if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
 						DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>());
 						++filterDataPtr;
-
+						++xf;
 						//Finish out the row then break out of the double loop
 						for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
 							if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
@@ -38,13 +38,14 @@ template <
 							}
 							++filterDataPtr;
 						}
+						++yf;
 						goto breakFromLoop_SimpleWxHbooleanOperationBaseAlgorithm;
 					}
 					++filterDataPtr;
 				}
 			}
 			breakFromLoop_SimpleWxHbooleanOperationBaseAlgorithm:
-			for(; yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
 				for(I4 xf=x-parameters.xOffset; xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
 					if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
 						DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,yf).getAsComp<PixelComputationType::NumberType>());
@@ -70,7 +71,7 @@ template <
 			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 			srcImageDataPtr+=(*filterSkipDataPtr);
 			++filterSkipDataPtr;
-			for (;filterSkipDataPtr!=parameters.filterSkipDataPtrEnd;){
+			for(;filterSkipDataPtr!=parameters.filterSkipDataPtrEnd;){
 				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
 				srcImageDataPtr+=(*filterSkipDataPtr);
 				++filterSkipDataPtr;

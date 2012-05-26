@@ -29,6 +29,7 @@ template <
 		grid.push_back(cell);
 		return grid;
 	}
+
 	I4 cellWidth  = cellWidthTry;
 	I4 cellHeight = cellHeightTry;
 	if(size.getHeight()<filterHeight){
@@ -221,7 +222,7 @@ template <
 	}
 
 	if( (xOffset>0) && ( (filterHeight-yOffset-1) > 0 ) ){
-		ImageView<PixelDataType> beginXendYCell(imageDataPtr + stride * (size.getHeight_1()-filterHeight)
+		ImageView<PixelDataType> beginXendYCell(imageDataPtr + stride * (size.getHeight()-filterHeight)
 											   ,imageDataPtr + stride *  size.getHeight_1()               + filterWidth
 											   ,ImageSize(filterWidth,filterHeight)
 											   ,stride,stride-filterWidth,true,false,false,true);
@@ -237,7 +238,7 @@ template <
 	}
 
 	if( ( (filterWidth-xOffset-1) > 0 ) && ( (filterWidth-xOffset-1) > 0 ) ){
-		ImageView<PixelDataType> endXendYCell(imageDataPtr + stride * (size.getHeight_1()-filterHeight) + size.getWidth() - filterWidth
+		ImageView<PixelDataType> endXendYCell(imageDataPtr + stride * (size.getHeight()  -filterHeight) + size.getWidth() - filterWidth
 											 ,imageDataPtr + stride *  size.getHeight_1()               + size.getWidth()
 											 ,ImageSize(filterWidth,filterHeight)
 											 ,stride,stride-filterWidth,false,true,false,true);
@@ -248,8 +249,8 @@ template <
 	I4 cellsY = ( (size.getHeight() - filterHeight) / cellHeight);
 
 	for(I4 xIndex=0;xIndex<cellsX;++xIndex){
-		I4 cellWidthClip = (xIndex==(cellsX-1)) ? (size.getWidth()-(xIndex*cellWidth)) : (cellWidth  + filterWidth );
-			
+		I4 cellWidthClip = (xIndex==(cellsX-1)) ? (size.getWidth()-(xIndex*cellWidth)) : (cellWidth  + filterWidth);
+
 		I4 xStart = xIndex*cellHeight;
 		I4 xEnd   = xIndex*cellHeight + cellWidthClip - 1;
 

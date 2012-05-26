@@ -29,8 +29,11 @@ template <
 		const auto & filterWidth  = parameter.filterWidth;
 		const auto & filterHeight = parameter.filterHeight;
 
-		auto srcImageWidth_filterWidthOffset   = srcImageWidth  - (filterWidth  - xOffset - 1);
-		auto srcImageHeight_filterHeightOffset = srcImageHeight - (filterHeight - yOffset - 1);
+		const auto filterWidth_1  = parameter.filterWidth  - 1;
+		const auto filterHeight_1 = parameter.filterHeight - 1;
+
+		auto srcImageWidth_filterWidthOffset   = srcImageWidth  - (filterWidth_1  - xOffset);
+		auto srcImageHeight_filterHeightOffset = srcImageHeight - (filterHeight_1 - yOffset);
 
 		auto srcImageDataPtr = srcImage.getDataPtr();
 		auto dstImageDataPtr = dstImage.getDataPtr();
@@ -40,35 +43,35 @@ template <
 
 		//First Rows
 		for(;y<yOffset;++y){
-			for (x=0; x<srcImageWidth; ++x){
+			for(x=0;x<srcImageWidth;++x){
 				AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 				++dstImageDataPtr;
 			}
 		}
 	
-		for (; y<srcImageHeight_filterHeightOffset; ++y){	
-			//First Pixels of inside Row
-			for (x=0; x<xOffset; ++x){
+		for(;y<srcImageHeight_filterHeightOffset;++y){
+			//Inside Row - First Section
+			for(x=0;x<xOffset;++x){
 				AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 				++dstImageDataPtr;
 			}
-			//Inside Row
-			for (; x<srcImageWidth_filterWidthOffset; ++x){
+			//Inside Row - Inside Section
+			for(;x<srcImageWidth_filterWidthOffset;++x){
 				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
 				++dstImageDataPtr;
 				++srcImageDataPtr;
 			}
-			//Last Pixels Inside Row
-			for (; x<srcImageWidth; ++x){
+			//Inside Row - Last Section
+			for(;x<srcImageWidth;++x){
 				AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 				++dstImageDataPtr;
 			}
-			srcImageDataPtr+=filterWidth;
+			srcImageDataPtr+=filterWidth_1;
 		}
 
 		//Last Rows
 		for(;y<srcImageHeight;++y){
-			for (x=0; x<srcImageWidth; ++x){
+			for(x=0;x<srcImageWidth;++x){
 				AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 				++dstImageDataPtr;
 			}
@@ -85,8 +88,8 @@ template <
 	
 		const auto & filterWidth = parameter.filterWidth;
 
-		const auto & filterWidth_1  = parameter.filterWidth - 1;
-		const auto & filterHeight_1 = parameter.filterHeight - 1;
+		const auto filterWidth_1  = parameter.filterWidth  - 1;
+		const auto filterHeight_1 = parameter.filterHeight - 1;
 
 		auto srcImageWidth_filterWidthOffset   = srcImageWidth  - (filterWidth_1  - xOffset);
 		auto srcImageHeight_filterHeightOffset = srcImageHeight - (filterHeight_1 - yOffset);
@@ -101,7 +104,7 @@ template <
 			if(srcImage.hasXbeginSection()==true){
 				//First Rows - First Section
 				for(y=0;y<yOffset;++y){
-					for(x=0; x<xOffset; ++x){
+					for(x=0;x<xOffset;++x){
 						AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 						++dstImageDataPtr;
 					}
@@ -132,14 +135,14 @@ template <
 			}
 		}
 
-		dstImageDataPtr=dstImage.getDataPtr() + yOffset*srcImageStride;
+		dstImageDataPtr=dstImage.getDataPtr() + yOffset*dstImageStride;
 
 		auto dstImageDataPtrRowEnd = dstImageDataPtr + srcImageWidth_filterWidthOffset;
 
 		if((srcImage.hasXbeginSection()==false)&&(srcImage.hasXendSection()==false)){
 			for(y=yOffset;y<srcImageHeight_filterHeightOffset;++y){
 				dstImageDataPtr+=xOffset;
-				//Inside Row
+				//Inside Row - Inside Section
 				for(x=xOffset;x<srcImageWidth_filterWidthOffset;++x){
 					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
 					++dstImageDataPtr;
@@ -152,13 +155,13 @@ template <
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}else if((srcImage.hasXbeginSection()==true)&&(srcImage.hasXendSection()==false)){
-			for(y=yOffset;y<srcImageHeight_filterHeightOffset;++y){	
-				//First Pixels of inside Row
+			for(y=yOffset;y<srcImageHeight_filterHeightOffset;++y){
+				//Inside Row - First Section
 				for(x=0;x<xOffset; ++x){
 					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 					++dstImageDataPtr;
 				}
-				//Inside Row
+				//Inside Row - Inside Section
 				for(;x<srcImageWidth_filterWidthOffset;++x){
 					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
 					++dstImageDataPtr;
@@ -173,13 +176,13 @@ template <
 		}else if((srcImage.hasXbeginSection()==false)&&(srcImage.hasXendSection()==true)){
 			for(y=yOffset;y<srcImageHeight_filterHeightOffset;++y){	
 				dstImageDataPtr+=xOffset;
-				//Inside Row
+				//Inside Row - Inside Section
 				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
 					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
 					++dstImageDataPtr;
 					++srcImageDataPtr;
 				}
-				//Last Pixels of Row
+				//Inside Row - Last Section
 				for(x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
 					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 					++dstImageDataPtr;
@@ -192,25 +195,25 @@ template <
 			}
 		}else{
 			for(y=yOffset;y<srcImageHeight_filterHeightOffset;++y){	
-				//First Pixels of inside Row
+				//Inside Row - First Section
 				for(x=0;x<xOffset; ++x){
 					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 					++dstImageDataPtr;
 				}
-				//Inside Row
+				//Inside Row - Inside Section
 				for(;x<srcImageWidth_filterWidthOffset;++x){
 					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
 					++dstImageDataPtr;
 					++srcImageDataPtr;
 				}
-				//Last Pixels Inside Row
+				//Inside Row - Last Section
 				for(;x<srcImageWidth;++x){
 					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
 					++dstImageDataPtr;
 				}
 				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
 
-				srcImageDataPtr+=filterWidth;
+				srcImageDataPtr+=filterWidth_1;
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}
@@ -218,7 +221,7 @@ template <
 		if(srcImage.hasYendSection()==true){
 			auto dstImageDataPtrRowsEnd = dstImageDataPtr;
 			if(srcImage.hasXbeginSection()==true){
-				//First Rows - First Section
+				//Last Rows - First Section
 				for(y=srcImageHeight_filterHeightOffset;y<srcImageHeight;++y){
 					for(x=0; x<xOffset; ++x){
 						AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
