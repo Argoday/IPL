@@ -370,6 +370,7 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClInclude Include="src\Meta\enable_if.h" />
     <ClInclude Include="src\Meta\Forward.h" />
     <ClInclude Include="src\Meta\is_same.h" />
+    <ClInclude Include="src\Meta\make_unique.h" />
     <ClInclude Include="src\Meta\Swap.h" />
     <ClInclude Include="src\Meta\Operators.h" />
     <ClInclude Include="src\Meta\remove_const.h" />

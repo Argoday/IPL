@@ -196,6 +196,9 @@
     <ClInclude Include="platform\gcc\Data\DataTypes.h">
       <Filter>platform-gcc\Data\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Meta\make_unique.h">
+      <Filter>Meta\Function Objects\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Data\DataChunk.cpp">
