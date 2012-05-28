@@ -380,6 +380,10 @@ copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Pla
 copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
 copy $(LIBPNG_DIR)\projects\vstudio\x64\Release\libpng15.dll $(IPL)\export\$(Platform)-$(Configuration)\libpng15.dll /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\x64\Release Library</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libpng15.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|x64'">
     <ClCompile>
