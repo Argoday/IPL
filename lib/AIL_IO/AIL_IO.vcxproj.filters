@@ -15,9 +15,7 @@
     <ClInclude Include="src\Image\Image_IO.h">
       <Filter>Image\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\AIL_IO.h">
-      <Filter>Image</Filter>
-    </ClInclude>
+    <ClInclude Include="src\AIL_IO.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Image\Image_IO.cpp">
