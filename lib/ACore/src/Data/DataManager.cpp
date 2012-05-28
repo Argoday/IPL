@@ -109,11 +109,12 @@ class DataManagerHelper {
 		}
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 DataManager::DataManager(){
 	_this = new DataManager_d();
 }
-
 DataManager::~DataManager(){
 	delete _this;
 }
@@ -135,6 +136,7 @@ void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
 }
 
 B1 DataManager::releaseFromPool(const void * const dataPtr){
+	if(dataPtr==nullptr){return false;}
 	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	auto dataMapIter = _this->dataMap.begin();
 	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
@@ -146,14 +148,17 @@ B1 DataManager::releaseFromPool(const void * const dataPtr){
 	return false;
 }
 B1 DataManager::releaseFromPool(const void * const dataPtr,const I4  & numBytes){
+	if(dataPtr==nullptr){return false;}
 	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 B1 DataManager::releaseFromPool(const void * const dataPtr,const I4u & numBytes){
+	if(dataPtr==nullptr){return false;}
 	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
 B1 DataManager::releaseFromPool(const void * const dataPtr,const I8u & numBytes){
+	if(dataPtr==nullptr){return false;}
 	std::lock_guard<std::mutex> lock(_this->criticalSection);
 	return _this->dataMap[numBytes].release(dataPtr);
 }
