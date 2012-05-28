@@ -12,12 +12,13 @@
 
 MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 	:dataManager(_dataManager)
+	,player(_dataManager)
 {
 	auto videoWidget = new Video::Widget();
 	auto surface = videoWidget->videoSurface();
 
-	player = new Media::FFMPEGqtPlayer(dataManager,surface);
-	mediaControl = player->getMediaControl();
+	player.start(surface);
+	mediaControl = player.getMediaControl();
 
 	playPauseButton = new QPushButton;
 	playPauseButton->setEnabled(false);
@@ -57,9 +58,6 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 	
 }
 
-MediaPlayer::~MediaPlayer(){
-	delete player;
-}
 void MediaPlayer::sliderChanged(int sliderIndex){
 }
 void MediaPlayer::sliderPressed(){

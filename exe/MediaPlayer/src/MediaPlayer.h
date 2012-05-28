@@ -25,7 +25,6 @@ class MediaPlayer : public QMainWindow {
 
 	public:
 		MediaPlayer(Data::DataManager * const _dataManager);
-		~MediaPlayer();
 
 	private slots:
 		void open();
@@ -62,7 +61,7 @@ class MediaPlayer : public QMainWindow {
 		QSlider * positionSlider;
 		
 		Media::Player::Control * mediaControl;
-		Media::FFMPEGqtPlayer * player;
+		Media::FFMPEGqtPlayer player;
 
 };
 
