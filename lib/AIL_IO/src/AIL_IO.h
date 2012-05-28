@@ -2,6 +2,8 @@
 #ifndef AIL_IO__AIL_IO_H
 #define AIL_IO__AIL_IO_H
 
+#include <ACore.h>
+
 #ifdef BUILD_DLL
 	#ifdef AIL_IO_BUILD
 		#define AIL_IO_DLL_EXPORT __declspec(dllexport)
