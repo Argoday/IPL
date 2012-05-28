@@ -11,7 +11,7 @@ class ACORE_DLL_EXPORT Boolean {
 	public:
 
 		typedef Boolean ThisType;
-		typedef bool NumberType;
+		typedef B1n NumberType;
 
 		NumberType value;
 
@@ -22,10 +22,10 @@ class ACORE_DLL_EXPORT Boolean {
 		FINLINE ThisType & operator =(const ThisType   &  other);
 		FINLINE ThisType & operator =(const NumberType & _value);
 
-		FINLINE operator bool() const {return value;}
+		FINLINE operator B1n() const {return value;}
 
-		FINLINE bool operator ==(const ThisType   &  other) const ;
-		FINLINE bool operator ==(const NumberType & _value) const ;
+		FINLINE B1n operator ==(const ThisType   &  other) const ;
+		FINLINE B1n operator ==(const NumberType & _value) const ;
 
 		FINLINE void setAs(const ThisType   &  other);
 		FINLINE void setAs(const NumberType & _value);
@@ -63,5 +63,8 @@ class ACORE_DLL_EXPORT Boolean {
 }
 
 #include "Boolean_cpp.h"
+
+//NOTE: This is used to break an include cycle with DataTypes.h
+#define META__Boolean_H_END
 
 #endif

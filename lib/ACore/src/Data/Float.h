@@ -3,7 +3,6 @@
 #define DATA__Float_H
 
 #include "ACore.h"
-#include <Data/DataTypes.h>
 
 //TODO: Verify that these structures actually work
 //TODO: Examine the x64 generated for accessing the struct components versus the function versions
@@ -29,48 +28,48 @@ class ACORE_DLL_EXPORT F16c { //TODO: Complete a quad precision floating point c
 class ACORE_DLL_EXPORT F8c {
 	public:
 		union {
+			F8n f;
 			I8u u;
-			F8  f;
 			struct {
 				I8u mantissa : 52;
 				I8u exponent : 11;
 				I8u sign : 1;
 			} s ;
 		};
-		FINLINE F8c(){}
-		explicit FINLINE F8c(const I8u & _u,const bool & dummy):u(_u){}
-		FINLINE F8c(const F8 & _f):f(_f){}
-		FINLINE operator F8(){return f;}
+		FINLINE          F8c(){}
+		FINLINE          F8c(const F8n & _f):f(_f){}
+		FINLINE explicit F8c(const I8u & _u,const B1 & dummy):u(_u){}
+		FINLINE operator F8n(){return f;}
 
-	    FINLINE bool sign()     const { return (u >> 63) != 0; }
-		FINLINE I8u  mantissa() const { return  u & ((1i64 << 52) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
-		FINLINE I8u  exponent() const { return (u >> 52) & 0x7FF; }
+	    FINLINE B1  sign()     const { return (u >> 63) != 0; }
+		FINLINE I8u mantissa() const { return  u & ((1i64 << 52) - 1); }
+		FINLINE I8u exponent() const { return (u >> 52) & 0x7FF; }
 
 };
 
 class ACORE_DLL_EXPORT F4c {
 	public:
 		union {
+			F4n f;
 			I4u u;
-			F4  f;
 			struct {
 				I4u mantissa : 23;
 				I4u exponent : 8;
 				I4u sign : 1;
 			} s ;
 		};
-		FINLINE F4c(){}
-		explicit FINLINE F4c(const I4u & _u,const bool & dummy):u(_u){}
-		FINLINE F4c(const F4 & _f):f(_f){}
-		FINLINE operator F4(){return f;}
+		FINLINE          F4c(){}
+		FINLINE          F4c(const F4n & _f):f(_f){}
+		FINLINE explicit F4c(const I4u & _u,const B1 & dummy):u(_u){}
+		FINLINE operator F4n(){return f;}
 
-	    FINLINE bool sign()     const { return (u >> 31) != 0; }
-		FINLINE I4u  mantissa() const { return  u & ((1 << 23) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
-		FINLINE I4u  exponent() const { return (u >> 23) & 0xFF; }
+	    FINLINE B1  sign()     const { return (u >> 31) != 0; }
+		FINLINE I4u mantissa() const { return  u & ((1 << 23) - 1); }
+		FINLINE I4u exponent() const { return (u >> 23) & 0xFF; }
 
 };
 
-//Half precision floating point based on https://gist.github.com/2156668 and http://fgiesen.wordpress.com/2012/03/28/half-to-float-done-quic/ by rygorous
+//Half precision floating point based on https://gist.github.com/2156668 (revision 685a30) and http://fgiesen.wordpress.com/2012/03/28/half-to-float-done-quic/ by rygorous
 //TODO: Use the SEE version of float_to_half_SSE2()
 class ACORE_DLL_EXPORT F2c {
 	public:
@@ -83,8 +82,8 @@ class ACORE_DLL_EXPORT F2c {
 			} s ;
 		};
 
-		FINLINE bool sign() const { return (u >> 15) != 0; }
-		FINLINE I2u mantissa() const { return u & ((1 << 10) - 1); } //TODO: Make this a static const? - or is this handled by the compiler
+		FINLINE B1  sign()     const { return (u >> 15) != 0; }
+		FINLINE I2u mantissa() const { return u & ((1 << 10) - 1); }
 		FINLINE I2u exponent() const { return (u >> 10) & 0x1F; }
 
 		F2c(const F4c & f){
@@ -140,5 +139,8 @@ class ACORE_DLL_EXPORT F2c {
 		static const F4c magic;
 
 };
+
+//NOTE: This is used to break an include cycle with DataTypes.h
+#define DATA__Float_H_END
 
 #endif 

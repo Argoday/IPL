@@ -11,7 +11,7 @@ void Boolean::setAs(const NumberType & _value){value=_value;}
 
 // Operators:
 //With NumberType
-bool Boolean::operator ==(const NumberType & _value) const {return (value==_value);}
+B1n Boolean::operator ==(const NumberType & _value) const {return (value==_value);}
 Boolean & Boolean::operator =(const NumberType & _value){value=_value; return (*this);}
 
 Boolean::Boolean(const NumberType &_value):value(_value){}
@@ -27,7 +27,7 @@ Boolean Boolean::operator*(const NumberType & value) const {return ThisType(*thi
 Boolean Boolean::operator/(const NumberType & value) const {return ThisType(*this)/=value;}
 
 //With ThisType
-bool Boolean::operator ==(const ThisType & other) const {return (value==other.value);}
+B1n Boolean::operator ==(const ThisType & other) const {return (value==other.value);}
 Boolean::Boolean(const ThisType & other){value=other.value;}
 
 Boolean & Boolean::operator  =(const ThisType & other) {value = other.value; return (*this);}
