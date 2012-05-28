@@ -19,44 +19,39 @@
 
 namespace Media {
 
-FFMPEGqtPlayer::FFMPEGqtPlayer(Data::DataManager * const _dataManager,QAbstractVideoSurface * surface)
+FFMPEGqtPlayer::FFMPEGqtPlayer(Data::DataManager * const _dataManager)
 	:dataManager(_dataManager)
 {
-	videoPipe = new Thread::Queue::Pipe(20);
-	audioPipe = new Thread::Queue::Pipe(0);
+}
+void FFMPEGqtPlayer::start(QAbstractVideoSurface * surface){
+	videoPipe = Meta::make_unique<Thread::Queue::Pipe>(20);
+	audioPipe = Meta::make_unique<Thread::Queue::Pipe>(0);
 
-	mediaControl = new Media::Player::Control(controlQueue);
+	mediaControl = Meta::make_unique<Media::Player::Control>(controlQueue);
 
-	videoReaderAgent = new Thread::Queue::ReaderAgent(*videoPipe);
-	videoQtTarget = new Video::Queue::QtTarget(surface);
-	videoReaderAgent->registerTarget(videoQtTarget);
+	videoReaderAgent = Meta::make_unique<Thread::Queue::ReaderAgent>(*videoPipe);
+	videoQtTarget = Meta::make_unique<Video::Queue::QtTarget>(surface);
+	videoReaderAgent->registerTarget(videoQtTarget.get());
 
-	audioReaderAgent = new Thread::Queue::ReaderAgent(*audioPipe);
-	auto audioQtDevice = new Audio::AudioQtDevice();
-	audioQtTarget = new Audio::Queue::QtTarget(audioQtDevice);
-	audioReaderAgent->registerTarget(audioQtTarget);
+	audioReaderAgent = Meta::make_unique<Thread::Queue::ReaderAgent>(*audioPipe);
+	audioQtTarget = Meta::make_unique<Audio::Queue::QtTarget>();
+	audioReaderAgent->registerTarget(audioQtTarget.get());
 
-	mediaPlayerAgent = new Media::FFMPEGmediaPlayerAgent(dataManager,controlQueue,*videoPipe,*audioPipe);
+	mediaPlayerAgent = Meta::make_unique<Media::FFMPEGmediaPlayerAgent>(dataManager,controlQueue,*videoPipe,*audioPipe);
 
 	mediaPlayerAgent->start();
 	videoReaderAgent->start();
 	audioReaderAgent->start();
 }
-FFMPEGqtPlayer::~FFMPEGqtPlayer(){
+void FFMPEGqtPlayer::stop(){
 	mediaControl->quit();
-	Concurrency::agent::wait(mediaPlayerAgent);
-	Concurrency::agent::wait(videoReaderAgent);
-	Concurrency::agent::wait(audioReaderAgent);
-
-	delete videoPipe;
-	delete audioPipe;
-	delete videoQtTarget;
-	delete audioQtTarget;
-	delete mediaControl;
-	delete videoReaderAgent;
-	delete mediaPlayerAgent;
+	Concurrency::agent::wait(mediaPlayerAgent.get());
+	Concurrency::agent::wait(videoReaderAgent.get());
+	Concurrency::agent::wait(audioReaderAgent.get());
 };
-
+FFMPEGqtPlayer::~FFMPEGqtPlayer(){
+	stop();
+}
 
 }
 

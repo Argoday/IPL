@@ -24,22 +24,26 @@ namespace Media {
 
 class AML_QT_DLL_EXPORT FFMPEGqtPlayer {
 	public:
-		FFMPEGqtPlayer(Data::DataManager * const _dataManager,QAbstractVideoSurface * surface);
-		Media::Player::Control * getMediaControl(){return mediaControl;}
+		FFMPEGqtPlayer(Data::DataManager * const _dataManager);
 		~FFMPEGqtPlayer();
+
+		void start(QAbstractVideoSurface * surface);
+		void stop();
+
+		Media::Player::Control * getMediaControl(){return mediaControl.get();}
 
 	private:
 		Data::DataManager * const dataManager;
 
 		Concurrency::unbounded_buffer<Media::Player::ControlPacket> controlQueue;
-		Thread::Queue::Pipe * videoPipe;
-		Thread::Queue::Pipe * audioPipe;
-		Video::Queue::QtTarget * videoQtTarget;
-		Audio::Queue::QtTarget * audioQtTarget;
-		Media::Player::Control * mediaControl;
-		Thread::Queue::ReaderAgent * videoReaderAgent;
-		Thread::Queue::ReaderAgent * audioReaderAgent;
-		Media::FFMPEGmediaPlayerAgent * mediaPlayerAgent;
+		std::unique_ptr<Thread::Queue::Pipe> videoPipe;
+		std::unique_ptr<Thread::Queue::Pipe> audioPipe;
+		std::unique_ptr<Video::Queue::QtTarget> videoQtTarget;
+		std::unique_ptr<Audio::Queue::QtTarget> audioQtTarget;
+		std::unique_ptr<Media::Player::Control> mediaControl;
+		std::unique_ptr<Thread::Queue::ReaderAgent> videoReaderAgent;
+		std::unique_ptr<Thread::Queue::ReaderAgent> audioReaderAgent;
+		std::unique_ptr<Media::FFMPEGmediaPlayerAgent> mediaPlayerAgent;
 
 };
 
