@@ -26,9 +26,7 @@ enum class AML_DLL_EXPORT Command {
 class AML_DLL_EXPORT CommandParameter {
 	public:
 		typedef CommandParameter ThisType;
-		
 		virtual void releaseParameter() = 0;
-
 };
 
 class AML_DLL_EXPORT CommandDefaultParameter : public CommandParameter {
@@ -37,7 +35,6 @@ class AML_DLL_EXPORT CommandDefaultParameter : public CommandParameter {
 		CommandDefaultParameter(const ThisType & other){}
 		CommandDefaultParameter(){}
 		void releaseParameter(){}
-	private:
 };
 class AML_DLL_EXPORT CommandPlayPauseParameter : public CommandParameter {
 	public:

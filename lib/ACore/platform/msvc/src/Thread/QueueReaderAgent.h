@@ -16,7 +16,6 @@ namespace Queue {
 class ACORE_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 
 	public:
-
 		typedef ReaderAgent ThisType;
 
 		ReaderAgent(Thread::Queue::Pipe & _sourcePipe):sourcePipe(_sourcePipe),target(nullptr){}
@@ -25,17 +24,13 @@ class ACORE_DLL_EXPORT ReaderAgent : public Concurrency::agent {
 		void registerTarget(ReaderAgentTarget * const & _target);
 
 	protected:
-
 		void run();
 
 	private:
-
 		Thread::Queue::Pipe & sourcePipe;
 		ReaderAgentTarget * target;
 		Concurrency::event targetSetEvent;
-		
 
-		
 };
 
 }
