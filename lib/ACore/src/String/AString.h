@@ -4,7 +4,7 @@
 #define STRING__AString_H
 
 #include "ACore.h"
-#include "Data/DataTypes.h"
+
 #include <string>
 
 namespace String {
