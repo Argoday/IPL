@@ -2,6 +2,8 @@
 #ifndef AIL_PNG__AIL_png_H
 #define AIL_PNG__AIL_png_H
 
+#include <ACore.h>
+
 #ifdef BUILD_DLL
 	#ifdef AIL_PNG_BUILD
 		#define AIL_PNG_DLL_EXPORT __declspec(dllexport)
