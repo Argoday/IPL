@@ -14,7 +14,6 @@ class AAL_DLL_EXPORT AudioData {
 		AudioData(Data::DataManager * const _dataManager,const I8u & _numBytes):dataManager(_dataManager),numBytes(_numBytes){
 			data = reinterpret_cast<I1u*>(_dataManager->getMemoryFromPool(_numBytes));
 		}
-		AudioData(const ThisType & other):dataManager(other.dataManager),data(other.data),numBytes(other.numBytes){}
 		AudioData(ThisType && other)
 			:dataManager(other.dataManager)
 		{
@@ -24,9 +23,7 @@ class AAL_DLL_EXPORT AudioData {
 			other.numBytes = 0;
 		}
 		~AudioData(){
-			if(data!=nullptr){
-				dataManager->releaseFromPool(data,numBytes);
-			}
+			dataManager->releaseFromPool(data,numBytes);
 		}
 
 		const I1u * getData() const {return data;}
