@@ -3,7 +3,6 @@
 #define AIL__AIL_H
 
 #include <ACore.h>
-#include <Data/DataTypes.h>
 
 #ifdef BUILD_DLL
 	#ifdef AIL_BUILD
