@@ -20,11 +20,11 @@ template <
 > class AIL_DLL_EXPORT Image
 	: public ImageBase
 {
+	public:
 
 		typedef typename PixelType::DataType PixelDataType;
 		typedef Image<PixelType> ThisType;
-
-	public:
+		typedef ImageView<PixelType> ThisViewType;
 		
 		Image();
 		Image(const ImageSize & _imageSize);
@@ -35,7 +35,10 @@ template <
 		Image(const ImageSize & _imageSize,Data::DataManager * const _dataManager);
 		Image(const I4 & _width,const I4 & _height,Data::DataManager * const _dataManager);
 
-		void setAs(const ThisType & otherImage,const ImageSize & _imageSize);
+		void resize(const I4 & _width,const I4 & _height);
+		void resize(const ImageSize & _imageSize);
+		void setAs(const ThisViewType & otherView);
+
 		const ThisType & operator=(const ThisType & _image);
 		const ThisType & operator=(ThisType && _image);
 

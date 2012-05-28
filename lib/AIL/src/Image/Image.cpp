@@ -30,14 +30,12 @@ template <typename PixelType> Image<PixelType>::~Image(){
 	releaseImageData();
 }
 template <typename PixelType> void Image<PixelType>::releaseImageData(){
-	if(dataPtr!=nullptr){
-		if(dataManager==nullptr){
-			Data::DataManager::release(static_cast<void*>(dataPtr));
-		}else{
-			dataManager->releaseFromPool(static_cast<void*>(dataPtr),dataNumBytes);
-		}
-		dataPtr = nullptr;
+	if(dataManager==nullptr){
+		Data::DataManager::release(static_cast<void *>(dataPtr));
+	}else{
+		dataManager->releaseFromPool(static_cast<void *>(dataPtr),dataNumBytes);
 	}
+	dataPtr = nullptr;
 	dataPtrEnd = nullptr;
 	Meta::assign(static_cast<size_t>(dataNumBytes),0);
 }
@@ -152,16 +150,24 @@ template <typename PixelType> const Image<PixelType> &Image<PixelType>::operator
 	memcpy(this->getDataPtr(),_image.getDataPtr(),size.getNumPixels()*sizeof(PixelType));
 	return (*this);
 }
-//Set this as otherImage at imageSize
-template <typename PixelType> void Image<PixelType>::setAs(const ThisType & otherImage,const ImageSize & _imageSize){
-	size=_imageSize;
+template <typename PixelType> void Image<PixelType>::resize(const I4 & _width,const I4 & _height){
+	size = ImageSize(_width,_height);
 	this->resetImageData();
-	auto otherImageDataPtr = otherImage.getDataPtr();
+}
+template <typename PixelType> void Image<PixelType>::resize(const ImageSize & _imageSize){
+	size = _imageSize;
+	this->resetImageData();
+}
+template <typename PixelType> void Image<PixelType>::setAs(const ThisViewType & otherView){
+	size = otherView.getSize();
+	this->resetImageData();
+	auto otherImageDataPtr = otherView.getDataPtr();
 	auto imageDataPtr = dataPtr;
 	auto regionRowSize = size.getWidth()*sizeof(PixelType);
-	for (I4 y=0; y<size.getHeight(); ++y){
+	for (I4 y=0; y<size.getHeight(); ++y){//TODO: Place this in AlgorithmRx1 (row by 1)
 		memcpy(imageDataPtr,otherImageDataPtr,regionRowSize);
-		otherImageDataPtr+=otherImage.getWidth();		
+		otherImageDataPtr+=otherView.getStride();
+		imageDataPtr+=size.getWidth();
 	}
 }
 
