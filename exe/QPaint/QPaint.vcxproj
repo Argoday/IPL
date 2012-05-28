@@ -223,7 +223,7 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <Link>
       <AdditionalDependencies>libpng15.lib;zlib.lib;qtmain.lib;QtCore4.lib;QtGui4.lib;Ws2_32.lib;QtCored4.lib;QtWebKitd4.lib;QtNetworkd4.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\x64\Debug-Library;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(LIBPNG_DIR)\projects\vstudio\x64\Release Library;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <LinkStatus>true</LinkStatus>

@@ -376,6 +376,10 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
 copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y</Command>
     </PostBuildEvent>
+    <Lib>
+      <AdditionalDependencies>avcodec-54.lib;avformat-54.lib;swscale-2.lib;avutil-51.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-DLL|x64'">
     <ClCompile>
