@@ -11,7 +11,6 @@ namespace Video {
 template<typename PixelType> class AVL_DLL_EXPORT Frame {
 	public:
 		typedef Frame ThisType;
-		Frame(const ThisType & other):image(other.image),timeStamp(other.timeStamp),frameIndex(other.frameIndex){}
 		Frame(ThisType && other){
 			image=other.image;
 			timeStamp=other.timeStamp;

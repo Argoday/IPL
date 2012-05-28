@@ -11,12 +11,6 @@ namespace Audio {
 class AAL_DLL_EXPORT Frame {
 	public:
 		typedef Frame ThisType;
-		Frame(const ThisType & other)
-			:data(other.data)
-			,timeStamp(other.timeStamp)
-			,frameIndex(other.frameIndex)
-		{
-		}
 		Frame(ThisType && other){
 			data=other.data;
 			timeStamp=other.timeStamp;
