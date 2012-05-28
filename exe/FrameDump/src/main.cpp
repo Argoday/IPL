@@ -21,10 +21,9 @@ int main(int argc, char *argv[]) {
 		std::cout<<"Error opening movie file"<<std::endl;
 		return -1;
 	}
-	Image::Image<Pixel::PixelRGBi1u> * image = nullptr;
+	Image::Image<Pixel::PixelRGBi1u> image;
 	while(ffmpegFile.hasNextFrame(image)==true) {
-		Image::IO::write(*image,"frame"+String::getString(ffmpegFile.getFrameIndex(),6)+"." + fileType);
+		Image::IO::write(image,"frame"+String::getString(ffmpegFile.getFrameIndex(),6)+"." + fileType);
 	}
-	if(image!=nullptr){delete image;}
 	return 0;
 }

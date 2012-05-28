@@ -15,10 +15,10 @@ class AVL_FFMPEG_DLL_EXPORT FFMPEGvideoFile {
 		FFMPEGvideoFile(Data::DataManager * const & dataManager);
 		~FFMPEGvideoFile();
 
-		bool openFile(const std::string & fileName);
+		B1 openFile(const std::string & fileName);
 		void closeFile();
 
-		bool hasNextFrame(Image::Image<Pixel::PixelRGBi1u> * & imagePtr);
+		B1 hasNextFrame(Image::Image<Pixel::PixelRGBi1u> & imagePtr);
 
 		const I8u & getFrameIndex() const {return frameIndex;}
 
