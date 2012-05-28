@@ -181,13 +181,13 @@ const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i2u::maxPixel = PixelDataTypeY2_0i4
 const I4                   PixelRange_Y2_0i4_i2u::minValue = I4(0x0000);
 const I4                   PixelRange_Y2_0i4_i2u::maxValue = I4(0xffff);
 
-const PixelDataTypeY2_0f4  PixelRange_Y2_0f4::minPixel = PixelDataTypeY2_0f4(0.0f);
-const PixelDataTypeY2_0f4  PixelRange_Y2_0f4::maxPixel = PixelDataTypeY2_0f4(1.0f);
+const PixelDataTypeY2_0f4  PixelRange_Y2_0f4::minPixel = PixelDataTypeY2_0f4(0.0f,-0.5f,-0.5f);
+const PixelDataTypeY2_0f4  PixelRange_Y2_0f4::maxPixel = PixelDataTypeY2_0f4(1.0f, 0.5f, 0.5f);
 const F4                   PixelRange_Y2_0f4::minValue = F4(0.0f);
 const F4                   PixelRange_Y2_0f4::maxValue = F4(1.0f);
 
-const PixelDataTypeY2_0f8  PixelRange_Y2_0f8::minPixel = PixelDataTypeY2_0f8(0.0);
-const PixelDataTypeY2_0f8  PixelRange_Y2_0f8::maxPixel = PixelDataTypeY2_0f8(1.0);
+const PixelDataTypeY2_0f8  PixelRange_Y2_0f8::minPixel = PixelDataTypeY2_0f8(0.0,-0.5,-0.5);
+const PixelDataTypeY2_0f8  PixelRange_Y2_0f8::maxPixel = PixelDataTypeY2_0f8(1.0,0.5,0.5);
 const F8                   PixelRange_Y2_0f8::minValue = F8(0.0);
 const F8                   PixelRange_Y2_0f8::maxValue = F8(1.0);
 

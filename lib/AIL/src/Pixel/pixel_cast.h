@@ -273,9 +273,9 @@ template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelARGBi4 & _color
 }
 template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYUVf8 & _color){
 	return PixelRGBf8(
-		(_color.getY() +                           +  1.39652344*_color.getV() ), // See Poynton Eq 25.13 Page 310
-		(_color.getY() + -0.34279297*_color.getU() + -0.71134766*_color.getV() ),
-		(_color.getY() +  1.76507813*_color.getU()                             ))
+		(_color.getY() +                         +  1.402   *_color.getV()), // See Poynton Y`PbPr http://www.poynton.com/notes/colour_and_gamma/ColorFAQ.html#RTFToC28
+		(_color.getY() + -0.344136*_color.getU() + -0.714136*_color.getV()),
+		(_color.getY() +  1.772   *_color.getU()                          ))
 	;
 }
 /////////////////////////////////////////////////
@@ -286,11 +286,11 @@ template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYb1 & _color){
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi1u & _color){return PixelYUVf8(_color.getY());}
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi4  & _color){return PixelYUVf8(_color.getY());}
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBf8 & _color){
-	return PixelYUVf8(
-		( 0.299     *_color.getR() +  0.587     *_color.getG() +  0.114     *_color.getB() ), // See Poynton Eq 25.12 Page 310
-		(-0.16807422*_color.getR() + -0.32996484*_color.getG() +  0.49803906*_color.getB() ),
-		( 0.49803906*_color.getR() + -0.41704687*_color.getG() + -0.08099219*_color.getB() ))
-	;
+	PixelYUVf8 newPixel;
+	newPixel.getY() =  0.299    * _color.getR() +  0.587    * _color.getG() +  0.114    * _color.getB(); // See Poynton Y`PbPr http://www.poynton.com/notes/colour_and_gamma/ColorFAQ.html#RTFToC28
+	newPixel.getU() = -0.168736 * _color.getR() + -0.331264 * _color.getG() +  0.5      * _color.getB();
+	newPixel.getV() =  0.5      * _color.getR() + -0.418688 * _color.getG() + -0.081312 * _color.getB();
+	return newPixel;
 }
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////

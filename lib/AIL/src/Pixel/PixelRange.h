@@ -260,15 +260,15 @@ template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataTypeY2_0
 };
 
 template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataTypeY2_0f4,1>::clip(PixelDataTypeY2_0f4 & pixel){
-	if(pixel.get<0>()<0.0f){pixel.set<0>(0.0f);}else if(pixel.get<0>()>1.0f){pixel.set<0>(1.0f);}
-	if(pixel.get<1>()<0.0f){pixel.set<1>(0.0f);}else if(pixel.get<1>()>1.0f){pixel.set<1>(1.0f);}
-	if(pixel.get<2>()<0.0f){pixel.set<2>(0.0f);}else if(pixel.get<2>()>1.0f){pixel.set<2>(1.0f);}
+	if(pixel.get<0>()< 0.0f){pixel.set<0>( 0.0f);}else if(pixel.get<0>()>1.0f){pixel.set<0>(1.0f);}
+	if(pixel.get<1>()<-0.5f){pixel.set<1>(-0.5f);}else if(pixel.get<1>()>0.5f){pixel.set<1>(0.5f);}
+	if(pixel.get<2>()<-0.5f){pixel.set<2>(-0.5f);}else if(pixel.get<2>()>0.5f){pixel.set<2>(0.5f);}
 };
 
 template <> AIL_DLL_EXPORT static FINLINE void PixelRange_Base<PixelDataTypeY2_0f8,1>::clip(PixelDataTypeY2_0f8 & pixel){
-	if(pixel.get<0>()<0.0){pixel.set<0>(0.0);}else if(pixel.get<0>()>1.0){pixel.set<0>(1.0);}
-	if(pixel.get<1>()<0.0){pixel.set<1>(0.0);}else if(pixel.get<1>()>1.0){pixel.set<1>(1.0);}
-	if(pixel.get<2>()<0.0){pixel.set<2>(0.0);}else if(pixel.get<2>()>1.0){pixel.set<2>(1.0);}
+	if(pixel.get<0>()< 0.0){pixel.set<0>( 0.0);}else if(pixel.get<0>()>1.0){pixel.set<0>(1.0);}
+	if(pixel.get<1>()<-0.5){pixel.set<1>(-0.5);}else if(pixel.get<1>()>0.5){pixel.set<1>(0.5);}
+	if(pixel.get<2>()<-0.5){pixel.set<2>(-0.5);}else if(pixel.get<2>()>0.5){pixel.set<2>(0.5);}
 };
 
 ///////////////////////////////////////////////////////////////////
