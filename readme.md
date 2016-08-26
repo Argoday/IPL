@@ -1,5 +1,4 @@
 # Image Processing Library
-[Wiki](http://www.argoday.com/wiki/IPL "Argoday Wiki") - (Not developed yet)
 
 ## Overview
 
