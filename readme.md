@@ -27,6 +27,6 @@ This library is not endorsed by or affiliated with any other software libraries,
 
 ## License
 
-Copyright (c) 2012 argoday@argoday.com
+Copyright (c) 2012
 
 [IPL](https://github.com/Argoday/IPL "IPL") is licensed under the "Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)" license, see http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode
